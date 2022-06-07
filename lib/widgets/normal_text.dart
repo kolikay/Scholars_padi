@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 
 class NormalText extends StatelessWidget {
@@ -12,7 +14,7 @@ class NormalText extends StatelessWidget {
       this.color = const Color(0xff332d2b),
       required this.text,
       this.overflow = TextOverflow.ellipsis,
-      this.size = 20,
+      this.size = 16,
       this.fontWeight = FontWeight.normal})
       : super(key: key);
 
