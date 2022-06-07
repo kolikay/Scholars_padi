@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/screens/home_screens/landing_page.dart';
+import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 
 void main() {
   runApp(const MyApp());
