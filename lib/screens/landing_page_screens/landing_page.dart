@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
 import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
@@ -74,7 +75,7 @@ class _LandingPageState extends State<LandingPage> {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const HomePageScreen(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   );
                 },
