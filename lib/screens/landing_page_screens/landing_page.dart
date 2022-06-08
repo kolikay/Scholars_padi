@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
+import 'package:scholars_padi/widgets/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class LandingPage extends StatefulWidget {
@@ -14,14 +16,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
   late PageController pageController;
   int currentPage = 0;
-
-  // int activeImageIndex = 0;
-  // int activeTextIndex = 0;
-  // final images = [
-  //   'lib/assets/landingImage1.png',
-  //   'lib/assets/landingImage2.png',
-  //   'lib/assets/landingImage3.png',
-  // ];
+  bool isLastPage = false;
 
   @override
   void initState() {
@@ -46,65 +41,100 @@ class _LandingPageState extends State<LandingPage> {
           padding: const EdgeInsets.only(bottom: 70),
           child: PageView(
             controller: pageController,
+            onPageChanged: (index) {
+              setState(() {
+                isLastPage = index == 2;
+              });
+            },
             children: [
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage1.png',
-                  title: 'Library accesability',
+                  title: 'Library Accessaibility',
                   subTitle:
-                      'Provides material needed for the whole payments platform'),
+                      'Materials of all classes are made available and note can be jotted down for personal uses'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage2.png',
                   title: 'Activity Reminger',
                   subTitle:
-                      'Provides material needed for the whole payments platform'),
+                      'Reminders are used to reduce the rate of forgetfulnessof students'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage3.png',
-                  title: 'LAtest Infomation',
+                  title: 'Latest Infomation',
                   subTitle:
-                      'Provides material needed for the whole payments platform'),
+                      'Latest new on camous and scholarship aids can be accessed easily'),
             ],
           ),
         ),
-        bottomSheet: Container(
-          height: 70,
-          // padding: const EdgeInsets.symmetric(horizontal: 80),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              TextButton(
+        bottomSheet: isLastPage
+            ? ReuseableButton(
+                text: 'Get Started',
                 onPressed: () {
-                  pageController.jumpToPage(2);
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => const HomePageScreen(),
+                    ),
+                  );
                 },
-                child: const Text('Skipp'),
-              ),
-              Center(
-                child: SmoothPageIndicator(
-                  controller: pageController,
-                  count: 3,
-                  effect: const WormEffect(
-                      dotWidth: 20,
-                      dotHeight: 20,
-                      activeDotColor: AppColor.mainColor,
-                      dotColor: Colors.black12),
-                  onDotClicked: (index) => pageController.animateToPage(index,
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeOut),
+              )
+            : Container(
+                height: 70,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                        pageController.jumpToPage(2);
+                      },
+                      child: NormalText(
+                        text: 'Skip',
+                        color: AppColor.mainColor,
+                      ),
+                    ),
+                    Center(
+                      child: SmoothPageIndicator(
+                        controller: pageController,
+                        count: 3,
+                        effect: const WormEffect(
+                            dotWidth: 20,
+                            dotHeight: 20,
+                            activeDotColor: AppColor.mainColor,
+                            dotColor: Colors.black12),
+                        onDotClicked: (index) => pageController.animateToPage(
+                            index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeOut),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: ReuseableButton(
+                        text: '>',
+                        size: 30,
+                        onPressed: () {
+                          pageController.nextPage(
+                              duration: const Duration(milliseconds: 500),
+                              curve: Curves.easeOut);
+                        },
+                        width: 75,
+                      ),
+                    )
+                    // TextButton(
+                    //   onPressed: () {
+                    //     pageController.nextPage(
+                    //         duration: const Duration(milliseconds: 500),
+                    //         curve: Curves.easeOut);
+                    //   },
+                    //   child: NormalText(
+                    //     text: 'Next',
+                    //     color: AppColor.mainColor,
+                    //   ),
+                    // ),
+                  ],
                 ),
               ),
-              TextButton(
-                onPressed: () {
-                  pageController.nextPage(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeOut);
-                },
-                child: const Text('Next'),
-              ),
-            ],
-          ),
-        ),
       ),
     );
   }
@@ -116,11 +146,10 @@ class _LandingPageState extends State<LandingPage> {
     required String subTitle,
   }) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: Container(
         color: color,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               height: 500,
@@ -131,29 +160,23 @@ class _LandingPageState extends State<LandingPage> {
                     image: AssetImage(urlImage), fit: BoxFit.cover),
               ),
             ),
-    
-            // Image.asset(
-            //   urlImage,
-            //   fit: BoxFit.cover,
-            //   width: double.infinity,
-            // ),
             const SizedBox(
-              height: 34,
+              height: 20,
             ),
-            Text(
-              title,
-              style: const TextStyle(
-                  color: Colors.lightBlue,
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold),
+            NormalText(
+              text: title,
+              size: 19.2,
+              color: AppColor.mainColor,
+              fontWeight: FontWeight.w600,
             ),
             const SizedBox(
-              height: 14,
+              height: 10,
             ),
-            Container(
-              child: Text(
-                subTitle,
-                style: const TextStyle(color: Colors.amber),
+            SizedBox(
+              child: NormalText(
+                text: subTitle,
+                textAlign: TextAlign.end,
+                color: Colors.black54,
               ),
             )
           ],
@@ -183,14 +206,14 @@ class _LandingPageState extends State<LandingPage> {
 //     );
 //   }
 
-Widget buildImage(String image, int index) {
-  return Container(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-    ),
-  );
-}
+// Widget buildImage(String image, int index) {
+//   return Container(
+//     decoration: BoxDecoration(
+//       borderRadius: BorderRadius.circular(20),
+//       image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
+//     ),
+//   );
+// }
 
 //   Widget buildIndicator() {
 //     return AnimatedSmoothIndicator(

@@ -8,6 +8,7 @@ class NormalText extends StatelessWidget {
   double size;
   TextOverflow overflow;
   FontWeight? fontWeight;
+  TextAlign? textAlign;
 
   NormalText(
       {Key? key,
@@ -15,7 +16,10 @@ class NormalText extends StatelessWidget {
       required this.text,
       this.overflow = TextOverflow.ellipsis,
       this.size = 16,
-      this.fontWeight = FontWeight.normal})
+      this.fontWeight = FontWeight.normal,
+      this.textAlign,
+      
+      })
       : super(key: key);
 
   @override
@@ -23,10 +27,11 @@ class NormalText extends StatelessWidget {
     return Text(
       text,
       style: TextStyle(
-          color: color,
-          fontSize: size,
-          fontWeight: fontWeight,
-          fontFamily: 'Roboto',),
+        color: color,
+        fontSize: size,
+        fontWeight: fontWeight,
+        fontFamily: 'Roboto',
+      ),
     );
   }
 }
