@@ -21,7 +21,7 @@ class ReuseableButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(10.0, 0.0, 10.0,0.0 ),
+      margin: const EdgeInsets.fromLTRB(20.0, 0.0, 20.0,0.0 ),
       height: height,
       width: width,
       child: TextButton(
@@ -30,7 +30,7 @@ class ReuseableButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(16),
             ),
             backgroundColor: AppColor.mainColor,
-            minimumSize: const Size.fromHeight(80),
+            minimumSize: const Size.fromHeight(70),
             primary: Colors.white,
           ),
           onPressed: onPressed,

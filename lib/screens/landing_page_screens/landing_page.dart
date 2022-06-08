@@ -93,6 +93,7 @@ class _LandingPageState extends State<LandingPage> {
                         color: AppColor.mainColor,
                       ),
                     ),
+                    
                     Center(
                       child: SmoothPageIndicator(
                         controller: pageController,
@@ -121,17 +122,6 @@ class _LandingPageState extends State<LandingPage> {
                         width: 75,
                       ),
                     )
-                    // TextButton(
-                    //   onPressed: () {
-                    //     pageController.nextPage(
-                    //         duration: const Duration(milliseconds: 500),
-                    //         curve: Curves.easeOut);
-                    //   },
-                    //   child: NormalText(
-                    //     text: 'Next',
-                    //     color: AppColor.mainColor,
-                    //   ),
-                    // ),
                   ],
                 ),
               ),
