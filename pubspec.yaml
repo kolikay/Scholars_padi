@@ -48,7 +48,7 @@ dev_dependencies:
   
   #Slider for landing page
   carousel_slider: ^4.1.1
-
+  smooth_page_indicator: ^1.0.0+2
   flutter_native_splash: 1.2.0
 
 flutter_native_splash:
