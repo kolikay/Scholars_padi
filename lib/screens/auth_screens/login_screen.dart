@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _isObscure = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   NormalText(
                     text: 'Sign In',
@@ -35,11 +43,15 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(
                     height: 10,
                   ),
-                  NormalText(text: 'Enter your Information to continue', ),
+                  NormalText(
+                    text: 'Enter your Information to continue',
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
                   MyTextField(
+                    obcureText: false,
+                    keyBoardType: TextInputType.emailAddress,
                     isPassword: false,
                     isReadOnly: false,
                     labelText: 'Email Address',
@@ -48,14 +60,46 @@ class LoginScreen extends StatelessWidget {
                     height: 10,
                   ),
                   MyTextField(
-                    isPassword: true,
-                    isReadOnly: false,
-                    labelText: 'Enter Password',
-                  ),
+                      obcureText: _isObscure,
+                      keyBoardType: TextInputType.text,
+                      isPassword: true,
+                      isReadOnly: false,
+                      labelText: 'Enter Password',
+                      sufixIcon: IconButton(
+                          color: AppColor.mainColor,
+                          icon: Icon(_isObscure
+                              ? Icons.visibility
+                              : Icons.visibility_off),
+                          onPressed: () {
+                            setState(() {
+                              _isObscure = !_isObscure;
+                            });
+                          })),
                   const SizedBox(
                     height: 20,
                   ),
-                  ReuseableButton(text: 'Submit', onPressed: () {})
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: (){},
+                        child: NormalText(
+                          text: 'Forgot Password',
+                          color: AppColor.mainColor,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  ReuseableButton(
+                      text: 'Submit',
+                      onPressed: () {
+                        FocusScope.of(context).unfocus();
+                      })
                 ],
               ),
             ],
