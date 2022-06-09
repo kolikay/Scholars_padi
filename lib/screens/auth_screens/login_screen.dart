@@ -13,6 +13,7 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,89 +21,105 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
-          child: Column(
-            children: [
-              SizedBox(
-                  height: 125,
-                  width: 125,
-                  child: Image.asset(
-                    'lib/assets/logo.png',
-                    fit: BoxFit.contain,
-                  )),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  NormalText(
-                    text: 'Sign In',
-                    size: 24,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  NormalText(
-                    text: 'Enter your Information to continue',
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  MyTextField(
-                    obcureText: false,
-                    keyBoardType: TextInputType.emailAddress,
-                    isPassword: false,
-                    isReadOnly: false,
-                    labelText: 'Email Address',
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  MyTextField(
-                      obcureText: _isObscure,
-                      keyBoardType: TextInputType.text,
-                      isPassword: true,
-                      isReadOnly: false,
-                      labelText: 'Enter Password',
-                      sufixIcon: IconButton(
-                          color: AppColor.mainColor,
-                          icon: Icon(_isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: () {
-                            setState(() {
-                              _isObscure = !_isObscure;
-                            });
-                          })),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      TextButton(
-                        onPressed: (){},
-                        child: NormalText(
-                          text: 'Forgot Password',
-                          color: AppColor.mainColor,
-                          fontWeight: FontWeight.w600,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                    height: 125,
+                    width: 125,
+                    child: Image.asset(
+                      'lib/assets/logo.png',
+                      fit: BoxFit.contain,
+                    )),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    NormalText(
+                      text: 'Sign In',
+                      size: 24,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    NormalText(
+                      text: 'Enter your Information to continue',
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            MyTextField(
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'The Email Field is required';
+                                }
+                              },
+                              obcureText: false,
+                              keyBoardType: TextInputType.emailAddress,
+                              isPassword: false,
+                              isReadOnly: false,
+                              labelText: 'Email Address',
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            MyTextField(
+                                obcureText: _isObscure,
+                                keyBoardType: TextInputType.text,
+                                isPassword: true,
+                                isReadOnly: false,
+                                labelText: 'Enter Password',
+                                sufixIcon: IconButton(
+                                    color: AppColor.mainColor,
+                                    icon: Icon(_isObscure
+                                        ? Icons.visibility
+                                        : Icons.visibility_off),
+                                    onPressed: () {
+                                      setState(() {
+                                        _isObscure = !_isObscure;
+                                      });
+                                    })),
+                          ],
+                        )),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          onPressed: () {},
+                          child: NormalText(
+                            text: 'Forgot Password',
+                            color: AppColor.mainColor,
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  ReuseableButton(
-                      text: 'Submit',
-                      onPressed: () {
-                        FocusScope.of(context).unfocus();
-                      })
-                ],
-              ),
-            ],
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 40,
+                    ),
+                    ReuseableButton(
+                        text: 'Submit',
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            print('hello world');
+                          }
+                          FocusScope.of(context).unfocus();
+                        })
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
