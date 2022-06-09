@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
+import 'package:scholars_padi/screens/auth_screens/sign_up1.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -71,7 +71,7 @@ class _LandingPageState extends State<LandingPage> {
                 onPressed: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
+                      builder: (context) => const SignUpScreen1(),
                     ),
                   );
                 },
@@ -172,6 +172,12 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 }
+
+
+
+
+
+
 
 //   Widget carousel() {
 //     return CarouselSlider.builder(

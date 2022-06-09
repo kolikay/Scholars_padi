@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/auth_screens/sign_up1.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
@@ -14,7 +15,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
-  bool _loginError = false;
+  final bool _loginError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -143,16 +144,46 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 40,
                     ),
                     ReuseableButton(
-                        text: 'Submit',
-                        onPressed: () {
-                          setState(() {
-                            _loginError = !_loginError;
-                          });
-                          print(_loginError);
-                          print('hello world');
-                          if (_formKey.currentState!.validate()) {}
-                          FocusScope.of(context).unfocus();
-                        })
+                      text: 'Submit',
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                        FocusScope.of(context).unfocus();
+                      },
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(
+                      onPressed: () {
+                               Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const SignUpScreen1(),
+                          ),
+                        );
+                      },
+                      child: RichText(
+                        text: const TextSpan(
+                          style: TextStyle(
+                            color: Colors.black87,
+                            fontSize: 16.0,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(text: 'Dont have an account? '),
+                            TextSpan(
+                              text: 'Sign Up',
+                              style: TextStyle(
+                                  color: AppColor.mainColor,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
