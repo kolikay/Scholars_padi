@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
-import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -21,7 +19,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     pageController =
         PageController(initialPage: currentPage, viewportFraction: 0.9);
@@ -29,7 +26,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     pageController.dispose();
   }
@@ -80,7 +76,7 @@ class _LandingPageState extends State<LandingPage> {
                   );
                 },
               )
-            : Container(
+            : SizedBox(
                 height: 70,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -5,11 +5,11 @@ import 'package:scholars_padi/widgets/normal_text.dart';
 class ReuseableButton extends StatelessWidget {
   final String text;
   final GestureTapCallback onPressed;
-  double? width;
-  double? height;
-  double size;
+  final double? width;
+  final double? height;
+ final double size;
 
-  ReuseableButton(
+  const ReuseableButton(
       {Key? key,
       required this.text,
       required this.onPressed,

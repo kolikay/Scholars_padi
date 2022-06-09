@@ -14,6 +14,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
+  bool _loginError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +48,39 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     NormalText(
                       text: 'Enter your Information to continue',
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Visibility(
+                      visible: _loginError,
+                      child: Container(
+                        color: Colors.pink[100],
+                        height: 100,
+                        width: double.infinity,
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 5,
+                            ),
+                            const SizedBox(
+                                child: Icon(
+                              Icons.ac_unit,
+                              color: Color(0xffD32f2f),
+                              size: 24,
+                            )),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                                child: NormalText(
+                              text:
+                                  'we didnt recognize that email address \nor password you can try again or use\n another login option',
+                              color: Colors.black54,
+                            )),
+                          ],
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 20,
@@ -111,9 +145,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     ReuseableButton(
                         text: 'Submit',
                         onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            print('hello world');
-                          }
+                          setState(() {
+                            _loginError = !_loginError;
+                          });
+                          print(_loginError);
+                          print('hello world');
+                          if (_formKey.currentState!.validate()) {}
                           FocusScope.of(context).unfocus();
                         })
                   ],

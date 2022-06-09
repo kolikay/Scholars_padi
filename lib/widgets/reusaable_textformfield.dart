@@ -14,9 +14,9 @@ class MyTextField extends StatefulWidget {
   final bool isReadOnly;
   final Color borderColor;
   final TextInputType keyBoardType;
-  String? Function(String?)? validator;
+ final String? Function(String?)? validator;
 
-  MyTextField({
+  const MyTextField({
     Key? key,
     this.borderColor = AppColor.mainColor,
     this.controller,
@@ -38,27 +38,25 @@ class MyTextField extends StatefulWidget {
 class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: TextFormField(
-        controller: widget.controller,
-        readOnly: widget.isReadOnly,
-        obscureText: widget.obcureText,
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.mainColor, width: 2.0)),
-          enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.black, width: 1.0)),
-          border: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.pink, width: 1.0)),
-          hintText: widget.hintText,
-          hintStyle: TextStyle(color: AppColor.mainColor),
-          labelText: widget.labelText,
-          labelStyle: TextStyle(color: AppColor.mainColor),
-          prefixIcon: Icon(widget.prefixIcon),
-          suffixIcon: widget.sufixIcon,
-        ),
-        validator: widget.validator,
+    return TextFormField(
+      controller: widget.controller,
+      readOnly: widget.isReadOnly,
+      obscureText: widget.obcureText,
+      decoration: InputDecoration(
+        focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0)),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 1.0)),
+        border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.pink, width: 1.0)),
+        hintText: widget.hintText,
+        hintStyle: TextStyle(color: AppColor.mainColor),
+        labelText: widget.labelText,
+        labelStyle: TextStyle(color: AppColor.mainColor),
+        prefixIcon: Icon(widget.prefixIcon),
+        suffixIcon: widget.sufixIcon,
       ),
+      validator: widget.validator,
     );
   }
 }
