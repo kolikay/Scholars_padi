@@ -51,8 +51,9 @@ dev_dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter_native_splash: 1.2.0
 
+# flutter pub run flutter_native_splash:create
 flutter_native_splash:
-  image: lib/assets/logo.png
+  image: lib/assets/icons/logo.png
   color: '#ffffff'
 
 # For information on the generic Dart part of this file, see the
@@ -69,6 +70,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - lib/assets/
+    
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up2.dart';
+import 'package:scholars_padi/screens/auth_screens/sign_up2_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
@@ -12,8 +12,11 @@ class SignUpScreen1 extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen1> {
-  final bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
+  final _fullnameCont = TextEditingController();
+  final _usernameCont = TextEditingController();
+  final _facultyCont = TextEditingController();
+  final _departmentCont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +42,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                     ),
                     NormalText(
                       text: 'Create An Account',
-                       size: 24,
+                      size: 24,
                       fontWeight: FontWeight.w600,
                     ),
                     const SizedBox(
@@ -49,7 +52,13 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                         key: _formKey,
                         child: Column(
                           children: [
-                            const MyTextField(
+                            MyTextField(
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'Field Cannot be empty';
+                                }
+                              },
+                              controller: _fullnameCont,
                               obcureText: false,
                               keyBoardType: TextInputType.emailAddress,
                               isPassword: false,
@@ -60,7 +69,13 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 20,
                             ),
                             MyTextField(
-                              obcureText: _isObscure,
+                              validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'Field Cannot be empty';
+                                }
+                              },
+                              controller: _usernameCont,
+                              obcureText: false,
                               keyBoardType: TextInputType.text,
                               isPassword: false,
                               isReadOnly: false,
@@ -70,7 +85,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 20,
                             ),
                             MyTextField(
-                              obcureText: _isObscure,
+                              controller: _facultyCont,
+                              obcureText: false,
                               keyBoardType: TextInputType.text,
                               isPassword: false,
                               isReadOnly: false,
@@ -80,7 +96,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 20,
                             ),
                             MyTextField(
-                              obcureText: _isObscure,
+                              controller: _departmentCont,
+                              obcureText: false,
                               keyBoardType: TextInputType.text,
                               isPassword: false,
                               isReadOnly: false,
@@ -101,12 +118,18 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                           text: 'Next',
                           size: 18,
                           onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const SignUpScreen2(),
-                              ),
-                            );
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => SignUpScreen2(
+                                    fullName: _fullnameCont.text,
+                                    userName: _usernameCont.text,
+                                    department: _departmentCont.text,
+                                    faculty: _facultyCont.text,
+                                  ),
+                                ),
+                              );
+                            }
                             FocusScope.of(context).unfocus();
                           },
                           width: 90,

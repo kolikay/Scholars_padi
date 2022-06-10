@@ -1,14 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up1.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
+import 'package:scholars_padi/widgets/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 
 class SignUpScreen2 extends StatefulWidget {
-  const SignUpScreen2({Key? key}) : super(key: key);
+  final String fullName;
+  final String userName;
+  final String? faculty;
+  final String? department;
 
+  const SignUpScreen2({
+    Key? key,
+    required this.fullName,
+    required this.userName,
+    this.department,
+    this.faculty,
+  }) : super(key: key);
   @override
   State<SignUpScreen2> createState() => _SignUpScreenState();
 }
@@ -16,6 +26,8 @@ class SignUpScreen2 extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen2> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
+  final _emailCont = TextEditingController();
+  final _password1Cont = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +63,13 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          const MyTextField(
+                          MyTextField(
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Field Cannot be empty';
+                              }
+                            },
+                            controller: _emailCont,
                             obcureText: false,
                             keyBoardType: TextInputType.emailAddress,
                             isPassword: false,
@@ -62,6 +80,12 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             height: 20,
                           ),
                           MyTextField(
+                            validator: (val) {
+                              if (val!.isEmpty) {
+                                return 'Field Cannot be empty';
+                              }
+                            },
+                            controller: _password1Cont,
                             obcureText: _isObscure,
                             keyBoardType: TextInputType.text,
                             isPassword: true,
@@ -83,6 +107,11 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             height: 20,
                           ),
                           MyTextField(
+                            validator: (pass) {
+                              if (pass != _password1Cont.text) {
+                                return 'Password Dont match';
+                              }
+                            },
                             obcureText: _isObscure,
                             keyBoardType: TextInputType.text,
                             isPassword: true,
@@ -107,11 +136,38 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                       height: 40,
                     ),
                     ReuseableButton(
-                      text: 'Submit',
+                      text: 'Sign Up',
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => const SignUpScreen1(),
+                            builder: (context) => ReuseableInfoWidget(
+                              bottonText: 'Resend Verification Code',
+                              onPressed: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (context) => ReuseableInfoWidget(
+                                      bottonText: 'Proceed to login',
+                                      onPressed: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) =>
+                                                const LoginScreen(),
+                                          ),
+                                        );
+                                      },
+                                      logo: 'lib/assets/emailVerifyIcon.png',
+                                      maintext: 'Email Verified',
+                                      detailsText:
+                                          'Your account has been verified successfully, please login to continue.',
+                                    ),
+                                  ),
+                                );
+                              },
+                              logo: 'lib/assets/verifyIcon.png',
+                              maintext: 'Congratulations',
+                              detailsText:
+                                  'Your account has been created successfully, Kindly go to your email to verify your account, If you didnt not receive an email, you can resent another.',
+                            ),
                           ),
                         );
                         if (_formKey.currentState!.validate()) {}
@@ -120,13 +176,15 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                     ),
                   ],
                 ),
-               const SizedBox(height: 70,),
+                const SizedBox(
+                  height: 70,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
                       onPressed: () {
-                            Navigator.of(context).pushReplacement(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (context) => const LoginScreen(),
                           ),
