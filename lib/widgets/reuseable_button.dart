@@ -7,15 +7,15 @@ class ReuseableButton extends StatelessWidget {
   final GestureTapCallback onPressed;
   final double? width;
   final double? height;
- final double size;
+ final double textSize;
 
   const ReuseableButton(
       {Key? key,
       required this.text,
       required this.onPressed,
-      this.height,
-      this.size=16,
-      this.width})
+      this.height=50,
+      this.textSize=16,
+      this.width=327})
       : super(key: key);
 
   @override
@@ -27,7 +27,7 @@ class ReuseableButton extends StatelessWidget {
       child: TextButton(
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(5),
             ),
             backgroundColor: AppColor.mainColor,
             minimumSize: const Size.fromHeight(70),
@@ -35,7 +35,7 @@ class ReuseableButton extends StatelessWidget {
           ),
           onPressed: onPressed,
           child: NormalText(
-            size: size,
+            size: textSize,
             color: Colors.white,
             fontWeight: FontWeight.normal,
             text: text,

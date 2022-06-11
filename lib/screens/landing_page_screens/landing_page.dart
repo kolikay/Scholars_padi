@@ -17,9 +17,11 @@ class _LandingPageState extends State<LandingPage> {
   int currentPage = 0;
   bool isLastPage = false;
 
+
   @override
   void initState() {
     super.initState();
+  
     pageController =
         PageController(initialPage: currentPage, viewportFraction: 0.9);
   }
@@ -32,20 +34,21 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
-        body: Container(
-          padding: const EdgeInsets.only(bottom: 70),
+        body: SizedBox(
           child: PageView(
             controller: pageController,
             onPageChanged: (index) {
               setState(() {
                 isLastPage = index == 2;
+                currentPage++;
               });
             },
             children: [
               buildPage(
-                  color: Colors.white,
+                  color: Colors.white10,
                   urlImage: 'lib/assets/landingImage1.png',
                   title: 'Library Accessaibility',
                   subTitle:
@@ -87,17 +90,17 @@ class _LandingPageState extends State<LandingPage> {
                       },
                       child: NormalText(
                         text: 'Skip',
+                        size: 14,
                         color: AppColor.mainColor,
                       ),
                     ),
-                    
                     Center(
                       child: SmoothPageIndicator(
                         controller: pageController,
                         count: 3,
                         effect: const WormEffect(
-                            dotWidth: 20,
-                            dotHeight: 20,
+                            dotWidth: 10,
+                            dotHeight: 10,
                             activeDotColor: AppColor.mainColor,
                             dotColor: Colors.black12),
                         onDotClicked: (index) => pageController.animateToPage(
@@ -106,18 +109,16 @@ class _LandingPageState extends State<LandingPage> {
                             curve: Curves.easeOut),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ReuseableButton(
-                        text: '>',
-                        size: 30,
-                        onPressed: () {
-                          pageController.nextPage(
-                              duration: const Duration(milliseconds: 500),
-                              curve: Curves.easeOut);
-                        },
-                        width: 75,
-                      ),
+                    ReuseableButton(
+                      height: 55,
+                      width: 55,
+                      text: '>',
+                      textSize: 30,
+                      onPressed: () {
+                        pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeOut);
+                      },
                     )
                   ],
                 ),
@@ -133,22 +134,22 @@ class _LandingPageState extends State<LandingPage> {
     required String subTitle,
   }) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10.0),
       child: Container(
         color: color,
         child: Column(
           children: [
             Container(
-              height: 500,
-              width: double.infinity,
+              height: 425,
+              width: 500,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(5),
                 image: DecorationImage(
                     image: AssetImage(urlImage), fit: BoxFit.cover),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 40,
             ),
             NormalText(
               text: title,
@@ -159,10 +160,11 @@ class _LandingPageState extends State<LandingPage> {
             const SizedBox(
               height: 10,
             ),
-            SizedBox(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: NormalText(
                 text: subTitle,
-                textAlign: TextAlign.end,
+                size: 16,
                 color: Colors.black54,
               ),
             )

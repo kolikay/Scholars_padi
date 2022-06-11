@@ -116,7 +116,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                       children: [
                         ReuseableButton(
                           text: 'Next',
-                          size: 18,
+                          textSize: 18,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               Navigator.of(context).push(
