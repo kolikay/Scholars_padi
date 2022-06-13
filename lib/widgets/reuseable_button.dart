@@ -9,17 +9,18 @@ class ReuseableButton extends StatelessWidget {
   final double? height;
   final double textSize;
   final bool isActive;
+  Color backGroundColor;
 
-  const ReuseableButton(
-      {Key? key,
-      required this.text,
-      required this.onPressed,
-      this.height = 50,
-      this.textSize = 16,
-      this.width = 327,
-      this.isActive = true,
-      })
-      : super(key: key);
+  ReuseableButton({
+    Key? key,
+    required this.text,
+    required this.onPressed,
+    this.height = 50,
+    this.textSize = 16,
+    this.width = 327,
+    this.isActive = true,
+    this.backGroundColor =AppColor.mainColor
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,16 +29,15 @@ class ReuseableButton extends StatelessWidget {
       height: height,
       width: width,
       child: TextButton(
-        
           style: TextButton.styleFrom(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            backgroundColor: AppColor.mainColor,
+            backgroundColor: backGroundColor,
             minimumSize: const Size.fromHeight(70),
             primary: Colors.white,
           ),
-          onPressed: isActive ?  onPressed : null,
+          onPressed: isActive ? onPressed : null,
           child: NormalText(
             size: textSize,
             color: Colors.white,

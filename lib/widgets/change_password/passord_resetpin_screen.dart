@@ -15,7 +15,7 @@ class PasswordResetPinScreen extends StatefulWidget {
 
 class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
   final _emailCont = TextEditingController();
- final bool _isActive =false;
+  bool _isActive = false;
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +59,11 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
           Padding(
             padding: const EdgeInsets.only(left: 50, right: 50),
             child: PinCodeTextField(
+              keyboardType: TextInputType.number,
               length: 4,
               appContext: context,
               obscureText: true,
               animationType: AnimationType.fade,
-              validator: (v) {
-                if (v!.length < 3) {
-                  setState(() {});
-                  return "I'm from validator";
-                } else {
-                  return null;
-                }
-              },
               pinTheme: PinTheme(
                 shape: PinCodeFieldShape.box,
                 selectedColor: AppColor.mainColor,
@@ -81,17 +74,26 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                 fieldWidth: 53,
                 activeFillColor: Colors.white,
               ),
-              onChanged: (val) {},
+              onChanged: (val) {
+                if (val.length > 3) {
+                  setState(() {
+                    _isActive = !_isActive;
+                    print(_isActive);
+                  });
+                }
+              },
             ),
           ),
           const SizedBox(
-            height: 100,
+            height: 60,
           ),
           ReuseableButton(
-            isActive: true,
+            backGroundColor: _isActive ? AppColor.mainColor : AppColor.dullBlack,
+            isActive: _isActive,
             text: 'Send Email',
             textSize: 14,
             onPressed: () {
+              print('hello world....');
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ReuseableInfoWidget(
