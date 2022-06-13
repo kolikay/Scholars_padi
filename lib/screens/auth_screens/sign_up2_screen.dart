@@ -40,7 +40,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
               children: [
                 SizedBox(
                     height: 125,
-                    width: 125,
+                    width: 121.25,
                     child: Image.asset(
                       'lib/assets/logo.png',
                       fit: BoxFit.contain,
@@ -49,15 +49,15 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 20,
+                      height: 35.79,
                     ),
                     NormalText(
-                      text: 'Create an Account',
-                      size: 24,
+                      text: 'Create an account',
+                      size: 23,
                       fontWeight: FontWeight.w600,
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 32,
                     ),
                     Form(
                       key: _formKey,
@@ -77,7 +77,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             labelText: 'Email Address',
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 24,
                           ),
                           MyTextField(
                             validator: (val) {
@@ -92,7 +92,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             isReadOnly: false,
                             labelText: 'Enter Password',
                             sufixIcon: IconButton(
-                              color: AppColor.mainColor,
+                              color: Colors.black54,
                               icon: Icon(_isObscure
                                   ? Icons.visibility
                                   : Icons.visibility_off),
@@ -104,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             ),
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 24,
                           ),
                           MyTextField(
                             validator: (pass) {
@@ -117,17 +117,6 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             isPassword: true,
                             isReadOnly: false,
                             labelText: 'Confirm Password',
-                            sufixIcon: IconButton(
-                              color: AppColor.mainColor,
-                              icon: Icon(_isObscure
-                                  ? Icons.visibility
-                                  : Icons.visibility_off),
-                              onPressed: () {
-                                setState(() {
-                                  _isObscure = !_isObscure;
-                                });
-                              },
-                            ),
                           ),
                         ],
                       ),
@@ -136,6 +125,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                       height: 40,
                     ),
                     ReuseableButton(
+                      textSize: 14,
                       text: 'Sign Up',
                       onPressed: () {
                         Navigator.of(context).push(
@@ -197,10 +187,11 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             fontSize: 16.0,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'Already have an account? '),
+                            TextSpan(text: 'Already have an account? ', style: TextStyle(fontSize: 14)),
                             TextSpan(
                               text: 'Sign In',
                               style: TextStyle(
+                                fontSize: 16,
                                   color: AppColor.mainColor,
                                   fontWeight: FontWeight.bold),
                             ),

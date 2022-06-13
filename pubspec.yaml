@@ -51,6 +51,7 @@ dev_dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter_native_splash: 1.2.0
   google_fonts: 2.2.0
+  pin_code_fields: ^7.4.0
 
 # flutter pub run flutter_native_splash:create
 flutter_native_splash:

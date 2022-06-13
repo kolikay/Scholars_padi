@@ -20,6 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
 
   @override
   Widget build(BuildContext context) {
+    
     return SafeArea(
       child: Scaffold(
         body: Padding(
@@ -29,7 +30,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
               children: [
                 SizedBox(
                     height: 125,
-                    width: 125,
+                    width: 121.25,
                     child: Image.asset(
                       'lib/assets/logo.png',
                       fit: BoxFit.contain,
@@ -38,15 +39,15 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 20,
+                      height: 35.79,
                     ),
                     NormalText(
-                      text: 'Create An Account',
-                      size: 24,
+                      text: 'Create an account',
+                      size: 23,
                       fontWeight: FontWeight.w600,
                     ),
                     const SizedBox(
-                      height: 20,
+                      height: 32,
                     ),
                     Form(
                         key: _formKey,
@@ -66,7 +67,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               labelText: 'Full Name',
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 24,
                             ),
                             MyTextField(
                               validator: (val) {
@@ -82,7 +83,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               labelText: 'Username',
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 24,
                             ),
                             MyTextField(
                               controller: _facultyCont,
@@ -93,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               labelText: 'Faculty',
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 24,
                             ),
                             MyTextField(
                               controller: _departmentCont,
@@ -106,9 +107,6 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                           ],
                         )),
                     const SizedBox(
-                      height: 20,
-                    ),
-                    const SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -116,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                       children: [
                         ReuseableButton(
                           text: 'Next',
-                          textSize: 18,
+                          textSize: 14,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               Navigator.of(context).push(

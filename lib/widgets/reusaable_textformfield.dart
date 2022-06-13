@@ -14,7 +14,7 @@ class MyTextField extends StatefulWidget {
   final bool isReadOnly;
   final Color borderColor;
   final TextInputType keyBoardType;
- final String? Function(String?)? validator;
+  final String? Function(String?)? validator;
 
   const MyTextField({
     Key? key,
@@ -38,25 +38,32 @@ class MyTextField extends StatefulWidget {
 class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      readOnly: widget.isReadOnly,
-      obscureText: widget.obcureText,
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0)),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 1.0)),
-        border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.pink, width: 1.0)),
-        hintText: widget.hintText,
-        hintStyle: TextStyle(color: AppColor.mainColor),
-        labelText: widget.labelText,
-        labelStyle: TextStyle(color: AppColor.mainColor),
-        prefixIcon: Icon(widget.prefixIcon),
-        suffixIcon: widget.sufixIcon,
+    return SizedBox(
+      height: 50,
+      width: 327,
+      child: TextFormField(
+        controller: widget.controller,
+        readOnly: widget.isReadOnly,
+        obscureText: widget.obcureText,
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.black, width: 1.0),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.pink, width: 1.0),
+          ),
+          hintText: widget.hintText,
+          hintStyle: TextStyle(color: Colors.black, fontSize: 16),
+          labelText: widget.labelText,
+          labelStyle: TextStyle(color: Colors.black54, fontSize: 16),
+          // prefixIcon: Icon(widget.prefixIcon),
+          suffixIcon: widget.sufixIcon,
+        ),
+        validator: widget.validator,
       ),
-      validator: widget.validator,
     );
   }
 }

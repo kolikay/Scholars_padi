@@ -43,7 +43,6 @@ class _LandingPageState extends State<LandingPage> {
             onPageChanged: (index) {
               setState(() {
                 isLastPage = index == 2;
-                currentPage++;
               });
             },
             children: [

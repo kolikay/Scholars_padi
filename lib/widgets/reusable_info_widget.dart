@@ -28,32 +28,34 @@ class ReuseableInfoWidget extends StatelessWidget {
         body: Column(
           children: [
             const SizedBox(
-              height: 50,
+              height: 150,
             ),
             SizedBox(
-              height: 125,
-              width: 125,
+              height: 140,
+              width: 140,
               child: Image.asset(
                 logo,
                 fit: BoxFit.contain,
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 42,
             ),
             NormalText(
               text: maintext,
-              size: 24,
+              size: 23,
               fontWeight: FontWeight.w600,
             ),
             const SizedBox(
-              height: 20,
+              height: 28,
             ),
             Container(
               padding: const EdgeInsets.all(18),
-              child: NormalText(text: detailsText),
+              child: NormalText(text: detailsText, size: 14,),
+            ),  const SizedBox(
+              height: 48,
             ),
-            ReuseableButton(text: bottonText, onPressed: onPressed),
+            ReuseableButton(text: bottonText,textSize: 14, onPressed: onPressed),
           ],
         ),
       ),
