@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 

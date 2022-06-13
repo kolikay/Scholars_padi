@@ -9,9 +9,9 @@ class ReuseableButton extends StatelessWidget {
   final double? height;
   final double textSize;
   final bool isActive;
-  Color backGroundColor;
+  final Color backGroundColor;
 
-  ReuseableButton({
+  const ReuseableButton({
     Key? key,
     required this.text,
     required this.onPressed,

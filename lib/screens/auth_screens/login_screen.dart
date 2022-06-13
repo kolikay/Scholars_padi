@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
-import 'package:scholars_padi/widgets/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/widgets/change_password/passord_resetpin_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';

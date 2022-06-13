@@ -14,7 +14,6 @@ class PasswordResetPinScreen extends StatefulWidget {
 }
 
 class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
-  final _emailCont = TextEditingController();
   bool _isActive = false;
 
   @override
@@ -78,7 +77,6 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                 if (val.length > 3) {
                   setState(() {
                     _isActive = !_isActive;
-                    print(_isActive);
                   });
                 }
               },
@@ -93,7 +91,6 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
             text: 'Send Email',
             textSize: 14,
             onPressed: () {
-              print('hello world....');
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ReuseableInfoWidget(
