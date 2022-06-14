@@ -39,13 +39,13 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 50,
       width: 327,
       child: TextFormField(
         controller: widget.controller,
         readOnly: widget.isReadOnly,
         obscureText: widget.obcureText,
         decoration: InputDecoration(
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.mainColor, width: 2.0),
           ),

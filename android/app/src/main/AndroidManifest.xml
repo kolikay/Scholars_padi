@@ -2,7 +2,7 @@
     package="com.example.scholars_padi">
    <application
         android:label="scholars_padi"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

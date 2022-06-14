@@ -143,7 +143,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
             ),
           ),
           const SizedBox(
-            height: 450,
+            height: 45,
           ),
           ReuseableButton(
             backGroundColor:

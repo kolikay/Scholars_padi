@@ -61,7 +61,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               },
                               controller: _fullnameCont,
                               obcureText: false,
-                              keyBoardType: TextInputType.emailAddress,
+                              keyBoardType: TextInputType.text,
                               isPassword: false,
                               isReadOnly: false,
                               labelText: 'Full Name',
