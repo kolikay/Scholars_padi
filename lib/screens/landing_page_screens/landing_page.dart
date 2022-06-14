@@ -180,43 +180,5 @@ class _LandingPageState extends State<LandingPage> {
 
 
 
-//   Widget carousel() {
-//     return CarouselSlider.builder(
-//       options: CarouselOptions(
-//           height: 400,
-//           // autoPlay: true,
-//           enlargeCenterPage: true,
-//           autoPlayInterval: const Duration(seconds: 3),
-//           onPageChanged: (index, reason) {
-//             setState(() {
-//               activeImageIndex = index;
-//             });
-//           }),
-//       itemCount: images.length,
-//       itemBuilder: (context, index, realIndex) {
-//         final image = images[index];
-//         return buildImage(image, index);
-//       },
-//     );
-//   }
 
-// Widget buildImage(String image, int index) {
-//   return Container(
-//     decoration: BoxDecoration(
-//       borderRadius: BorderRadius.circular(20),
-//       image: DecorationImage(image: AssetImage(image), fit: BoxFit.cover),
-//     ),
-//   );
-// }
 
-//   Widget buildIndicator() {
-//     return AnimatedSmoothIndicator(
-//         activeIndex: activeImageIndex,
-//         count: images.length,
-//         effect: const WormEffect(
-//             dotWidth: 20,
-//             dotHeight: 20,
-//             activeDotColor: AppColor.mainColor,
-//             dotColor: Colors.black12));
-//   }
-// }

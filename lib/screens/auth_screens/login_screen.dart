@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
+import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
@@ -156,7 +157,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Sign In',
                       textSize: 14,
                       onPressed: () {
-                        
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => const HomePageScreen(),
+                          ),
+                        );
+                        ;
                         // if (_formKey.currentState!.validate()) {}
                         FocusScope.of(context).unfocus();
                       },

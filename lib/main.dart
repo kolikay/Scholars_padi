@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 
 void main() {
@@ -13,10 +14,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       home: const LandingPage(),
+      routes: {
+        HomePageScreen.id: (context) =>  HomePageScreen(),
+      },
     );
   }
 }
