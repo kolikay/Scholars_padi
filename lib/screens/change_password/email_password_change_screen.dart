@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/change_password/passord_resetpin_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusable_info_widget.dart';
@@ -76,7 +77,14 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
                 MaterialPageRoute(
                   builder: (context) => ReuseableInfoWidget(
                     bottonText: 'Proceed',
-                    onPressed: () {},
+                    onPressed: () {
+                          Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const PasswordResetPinScreen(),
+                              ),
+                            );
+                    },
                     logo: 'lib/assets/emailVerifyIcon.png',
                     maintext: 'Email Sent',
                     detailsText:

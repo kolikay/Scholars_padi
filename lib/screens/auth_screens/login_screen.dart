@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/change_password/passord_resetpin_screen.dart';
+import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
+import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
@@ -132,18 +133,18 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         TextButton(
                           onPressed: () {
-                                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const PasswordResetPinScreen(),
-                          ),
-                        );
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const EmailPasswordChangeScreen(),
+                              ),
+                            );
                           },
                           child: NormalText(
                             size: 14,
                             text: 'Forgot Password',
                             color: AppColor.mainColor,
                             fontWeight: FontWeight.w500,
-                            
                           ),
                         ),
                       ],
@@ -155,7 +156,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       text: 'Sign In',
                       textSize: 14,
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
+                        
+                        // if (_formKey.currentState!.validate()) {}
                         FocusScope.of(context).unfocus();
                       },
                     ),
@@ -169,9 +171,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     TextButton(
                       onPressed: () {
-                               Navigator.of(context).pushReplacement(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
+                            builder: (context) => const SignUpScreen1(),
                           ),
                         );
                       },
@@ -182,12 +184,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             fontSize: 16.0,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'Dont have an account? ', style: TextStyle(color: AppColor.dullBlack, fontSize: 14)),
+                            TextSpan(
+                                text: 'Dont have an account? ',
+                                style: TextStyle(
+                                    color: AppColor.dullBlack, fontSize: 14)),
                             TextSpan(
                               text: 'Sign Up',
                               style: TextStyle(
                                   color: AppColor.mainColor,
-                                  fontWeight: FontWeight.w500, fontSize: 16),
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16),
                             ),
                           ],
                         ),

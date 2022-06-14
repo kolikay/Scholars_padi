@@ -143,7 +143,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
             ),
           ),
           const SizedBox(
-            height: 60,
+            height: 450,
           ),
           ReuseableButton(
             backGroundColor:
@@ -157,7 +157,6 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                   builder: (context) => ReuseableInfoWidget(
                     bottonText: 'Proceed',
                     onPressed: () {
-                      print('preesed');
                       Navigator.of(context).push(
                         MaterialPageRoute(
                             builder: (context) => const NewPasswordScreen()),
@@ -179,7 +178,6 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
 
   void _resendCode() {
     //other code here
-    print('resent');
     setState(() {
       secondsRemaining = 30;
       enableResend = false;

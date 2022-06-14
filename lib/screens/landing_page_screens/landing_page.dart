@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
+import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -71,9 +71,9 @@ class _LandingPageState extends State<LandingPage> {
             ? ReuseableButton(
                 text: 'Get Started',
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => const SignUpScreen1(),
+                      builder: (context) => const LoginScreen(),
                     ),
                   );
                 },

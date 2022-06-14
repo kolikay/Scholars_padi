@@ -18,6 +18,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   final _newpassword1 = TextEditingController();
   final _newpassword2 = TextEditingController();
   bool _isObscure = true;
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -58,38 +59,46 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           const SizedBox(
             height: 24,
           ),
-          MyTextField(
-            controller: _newpassword1,
-            obcureText: false,
-            keyBoardType: TextInputType.emailAddress,
-            isPassword: false,
-            isReadOnly: false,
-            labelText: 'password',
-            sufixIcon: IconButton(
-              color: Colors.black54,
-              icon: Icon(_isObscure ? Icons.visibility : Icons.visibility_off),
-              onPressed: () {
-                setState(() {
-                  _isObscure = !_isObscure;
-                });
-              },
+          Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                MyTextField(
+                  controller: _newpassword1,
+                  obcureText: _isObscure,
+                  keyBoardType: TextInputType.text,
+                  isPassword: false,
+                  isReadOnly: false,
+                  labelText: 'password',
+                  sufixIcon: IconButton(
+                    color: Colors.black54,
+                    icon: Icon(
+                        _isObscure ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
+                  ),
+                ),
+                const SizedBox(
+                  height: 40,
+                ),
+                MyTextField(
+                  validator: (pass) {
+                    if (_newpassword2.text != _newpassword1.text) {
+                      return 'Password Dont match';
+                    }
+                  },
+                  controller: _newpassword2,
+                  obcureText: _isObscure,
+                  keyBoardType: TextInputType.emailAddress,
+                  isPassword: false,
+                  isReadOnly: false,
+                  labelText: 'confirm password',
+                ),
+              ],
             ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          MyTextField(
-            validator: (pass) {
-              if (pass != _newpassword1.text) {
-                return 'Password Dont match';
-              }
-            },
-            controller: _newpassword2,
-            obcureText: false,
-            keyBoardType: TextInputType.emailAddress,
-            isPassword: false,
-            isReadOnly: false,
-            labelText: 'confirm password',
           ),
           const SizedBox(
             height: 40,
@@ -98,6 +107,10 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             text: 'Send Email',
             textSize: 14,
             onPressed: () {
+              if (_formKey.currentState!.validate()) {
+             
+              }
+             
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ReuseableInfoWidget(
@@ -105,8 +118,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => const LoginScreen()
-                        ),
+                            builder: (context) => const LoginScreen()),
                       );
                     },
                     logo: 'lib/assets/verifyIcon.png',

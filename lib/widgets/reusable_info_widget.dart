@@ -27,7 +27,7 @@ class ReuseableInfoWidget extends StatelessWidget {
         body: Column(
           children: [
             const SizedBox(
-              height: 50,
+              height: 40,
             ),
             SizedBox(
               height: 140,
