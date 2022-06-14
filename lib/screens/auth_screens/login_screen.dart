@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/widgets/change_password/passord_resetpin_screen.dart';
+import 'package:scholars_padi/screens/change_password/passord_resetpin_screen.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
 import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reuseable_button.dart';
