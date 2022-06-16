@@ -27,7 +27,7 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
           Container(
             padding: const EdgeInsets.only(left: 24),
             color: AppColor.mainColor,
-            height: 103,
+            height: 80,
             child: Row(
               children: [
                 const Icon(
@@ -56,7 +56,7 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
             ),
           ),
           const SizedBox(
-            height: 24,
+            height: 30,
           ),
           MyTextField(
             controller: _emailCont,

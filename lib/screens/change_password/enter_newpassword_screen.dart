@@ -18,6 +18,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   final _newpassword1 = TextEditingController();
   final _newpassword2 = TextEditingController();
   bool _isObscure = true;
+    bool _isObscure1 = true;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -29,7 +30,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
           Container(
             padding: const EdgeInsets.only(left: 24),
             color: AppColor.mainColor,
-            height: 103,
+            height: 80,
             child: Row(
               children: [
                 const Icon(
@@ -40,7 +41,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   width: 28,
                 ),
                 NormalText(
-                  text: 'Create New Passwords',
+                  text: 'Create Your New Password',
                   color: Colors.white,
                 )
               ],
@@ -69,7 +70,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   keyBoardType: TextInputType.text,
                   isPassword: false,
                   isReadOnly: false,
-                  labelText: 'password',
+                  labelText: 'Password',
                   sufixIcon: IconButton(
                     color: Colors.black54,
                     icon: Icon(
@@ -95,7 +96,17 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   keyBoardType: TextInputType.emailAddress,
                   isPassword: false,
                   isReadOnly: false,
-                  labelText: 'confirm password',
+                  labelText: 'Confirm password',
+                    sufixIcon: IconButton(
+                    color: Colors.black54,
+                    icon: Icon(
+                        _isObscure1 ? Icons.visibility : Icons.visibility_off),
+                    onPressed: () {
+                      setState(() {
+                        _isObscure1 = !_isObscure1;
+                      });
+                    },
+                  ),
                 ),
               ],
             ),

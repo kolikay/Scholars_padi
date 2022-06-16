@@ -47,7 +47,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
           Container(
             padding: const EdgeInsets.only(left: 24),
             color: AppColor.mainColor,
-            height: 103,
+            height: 80,
             child: Row(
               children: [
                 const Icon(
@@ -126,7 +126,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                 ),
                 children: <TextSpan>[
                   const TextSpan(
-                      text: 'Didnt you receive an Otp? ',
+                      text: 'Didn\'t you receive an Otp? ',
                       style:
                           TextStyle(color: AppColor.dullBlack, fontSize: 16)),
                   TextSpan(

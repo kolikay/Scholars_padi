@@ -24,7 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 40, left: 30, right: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [

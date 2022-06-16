@@ -25,6 +25,7 @@ class SignUpScreen2 extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen2> {
   bool _isObscure = true;
+  bool _isObscure1 = true;
   final _formKey = GlobalKey<FormState>();
   final _emailCont = TextEditingController();
   final _password1Cont = TextEditingController();
@@ -34,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+          padding: const EdgeInsets.only(top: 40, left: 30, right: 20),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -90,7 +91,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             keyBoardType: TextInputType.text,
                             isPassword: true,
                             isReadOnly: false,
-                            labelText: 'Enter Password',
+                            labelText: 'Password',
                             sufixIcon: IconButton(
                               color: Colors.black54,
                               icon: Icon(_isObscure
@@ -117,6 +118,17 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             isPassword: true,
                             isReadOnly: false,
                             labelText: 'Confirm Password',
+                             sufixIcon: IconButton(
+                              color: Colors.black54,
+                              icon: Icon(_isObscure1
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: () {
+                                setState(() {
+                                  _isObscure1 = !_isObscure1;
+                                });
+                              },
+                            ),
                           ),
                         ],
                       ),
@@ -148,7 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                                       logo: 'lib/assets/emailVerifyIcon.png',
                                       maintext: 'Email Verified',
                                       detailsText:
-                                          'Your account has been verified successfully, please login to continue.',
+                                          'Your account has been verified successfully,Please login to continue.',
                                     ),
                                   ),
                                 );
@@ -156,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                               logo: 'lib/assets/verifyIcon.png',
                               maintext: 'Congratulations',
                               detailsText:
-                                  'Your account has been created successfully, Kindly go to your email to verify your account, If you didnt not receive an email, you can resent another.',
+                                  'Your account has been successfully  created.\nKindly go to your email to verify your account\nIf you did not receive an email, you can resend one.',
                             ),
                           ),
                         );

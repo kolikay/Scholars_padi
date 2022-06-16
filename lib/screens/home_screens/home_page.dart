@@ -15,9 +15,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int activeImageIndex = 0;
 
   List<String> images = [
-    'lib/assets/homescreenImages/homepageimage.png',
-    'lib/assets/homescreenImages/homepageimage.png',
-    'lib/assets/homescreenImages/homepageimage.png',
+    'lib/assets/logo.png',
+     'lib/assets/logo.png',
+      'lib/assets/logo.png',
+   
   ];
 
   @override

@@ -17,11 +17,10 @@ class _LandingPageState extends State<LandingPage> {
   int currentPage = 0;
   bool isLastPage = false;
 
-
   @override
   void initState() {
     super.initState();
-  
+
     pageController =
         PageController(initialPage: currentPage, viewportFraction: 0.9);
   }
@@ -34,7 +33,6 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
       child: Scaffold(
         body: SizedBox(
@@ -49,36 +47,26 @@ class _LandingPageState extends State<LandingPage> {
               buildPage(
                   color: Colors.white10,
                   urlImage: 'lib/assets/landingImage1.png',
-                  title: 'Library Accessaibility',
+                  title: 'Library Accessibility',
                   subTitle:
                       'Materials of all classes are made available and note can be jotted down for personal uses'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage2.png',
-                  title: 'Activity Reminger',
+                  title: 'Activity Reminder',
                   subTitle:
                       'Reminders are used to reduce the rate of forgetfulnessof students'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage3.png',
-                  title: 'Latest Infomation',
+                  title: 'Latest Information',
                   subTitle:
-                      'Latest new on camous and scholarship aids can be accessed easily'),
+                      'Latest new on campus and scholarship aids can be accessed easily'),
             ],
           ),
         ),
-        bottomSheet: isLastPage
-            ? ReuseableButton(
-                text: 'Get Started',
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginScreen(),
-                    ),
-                  );
-                },
-              )
-            : SizedBox(
+        bottomSheet: !isLastPage
+            ? SizedBox(
                 height: 70,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,6 +108,41 @@ class _LandingPageState extends State<LandingPage> {
                       },
                     )
                   ],
+                ),
+              )
+            : SizedBox(
+                height: 70,
+                child: Center(
+                  child: Column(
+                    children: [
+                      ReuseableButton(
+                        text: 'Get Started',
+                        onPressed: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      SmoothPageIndicator(
+                        controller: pageController,
+                        count: 3,
+                        effect: const WormEffect(
+                            dotWidth: 10,
+                            dotHeight: 10,
+                            activeDotColor: AppColor.mainColor,
+                            dotColor: Colors.black12),
+                        onDotClicked: (index) => pageController.animateToPage(
+                            index,
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.easeOut),
+                      ),
+                    ],
+                  ),
                 ),
               ),
       ),
@@ -173,12 +196,3 @@ class _LandingPageState extends State<LandingPage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-

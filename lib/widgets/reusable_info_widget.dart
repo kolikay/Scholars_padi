@@ -38,7 +38,7 @@ class ReuseableInfoWidget extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 42,
+              height: 32,
             ),
             NormalText(
               text: maintext,

@@ -129,23 +129,29 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 20,
                     ),
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).push(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const EmailPasswordChangeScreen(),
+                        Container(
+                          color: Colors.red,
+                          child: TextButton(
+                            
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      const EmailPasswordChangeScreen(),
+                                ),
+                              );
+                            },
+                            child: Container(
+                              color: AppColor.dullBlack,
+                              child: NormalText(
+                                size: 14,
+                                text: 'Forgot Password',
+                                color: AppColor.mainColor,
+                                fontWeight: FontWeight.w500,
                               ),
-                            );
-                          },
-                          child: NormalText(
-                            size: 14,
-                            text: 'Forgot Password',
-                            color: AppColor.mainColor,
-                            fontWeight: FontWeight.w500,
+                            ),
                           ),
                         ),
                       ],
