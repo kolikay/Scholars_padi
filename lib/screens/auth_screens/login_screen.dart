@@ -126,32 +126,28 @@ class _LoginScreenState extends State<LoginScreen> {
                           ],
                         )),
                     const SizedBox(
-                      height: 20,
+                      height: 16,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Container(
-                          color: Colors.red,
-                          child: TextButton(
-                            
-                            onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      const EmailPasswordChangeScreen(),
-                                ),
-                              );
-                            },
-                            child: Container(
-                              color: AppColor.dullBlack,
-                              child: NormalText(
-                                size: 14,
-                                text: 'Forgot Password',
-                                color: AppColor.mainColor,
-                                fontWeight: FontWeight.w500,
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    const EmailPasswordChangeScreen(),
                               ),
-                            ),
+                            );
+                          },
+                          style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                          ),
+                          child: NormalText(
+                            size: 14,
+                            text: 'Forgot Password?',
+                            color: AppColor.mainColor,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
                       ],
@@ -168,7 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (context) => const HomePageScreen(),
                           ),
                         );
-                        ;
+
                         // if (_formKey.currentState!.validate()) {}
                         FocusScope.of(context).unfocus();
                       },

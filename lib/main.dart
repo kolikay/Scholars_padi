@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       home: const LandingPage(),
       routes: {
-        HomePageScreen.id: (context) =>  HomePageScreen(),
+        HomePageScreen.id: (context) => const  HomePageScreen(),
       },
     );
   }

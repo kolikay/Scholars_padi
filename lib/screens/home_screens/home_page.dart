@@ -15,10 +15,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
   int activeImageIndex = 0;
 
   List<String> images = [
-    'lib/assets/logo.png',
-     'lib/assets/logo.png',
-      'lib/assets/logo.png',
-   
+    'lib/assets/homepageimage.png',
+    'lib/assets/homepageimage.png',
+    'lib/assets/homepageimage.png',
   ];
 
   @override
@@ -35,8 +34,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   viewportFraction: 0.8,
                   height: 400,
                   autoPlay: true,
-                  onPageChanged: (index, reason) => 
-                  setState(() => activeImageIndex = index),
+                  onPageChanged: (index, reason) =>
+                      setState(() => activeImageIndex = index),
                   autoPlayInterval: const Duration(seconds: 2),
                 ),
                 itemCount: images.length,
@@ -46,6 +45,11 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 },
               ),
               buildIndicator(),
+              const SizedBox(height: 10),
+              const Divider(
+                color: AppColor.dullBlack,
+                thickness: 2.0,
+              )
             ],
           ),
         ],
