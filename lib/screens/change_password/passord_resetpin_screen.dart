@@ -69,26 +69,24 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 26.0, right: 25.0),
-            child: NormalText(
-              text: 'Enter verification code to reset your password',
-              size: 16,
-            ),
-          ),
-          const SizedBox(
-            height: 40,
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 50.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NormalText(
-                  text: '00.$secondsRemaining' 'sec',
-                  color: AppColor.dullBlack,
+                  text: 'Enter verification code to reset your',
+                  size: 16,
+                ),
+                 NormalText(
+                  text: 'Password',
+                  size: 16,
                 ),
               ],
             ),
           ),
+          const SizedBox(
+            height: 25,
+          ),
+    
           Padding(
             padding: const EdgeInsets.only(left: 50, right: 50),
             child: PinCodeTextField(
@@ -98,6 +96,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
               obscureText: true,
               animationType: AnimationType.fade,
               pinTheme: PinTheme(
+                fieldOuterPadding:const EdgeInsets.symmetric(vertical: 15),
                 shape: PinCodeFieldShape.box,
                 selectedColor: AppColor.mainColor,
                 activeColor: AppColor.mainColor,
@@ -116,6 +115,18 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
               },
             ),
           ),
+          Padding(
+            padding:const EdgeInsets.only(right: 50.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                NormalText(
+                  text: '00.$secondsRemaining' 'sec',
+                  color: AppColor.dullBlack,
+                ),
+              ],
+            ),
+          ),
           TextButton(
             onPressed: enableResend ? _resendCode : null,
             child: RichText(
@@ -130,7 +141,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                       style:
                           TextStyle(color: AppColor.dullBlack, fontSize: 16)),
                   TextSpan(
-                    text: 'Resend',
+                    text: 'Resend Code',
                     style: TextStyle(
                         color: enableResend
                             ? AppColor.mainColor
