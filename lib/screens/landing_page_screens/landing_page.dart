@@ -48,20 +48,22 @@ class _LandingPageState extends State<LandingPage> {
                   color: Colors.white10,
                   urlImage: 'lib/assets/landingImage1.png',
                   title: 'Library Accessibility',
-                  subTitle:
-                      'Materials of all classes are made available and note can be jotted down for personal uses'),
+                  subTitle1: 'Materials of all classes are made',
+                  subTitle2: ' available and note can be jot',
+                  subTitle3: ' down for personal uses'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage2.png',
                   title: 'Activity Reminder',
-                  subTitle:
-                      'Reminders are used to reduce the rate of forgetfulnessof students'),
+                  subTitle1: 'Reminders are used to reduce the ',
+                  subTitle2: 'rate of forgetfulnessof students'),
               buildPage(
                   color: Colors.white,
                   urlImage: 'lib/assets/landingImage3.png',
                   title: 'Latest Information',
-                  subTitle:
-                      'Latest new on campus and scholarship aids can be accessed easily'),
+                  subTitle1: 'Latest new on campus and',
+                  subTitle2: 'scholarship aids can be accessed',
+                  subTitle3: 'easily'),
             ],
           ),
         ),
@@ -153,13 +155,16 @@ class _LandingPageState extends State<LandingPage> {
     required Color color,
     required String urlImage,
     required String title,
-    required String subTitle,
+    required String subTitle1,
+    required String subTitle2,
+    String subTitle3 = '',
   }) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
       child: Container(
         color: color,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               height: 425,
@@ -171,7 +176,7 @@ class _LandingPageState extends State<LandingPage> {
               ),
             ),
             const SizedBox(
-              height: 40,
+              height: 30,
             ),
             NormalText(
               text: title,
@@ -180,15 +185,28 @@ class _LandingPageState extends State<LandingPage> {
               fontWeight: FontWeight.w600,
             ),
             const SizedBox(
-              height: 10,
+              height: 7,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: NormalText(
-                text: subTitle,
-                size: 16,
-                color: Colors.black54,
-              ),
+            NormalText(
+              text: subTitle1,
+              size: 16,
+              color: Colors.black54,
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            NormalText(
+              text: subTitle2,
+              size: 16,
+              color: Colors.black54,
+            ),
+            const SizedBox(
+              height: 7,
+            ),
+            NormalText(
+              text: subTitle3,
+              size: 16,
+              color: Colors.black54,
             )
           ],
         ),

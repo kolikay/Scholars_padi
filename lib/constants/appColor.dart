@@ -9,5 +9,9 @@ class AppColor {
 
 static const Color dullBlack = Colors.black54;
 
+static const Color darkContainer = Color(0xffE5E5E5);
+
+
+
 
 }
