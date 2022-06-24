@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/normal_text.dart';
+import 'package:scholars_padi/widgets/reuseable_appbar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
@@ -35,29 +36,33 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 const SizedBox(
                   height: 30,
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {},
-                        child: const Icon(Icons.menu, size: 30.0),
-                      ),
-                      GestureDetector(
-                        onTap: () {},
-                        child: const Icon(Icons.search, size: 30.0),
-                      ),
-                    ],
-                  ),
+                ReuseableAppbar(
+                  menuPressed: () {},
+                  searchPressed: () {},
                 ),
+                // Padding(
+                //   padding: const EdgeInsets.symmetric(horizontal: 20),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //     children: [
+                //       GestureDetector(
+                //         onTap: () {},
+                //         child: const Icon(Icons.menu, size: 30.0),
+                //       ),
+                //       GestureDetector(
+                //         onTap: () {},
+                //         child: const Icon(Icons.search, size: 30.0),
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 CarouselSlider.builder(
                   options: CarouselOptions(
                     enableInfiniteScroll: false,
                     // enlargeCenterPage: true,
                     viewportFraction: 0.9,
                     // autoPlay: true,
-        
+
                     onPageChanged: (index, reason) =>
                         setState(() => activeImageIndex = index),
                     autoPlayInterval: const Duration(seconds: 2),
@@ -130,7 +135,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         color: Colors.black26,
                         thickness: 2.0,
                       ),
-                          const SizedBox(height: 20),
+                      const SizedBox(height: 20),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
@@ -151,7 +156,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         note:
                             'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
                       ),
-                   
                     ],
                   ),
                 ),
