@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
-import 'package:scholars_padi/widgets/normal_text.dart';
-import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
-import 'package:scholars_padi/widgets/reusable_info_widget.dart';
-import 'package:scholars_padi/widgets/reuseable_button.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
 class NewPasswordScreen extends StatefulWidget {
   const NewPasswordScreen({

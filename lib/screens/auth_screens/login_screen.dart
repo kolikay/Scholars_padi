@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/services/web_service.dart';
-import 'package:scholars_padi/widgets/normal_text.dart';
-import 'package:scholars_padi/widgets/reusaable_textformfield.dart';
-import 'package:scholars_padi/widgets/reuseable_button.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,7 +21,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
-  final bool _loginError = false;
+  bool _loginError = false;
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Container(
                         color: Colors.pink[100],
                         height: 100,
-                        width: double.infinity,
                         child: Row(
                           children: [
                             const SizedBox(
@@ -82,6 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               text:
                                   'we didnt recognize that email address \nor password you can try again or use\n another login option',
                               color: Colors.black54,
+                              size: 14,
                             )),
                           ],
                         ),
@@ -160,18 +162,17 @@ class _LoginScreenState extends State<LoginScreen> {
                     ReuseableButton(
                       text: 'Sign In',
                       textSize: 14,
-                      onPressed: () {
-
-                        
-                        UserServices.sendRequest(USERS_LIST, context);
-        
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const HomePageScreen(),
-                          ),
-                        );
-        
-                        // if (_formKey.currentState!.validate()) {}
+                      onPressed: () async {
+                        //check if connectivity is available then send request to server
+                        final responce =
+                            await UserServices.sendRequest(USERS_LIST, context);
+                        if (responce is Success) {
+                          pushTohomePage(context);
+                        } else {
+                          setState(() {
+                            _loginError = true;
+                          });
+                        }
                         FocusScope.of(context).unfocus();
                       },
                     ),

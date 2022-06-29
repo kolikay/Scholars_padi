@@ -1,8 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/widgets/normal_text.dart';
-import 'package:scholars_padi/widgets/reuseable_appbar.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/widgets/normal_text.dart';
-import 'package:scholars_padi/widgets/reuseable_appbar.dart';
-import 'package:scholars_padi/widgets/reuseable_button.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
 class NoInternetScreen extends StatelessWidget {
   const NoInternetScreen({Key? key}) : super(key: key);

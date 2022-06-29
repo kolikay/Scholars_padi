@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/screens/landing_page_screens/no_internet.dart';
 
 pushToNoInternetPage(BuildContext context) async {
@@ -9,6 +10,17 @@ pushToNoInternetPage(BuildContext context) async {
     ),
   );
 }
+
+pushTohomePage(BuildContext context) async {
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (context) => const HomePageScreen(),
+    ),
+  );
+}
+
+
+
 
 
 
