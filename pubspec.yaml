@@ -58,6 +58,10 @@ dev_dependencies:
   flutter_launcher_icons: "^0.9.2"
   #check connection package
   simple_connection_checker: ^0.2.1
+  #state management
+  flutter_riverpod: ^1.0.0
+  #App Responsivness
+  responsive_sizer: ^3.0.8
   
 
 # flutter pub run flutter_native_splash:create

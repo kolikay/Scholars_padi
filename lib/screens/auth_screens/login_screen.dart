@@ -4,12 +4,10 @@ import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
-import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
-import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -165,10 +163,11 @@ class _LoginScreenState extends State<LoginScreen> {
                       onPressed: () async {
                         //check if connectivity is available then send request to server
                         final responce =
-                            await UserServices.sendRequest(USERS_LIST, context);
+                            await Services.sendRequest(USERS_LIST, context);
                         if (responce is Success) {
                           pushTohomePage(context);
-                        } else {
+                        }
+                        if (responce is Failure) {
                           setState(() {
                             _loginError = true;
                           });

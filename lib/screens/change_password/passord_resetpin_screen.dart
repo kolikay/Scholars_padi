@@ -8,6 +8,7 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
+
 class PasswordResetPinScreen extends StatefulWidget {
   const PasswordResetPinScreen({
     Key? key,
