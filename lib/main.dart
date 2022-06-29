@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return ResponsiveSizer(
-      builder: (context, orientation, screenType) {
+    return ScreenUtilInit(
+      builder: () {
         return MaterialApp(
           title: 'Skill Connect',
           theme: ThemeData(
@@ -24,6 +27,7 @@ class MyApp extends StatelessWidget {
         },
         );
       },
+      designSize: const Size(375, 812),
     );
   }
 }

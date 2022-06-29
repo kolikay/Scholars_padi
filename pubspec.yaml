@@ -61,7 +61,7 @@ dev_dependencies:
   #state management
   flutter_riverpod: ^1.0.0
   #App Responsivness
-  responsive_sizer: ^3.0.8
+  flutter_screenutil: 5.0.0+2
   
 
 # flutter pub run flutter_native_splash:create

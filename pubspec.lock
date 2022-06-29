@@ -132,6 +132,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
+  flutter_screenutil:
+    dependency: "direct dev"
+    description:
+      name: flutter_screenutil
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0+2"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -277,13 +284,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
-  responsive_sizer:
-    dependency: "direct dev"
-    description:
-      name: responsive_sizer
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "3.0.8"
   riverpod:
     dependency: transitive
     description:

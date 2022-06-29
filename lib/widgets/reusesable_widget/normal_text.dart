@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:responsive_sizer/responsive_sizer.dart';
+
 
 class NormalText extends StatelessWidget {
   final Color? color;
   final String text;
-  double size = 14.sp;
+  double size = 14;
   TextOverflow overflow;
   FontWeight? fontWeight;
   TextAlign? textAlign;
