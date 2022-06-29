@@ -57,7 +57,8 @@ dev_dependencies:
   #icon launcher
   flutter_launcher_icons: "^0.9.2"
   #check connection package
-  connectivity_plus: 2.0.0
+  simple_connection_checker: ^0.2.1
+  
 
 # flutter pub run flutter_native_splash:create
 flutter_native_splash:

@@ -146,12 +146,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           ),
                         ],
                       ),
-                      ReuseableCards(
+                      const ReuseableCards(
                         date: 'jan',
                         note:
                             'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
                       ),
-                      ReuseableCards(
+                     const ReuseableCards(
                         date: 'jan',
                         note:
                             'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',

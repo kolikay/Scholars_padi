@@ -15,7 +15,9 @@ class NoInternetScreen extends StatelessWidget {
           color: AppColor.darkContainer,
           child: Column(
             children: [
-              const SizedBox(height: 30,),
+              const SizedBox(
+                height: 30,
+              ),
               ReuseableAppbar(
                 menuPressed: () {},
                 searchPressed: () {},
@@ -27,13 +29,37 @@ class NoInternetScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.wifi_off_rounded, size: 70, color: AppColor.dullBlack,),
-                     const SizedBox(height: 10,), 
-                      NormalText(text: 'No Internet Connection', size: 18,fontWeight: FontWeight.w500,),
-                      const SizedBox(height: 10,),
-                      NormalText(text: 'You are offline, please check your connection', color: AppColor.dullBlack, size: 14,),
-                      const SizedBox(height: 20,),
-                      ReuseableButton(text: 'Try Again', onPressed: (){}, width: 140,)
+                      const Icon(
+                        Icons.wifi_off_rounded,
+                        size: 70,
+                        color: AppColor.dullBlack,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      NormalText(
+                        text: 'No Internet Connection',
+                        size: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      NormalText(
+                        text: 'You are offline, please check your connection',
+                        color: AppColor.dullBlack,
+                        size: 14,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      ReuseableButton(
+                        text: 'Try Again',
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        width: 140,
+                      )
                     ],
                   ),
                 ),
