@@ -38,14 +38,16 @@ class AuthViewModel extends ChangeNotifier {
 
     if (response is Success) {
       pushTohomePage(context);
+      setLoading(false);
     }
     if (response is Failure) {
       setLoginError(true);
+      setLoading(false);
     }
     if (response is SocketException) {
       pushToNoInternetPage(context);
       setLoading(false);
     }
-    setLoading(false);
+  
   }
 }
