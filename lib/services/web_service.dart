@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -8,11 +10,6 @@ import 'package:simple_connection_checker/simple_connection_checker.dart';
 
 class WebServices {
   static Future<Object> sendRequest(String url, context) async {
-    showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return const ProgressDialog(message: 'loading, please wait');
-        });
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
 
     try {
@@ -23,13 +20,11 @@ class WebServices {
           Navigator.pop(context);
           return Success(response: response.body);
         } else {
-          Navigator.pop(context);
           return Failure(
               code: USER_INVALID_RESPONSE, errorResponse: 'Invalid Response');
         }
       } else {
-        Navigator.pop(context);
-        return pushToNoInternetPage(context);
+        return const SocketException('No Data Found');
       }
     } catch (e) {
       Navigator.pop(context);

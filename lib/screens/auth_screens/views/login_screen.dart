@@ -1,34 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/auth_screens/views/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
-import 'package:scholars_padi/services/web_service.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
-class LoginScreen extends StatefulWidget {
+
+class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
-  bool _loginError = false;
+  
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = ref.watch(authViewModelProvider);
+
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
+        body: !authViewModel.loading ? SingleChildScrollView(
           child: Padding(
-            padding:  EdgeInsets.only(top: 40.h, left: 20.w, right: 20.w),
+            padding: EdgeInsets.only(top: 40.h, left: 20.w, right: 20.w),
             child: Column(
               children: [
                 SizedBox(
@@ -41,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     SizedBox(
+                    SizedBox(
                       height: 36.h,
                     ),
                     NormalText(
@@ -59,19 +64,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       height: 35.h,
                     ),
                     Visibility(
-                      visible: _loginError,
+                      visible: authViewModel.loginError,
                       child: Container(
                         color: Colors.pink[100],
                         height: 100.h,
                         child: Row(
                           children: [
-                             SizedBox(
+                            SizedBox(
                               width: 5.h,
                             ),
                             SizedBox(
                                 child: Icon(
                               Icons.ac_unit,
-                              color:const Color(0xffD32f2f),
+                              color: const Color(0xffD32f2f),
                               size: 24.w,
                             )),
                             const SizedBox(
@@ -88,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     ),
-                     SizedBox(
+                    SizedBox(
                       height: 20.h,
                     ),
                     Form(
@@ -128,7 +133,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     })),
                           ],
                         )),
-                     SizedBox(
+                    SizedBox(
                       height: 16.h,
                     ),
                     Row(
@@ -155,15 +160,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                  SizedBox(
+                    SizedBox(
                       height: 40.h,
                     ),
                     ReuseableButton(
                       text: 'Sign In',
                       textSize: 14.sp,
                       onPressed: () async {
-                        //check if connectivity is available then send request to server
+                        authViewModel.loginUser(login_url, context);
                       
+                        
                       },
                     ),
                   ],
@@ -192,7 +198,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             TextSpan(
                                 text: 'Dont have an account? ',
                                 style: TextStyle(
-                                    color: AppColor.dullBlack, fontSize: 14.sp)),
+                                    color: AppColor.dullBlack,
+                                    fontSize: 14.sp)),
                             TextSpan(
                               text: 'Sign Up',
                               style: TextStyle(
@@ -209,7 +216,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ],
             ),
           ),
-        ),
+        ) :    const ProgressDialog(message: 'Loading....',)
       ),
     );
   }
