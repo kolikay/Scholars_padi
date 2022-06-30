@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/constants/error.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/landing_page_screens/no_internet.dart';
 import 'package:scholars_padi/services/web_service.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -48,6 +46,6 @@ class AuthViewModel extends ChangeNotifier {
       pushToNoInternetPage(context);
       setLoading(false);
     }
-  
+  setLoading(false);
   }
 }

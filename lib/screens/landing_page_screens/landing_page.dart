@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/auth_screens/views/login_screen.dart';
+import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
