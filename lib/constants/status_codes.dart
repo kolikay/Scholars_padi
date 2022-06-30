@@ -1,6 +1,6 @@
 // ignore_for_file: constant_identifier_names
 
-const String USERS_LIST = 'https://jsonplaceholder.typicode.com/users';
+const String USERS_LIST = 'https://jsonplaceholder.typicode.com/user';
 
 // Success
 const SUCCESS = 200;

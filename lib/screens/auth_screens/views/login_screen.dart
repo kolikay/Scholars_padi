@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up1_screen.dart';
+import 'package:scholars_padi/screens/auth_screens/views/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -163,17 +163,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       textSize: 14.sp,
                       onPressed: () async {
                         //check if connectivity is available then send request to server
-                        final responce =
-                            await Services.sendRequest(USERS_LIST, context);
-                        if (responce is Success) {
-                          pushTohomePage(context);
-                        }
-                        if (responce is Failure) {
-                          setState(() {
-                            _loginError = true;
-                          });
-                        }
-                        FocusScope.of(context).unfocus();
+                      
                       },
                     ),
                   ],

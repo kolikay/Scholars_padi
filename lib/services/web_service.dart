@@ -6,7 +6,7 @@ import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
 
-class Services {
+class WebServices {
   static Future<Object> sendRequest(String url, context) async {
     showDialog(
         context: context,

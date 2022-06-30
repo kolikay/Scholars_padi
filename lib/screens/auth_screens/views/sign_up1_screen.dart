@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/screens/auth_screens/sign_up2_screen.dart';
+import 'package:scholars_padi/screens/auth_screens/views/sign_up2_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
