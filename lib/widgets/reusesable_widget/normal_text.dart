@@ -2,12 +2,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class NormalText extends StatelessWidget {
   final Color? color;
   final String text;
-  double size = 14;
+  double? size = 14.sp;
   TextOverflow overflow;
   FontWeight? fontWeight;
   TextAlign? textAlign;
@@ -17,7 +18,7 @@ class NormalText extends StatelessWidget {
       this.color = Colors.black,
       required this.text,
       this.overflow = TextOverflow.ellipsis,
-      this.size = 14,
+      this.size,
       this.fontWeight = FontWeight.normal,
       this.textAlign,
       

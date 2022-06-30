@@ -7,6 +7,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 
 class PasswordResetPinScreen extends StatefulWidget {
@@ -46,50 +47,51 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 24),
+            padding: EdgeInsets.only(left: 24.w),
             color: AppColor.mainColor,
-            height: 80,
+            height: 80.h,
             child: Row(
               children: [
                 const Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
-                const SizedBox(
-                  width: 28,
+                SizedBox(
+                  width: 28.w,
                 ),
                 NormalText(
                   text: 'Verification',
                   color: Colors.white,
+                  size: 19.2.sp,
                 )
               ],
             ),
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 2.h,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 26.0, right: 25.0),
+            padding: EdgeInsets.only(left: 26.w, right: 25.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NormalText(
                   text: 'Enter verification code to reset your',
-                  size: 16,
+                  size: 16.sp,
                 ),
                  NormalText(
                   text: 'Password',
-                  size: 16,
+                  size: 16.sp,
                 ),
               ],
             ),
           ),
-          const SizedBox(
-            height: 25,
+          SizedBox(
+            height: 25.h,
           ),
     
           Padding(
-            padding: const EdgeInsets.only(left: 50, right: 50),
+            padding: EdgeInsets.only(left: 50.w, right: 50.w),
             child: PinCodeTextField(
               keyboardType: TextInputType.number,
               length: 4,
@@ -97,14 +99,14 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
               obscureText: true,
               animationType: AnimationType.fade,
               pinTheme: PinTheme(
-                fieldOuterPadding:const EdgeInsets.symmetric(vertical: 15),
+                fieldOuterPadding: EdgeInsets.symmetric(vertical: 15.h),
                 shape: PinCodeFieldShape.box,
                 selectedColor: AppColor.mainColor,
                 activeColor: AppColor.mainColor,
                 inactiveColor: AppColor.dullBlack,
-                borderRadius: BorderRadius.circular(5),
-                fieldHeight: 46,
-                fieldWidth: 53,
+                borderRadius: BorderRadius.circular(5.r),
+                fieldHeight: 46.h,
+                fieldWidth: 53.w,
                 activeFillColor: Colors.white,
               ),
               onChanged: (val) {
@@ -117,7 +119,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
             ),
           ),
           Padding(
-            padding:const EdgeInsets.only(right: 50.0),
+            padding:EdgeInsets.only(right: 50.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -132,15 +134,15 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
             onPressed: enableResend ? _resendCode : null,
             child: RichText(
               text: TextSpan(
-                style: const TextStyle(
+                style: TextStyle(
                   color: Colors.black87,
-                  fontSize: 16.0,
+                  fontSize: 16.sp,
                 ),
                 children: <TextSpan>[
-                  const TextSpan(
+                   TextSpan(
                       text: 'Didn\'t you receive an Otp? ',
                       style:
-                          TextStyle(color: AppColor.dullBlack, fontSize: 16)),
+                          TextStyle(color: AppColor.dullBlack, fontSize: 16.sp)),
                   TextSpan(
                     text: 'Resend Code',
                     style: TextStyle(
@@ -148,21 +150,21 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                             ? AppColor.mainColor
                             : AppColor.dullBlack,
                         fontWeight: FontWeight.w500,
-                        fontSize: 18),
+                        fontSize: 18.sp),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(
-            height: 45,
+          SizedBox(
+            height: 45.h,
           ),
           ReuseableButton(
             backGroundColor:
                 _isActive ? AppColor.mainColor : AppColor.dullBlack,
             isActive: _isActive,
             text: 'Verify',
-            textSize: 14,
+            textSize: 14.sp,
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(

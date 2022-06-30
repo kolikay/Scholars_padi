@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -27,12 +28,12 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.only(top: 40, left: 20, right: 20),
+            padding:  EdgeInsets.only(top: 40.h, left: 20.w, right: 20.w),
             child: Column(
               children: [
                 SizedBox(
-                    height: 125,
-                    width: 121.21,
+                    height: 125.h,
+                    width: 121.21.w,
                     child: Image.asset(
                       'lib/assets/logo.png',
                       fit: BoxFit.contain,
@@ -40,38 +41,38 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 35.79,
+                     SizedBox(
+                      height: 36.h,
                     ),
                     NormalText(
                       text: 'Sign In',
                       size: 23,
                       fontWeight: FontWeight.w500,
                     ),
-                    const SizedBox(
-                      height: 5,
+                    SizedBox(
+                      height: 5.h,
                     ),
                     NormalText(
                       text: 'Enter your info to continue',
                     ),
-                    const SizedBox(
-                      height: 35,
+                    SizedBox(
+                      height: 35.h,
                     ),
                     Visibility(
                       visible: _loginError,
                       child: Container(
                         color: Colors.pink[100],
-                        height: 100,
+                        height: 100.h,
                         child: Row(
                           children: [
-                            const SizedBox(
-                              width: 5,
+                             SizedBox(
+                              width: 5.h,
                             ),
-                            const SizedBox(
+                            SizedBox(
                                 child: Icon(
                               Icons.ac_unit,
-                              color: Color(0xffD32f2f),
-                              size: 24,
+                              color:const Color(0xffD32f2f),
+                              size: 24.w,
                             )),
                             const SizedBox(
                               width: 10,
@@ -81,14 +82,14 @@ class _LoginScreenState extends State<LoginScreen> {
                               text:
                                   'we didnt recognize that email address \nor password you can try again or use\n another login option',
                               color: Colors.black54,
-                              size: 14,
+                              size: 14.sp,
                             )),
                           ],
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 20,
+                     SizedBox(
+                      height: 20.h,
                     ),
                     Form(
                         key: _formKey,
@@ -106,8 +107,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               isReadOnly: false,
                               labelText: 'Email Address',
                             ),
-                            const SizedBox(
-                              height: 24,
+                            SizedBox(
+                              height: 24.h,
                             ),
                             MyTextField(
                                 obcureText: _isObscure,
@@ -127,8 +128,8 @@ class _LoginScreenState extends State<LoginScreen> {
                                     })),
                           ],
                         )),
-                    const SizedBox(
-                      height: 16,
+                     SizedBox(
+                      height: 16.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -146,7 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             padding: EdgeInsets.zero,
                           ),
                           child: NormalText(
-                            size: 14,
+                            size: 14.sp,
                             text: 'Forgot Password?',
                             color: AppColor.mainColor,
                             fontWeight: FontWeight.w500,
@@ -154,12 +155,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 40,
+                  SizedBox(
+                      height: 40.h,
                     ),
                     ReuseableButton(
                       text: 'Sign In',
-                      textSize: 14,
+                      textSize: 14.sp,
                       onPressed: () async {
                         //check if connectivity is available then send request to server
                         final responce =
@@ -177,8 +178,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 70,
+                SizedBox(
+                  height: 70.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -192,22 +193,22 @@ class _LoginScreenState extends State<LoginScreen> {
                         );
                       },
                       child: RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           style: TextStyle(
                             color: Colors.black87,
-                            fontSize: 16.0,
+                            fontSize: 16.sp,
                           ),
                           children: <TextSpan>[
                             TextSpan(
                                 text: 'Dont have an account? ',
                                 style: TextStyle(
-                                    color: AppColor.dullBlack, fontSize: 14)),
+                                    color: AppColor.dullBlack, fontSize: 14.sp)),
                             TextSpan(
                               text: 'Sign Up',
                               style: TextStyle(
                                   color: AppColor.mainColor,
                                   fontWeight: FontWeight.w500,
-                                  fontSize: 16),
+                                  fontSize: 16.sp),
                             ),
                           ],
                         ),

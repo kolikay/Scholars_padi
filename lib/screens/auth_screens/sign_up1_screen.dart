@@ -3,6 +3,7 @@ import 'package:scholars_padi/screens/auth_screens/sign_up2_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpScreen1 extends StatefulWidget {
   const SignUpScreen1({Key? key}) : super(key: key);
@@ -24,13 +25,13 @@ class _SignUpScreenState extends State<SignUpScreen1> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 30, right: 20),
+          padding:  EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                    height: 125,
-                    width: 121.25,
+                    height: 125.h,
+                    width: 121.w,
                     child: Image.asset(
                       'lib/assets/logo.png',
                       fit: BoxFit.contain,
@@ -38,16 +39,16 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 35.79,
+                     SizedBox(
+                      height: 36.h,
                     ),
                     NormalText(
                       text: 'Create an account',
-                      size: 23,
+                      size: 23.sp,
                       fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(
-                      height: 32,
+                    SizedBox(
+                      height: 32.h,
                     ),
                     Form(
                         key: _formKey,
@@ -66,8 +67,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isReadOnly: false,
                               labelText: 'Full Name',
                             ),
-                            const SizedBox(
-                              height: 24,
+                            SizedBox(
+                              height: 24.h,
                             ),
                             MyTextField(
                               validator: (val) {
@@ -82,8 +83,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isReadOnly: false,
                               labelText: 'Username',
                             ),
-                            const SizedBox(
-                              height: 24,
+                            SizedBox(
+                              height: 24.h,
                             ),
                             MyTextField(
                               controller: _facultyCont,
@@ -93,8 +94,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isReadOnly: false,
                               labelText: 'Faculty',
                             ),
-                            const SizedBox(
-                              height: 24,
+                          SizedBox(
+                              height: 24.h,
                             ),
                             MyTextField(
                               controller: _departmentCont,
@@ -106,15 +107,15 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                             )
                           ],
                         )),
-                    const SizedBox(
-                      height: 40,
+                    SizedBox(
+                      height: 40.h,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         ReuseableButton(
                           text: 'Next',
-                          textSize: 14,
+                          textSize: 14.sp,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               Navigator.of(context).push(
@@ -130,7 +131,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                             }
                             FocusScope.of(context).unfocus();
                           },
-                          width: 90,
+                          width: 90.w,
                         ),
                       ],
                     ),

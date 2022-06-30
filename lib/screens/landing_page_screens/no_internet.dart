@@ -3,6 +3,7 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NoInternetScreen extends StatelessWidget {
   const NoInternetScreen({Key? key}) : super(key: key);
@@ -15,8 +16,8 @@ class NoInternetScreen extends StatelessWidget {
           color: AppColor.darkContainer,
           child: Column(
             children: [
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 30.h,
               ),
               ReuseableAppbar(
                 menuPressed: () {},
@@ -24,41 +25,41 @@ class NoInternetScreen extends StatelessWidget {
               ),
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(
+                      Icon(
                         Icons.wifi_off_rounded,
-                        size: 70,
+                        size: 70.w,
                         color: AppColor.dullBlack,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       NormalText(
                         text: 'No Internet Connection',
-                        size: 18,
+                        size: 18.sp,
                         fontWeight: FontWeight.w500,
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       NormalText(
                         text: 'You are offline, please check your connection',
                         color: AppColor.dullBlack,
-                        size: 14,
+                        size: 14.sp,
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 20.h,
                       ),
                       ReuseableButton(
                         text: 'Try Again',
                         onPressed: () {
                           Navigator.pop(context);
                         },
-                        width: 140,
+                        width: 140.w,
                       )
                     ],
                   ),

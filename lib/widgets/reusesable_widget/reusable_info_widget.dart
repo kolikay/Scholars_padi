@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReuseableInfoWidget extends StatelessWidget {
   final String logo;
@@ -26,33 +27,33 @@ class ReuseableInfoWidget extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            const SizedBox(
-              height: 40,
+            SizedBox(
+              height: 40.h,
             ),
             SizedBox(
-              height: 140,
-              width: 140,
+              height: 140.h,
+              width: 140.w,
               child: Image.asset(
                 logo,
                 fit: BoxFit.contain,
               ),
             ),
-            const SizedBox(
-              height: 32,
+            SizedBox(
+              height: 32.h,
             ),
             NormalText(
               text: maintext,
-              size: 23,
+              size: 23.h,
               fontWeight: FontWeight.w600,
             ),
-            const SizedBox(
-              height: 28,
+             SizedBox(
+              height: 28.h,
             ),
             Container(
-              padding: const EdgeInsets.all(18),
-              child: NormalText(text: detailsText, size: 14,),
-            ),  const SizedBox(
-              height: 48,
+              padding: EdgeInsets.symmetric(vertical: 18.h , horizontal: 18.h),
+              child: NormalText(text: detailsText, size: 14.sp,),
+            ),  SizedBox(
+              height: 48.h,
             ),
             ReuseableButton(text: bottonText,textSize: 14, onPressed: onPressed),
           ],

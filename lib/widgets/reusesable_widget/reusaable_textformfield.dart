@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyTextField extends StatefulWidget {
   final TextEditingController? controller;
@@ -39,26 +40,26 @@ class _MyTextFieldState extends State<MyTextField> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 327,
+      width: 327.w,
       child: TextFormField(
         controller: widget.controller,
         readOnly: widget.isReadOnly,
         obscureText: widget.obcureText,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0),
+            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0.w),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.black, width: 1.0),
+            borderSide: BorderSide(color: Colors.black, width: 1.0.w),
           ),
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.pink, width: 1.0),
+            borderSide: BorderSide(color: Colors.pink, width: 1.0.w),
           ),
           hintText: widget.hintText,
-          hintStyle: TextStyle(color: Colors.black, fontSize: 16),
+          hintStyle: TextStyle(color: Colors.black, fontSize: 16.sp),
           labelText: widget.labelText,
-          labelStyle: TextStyle(color: Colors.black54, fontSize: 16),
+          labelStyle: TextStyle(color: Colors.black54, fontSize: 16.sp),
           // prefixIcon: Icon(widget.prefixIcon),
           suffixIcon: widget.sufixIcon,
         ),

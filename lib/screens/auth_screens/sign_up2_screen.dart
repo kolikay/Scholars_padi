@@ -5,6 +5,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignUpScreen2 extends StatefulWidget {
   final String fullName;
@@ -35,13 +36,13 @@ class _SignUpScreenState extends State<SignUpScreen2> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.only(top: 40, left: 30, right: 20),
+          padding:  EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
                 SizedBox(
-                    height: 125,
-                    width: 121.25,
+                    height: 125.h,
+                    width: 121.h,
                     child: Image.asset(
                       'lib/assets/logo.png',
                       fit: BoxFit.contain,
@@ -49,16 +50,16 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(
-                      height: 35.79,
+                    SizedBox(
+                      height: 36.h,
                     ),
                     NormalText(
                       text: 'Create an account',
-                      size: 23,
+                      size: 23.sp,
                       fontWeight: FontWeight.w600,
                     ),
-                    const SizedBox(
-                      height: 32,
+                    SizedBox(
+                      height: 32.h,
                     ),
                     Form(
                       key: _formKey,
@@ -77,8 +78,8 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             isReadOnly: false,
                             labelText: 'Email Address',
                           ),
-                          const SizedBox(
-                            height: 24,
+                          SizedBox(
+                            height: 24.h,
                           ),
                           MyTextField(
                             validator: (val) {
@@ -104,8 +105,8 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                               },
                             ),
                           ),
-                          const SizedBox(
-                            height: 24,
+                          SizedBox(
+                            height: 24.h,
                           ),
                           MyTextField(
                             validator: (pass) {
@@ -133,11 +134,11 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                         ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 40,
+                    SizedBox(
+                      height: 40.h,
                     ),
                     ReuseableButton(
-                      textSize: 14,
+                      textSize: 14.sp,
                       text: 'Sign Up',
                       onPressed: () {
                         Navigator.of(context).push(
@@ -178,8 +179,8 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 70,
+                SizedBox(
+                  height: 70.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -193,17 +194,17 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                         );
                       },
                       child: RichText(
-                        text: const TextSpan(
+                        text: TextSpan(
                           style: TextStyle(
                             color: Colors.black87,
-                            fontSize: 16.0,
+                            fontSize: 16.sp,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'Already have an account? ', style: TextStyle(fontSize: 14)),
+                            TextSpan(text: 'Already have an account? ', style: TextStyle(fontSize: 14.sp)),
                             TextSpan(
                               text: 'Sign In',
                               style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 16.sp,
                                   color: AppColor.mainColor,
                                   fontWeight: FontWeight.bold),
                             ),

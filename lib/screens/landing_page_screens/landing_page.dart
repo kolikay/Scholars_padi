@@ -4,6 +4,7 @@ import 'package:scholars_padi/screens/auth_screens/login_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class LandingPage extends StatefulWidget {
   const LandingPage({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _LandingPageState extends State<LandingPage> {
     super.initState();
 
     pageController =
-        PageController(initialPage: currentPage, viewportFraction: 0.9);
+        PageController(initialPage: currentPage, viewportFraction: 0.9.w);
   }
 
   @override
@@ -69,7 +70,7 @@ class _LandingPageState extends State<LandingPage> {
         ),
         bottomSheet: !isLastPage
             ? SizedBox(
-                height: 70,
+                height: 70.h,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -79,7 +80,7 @@ class _LandingPageState extends State<LandingPage> {
                       },
                       child: NormalText(
                         text: 'Skip',
-                        size: 14,
+                        size: 14.sp,
                         color: AppColor.mainColor,
                       ),
                     ),
@@ -87,9 +88,9 @@ class _LandingPageState extends State<LandingPage> {
                       child: SmoothPageIndicator(
                         controller: pageController,
                         count: 3,
-                        effect: const WormEffect(
-                            dotWidth: 10,
-                            dotHeight: 10,
+                        effect: WormEffect(
+                            dotWidth: 10.w,
+                            dotHeight: 10.h,
                             activeDotColor: AppColor.mainColor,
                             dotColor: Colors.black12),
                         onDotClicked: (index) => pageController.animateToPage(
@@ -99,10 +100,10 @@ class _LandingPageState extends State<LandingPage> {
                       ),
                     ),
                     ReuseableButton(
-                      height: 55,
-                      width: 55,
+                      height: 55.h,
+                      width: 55.w,
                       text: '>',
-                      textSize: 30,
+                      textSize: 30.sp,
                       onPressed: () {
                         pageController.nextPage(
                             duration: const Duration(milliseconds: 500),
@@ -113,11 +114,12 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               )
             : SizedBox(
-                height: 70,
+                height: 70.h,
                 child: Center(
                   child: Column(
                     children: [
                       ReuseableButton(
+                        height: 45,
                         text: 'Get Started',
                         onPressed: () {
                           Navigator.of(context).push(
@@ -127,15 +129,15 @@ class _LandingPageState extends State<LandingPage> {
                           );
                         },
                       ),
-                      const SizedBox(
-                        height: 10,
+                      SizedBox(
+                        height: 10.h,
                       ),
                       SmoothPageIndicator(
                         controller: pageController,
                         count: 3,
-                        effect: const WormEffect(
-                            dotWidth: 10,
-                            dotHeight: 10,
+                        effect: WormEffect(
+                            dotWidth: 10.w,
+                            dotHeight: 10.h,
                             activeDotColor: AppColor.mainColor,
                             dotColor: Colors.black12),
                         onDotClicked: (index) => pageController.animateToPage(
@@ -160,52 +162,52 @@ class _LandingPageState extends State<LandingPage> {
     String subTitle3 = '',
   }) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 10.w , vertical: 10.h),
       child: Container(
         color: color,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              height: 425,
-              width: 500,
+              height: 425.h,
+              width: 302.w,
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
+                borderRadius: BorderRadius.circular(5.r),
                 image: DecorationImage(
                     image: AssetImage(urlImage), fit: BoxFit.cover),
               ),
             ),
-            const SizedBox(
-              height: 30,
+             SizedBox(
+              height: 25.h,
             ),
             NormalText(
               text: title,
-              size: 19.2,
+              size: 19.2.sp,
               color: AppColor.mainColor,
               fontWeight: FontWeight.w600,
             ),
-            const SizedBox(
-              height: 7,
+            SizedBox(
+              height: 7.h,
             ),
             NormalText(
               text: subTitle1,
-              size: 16,
+              size: 16.sp,
               color: Colors.black54,
             ),
-            const SizedBox(
-              height: 7,
+            SizedBox(
+              height: 7.h,
             ),
             NormalText(
               text: subTitle2,
-              size: 16,
+              size: 16.sp,
               color: Colors.black54,
             ),
-            const SizedBox(
-              height: 7,
+            SizedBox(
+              height: 7.h,
             ),
             NormalText(
               text: subTitle3,
-              size: 16,
+              size: 16.sp,
               color: Colors.black54,
             )
           ],

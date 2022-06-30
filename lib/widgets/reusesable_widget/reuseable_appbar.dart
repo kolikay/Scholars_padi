@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ReuseableAppbar extends StatefulWidget {
   final GestureTapCallback menuPressed;
@@ -15,17 +16,17 @@ class _ReuseableAppbarState extends State<ReuseableAppbar> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 20.w),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
             onTap: widget.menuPressed,
-            child: const Icon(Icons.menu, size: 30.0),
+            child: Icon(Icons.menu, size: 30.0.w),
           ),
           GestureDetector(
             onTap: widget.searchPressed,
-            child: const Icon(Icons.search, size: 30.0),
+            child:  Icon(Icons.search, size: 30.0.w),
           ),
         ],
       ),

@@ -5,6 +5,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EmailPasswordChangeScreen extends StatefulWidget {
   const EmailPasswordChangeScreen({
@@ -25,38 +26,39 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
       body: Column(
         children: [
           Container(
-            padding: const EdgeInsets.only(left: 24),
+            padding: EdgeInsets.only(left: 24.w),
             color: AppColor.mainColor,
-            height: 80,
+            height: 80.h,
             child: Row(
               children: [
                 const Icon(
                   Icons.arrow_back_ios,
                   color: Colors.white,
                 ),
-                const SizedBox(
-                  width: 28,
+                SizedBox(
+                  width: 28.w,
                 ),
                 NormalText(
                   text: 'Forgot Password',
                   color: Colors.white,
+                  size: 19.2.sp,
                 )
               ],
             ),
           ),
-          const SizedBox(
-            height: 24,
+          SizedBox(
+            height: 24.h,
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 26.0, right: 25.0),
+            padding: EdgeInsets.only(left: 26.w, right: 25.w),
             child: NormalText(
               text:
                   'Enter your email address and we will send you instructions on how to reset your password',
               size: 16,
             ),
           ),
-          const SizedBox(
-            height: 30,
+          SizedBox(
+            height: 30.h,
           ),
           MyTextField(
             controller: _emailCont,
@@ -66,12 +68,12 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
             isReadOnly: false,
             labelText: 'Email Address',
           ),
-          const SizedBox(
-            height: 40,
+          SizedBox(
+            height: 40.h,
           ),
           ReuseableButton(
             text: 'Send Email',
-            textSize: 14,
+            textSize: 14.sp,
             onPressed: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
