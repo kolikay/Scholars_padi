@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/home_screens/categories_page.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +42,13 @@ class HomeConstants {
 
   static InkWell newInkwell(BuildContext context, String label, String imgUrl) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+          Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (context) => const CategoriesPage(),
+    ),
+  );
+      },
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(
@@ -70,15 +77,53 @@ class HomeConstants {
       ),
     );
   }
+
+
+  static  InkWell categoryCard(BuildContext context, String label, String imgUrl) {
+    return InkWell(
+      child: Card(
+        color: Colors.white,
+        elevation: 20,
+        child: SizedBox(
+          width: 100.w,
+          height: 90.h,
+          child: Column(
+            children: [
+              Container(
+                height: 40.h,
+                width: 40.w,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: ResizeImage(AssetImage(imgUrl),
+                        height: 30, width: 30),
+                  ),
+                ),
+              ),
+              NormalText(
+                text: label,
+                size: 10.sp,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class DrawerIcons extends StatefulWidget {
   final IconData icon;
   final String imageName;
-  Color? color = AppColor.darkContainer;
-  DrawerIcons(
-      {Key? key, required this.icon, required this.imageName, this.color})
-      : super(key: key);
+ 
+
+  const DrawerIcons({
+    Key? key,
+    required this.icon,
+    required this.imageName,
+   
+  }) : super(key: key);
 
   @override
   State<DrawerIcons> createState() => _DrawerIconsState();
@@ -86,34 +131,41 @@ class DrawerIcons extends StatefulWidget {
 
 class _DrawerIconsState extends State<DrawerIcons> {
   @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        setState(() {
-          widget.color = const Color(0xffC4C4C4);
-        });
-      },
-      child: Container(
-        height: 46.h,
-        color: widget.color,
-        child: Row(
-          children: [
-            SizedBox(width: 24.w,),
-            Icon(
-              widget.icon,
-              size: 30.w,
-              color: AppColor.iconBlack,
-            ),
-            SizedBox(
-              width: 20.w,
-            ),
-            NormalText(
-              text: widget.imageName,
-              size: 16.sp,
-              color: AppColor.dullBlack,
-              fontWeight: FontWeight.w400,
-            )
-          ],
+  Widget build(
+    BuildContext context,
+  ) {
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        highlightColor: const Color(0xffC4C4C4),
+        splashColor: const Color(0xffC4C4C4),
+        onTap: () {
+          print('tap');
+        },
+        child: 
+        SizedBox(
+          height: 46.h,
+          child: Row(
+            children: [
+              SizedBox(
+                width: 24.w,
+              ),
+              Icon(
+                widget.icon,
+                size: 30.w,
+                // color: AppColor.iconBlack,
+              ),
+              SizedBox(
+                width: 20.w,
+              ),
+              NormalText(
+                text: widget.imageName,
+                size: 16.sp,
+                // color: AppColor.dullBlack,
+                fontWeight: FontWeight.w400,
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -93,42 +93,42 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+               const DrawerIcons(
                 icon: Icons.house,
                 imageName: 'House',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+               const DrawerIcons(
                 icon: Icons.extension,
                 imageName: 'Categories',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+               const DrawerIcons(
                 icon: Icons.settings,
                 imageName: 'Settings',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+               const DrawerIcons(
                 icon: Icons.share,
                 imageName: 'Share',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+               const DrawerIcons(
                 icon: Icons.category_outlined,
                 imageName: 'About App',
               ),
               SizedBox(
                 height: 22.h,
               ),
-              DrawerIcons(
+           const   DrawerIcons(
                 icon: Icons.logout,
                 imageName: 'Logout',
               ),
