@@ -1,10 +1,11 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/home_screens/homepage_constant_widgets.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -15,133 +16,227 @@ class HomePageScreen extends StatefulWidget {
 }
 
 class _HomePageScreenState extends State<HomePageScreen> {
-  int activeImageIndex = 0;
-
-  List<String> images = [
-    'lib/assets/homepageimage.png',
-    'lib/assets/homepageimage.png',
-    'lib/assets/homepageimage.png',
-  ];
+  GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        key: scafoldKey,
+        drawer: Container(
+          color: AppColor.darkContainer,
+          height: 821.h,
+          width: 290.w,
+          child: Column(
+            children: [
+              //drawer top container for image and name
+              Stack(
+                children: [
+                  Container(
+                    color: AppColor.mainColor,
+                    height: 222.h,
+                    width: 290.w,
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 62.h,
+                        ),
+                        Container(
+                          height: 85.h,
+                          width: 85.w,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                'lib/assets/homepageimage.png',
+                              ),
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        NormalText(
+                          text: 'Kolawole',
+                          size: 19.2.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        ),
+                        SizedBox(
+                          height: 8.h,
+                        ),
+                        NormalText(
+                          text: 'Kolawole@yahoo.com',
+                          size: 14.sp,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.white,
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 20,
+                    right: 24,
+                    child: IconButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        icon: const Icon(
+                          Icons.close,
+                          size: 34,
+                          color: Colors.white,
+                        )),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+               DrawerIcons(
+                icon: Icons.house,
+                imageName: 'House',
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+               DrawerIcons(
+                icon: Icons.extension,
+                imageName: 'Categories',
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+               DrawerIcons(
+                icon: Icons.settings,
+                imageName: 'Settings',
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+               DrawerIcons(
+                icon: Icons.share,
+                imageName: 'Share',
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+               DrawerIcons(
+                icon: Icons.category_outlined,
+                imageName: 'About App',
+              ),
+              SizedBox(
+                height: 22.h,
+              ),
+              DrawerIcons(
+                icon: Icons.logout,
+                imageName: 'Logout',
+              ),
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           dragStartBehavior: DragStartBehavior.start,
           child: Container(
             color: AppColor.darkContainer,
             child: Column(
               children: [
-                const SizedBox(
-                  height: 30,
+                SizedBox(
+                  height: 30.h,
                 ),
                 ReuseableAppbar(
-                  menuPressed: () {},
+                  menuPressed: () {
+                    scafoldKey.currentState!.openDrawer();
+                  },
                   searchPressed: () {},
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.symmetric(horizontal: 20),
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       GestureDetector(
-                //         onTap: () {},
-                //         child: const Icon(Icons.menu, size: 30.0),
-                //       ),
-                //       GestureDetector(
-                //         onTap: () {},
-                //         child: const Icon(Icons.search, size: 30.0),
-                //       ),
-                //     ],
-                //   ),
-                // ),
                 CarouselSlider.builder(
                   options: CarouselOptions(
                     enableInfiniteScroll: false,
                     // enlargeCenterPage: true,
-                    viewportFraction: 0.9,
+                    viewportFraction: 0.9.w,
                     // autoPlay: true,
 
                     onPageChanged: (index, reason) =>
-                        setState(() => activeImageIndex = index),
+                        setState(() => HomeConstants.activeImageIndex = index),
                     autoPlayInterval: const Duration(seconds: 2),
                   ),
-                  itemCount: images.length,
+                  itemCount: HomeConstants.images.length,
                   itemBuilder: (context, index, realIndex) {
-                    final image = images[index];
-                    return buildImage(image, index);
+                    final image = HomeConstants.images[index];
+                    return HomeConstants.buildImage(image, index);
                   },
                 ),
-                const SizedBox(height: 5),
-                buildIndicator(),
-                const SizedBox(height: 5),
+                SizedBox(height: 5.h),
+                HomeConstants.buildIndicator(),
+                SizedBox(height: 5.h),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  padding: EdgeInsets.symmetric(horizontal: 15.0.w),
                   child: Column(
                     children: [
-                      const Divider(
+                      Divider(
                         color: Colors.black26,
-                        thickness: 2.0,
+                        thickness: 2.0.w,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           NormalText(
                             text: 'Categories',
-                            size: 19.2,
+                            size: 19.2.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ],
                       ),
-                      const SizedBox(height: 16),
+                      SizedBox(height: 16.h),
                       Container(
-                        width: 343,
-                        height: 176,
+                        width: 343.w,
+                        height: 176.h,
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(10.r),
                         ),
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: EdgeInsets.symmetric(
+                              horizontal: 12.0.w, vertical: 12.w),
                           child: GridView.count(
                             primary: false,
                             crossAxisSpacing: 1,
                             mainAxisSpacing: 1,
                             crossAxisCount: 4,
                             children: <Widget>[
-                              newInkwell(
+                              HomeConstants.newInkwell(
                                   context, 'Material', 'lib/assets/home1.png'),
-                              newInkwell(context, 'Past Question',
+                              HomeConstants.newInkwell(context, 'Past Question',
                                   'lib/assets/home2.png'),
-                              newInkwell(
+                              HomeConstants.newInkwell(
                                   context, 'Scheduler', 'lib/assets/home3.png'),
-                              newInkwell(
+                              HomeConstants.newInkwell(
                                   context, 'Note Book', 'lib/assets/home4.png'),
-                              newInkwell(context, 'Scholarships',
+                              HomeConstants.newInkwell(context, 'Scholarships',
                                   'lib/assets/home5.png'),
-                              newInkwell(context, 'Notice Boards',
+                              HomeConstants.newInkwell(context, 'Notice Boards',
                                   'lib/assets/home6.png'),
-                              newInkwell(
+                              HomeConstants.newInkwell(
                                   context, 'Chats', 'lib/assets/home7.png'),
-                              newInkwell(
+                              HomeConstants.newInkwell(
                                   context, 'More', 'lib/assets/home8.png'),
                             ],
                           ),
                         ),
                       ),
-                      const SizedBox(height: 20),
-                      const Divider(
+                      SizedBox(height: 20.h),
+                      Divider(
                         color: Colors.black26,
-                        thickness: 2.0,
+                        thickness: 2.0.h,
                       ),
-                      const SizedBox(height: 20),
+                      SizedBox(height: 20.h),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           NormalText(
                             text: 'Recent Activities',
-                            size: 19.2,
+                            size: 19.2.sp,
                             fontWeight: FontWeight.w500,
                           ),
                         ],
@@ -151,7 +246,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         note:
                             'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
                       ),
-                     const ReuseableCards(
+                      const ReuseableCards(
                         date: 'jan',
                         note:
                             'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
@@ -161,128 +256,6 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildImage(String image, int index) {
-    return Padding(
-      padding: const EdgeInsets.all(5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          image: DecorationImage(image: AssetImage(image), fit: BoxFit.fill),
-        ),
-      ),
-    );
-  }
-
-  Widget buildIndicator() {
-    return AnimatedSmoothIndicator(
-      activeIndex: activeImageIndex,
-      count: images.length,
-      effect: const WormEffect(
-          dotWidth: 8.0,
-          dotHeight: 8.0,
-          activeDotColor: AppColor.dullBlack,
-          dotColor: Colors.black12),
-    );
-  }
-
-  InkWell newInkwell(BuildContext context, String label, String imgUrl) {
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
-        ),
-        child: Column(
-          children: [
-            Container(
-              height: 40,
-              width: 40,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: ResizeImage(AssetImage(imgUrl), height: 30, width: 30),
-                ),
-              ),
-            ),
-            NormalText(
-              text: label,
-              size: 10,
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class ReuseableCards extends StatelessWidget {
-  final String date;
-  final String note;
-
-  const ReuseableCards({
-    Key? key,
-    required this.date,
-    required this.note,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Container(
-        width: 343,
-        height: 83,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10.0),
-          child: Column(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      NormalText(
-                        text:
-                            // '2021/2011 Undergraduate students \nAccomodations for OAU Students',
-                            note,
-                        size: 14,
-                        fontWeight: FontWeight.w500,
-                      ),
-                      Container(
-                        height: 10,
-                        width: 10,
-                        decoration: const BoxDecoration(
-                          color: Colors.blue,
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  NormalText(
-                    text: date,
-                    size: 12,
-                    color: AppColor.dullBlack,
-                  ),
-                ],
-              ),
-            ],
           ),
         ),
       ),

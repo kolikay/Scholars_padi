@@ -9,21 +9,15 @@ class AuthViewModel extends ChangeNotifier {
   bool _loading = false;
   bool get loading => _loading;
 
-  // UserError _userError = UserError();
-
-  // UserError get userError => _userError;
-
   bool _loginError = false;
   bool get loginError => _loginError;
+
+
 
   setLoading(bool loading) async {
     _loading = loading;
     notifyListeners();
   }
-
-  // setUserError(UserError userError) {
-  //   _userError = userError;
-  // }
 
   setLoginError(bool loginError) {
     _loginError = loginError;

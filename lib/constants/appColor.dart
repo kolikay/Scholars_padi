@@ -11,6 +11,8 @@ static const Color dullBlack = Colors.black54;
 
 static const Color darkContainer = Color(0xffE5E5E5);
 
+static const Color iconBlack = Color(0xff000001);
+
 
 
 
