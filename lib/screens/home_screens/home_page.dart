@@ -206,21 +206,21 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             crossAxisCount: 4,
                             children: <Widget>[
                               HomeConstants.newInkwell(
-                                  context, 'Material', 'lib/assets/home1.png'),
+                                  context, 'Material', 'lib/assets/material.png'),
                               HomeConstants.newInkwell(context, 'Past Question',
-                                  'lib/assets/home2.png'),
+                                  'lib/assets/pastQuestion.png'),
                               HomeConstants.newInkwell(
-                                  context, 'Scheduler', 'lib/assets/home3.png'),
+                                  context, 'Scheduler', 'lib/assets/schduler.png'),
                               HomeConstants.newInkwell(
-                                  context, 'Note Book', 'lib/assets/home4.png'),
+                                  context, 'Note Book', 'lib/assets/notebook.png'),
                               HomeConstants.newInkwell(context, 'Scholarships',
-                                  'lib/assets/home5.png'),
+                                  'lib/assets/scholaship.png'),
                               HomeConstants.newInkwell(context, 'Notice Boards',
-                                  'lib/assets/home6.png'),
+                                  'lib/assets/noticeBoard.png'),
                               HomeConstants.newInkwell(
-                                  context, 'Chats', 'lib/assets/home7.png'),
+                                  context, 'Chats', 'lib/assets/chats.png'),
                               HomeConstants.newInkwell(
-                                  context, 'More', 'lib/assets/home8.png'),
+                                  context, 'More', 'lib/assets/more.png'),
                             ],
                           ),
                         ),

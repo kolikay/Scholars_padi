@@ -59,7 +59,7 @@ dev_dependencies:
   #check connection package
   simple_connection_checker: ^0.2.1
   #state management
-  flutter_riverpod: ^1.0.0
+  flutter_riverpod: ^1.0.1
   #App Responsivness
   flutter_screenutil: 5.0.0+2
   
