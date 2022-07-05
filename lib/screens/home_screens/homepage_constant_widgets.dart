@@ -43,11 +43,11 @@ class HomeConstants {
   static InkWell newInkwell(BuildContext context, String label, String imgUrl) {
     return InkWell(
       onTap: () {
-          Navigator.of(context).pushReplacement(
-    MaterialPageRoute(
-      builder: (context) => const CategoriesPage(),
-    ),
-  );
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(
+            builder: (context) => const CategoriesPage(),
+          ),
+        );
       },
       child: Container(
         decoration: BoxDecoration(
@@ -78,36 +78,45 @@ class HomeConstants {
     );
   }
 
-
-  static  InkWell categoryCard(BuildContext context, String label, String imgUrl) {
+  static InkWell categoryCard(
+      BuildContext context, String label, String imgUrl) {
     return InkWell(
-      child: Card(
-        color: Colors.white,
-        elevation: 20,
-        child: SizedBox(
-          width: 100.w,
-          height: 90.h,
-          child: Column(
-            children: [
-              Container(
-                height: 40.h,
-                width: 40.w,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: ResizeImage(AssetImage(imgUrl),
-                        height: 30, width: 30),
+      child: Column(
+        children: [
+          SizedBox(height: 24.h,),
+          Card(
+            color: Colors.white,
+            elevation: 10,
+            child: SizedBox(
+              width: 100.w,
+              height: 90.h,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 40.h,
+                    width: 40.w,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image:
+                            ResizeImage(AssetImage(imgUrl), height: 30, width: 30),
+                      ),
+                    ),
                   ),
-                ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  NormalText(
+                    text: label,
+                    size: 10.sp,
+                  ),
+                ],
               ),
-              NormalText(
-                text: label,
-                size: 10.sp,
-              ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }
@@ -116,13 +125,11 @@ class HomeConstants {
 class DrawerIcons extends StatefulWidget {
   final IconData icon;
   final String imageName;
- 
 
   const DrawerIcons({
     Key? key,
     required this.icon,
     required this.imageName,
-   
   }) : super(key: key);
 
   @override
@@ -140,10 +147,9 @@ class _DrawerIconsState extends State<DrawerIcons> {
         highlightColor: const Color(0xffC4C4C4),
         splashColor: const Color(0xffC4C4C4),
         onTap: () {
-          print('tap');
+          
         },
-        child: 
-        SizedBox(
+        child: SizedBox(
           height: 46.h,
           child: Row(
             children: [

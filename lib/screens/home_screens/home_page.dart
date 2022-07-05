@@ -93,42 +93,42 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-               const DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.house,
                 imageName: 'House',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               const DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.extension,
                 imageName: 'Categories',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               const DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.settings,
                 imageName: 'Settings',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               const DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.share,
                 imageName: 'Share',
               ),
               SizedBox(
                 height: 22.h,
               ),
-               const DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.category_outlined,
                 imageName: 'About App',
               ),
               SizedBox(
                 height: 22.h,
               ),
-           const   DrawerIcons(
+              const DrawerIcons(
                 icon: Icons.logout,
                 imageName: 'Logout',
               ),
@@ -145,10 +145,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   height: 30.h,
                 ),
                 ReuseableAppbar(
-                  menuPressed: () {
+                  firstAppIcon: Icons.menu,
+                  secondAppIcon: Icons.search,
+                  firstButton: () {
                     scafoldKey.currentState!.openDrawer();
                   },
-                  searchPressed: () {},
+                  secondButton: () {},
                 ),
                 CarouselSlider.builder(
                   options: CarouselOptions(
@@ -205,14 +207,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             mainAxisSpacing: 1,
                             crossAxisCount: 4,
                             children: <Widget>[
-                              HomeConstants.newInkwell(
-                                  context, 'Material', 'lib/assets/material.png'),
+                              HomeConstants.newInkwell(context, 'Material',
+                                  'lib/assets/material.png'),
                               HomeConstants.newInkwell(context, 'Past Question',
-                                  'lib/assets/pastQuestion.png'),
-                              HomeConstants.newInkwell(
-                                  context, 'Scheduler', 'lib/assets/schduler.png'),
-                              HomeConstants.newInkwell(
-                                  context, 'Note Book', 'lib/assets/notebook.png'),
+                                  '/assets/paslibtQuestion.png'),
+                              HomeConstants.newInkwell(context, 'Scheduler',
+                                  'lib/assets/schduler.png'),
+                              HomeConstants.newInkwell(context, 'Note Book',
+                                  'lib/assets/notebook.png'),
                               HomeConstants.newInkwell(context, 'Scholarships',
                                   'lib/assets/scholaship.png'),
                               HomeConstants.newInkwell(context, 'Notice Boards',

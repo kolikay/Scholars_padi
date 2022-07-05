@@ -36,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding:  EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
+          padding: EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -70,6 +70,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                               if (val!.isEmpty) {
                                 return 'Field Cannot be empty';
                               }
+                              return null;
                             },
                             controller: _emailCont,
                             obcureText: false,
@@ -86,6 +87,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                               if (val!.isEmpty) {
                                 return 'Field Cannot be empty';
                               }
+                              return null;
                             },
                             controller: _password1Cont,
                             obcureText: _isObscure,
@@ -113,13 +115,14 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                               if (pass != _password1Cont.text) {
                                 return 'Password Dont match';
                               }
+                              return null;
                             },
                             obcureText: _isObscure,
                             keyBoardType: TextInputType.text,
                             isPassword: true,
                             isReadOnly: false,
                             labelText: 'Confirm Password',
-                             sufixIcon: IconButton(
+                            sufixIcon: IconButton(
                               color: Colors.black54,
                               icon: Icon(_isObscure1
                                   ? Icons.visibility
@@ -200,11 +203,13 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                             fontSize: 16.sp,
                           ),
                           children: <TextSpan>[
-                            TextSpan(text: 'Already have an account? ', style: TextStyle(fontSize: 14.sp)),
+                            TextSpan(
+                                text: 'Already have an account? ',
+                                style: TextStyle(fontSize: 14.sp)),
                             TextSpan(
                               text: 'Sign In',
                               style: TextStyle(
-                                fontSize: 16.sp,
+                                  fontSize: 16.sp,
                                   color: AppColor.mainColor,
                                   fontWeight: FontWeight.bold),
                             ),

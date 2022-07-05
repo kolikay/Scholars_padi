@@ -21,11 +21,10 @@ class _SignUpScreenState extends State<SignUpScreen1> {
 
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Scaffold(
         body: Padding(
-          padding:  EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
+          padding: EdgeInsets.only(top: 40.h, left: 30.w, right: 20.w),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -39,7 +38,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                     SizedBox(
+                    SizedBox(
                       height: 36.h,
                     ),
                     NormalText(
@@ -58,7 +57,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               validator: (val) {
                                 if (val!.isEmpty) {
                                   return 'Field Cannot be empty';
-                                }
+                                }return null;
                               },
                               controller: _fullnameCont,
                               obcureText: false,
@@ -75,6 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                                 if (val!.isEmpty) {
                                   return 'Field Cannot be empty';
                                 }
+                                return null;
                               },
                               controller: _usernameCont,
                               obcureText: false,
@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isReadOnly: false,
                               labelText: 'Faculty',
                             ),
-                          SizedBox(
+                            SizedBox(
                               height: 24.h,
                             ),
                             MyTextField(

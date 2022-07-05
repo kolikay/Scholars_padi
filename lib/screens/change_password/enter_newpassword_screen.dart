@@ -19,7 +19,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
   final _newpassword1 = TextEditingController();
   final _newpassword2 = TextEditingController();
   bool _isObscure = true;
-    bool _isObscure1 = true;
+  bool _isObscure1 = true;
   final _formKey = GlobalKey<FormState>();
 
   @override
@@ -92,6 +92,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                     if (_newpassword2.text != _newpassword1.text) {
                       return 'Password Dont match';
                     }
+                    return null;
                   },
                   controller: _newpassword2,
                   obcureText: _isObscure,
@@ -99,7 +100,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   isPassword: false,
                   isReadOnly: false,
                   labelText: 'Confirm password',
-                    sufixIcon: IconButton(
+                  sufixIcon: IconButton(
                     color: Colors.black54,
                     icon: Icon(
                         _isObscure1 ? Icons.visibility : Icons.visibility_off),
@@ -120,10 +121,8 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
             text: 'Send Email',
             textSize: 14.sp,
             onPressed: () {
-              if (_formKey.currentState!.validate()) {
-             
-              }
-             
+              if (_formKey.currentState!.validate()) {}
+
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => ReuseableInfoWidget(

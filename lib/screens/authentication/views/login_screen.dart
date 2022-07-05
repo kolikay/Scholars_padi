@@ -104,6 +104,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         if (val!.isEmpty) {
                                           return 'The Email Field is required';
                                         }
+                                        return null;
                                       },
                                       obcureText: false,
                                       keyBoardType: TextInputType.emailAddress,
@@ -167,7 +168,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               children: [
                                 ReuseableButton(
                                   height: 55.h,
-                                  width: 290.h,
+                                  width: 2901.h,
                                   text: 'Sign In',
                                   textSize: 14.sp,
                                   onPressed: () async {

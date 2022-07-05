@@ -20,12 +20,15 @@ class NoInternetScreen extends StatelessWidget {
                 height: 30.h,
               ),
               ReuseableAppbar(
-                menuPressed: () {},
-                searchPressed: () {},
+                firstAppIcon: Icons.backspace,
+                secondAppIcon: Icons.search_off_rounded,
+                firstButton: () {},
+                secondButton: () {},
               ),
               Expanded(
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 20.h, horizontal: 20.w),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,

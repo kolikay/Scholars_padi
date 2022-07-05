@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/home_screens/homepage_constant_widgets.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 
 class CategoriesPage extends ConsumerStatefulWidget {
@@ -27,8 +27,11 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
               height: 103.h,
               width: 375.w,
               child: ReuseableAppbar(
-                menuPressed: () {},
-                searchPressed: () {},
+                appBarTitle: 'Categories',
+                firstAppIcon: Icons.arrow_back_ios,
+                secondAppIcon: Icons.search,
+                firstButton: () {},
+                secondButton: () {},
               ),
             ),
             Expanded(
@@ -43,13 +46,21 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                       HomeConstants.categoryCard(
                           context,'Material', 'lib/assets/material.png'),
                       HomeConstants.categoryCard(
-                          context, 'home', 'lib/assets/home1.png'),
+                          context, 'Past Question', 'lib/assets/pastQuestion.png'),
                       HomeConstants.categoryCard(
-                          context, 'home', 'lib/assets/home1.png'),
+                          context, 'Scheduler', 'lib/assets/schduler.png'),
                       HomeConstants.categoryCard(
-                          context, 'home', 'lib/assets/home1.png'),
+                          context, 'Note Book', 'lib/assets/notebook.png'),
                       HomeConstants.categoryCard(
-                          context, 'home', 'lib/assets/home1.png'),
+                          context, 'Scholarships', 'lib/assets/scholaship.png'),
+                          HomeConstants.categoryCard(
+                          context, 'Notice Boards', 'lib/assets/noticeBoard.png'),
+                          HomeConstants.categoryCard(
+                          context, 'Chats', 'lib/assets/chat.png'),
+                           HomeConstants.categoryCard(
+                          context, 'School Portal', 'lib/assets/schoolPortal.png'),
+                           HomeConstants.categoryCard(
+                          context, 'School Calender', 'lib/assets/calender.png'),
                     ]),
               ),
             ),
