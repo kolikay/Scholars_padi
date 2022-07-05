@@ -41,7 +41,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                     crossAxisCount: 3,
                     children: <Widget>[
                       HomeConstants.categoryCard(
-                          context, 'home', 'lib/assets/home1.png'),
+                          context,'Material', 'lib/assets/material.png'),
                       HomeConstants.categoryCard(
                           context, 'home', 'lib/assets/home1.png'),
                       HomeConstants.categoryCard(

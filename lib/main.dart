@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/screens/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/home_screens/home_page.dart';
 import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-           home: const HomePageScreen(),
+           home: CategoriesPage(),
         routes: {
           HomePageScreen.id: (context) => const HomePageScreen(),
         },

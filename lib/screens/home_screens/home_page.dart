@@ -218,9 +218,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               HomeConstants.newInkwell(context, 'Notice Boards',
                                   'lib/assets/noticeBoard.png'),
                               HomeConstants.newInkwell(
-                                  context, 'Chats', 'lib/assets/chats.png'),
+                                  context, 'Chats', 'lib/assets/chat.png'),
                               HomeConstants.newInkwell(
-                                  context, 'More', 'lib/assets/more.png'),
+                                  context, 'More', 'lib/assets/more.jpg'),
                             ],
                           ),
                         ),

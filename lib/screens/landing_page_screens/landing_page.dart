@@ -119,7 +119,7 @@ class _LandingPageState extends State<LandingPage> {
                   child: Column(
                     children: [
                       ReuseableButton(
-                        height: 45,
+                        height: 45.h,
                         text: 'Get Started',
                         onPressed: () {
                           Navigator.of(context).push(
