@@ -83,7 +83,9 @@ class HomeConstants {
     return InkWell(
       child: Column(
         children: [
-          SizedBox(height: 24.h,),
+          SizedBox(
+            height: 24.h,
+          ),
           Card(
             color: Colors.white,
             elevation: 10,
@@ -100,8 +102,8 @@ class HomeConstants {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.cover,
-                        image:
-                            ResizeImage(AssetImage(imgUrl), height: 30, width: 30),
+                        image: ResizeImage(AssetImage(imgUrl),
+                            height: 30, width: 30),
                       ),
                     ),
                   ),
@@ -125,11 +127,13 @@ class HomeConstants {
 class DrawerIcons extends StatefulWidget {
   final IconData icon;
   final String imageName;
+  final GestureTapCallback? onPressed;
 
   const DrawerIcons({
     Key? key,
     required this.icon,
     required this.imageName,
+    this.onPressed
   }) : super(key: key);
 
   @override
@@ -146,9 +150,7 @@ class _DrawerIconsState extends State<DrawerIcons> {
       child: InkWell(
         highlightColor: const Color(0xffC4C4C4),
         splashColor: const Color(0xffC4C4C4),
-        onTap: () {
-          
-        },
+        onTap: widget.onPressed,
         child: SizedBox(
           height: 46.h,
           child: Row(

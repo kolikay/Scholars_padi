@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 
+import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
 
 
@@ -26,7 +27,9 @@ class MyApp extends StatelessWidget {
           ),
            home: const OnBoardingScreen(),
         routes: {
-          // HomePageScreen.id: (context) => const HomePageScreen(),
+          HomePageScreen.id: (context) => const HomePageScreen(),
+          CatergoriesSearchScreen.id: (context) => const CatergoriesSearchScreen(),
+           OnBoardingScreen.id: (context) => const OnBoardingScreen(),
         },
         );
       },

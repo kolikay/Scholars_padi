@@ -20,6 +20,7 @@ class NoInternetScreen extends StatelessWidget {
                 height: 30.h,
               ),
               ReuseableAppbar(
+                color: Colors.white,
                 firstAppIcon: Icons.backspace,
                 secondAppIcon: Icons.search_off_rounded,
                 firstButton: () {},

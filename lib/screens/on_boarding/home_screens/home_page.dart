@@ -1,16 +1,18 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import '../on_boarding_screen.dart';
 import 'homepage_constant_widgets.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
 
-  // static const String id = 'homepage_screen';
+  static const String id = 'homepage_screen';
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -94,7 +96,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+              DrawerIcons(
+                onPressed: () {
+                  Navigator.pushNamed(context, OnBoardingScreen.id);
+                },
                 icon: Icons.house,
                 imageName: 'Home',
               ),
@@ -145,13 +150,19 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 SizedBox(
                   height: 30.h,
                 ),
-                ReuseableAppbar(
-                  firstAppIcon: Icons.menu,
-                  secondAppIcon: Icons.search,
-                  firstButton: () {
-                    scafoldKey.currentState!.openDrawer();
-                  },
-                  secondButton: () {},
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal:8.0.w,),
+                  child: ReuseableAppbar(
+                    color: Colors.black,
+                    firstAppIcon: Icons.menu,
+                    secondAppIcon: Icons.search,
+                    firstButton: () {
+                      scafoldKey.currentState!.openDrawer();
+                    },
+                    secondButton: () {
+                      Navigator.pushNamed(context, CatergoriesSearchScreen.id);
+                    },
+                  ),
                 ),
                 CarouselSlider.builder(
                   options: CarouselOptions(

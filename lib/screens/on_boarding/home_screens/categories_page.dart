@@ -29,6 +29,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
               height: 103.h,
               width: 375.w,
               child: ReuseableAppbar(
+                color: Colors.white,
                 appBarTitle: 'Categories',
                 firstAppIcon: Icons.arrow_back_ios,
                 secondAppIcon: Icons.search,

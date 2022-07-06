@@ -6,11 +6,6 @@ import 'package:scholars_padi/screens/on_boarding/notification_screen.dart';
 import 'home_screens/home_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
-
-
-
-
 class OnBoardingScreen extends StatefulWidget {
   static String id = 'onBordingScreen';
   const OnBoardingScreen({Key? key}) : super(key: key);
@@ -20,7 +15,8 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  
+  static const String id = 'onBoard';
+
   int currentIndex = 0;
 
   final screens = [
@@ -30,10 +26,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     const ProfileScreen()
   ];
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
@@ -65,6 +59,3 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 }
-
-
-
