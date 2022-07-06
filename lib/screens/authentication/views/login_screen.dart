@@ -174,8 +174,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   text: 'Sign In',
                                   textSize: 14.sp,
                                   onPressed: () async {
-                                    authViewModel.loginUser(login_url, context);
-                                    // pushToOnboardingPage(context);
+                                    // authViewModel.loginUser(login_url, context);
+                                    pushToOnboardingPage(context);
                                   },
                                 ),
                               ],

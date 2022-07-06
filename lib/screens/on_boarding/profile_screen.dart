@@ -25,65 +25,78 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _password = TextEditingController();
   bool _isObscure = true;
   bool _isObscure1 = true;
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: AppColor.darkContainer,
-        child: Column(
-          children: [
-            Container(
-              height: 123.h,
-              color: AppColor.mainColor,
-              child: Padding(
-                padding: EdgeInsets.only(top:20.0.h),
-                child: ReuseableAppbar(
-                    appBarTitle: 'Profile',
-                    firstButton: () {
-                      Navigator.pop(context);
-                    },
-                    secondButton: () {
-                      setState(() {
-                        onEdit = !onEdit;
-                      });
-                    },
-                    firstAppIcon: onEdit ? Icons.arrow_back_ios : Icons.cancel,
-                    secondAppIcon: onEdit ? Icons.save : Icons.edit,
-                    color: Colors.white),
-              ),
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            Container(
-              height: 90.h,
-              width: 100.w,
-              decoration: const BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: AssetImage(
-                    'lib/assets/homepageimage.png',
-                  ),
+      body: SingleChildScrollView(
+        child: Container(
+          color: AppColor.darkContainer,
+          child: Column(
+            children: [
+              Container(
+                height: 123.h,
+                color: AppColor.mainColor,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 20.0.h),
+                  child: ReuseableAppbar(
+                      appBarTitle: 'Profile',
+                      firstButton: () {
+                        Navigator.pop(context);
+                      },
+                      secondButton: () {
+                        setState(() {
+                          onEdit = !onEdit;
+                        });
+                      },
+                      firstAppIcon:
+                          onEdit ? Icons.arrow_back_ios : Icons.cancel,
+                      secondAppIcon: onEdit ? Icons.save : Icons.edit,
+                      color: Colors.white),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
-            NormalText(
-              text: 'Kolawole Johnson',
-              fontWeight: FontWeight.w500,
-              size: 19.2.sp,
-            ),
-            SizedBox(
-              height: 24.h,
-            ),
-            Form(
+              SizedBox(
+                height: 24.h,
+              ),
+              Stack(
+                children: [
+                  Container(
+                    height: 100.h,
+                    width: 100.w,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage(
+                          'lib/assets/homepageimage.png',
+                        ),
+                      ),
+                    ),
+                  ),
+                  onEdit? Positioned(
+                    top: 40.h,
+                    left: 40.w,
+                    child:Icon(Icons.camera, color: Colors.white, size: 30.h,),
+                  ) : const SizedBox(),
+                ],
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Kolawole Johnson',
+                fontWeight: FontWeight.w500,
+                size: 19.2.sp,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              Form(
                 key: _formKey,
                 child: Column(
                   children: [
                     MyTextField(
+                      enable: onEdit,
                       controller: _fullnameCont,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -95,6 +108,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       height: 24.h,
                     ),
                     MyTextField(
+                      enable: onEdit,
                       controller: _usernameCont,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -106,6 +120,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       height: 24.h,
                     ),
                     MyTextField(
+                      enable: onEdit,
                       controller: _facultyCont,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -117,6 +132,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       height: 24.h,
                     ),
                     MyTextField(
+                      enable: onEdit,
                       controller: _departmentCont,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -128,6 +144,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       height: 24.h,
                     ),
                     MyTextField(
+                      enable: onEdit,
                       controller: _email,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -139,6 +156,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       height: 24.h,
                     ),
                     MyTextField(
+                      enable: onEdit,
                       controller: _password,
                       obcureText: false,
                       keyBoardType: TextInputType.text,
@@ -159,38 +177,45 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             : null,
                       ),
                     ),
-                    // MyTextField(
-                    //   validator: (pass) {
-                    //     if (pass != _password.text) {
-                    //       return 'Password Dont match';
-                    //     }
-                    //     return null;
-                    //   },
-                    //   controller: _password,
-                    //   obcureText: false,
-                    //   keyBoardType: TextInputType.text,
-                    //   isPassword: false,
-                    //   isReadOnly: !onEdit,
-                    //   labelText: 'Confirm Password',
-                    //   sufixIcon: IconButton(
-                    //     color: Colors.black54,
-                    //     icon: Icon(_isObscure1
-                    //         ? Icons.visibility
-                    //         : Icons.visibility_off),
-                    //     onPressed: onEdit
-                    //         ? () {
-                    //             setState(
-                    //               () {
-                    //                 _isObscure1 = !_isObscure1;
-                    //               },
-                    //             );
-                    //           }
-                    //         : null,
-                    //   ),
-                    // )
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    onEdit
+                        ? MyTextField(
+                            validator: (pass) {
+                              if (pass != _password.text) {
+                                return 'Password Dont match';
+                              }
+                              return null;
+                            },
+                            controller: _password,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: !onEdit,
+                            labelText: 'Confirm Password',
+                            sufixIcon: IconButton(
+                              color: Colors.black54,
+                              icon: Icon(_isObscure1
+                                  ? Icons.visibility
+                                  : Icons.visibility_off),
+                              onPressed: onEdit
+                                  ? () {
+                                      setState(
+                                        () {
+                                          _isObscure1 = !_isObscure1;
+                                        },
+                                      );
+                                    }
+                                  : null,
+                            ),
+                          )
+                        : const SizedBox()
                   ],
-                )),
-          ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -16,6 +16,7 @@ class MyTextField extends StatefulWidget {
   final Color borderColor;
   final TextInputType keyBoardType;
   final String? Function(String?)? validator;
+   final bool enable;
 
   const MyTextField({
     Key? key,
@@ -30,6 +31,7 @@ class MyTextField extends StatefulWidget {
     this.sufixIcon,
     required this.keyBoardType,
     this.validator,
+    this.enable = true,
   }) : super(key: key);
 
   @override
@@ -47,9 +49,9 @@ class _MyTextFieldState extends State<MyTextField> {
         obscureText: widget.obcureText,
         decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: widget.enable? OutlineInputBorder(
             borderSide: BorderSide(color: AppColor.mainColor, width: 2.0.w),
-          ),
+          ) : OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 1.0.w),
           ),

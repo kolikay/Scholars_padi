@@ -31,7 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Scaffold(
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 20.0.h,
+        iconSize: 25.0.w,
         backgroundColor: Colors.white70,
         selectedItemColor: AppColor.mainColor,
         type: BottomNavigationBarType.fixed,
