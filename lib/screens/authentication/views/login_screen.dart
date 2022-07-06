@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/authentication/views/sign_up1_screen.dart';
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -13,6 +14,7 @@ import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
+  static const String id = 'login_screen';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _LoginScreenState();
@@ -173,6 +175,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   textSize: 14.sp,
                                   onPressed: () async {
                                     authViewModel.loginUser(login_url, context);
+                                    // pushToOnboardingPage(context);
                                   },
                                 ),
                               ],

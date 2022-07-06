@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
@@ -190,11 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen2> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );
+                        pushToLoginPage(context);
                       },
                       child: RichText(
                         text: TextSpan(

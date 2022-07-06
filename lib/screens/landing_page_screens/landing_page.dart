@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
@@ -122,11 +123,7 @@ class _LandingPageState extends State<LandingPage> {
                         height: 45.h,
                         text: 'Get Started',
                         onPressed: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const LoginScreen(),
-                            ),
-                          );
+                          pushToLoginPage(context);
                         },
                       ),
                       SizedBox(
@@ -162,7 +159,7 @@ class _LandingPageState extends State<LandingPage> {
     String subTitle3 = '',
   }) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 10.w , vertical: 10.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       child: Container(
         color: color,
         child: Column(
@@ -177,7 +174,7 @@ class _LandingPageState extends State<LandingPage> {
                     image: AssetImage(urlImage), fit: BoxFit.cover),
               ),
             ),
-             SizedBox(
+            SizedBox(
               height: 25.h,
             ),
             NormalText(

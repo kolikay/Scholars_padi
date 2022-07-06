@@ -80,7 +80,7 @@ class _ReuseableAppbarState extends State<ReuseableAppbar> {
           NormalText(
             text: widget.appBarTitle,
             color: Colors.white,
-            size: 19.2.sp,
+            size: 24.2.sp,
           ),
           GestureDetector(
             onTap: widget.secondButton,

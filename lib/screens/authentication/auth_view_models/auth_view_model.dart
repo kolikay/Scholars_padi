@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/services/web_service.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -11,8 +12,6 @@ class AuthViewModel extends ChangeNotifier {
 
   bool _loginError = false;
   bool get loginError => _loginError;
-
-
 
   setLoading(bool loading) async {
     _loading = loading;
@@ -29,7 +28,11 @@ class AuthViewModel extends ChangeNotifier {
     final response = await WebServices.sendRequest(url, context);
 
     if (response is Success) {
-      pushTohomePage(context);
+      
+    
+      pushToOnboardingPage(context);
+
+      // pushToHomePage(context);
       setLoading(false);
     }
     if (response is Failure) {
@@ -40,6 +43,6 @@ class AuthViewModel extends ChangeNotifier {
       pushToNoInternetPage(context);
       setLoading(false);
     }
-  setLoading(false);
+    setLoading(false);
   }
 }
