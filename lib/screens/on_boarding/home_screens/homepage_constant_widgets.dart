@@ -1,7 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/home_screens/categories_page.dart';
+import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:flutter/material.dart';

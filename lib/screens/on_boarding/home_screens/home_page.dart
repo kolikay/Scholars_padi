@@ -1,15 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/home_screens/homepage_constant_widgets.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'homepage_constant_widgets.dart';
 
 class HomePageScreen extends StatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
-  static const String id = 'homepage_screen';
+
+  // static const String id = 'homepage_screen';
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();
@@ -95,7 +96,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               const DrawerIcons(
                 icon: Icons.house,
-                imageName: 'House',
+                imageName: 'Home',
               ),
               SizedBox(
                 height: 22.h,
@@ -210,7 +211,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               HomeConstants.newInkwell(context, 'Material',
                                   'lib/assets/material.png'),
                               HomeConstants.newInkwell(context, 'Past Question',
-                                  '/assets/paslibtQuestion.png'),
+                                  'lib/assets/pastQuestion.png'),
                               HomeConstants.newInkwell(context, 'Scheduler',
                                   'lib/assets/schduler.png'),
                               HomeConstants.newInkwell(context, 'Note Book',

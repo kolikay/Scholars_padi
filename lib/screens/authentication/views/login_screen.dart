@@ -168,7 +168,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               children: [
                                 ReuseableButton(
                                   height: 55.h,
-                                  width: 2901.h,
+                                  width: 290.h,
                                   text: 'Sign In',
                                   textSize: 14.sp,
                                   onPressed: () async {

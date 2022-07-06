@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/home_screens/homepage_constant_widgets.dart';
+
 
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
+
+import 'homepage_constant_widgets.dart';
 
 class CategoriesPage extends ConsumerStatefulWidget {
   const CategoriesPage({
