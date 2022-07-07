@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/on_boarding/favourite_screen.dart';
-import 'package:scholars_padi/screens/on_boarding/profile_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/notification_screen.dart';
 import 'home_screens/home_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
