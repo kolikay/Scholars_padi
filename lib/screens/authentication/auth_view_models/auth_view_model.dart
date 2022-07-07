@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/services/web_service.dart';
 
 class AuthViewModel extends ChangeNotifier {

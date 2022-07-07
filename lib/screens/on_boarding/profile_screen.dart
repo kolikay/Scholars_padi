@@ -1,10 +1,14 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -25,7 +29,81 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _password = TextEditingController();
   bool _isObscure = true;
   bool _isObscure1 = true;
-  
+  File? image;
+
+  bottomSheet(BuildContext context) {
+    return showModalBottomSheet(
+      context: context,
+      builder: (builder) {
+        return Container(
+          color: AppColor.darkContainer,
+          height: 150.h,
+          child: Column(
+            children: [
+              NormalText(
+                text: 'Choose Profile Picture',
+                fontWeight: FontWeight.w700,
+                size: 20.sp,
+              ),
+              SizedBox(
+                height: 20.h,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Row(
+                    children: [
+                      IconButton(
+                        color: AppColor.mainColor,
+                        iconSize: 50.w,
+                        onPressed: () {
+                          pickImage(ImageSource.camera);
+                           Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.camera_alt),
+                      ),
+                      NormalText(text: 'Camera')
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      IconButton(
+                        color: AppColor.mainColor,
+                        iconSize: 50.w,
+                        onPressed: () {
+                          pickImage(ImageSource.gallery);
+                           Navigator.pop(context);
+                        },
+                        icon: const Icon(Icons.image),
+                      ),
+                      NormalText(
+                        text: 'Galary',
+                      )
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  Future pickImage(ImageSource source) async {
+    try {
+      final _image = await ImagePicker().pickImage(source: source);
+      if (_image == null) return;
+      final _imageTem = File(_image.path);
+      setState(() {
+        image = _imageTem;
+      });
+    } on PlatformException catch (e) {
+      print('failed to pick image: $e');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,24 +138,48 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
               ),
               Stack(
                 children: [
-                  Container(
-                    height: 100.h,
-                    width: 100.w,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        fit: BoxFit.cover,
-                        image: AssetImage(
-                          'lib/assets/homepageimage.png',
+                  // ClipOval(child: Image.file(image!, width: 100.w, height: 100.h, fit: BoxFit.cover,), )
+                  image != null
+                      ? Container(
+                          height: 100.h,
+                          width: 100.w,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.fill,
+                              image: FileImage(image!),
+                            ),
+                          ),
+                        )
+                      : Container(
+                          height: 100.h,
+                          width: 100.w,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                'lib/assets/homepageimage.png',
+                              ),
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  ),
-                  onEdit? Positioned(
-                    top: 40.h,
-                    left: 40.w,
-                    child:Icon(Icons.camera, color: Colors.white, size: 30.h,),
-                  ) : const SizedBox(),
+                  onEdit
+                      ? Positioned(
+                          top: 40.h,
+                          left: 40.w,
+                          child: IconButton(
+                            color: Colors.white,
+                            iconSize: 30.w,
+                            icon: const Icon(
+                              Icons.camera_alt,
+                            ),
+                            onPressed: () {
+                              bottomSheet(context);
+                            },
+                          ),
+                        )
+                      : const SizedBox(),
                 ],
               ),
               SizedBox(

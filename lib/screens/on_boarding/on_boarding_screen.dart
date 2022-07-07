@@ -15,7 +15,7 @@ class OnBoardingScreen extends StatefulWidget {
 }
 
 class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  static const String id = 'onBoard';
+  // static const String id = 'onBoard';
 
   int currentIndex = 0;
 
