@@ -16,23 +16,26 @@ class NewReuseableAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AppBar(
-      title: Padding(
-        padding: EdgeInsets.only(top: 20.0.h),
-        child: title,
-      ),
-      toolbarHeight: 123.h,
-      backgroundColor: AppColor.mainColor,
-      leading: Center(
-        child:
-            Padding(padding: EdgeInsets.only(top: 20.0.h), child: firstAppIcon),
-      ),
-      actions: [
-        Padding(
+    return PreferredSize(
+      preferredSize: const Size.fromHeight(103),
+      child: AppBar(
+        title: Padding(
           padding: EdgeInsets.only(top: 20.0.h),
-          child: secondAppIcon,
-        )
-      ],
+          child: title,
+        ),
+        toolbarHeight: 103.h,
+        backgroundColor: AppColor.mainColor,
+        leading: Center(
+          child:
+              Padding(padding: EdgeInsets.only(top: 20.0.h), child: firstAppIcon),
+        ),
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(top: 20.0.h),
+            child: secondAppIcon,
+          )
+        ],
+      ),
     );
   }
 }

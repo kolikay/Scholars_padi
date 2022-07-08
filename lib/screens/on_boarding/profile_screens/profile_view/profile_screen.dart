@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/widgets/new_reusable_app_bar.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/new_reusable_app_bar.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -94,7 +94,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final profileViewModel = ref.watch(profileViewModelProvider);
     return Scaffold(
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(123.h),
+          preferredSize: Size.fromHeight(103.h),
           child: AppBar(
             title: Padding(
               padding: EdgeInsets.only(top: 20.0.h, ),
@@ -104,7 +104,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 color: Colors.white,
               ),
             ),
-            toolbarHeight: 123.h,
+            toolbarHeight: 103.h,
             backgroundColor: AppColor.mainColor,
             leading: Center(
               child: Padding(
