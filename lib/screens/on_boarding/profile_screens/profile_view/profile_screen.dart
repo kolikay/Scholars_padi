@@ -97,7 +97,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           preferredSize: Size.fromHeight(103.h),
           child: AppBar(
             title: Padding(
-              padding: EdgeInsets.only(top: 20.0.h, ),
+              padding: EdgeInsets.only(top: 10.0.h, ),
               child: NormalText(
                 text: 'Profile',
                 fontWeight: FontWeight.w500,
@@ -108,7 +108,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             backgroundColor: AppColor.mainColor,
             leading: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 20.0.h,),
+                padding: EdgeInsets.only(top: 10.0.h,),
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -124,7 +124,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             ),
             actions: [
               Padding(
-                padding: EdgeInsets.only(top: 20.0.h, right: 10.w),
+                padding: EdgeInsets.only(top: 10.0.h, right: 10.w),
                 child: IconButton(
                   onPressed: () {
                     setState(() {
@@ -141,6 +141,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
         body: SingleChildScrollView(
           child: Container(
+            height: 700.h,
             width: double.infinity,
             color: AppColor.darkContainer,
             child: Column(
