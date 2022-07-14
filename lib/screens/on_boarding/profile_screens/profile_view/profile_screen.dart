@@ -145,7 +145,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
         ),
         body: SingleChildScrollView(
           child: Container(
-            height: 700.h,
+            height: 821.h,
             width: double.infinity,
             color: AppColor.darkContainer,
             child: Column(

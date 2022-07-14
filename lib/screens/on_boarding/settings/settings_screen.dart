@@ -16,6 +16,7 @@ class SettingsScreen extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(225.h),
         child: AppBar(
+          automaticallyImplyLeading: false,
           title: Padding(
             padding: EdgeInsets.only(
               top: 10.0.h,

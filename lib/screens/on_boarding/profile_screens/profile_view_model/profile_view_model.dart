@@ -13,7 +13,7 @@ class ProfileModelView extends ChangeNotifier {
       image = _imageTem;
       notifyListeners();
     } catch (e) {
-      print('failed to pick image: $e');
+      // print('failed to pick image: $e');
     }
   }
 }
