@@ -4,7 +4,10 @@ import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/screens/material/reuseable_material_screen_results.dart';
+import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'screens/material/material_screen.dart';
 import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
@@ -28,12 +31,15 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-           home: const ReuseableMaterialScreen(),
+           home: const LandingPage(),
         routes: {
           HomePageScreen.id: (context) => const HomePageScreen(),
           CatergoriesSearchScreen.id: (context) => const CatergoriesSearchScreen(),
+          CategoriesPage.id: (context) => const CategoriesPage(),
            OnBoardingScreen.id: (context) => const OnBoardingScreen(),
            LoginScreen.id: (context) => const LoginScreen(),
+           SettingsScreen.id: ((context) => const SettingsScreen()),
+           ProfileScreen.id: ((context) => const ProfileScreen())
         },
         );
       },

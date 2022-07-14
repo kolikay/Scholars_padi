@@ -9,6 +9,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'homepage_constant_widgets.dart';
 
 class CategoriesPage extends ConsumerStatefulWidget {
+    static const id = 'catsearchscreen';
   const CategoriesPage({
     Key? key,
   }) : super(key: key);

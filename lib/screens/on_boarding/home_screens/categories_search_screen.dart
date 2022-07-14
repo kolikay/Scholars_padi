@@ -5,7 +5,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
 class CatergoriesSearchScreen extends StatelessWidget {
   const CatergoriesSearchScreen({Key? key}) : super(key: key);
-  static const id = 'catsearchscreen';
+  static const id = 'catsearchscreenresult';
 
   @override
   Widget build(BuildContext context) {

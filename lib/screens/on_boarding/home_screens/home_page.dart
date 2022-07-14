@@ -1,7 +1,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -106,35 +108,41 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+               DrawerIcons(
+                 onPressed: () {
+                  Navigator.pushNamed(context, CategoriesPage.id);
+                },
                 icon: Icons.extension,
                 imageName: 'Categories',
               ),
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+              DrawerIcons(
+                  onPressed: () {
+                  Navigator.pushNamed(context, SettingsScreen.id);
+                },
                 icon: Icons.settings,
                 imageName: 'Settings',
               ),
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+              DrawerIcons(
                 icon: Icons.share,
                 imageName: 'Share',
               ),
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+               DrawerIcons(
                 icon: Icons.category_outlined,
                 imageName: 'About App',
               ),
               SizedBox(
                 height: 22.h,
               ),
-              const DrawerIcons(
+              DrawerIcons(
                 icon: Icons.logout,
                 imageName: 'Logout',
               ),

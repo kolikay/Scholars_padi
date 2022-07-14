@@ -128,13 +128,11 @@ class DrawerIcons extends StatefulWidget {
   final IconData icon;
   final String imageName;
   final GestureTapCallback? onPressed;
+  Color? iconColor;
 
-  const DrawerIcons({
-    Key? key,
-    required this.icon,
-    required this.imageName,
-    this.onPressed
-  }) : super(key: key);
+  DrawerIcons(
+      {Key? key, required this.icon, required this.imageName, this.onPressed, this.iconColor})
+      : super(key: key);
 
   @override
   State<DrawerIcons> createState() => _DrawerIconsState();
@@ -161,7 +159,7 @@ class _DrawerIconsState extends State<DrawerIcons> {
               Icon(
                 widget.icon,
                 size: 30.w,
-                // color: AppColor.iconBlack,
+                color: widget.iconColor,
               ),
               SizedBox(
                 width: 20.w,
@@ -169,7 +167,7 @@ class _DrawerIconsState extends State<DrawerIcons> {
               NormalText(
                 text: widget.imageName,
                 size: 16.sp,
-                // color: AppColor.dullBlack,
+                color: widget.iconColor,
                 fontWeight: FontWeight.w400,
               )
             ],

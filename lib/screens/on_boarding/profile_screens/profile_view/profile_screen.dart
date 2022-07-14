@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
+  static const String id = 'profileScrren';
 
   @override
   ConsumerState<ConsumerStatefulWidget> createState() => _ProfileScreenState();
@@ -58,7 +59,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                           profileViewModel.pickImage(ImageSource.camera);
                           Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.camera_alt),
+                        icon: const Icon(Icons.add_a_photo_rounded),
                       ),
                       NormalText(text: 'Camera')
                     ],
@@ -96,7 +97,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           preferredSize: Size.fromHeight(103.h),
           child: AppBar(
             title: Padding(
-              padding: EdgeInsets.only(top: 10.0.h, ),
+              padding: EdgeInsets.only(
+                top: 10.0.h,
+              ),
               child: NormalText(
                 text: 'Profile',
                 fontWeight: FontWeight.w500,
@@ -107,7 +110,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
             backgroundColor: AppColor.mainColor,
             leading: Center(
               child: Padding(
-                padding: EdgeInsets.only(top: 10.0.h,),
+                padding: EdgeInsets.only(
+                  top: 10.0.h,
+                ),
                 child: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
