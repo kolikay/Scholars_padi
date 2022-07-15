@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/new_reusable_app_bar.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,7 +36,7 @@ class ReuseableMaterialScreenResults extends StatelessWidget {
         child: Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(103.h),
-        child: NewReuseableAppBar(
+        child: ReuseableAppBar1(
           title: NormalText(
             text: appBarTitle,
             color: Colors.white,

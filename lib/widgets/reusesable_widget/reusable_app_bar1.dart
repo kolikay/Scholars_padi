@@ -3,11 +3,11 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
-class NewReuseableAppBar extends StatelessWidget {
+class ReuseableAppBar1 extends StatelessWidget {
   final IconButton firstAppIcon;
   final IconButton secondAppIcon;
   final NormalText? title;
-  const NewReuseableAppBar(
+  const ReuseableAppBar1(
       {Key? key,
       required this.firstAppIcon,
       required this.secondAppIcon,
