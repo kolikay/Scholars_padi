@@ -5,6 +5,7 @@ import 'package:scholars_padi/screens/on_boarding/home_screens/homepage_constant
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/contact_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/feed_back_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/themes._settings.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -139,7 +140,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 15.h,
               ),
               DrawerIcons(
-                  onPressed: () {
+                onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: ((context) => const ContactScreen()),
@@ -154,7 +155,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 15.h,
               ),
               DrawerIcons(
-                    onPressed: () {
+                onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: ((context) => const AboutUsScreen()),
@@ -193,6 +194,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 15.h,
               ),
               DrawerIcons(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const FeedBackScreen()),
+                    ),
+                  );
+                },
                 icon: Icons.feedback_rounded,
                 iconColor: Colors.black54,
                 imageName: 'FeedBack',

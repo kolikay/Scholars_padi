@@ -30,10 +30,12 @@ class AboutUsScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-             top: -10,
+                top: -10,
                 left: 35,
                 child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   icon: const Icon(
                     Icons.close,
                     color: Colors.black,
