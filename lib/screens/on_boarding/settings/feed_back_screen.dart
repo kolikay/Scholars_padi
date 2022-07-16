@@ -47,11 +47,25 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
                 size: 16,
                 color: AppColor.dullBlack,
               ),
-              NormalText(
-                text: 'For technical support, please Contact Us',
-                fontWeight: FontWeight.w500,
-                size: 16,
-                color: AppColor.dullBlack,
+              TextButton(
+                onPressed: () {},
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'For technical support,please ',
+                          style: TextStyle(
+                              fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                      TextSpan(
+                        text: 'Contact Us',
+                        style: TextStyle(
+                            fontSize: 16.sp,
+                            color: AppColor.mainColor,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
               ),
               NormalText(
                 text: 'Please enter your feedback here',
@@ -62,15 +76,30 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
               SizedBox(
                 height: 24.h,
               ),
-              TextField(
-                maxLength: 300,
-                decoration: InputDecoration(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.black, width: 1.0.w),
+              SizedBox(
+                height: 300.h,
+                child: TextField(
+                  textAlignVertical: TextAlignVertical.top,
+                  expands: true,
+                  maxLength: 300,
+                  maxLines: null,
+                  decoration: InputDecoration(
+                    contentPadding:
+                        EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide:
+                          BorderSide(color: AppColor.mainColor, width: 1.0.w),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.black, width: 1.0.w),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.pink, width: 1.0.w),
+                    ),
+                    hintStyle: TextStyle(color: Colors.black, fontSize: 16.sp),
+                    labelStyle:
+                        TextStyle(color: Colors.black54, fontSize: 16.sp),
                   ),
-               
                 ),
               ),
               SizedBox(
