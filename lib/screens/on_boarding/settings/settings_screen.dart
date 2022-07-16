@@ -5,6 +5,7 @@ import 'package:scholars_padi/screens/on_boarding/home_screens/homepage_constant
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/contact_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/faqs_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/feed_back_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/themes._settings.dart';
@@ -186,6 +187,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 15.h,
               ),
               DrawerIcons(
+                 onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const FaqsScreen()),
+                    ),
+                  );
+                },
                 icon: Icons.question_mark_sharp,
                 iconColor: Colors.black54,
                 imageName: 'FAQs',
