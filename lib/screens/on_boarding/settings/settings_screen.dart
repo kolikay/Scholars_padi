@@ -7,6 +7,7 @@ import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart'
 import 'package:scholars_padi/screens/on_boarding/settings/contact_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/faqs_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/feed_back_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/themes._settings.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -217,6 +218,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 height: 15.h,
               ),
               DrawerIcons(
+                      onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const LogOutScreen();
+                      });
+                },
                 icon: Icons.logout,
                 iconColor: Colors.black54,
                 imageName: 'Logout',
