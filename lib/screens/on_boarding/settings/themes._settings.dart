@@ -19,7 +19,7 @@ class _ThemesSettingScreenState extends State<ThemesSettingScreen> {
     return Center(
       child: Dialog(
         child: SizedBox(
-          height: 186.h,
+          height: 230.h,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child:
@@ -29,17 +29,18 @@ class _ThemesSettingScreenState extends State<ThemesSettingScreen> {
               ),
               NormalText(
                 text: 'Choose themes',
-                fontWeight: FontWeight.w500,
-                color: Colors.black45,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
                 size: 19.sp,
               ),
               SizedBox(
-                height: 15.h,
+                height: 10.h,
               ),
               ListTile(
                 title: NormalText(
                   text: 'Light',
                   color: Colors.black45,
+                  fontWeight: FontWeight.w500,
                 ),
                 leading: Radio(
                     activeColor: AppColor.mainColor,
@@ -55,6 +56,7 @@ class _ThemesSettingScreenState extends State<ThemesSettingScreen> {
                 title: NormalText(
                   text: 'Dark',
                   color: Colors.black45,
+                  fontWeight: FontWeight.w500,
                 ),
                 leading: Radio(
                     activeColor: AppColor.mainColor,

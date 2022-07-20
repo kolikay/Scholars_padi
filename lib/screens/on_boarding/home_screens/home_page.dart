@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
@@ -108,8 +110,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
-                 onPressed: () {
+              DrawerIcons(
+                onPressed: () {
                   Navigator.pushNamed(context, CategoriesPage.id);
                 },
                 icon: Icons.extension,
@@ -119,7 +121,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 22.h,
               ),
               DrawerIcons(
-                  onPressed: () {
+                onPressed: () {
                   Navigator.pushNamed(context, SettingsScreen.id);
                 },
                 icon: Icons.settings,
@@ -135,7 +137,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
               SizedBox(
                 height: 22.h,
               ),
-               DrawerIcons(
+              DrawerIcons(
+                   onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const AboutUsScreen()),
+                    ),
+                  );
+                },
                 icon: Icons.category_outlined,
                 imageName: 'About App',
               ),
@@ -143,6 +152,13 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 22.h,
               ),
               DrawerIcons(
+                  onPressed: () {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return const LogOutScreen();
+                      });
+                },
                 icon: Icons.logout,
                 imageName: 'Logout',
               ),
@@ -159,7 +175,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                   height: 30.h,
                 ),
                 Padding(
-                  padding:  EdgeInsets.symmetric(horizontal:8.0.w,),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.0.w,
+                  ),
                   child: ReuseableAppbar(
                     color: Colors.black,
                     firstAppIcon: Icons.menu,
@@ -168,7 +186,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       scafoldKey.currentState!.openDrawer();
                     },
                     secondButton: () {
-                      Navigator.pushNamed(context, CatergoriesSearchScreen.id);
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: ((context) => const CategoriesPage()),
+                      ));
                     },
                   ),
                 ),

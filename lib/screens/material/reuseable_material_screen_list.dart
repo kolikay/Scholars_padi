@@ -3,31 +3,25 @@ import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ReuseableMaterialScreenResults extends StatelessWidget {
+class ReuseableMaterialScreenList extends StatelessWidget {
   final String appBarTitle;
   final String message;
-  final String cardMessage1;
+  final Widget materialCard1;
+  final Widget materialCard2;
+  final Widget materialCard3;
+  final Widget materialCard4;
+  final Widget materialCard5;
 
-  final String cardMessage2;
-
-  final String cardMessage3;
-
-  final String? cardMessage4;
-
-  final String? cardMessage5;
-
-  final GestureTapCallback onPressed;
-
-  const ReuseableMaterialScreenResults({
+  const ReuseableMaterialScreenList({
     Key? key,
     required this.appBarTitle,
     required this.message,
-    required this.cardMessage1,
-    required this.cardMessage2,
-    required this.cardMessage3,
-    this.cardMessage4,
-    this.cardMessage5,
-    required this.onPressed,
+    required this.materialCard1,
+    required this.materialCard2,
+    required this.materialCard3,
+    this.materialCard4 =const SizedBox(),
+    this.materialCard5 =const SizedBox(),
+  
   }) : super(key: key);
 
   @override
@@ -62,27 +56,31 @@ class ReuseableMaterialScreenResults extends StatelessWidget {
                 height: 24.h,
               ),
               NormalText(
-                  text: message, fontWeight: FontWeight.w500, size: 16.sp, color: Colors.black54,),
+                text: message,
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: Colors.black54,
+              ),
               SizedBox(
                 height: 24.h,
               ),
-              MaterialCards(cardMessage: cardMessage1, onPressed: onPressed),
+              materialCard1,
               SizedBox(
                 height: 16.h,
               ),
-              MaterialCards(cardMessage: cardMessage2, onPressed: onPressed),
+              materialCard2,
               SizedBox(
                 height: 16.h,
               ),
-              MaterialCards(cardMessage: cardMessage3, onPressed: onPressed),
+              materialCard3,
               SizedBox(
                 height: 16.h,
               ),
-              MaterialCards(cardMessage: cardMessage4!, onPressed: onPressed),
+              materialCard4,
               SizedBox(
                 height: 16.h,
               ),
-              MaterialCards(cardMessage: cardMessage5!, onPressed: onPressed),
+              materialCard5,
             ]),
       ),
     ));
@@ -120,7 +118,10 @@ class MaterialCards extends StatelessWidget {
           ),
           IconButton(
             onPressed: onPressed,
-            icon: const Icon(Icons.arrow_forward_ios, color: Colors.black54,),
+            icon: const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.black54,
+            ),
           ),
         ],
       ),

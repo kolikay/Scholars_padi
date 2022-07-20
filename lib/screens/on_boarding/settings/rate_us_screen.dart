@@ -19,11 +19,11 @@ class _RateUsScreenState extends State<RateUsScreen> {
     return Center(
       child: Dialog(
         child: SizedBox(
-          height: 194.h,
+          height: 230.h,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Padding(
-              padding: EdgeInsets.all(10.0.h),
+              padding: EdgeInsets.all(5.0.h),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

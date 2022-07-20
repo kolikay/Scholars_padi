@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/material/reuseable_material_screen_results.dart';
+import 'package:scholars_padi/screens/material/reuseable_material_screen_list.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
-class ReuseableMaterialScreen extends StatelessWidget {
-  const ReuseableMaterialScreen({Key? key}) : super(key: key);
+class ReuseablesMaterialScreenCard extends StatelessWidget {
+  const ReuseablesMaterialScreenCard({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,20 +40,22 @@ class ReuseableMaterialScreen extends StatelessWidget {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ReuseableMaterialScreenResults(
-                          appBarTitle: 'Other Materials',
-                          cardMessage1: 'Faculty of Science',
-                          cardMessage2: 'Faculty of Pharmacy',
-                          cardMessage3: 'Faculty of Social Science',
-                          cardMessage4: 'Faculty of Engineering',
-                          cardMessage5: 'Faculty of Agriculture',
-                          message: 'Select Your Faculty',
-                          onPressed: () {},
-                        ),
-                      ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => ReuseableMaterialScreenResults(
+                  //         appBarTitle: 'Other Materials',
+                  //         cardMessage1: 'Faculty of Science',
+                  //         cardMessage2: 'Faculty of Pharmacy',
+                  //         cardMessage3: 'Faculty of Social Science',
+                  //         cardMessage4: 'Faculty of Engineering',
+                  //         cardMessage5: 'Faculty of Agriculture',
+                  //         message: 'Select Your Faculty',
+                  //         onPressed: () {
+                  //           print('object');
+                  //         },
+                  //       ),
+                  //     ));
                 },
                 child: Stack(
                   children: [

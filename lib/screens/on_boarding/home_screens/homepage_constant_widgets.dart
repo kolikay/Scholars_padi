@@ -79,8 +79,12 @@ class HomeConstants {
   }
 
   static InkWell categoryCard(
-      BuildContext context, String label, String imgUrl) {
+      BuildContext context,
+      String label,
+      String imgUrl,
+      GestureTapCallback onTap) {
     return InkWell(
+      onTap: onTap,
       child: Column(
         children: [
           SizedBox(
@@ -131,7 +135,11 @@ class DrawerIcons extends StatefulWidget {
   Color? iconColor;
 
   DrawerIcons(
-      {Key? key, required this.icon, required this.imageName, this.onPressed, this.iconColor})
+      {Key? key,
+      required this.icon,
+      required this.imageName,
+      this.onPressed,
+      this.iconColor})
       : super(key: key);
 
   @override
