@@ -1,16 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
-import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
-import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
-import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
-import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../on_boarding_screen.dart';
+
 import 'homepage_constant_widgets.dart';
 
 class HomePageScreen extends StatefulWidget {
@@ -102,7 +98,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               DrawerIcons(
                 onPressed: () {
-                  Navigator.pushNamed(context, OnBoardingScreen.id);
+                  pushOnBoardingScreen(context);
                 },
                 icon: Icons.house,
                 imageName: 'Home',
@@ -112,7 +108,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               DrawerIcons(
                 onPressed: () {
-                  Navigator.pushNamed(context, CategoriesPage.id);
+                  pushCategoriesPage(context);
                 },
                 icon: Icons.extension,
                 imageName: 'Categories',
@@ -122,7 +118,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               ),
               DrawerIcons(
                 onPressed: () {
-                  Navigator.pushNamed(context, SettingsScreen.id);
+                  pushSettingsScreen(context);
                 },
                 icon: Icons.settings,
                 imageName: 'Settings',
@@ -138,12 +134,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 22.h,
               ),
               DrawerIcons(
-                   onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: ((context) => const AboutUsScreen()),
-                    ),
-                  );
+                onPressed: () {
+                  pushAboutUsScreen(context);
                 },
                 icon: Icons.category_outlined,
                 imageName: 'About App',
@@ -152,12 +144,8 @@ class _HomePageScreenState extends State<HomePageScreen> {
                 height: 22.h,
               ),
               DrawerIcons(
-                  onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return const LogOutScreen();
-                      });
+                onPressed: () {
+                  pushLogOutScreen(context);
                 },
                 icon: Icons.logout,
                 imageName: 'Logout',
@@ -186,9 +174,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       scafoldKey.currentState!.openDrawer();
                     },
                     secondButton: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: ((context) => const CategoriesPage()),
-                      ));
+                      pushCategoriesPage(context);
                     },
                   ),
                 ),
@@ -248,21 +234,23 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             crossAxisCount: 4,
                             children: <Widget>[
                               HomeConstants.newInkwell(context, 'Material',
-                                  'lib/assets/material.png'),
+                                  'lib/assets/material.png', () {
+                                pushReuseablesMaterialScreenCard(context);
+                              }),
                               HomeConstants.newInkwell(context, 'Past Question',
-                                  'lib/assets/pastQuestion.png'),
+                                  'lib/assets/pastQuestion.png', () {}),
                               HomeConstants.newInkwell(context, 'Scheduler',
-                                  'lib/assets/schduler.png'),
+                                  'lib/assets/schduler.png', () {}),
                               HomeConstants.newInkwell(context, 'Note Book',
-                                  'lib/assets/notebook.png'),
+                                  'lib/assets/notebook.png', () {}),
                               HomeConstants.newInkwell(context, 'Scholarships',
-                                  'lib/assets/scholaship.png'),
+                                  'lib/assets/scholaship.png', () {}),
                               HomeConstants.newInkwell(context, 'Notice Boards',
-                                  'lib/assets/noticeBoard.png'),
-                              HomeConstants.newInkwell(
-                                  context, 'Chats', 'lib/assets/chat.png'),
-                              HomeConstants.newInkwell(
-                                  context, 'More', 'lib/assets/more.jpg'),
+                                  'lib/assets/noticeBoard.png', () {}),
+                              HomeConstants.newInkwell(context, 'Chats',
+                                  'lib/assets/chat.png', () {}),
+                              HomeConstants.newInkwell(context, 'More',
+                                  'lib/assets/more.jpg', () {}),
                             ],
                           ),
                         ),

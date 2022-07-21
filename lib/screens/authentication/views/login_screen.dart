@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/authentication/views/sign_up1_screen.dart';
-import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
@@ -143,12 +140,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               children: [
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const EmailPasswordChangeScreen(),
-                                      ),
-                                    );
+                                    pushEmailPasswordChangeScreen(context);
                                   },
                                   style: TextButton.styleFrom(
                                     padding: EdgeInsets.zero,
@@ -190,11 +182,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           children: [
                             TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                    builder: (context) => const SignUpScreen1(),
-                                  ),
-                                );
+                                pushSignUpScreen1(context);
                               },
                               child: RichText(
                                 text: TextSpan(

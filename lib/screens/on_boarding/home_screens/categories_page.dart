@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/material/reuseable_material_screen_list.dart';
-import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
-
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
-
 import 'homepage_constant_widgets.dart';
 
 class CategoriesPage extends ConsumerStatefulWidget {
@@ -39,11 +36,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                   Navigator.pop(context);
                 },
                 secondButton: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: ((context) => const CatergoriesSearchScreen()),
-                    ),
-                  );
+                  pushCatergoriesSearchScreen(context);
                 },
               ),
             ),
@@ -58,22 +51,7 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                     children: <Widget>[
                       HomeConstants.categoryCard(
                           context, 'Material', 'lib/assets/material.png', () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ReuseableMaterialScreenList(
-                                    appBarTitle: 'Other Material',
-                                    message: 'Select Your Faculty',
-                                    materialCard1: MaterialCards(cardMessage: 'Faculty of Science', onPressed: (){},),
-                                    materialCard2: MaterialCards(cardMessage: 'Faculty of Science', onPressed: (){},),
-                                    materialCard3: MaterialCards(cardMessage: 'Faculty of Science', onPressed: (){},),
-                                    materialCard4: MaterialCards(cardMessage: 'Faculty of Science', onPressed: (){},),
-                                    materialCard5: MaterialCards(cardMessage: 'Faculty of Science', onPressed: (){},),
-                                    // materialCard4: const SizedBox(),
-                                    // materialCard5:const  SizedBox(),
-                              
-                                  )),
-                        );
+                    
                       }),
                       HomeConstants.categoryCard(context, 'Past Question',
                           'lib/assets/pastQuestion.png', () {}),

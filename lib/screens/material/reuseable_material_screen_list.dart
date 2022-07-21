@@ -19,9 +19,8 @@ class ReuseableMaterialScreenList extends StatelessWidget {
     required this.materialCard1,
     required this.materialCard2,
     required this.materialCard3,
-    this.materialCard4 =const SizedBox(),
-    this.materialCard5 =const SizedBox(),
-  
+    this.materialCard4 = const SizedBox(),
+    this.materialCard5 = const SizedBox(),
   }) : super(key: key);
 
   @override
@@ -37,7 +36,9 @@ class ReuseableMaterialScreenList extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
           firstAppIcon: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             icon: const Icon(Icons.arrow_back_ios),
           ),
           secondAppIcon: IconButton(
@@ -57,7 +58,7 @@ class ReuseableMaterialScreenList extends StatelessWidget {
               ),
               NormalText(
                 text: message,
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 size: 16.sp,
                 color: Colors.black54,
               ),
@@ -99,31 +100,31 @@ class MaterialCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 50.h,
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
-          border: Border.all(color: Colors.black12)),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-            child: NormalText(
-              text: cardMessage,
-              fontWeight: FontWeight.w500,
-              size: 16.sp,
-              color: Colors.black54,
+    return InkWell(
+      onTap: onPressed,
+      child: Container(
+        height: 50.h,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(5),
+            border: Border.all(color: Colors.black12)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+              child: NormalText(
+                text: cardMessage,
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: Colors.black54,
+              ),
             ),
-          ),
-          IconButton(
-            onPressed: onPressed,
-            icon: const Icon(
+            const Icon(
               Icons.arrow_forward_ios,
               color: Colors.black54,
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
