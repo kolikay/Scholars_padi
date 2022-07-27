@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/screens/material/material_screen6.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
-class MaterialCardScreen2 extends StatelessWidget {
-final  GestureTapCallback onPressed1;
- final GestureTapCallback onPressed2;
- const  MaterialCardScreen2({
+class MaterialScreen5 extends StatelessWidget {
+  const MaterialScreen5({
     Key? key,
-    required this.onPressed1,
-    required this.onPressed2,
   }) : super(key: key);
 
   @override
@@ -57,7 +54,13 @@ final  GestureTapCallback onPressed1;
                 height: 25.h,
               ),
               InkWell(
-                onTap: onPressed1,
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const MaterialScreen6()),
+                    ),
+                  );
+                },
                 child: Container(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -92,7 +95,7 @@ final  GestureTapCallback onPressed1;
                 height: 32.h,
               ),
               InkWell(
-                onTap: onPressed2,
+                onTap: () {},
                 child: Container(
                   child: Center(
                     child: NormalText(

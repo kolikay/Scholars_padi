@@ -5,13 +5,11 @@ import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
-class MaterialCardScreen3 extends StatelessWidget {
-  final GestureTapCallback onPressed1;
-  final GestureTapCallback onPressed2;
-  const MaterialCardScreen3({
+class MaterialScreen7 extends StatelessWidget {
+
+  const MaterialScreen7({
     Key? key,
-    required this.onPressed1,
-    required this.onPressed2,
+
   }) : super(key: key);
 
   @override
@@ -49,7 +47,7 @@ class MaterialCardScreen3 extends StatelessWidget {
                 height: 15.h,
               ),
              InkWell(
-                  onTap: onPressed1,
+                  onTap: (){},
                   child: Container(
                     height: 176,
                     decoration: BoxDecoration(
@@ -86,7 +84,7 @@ class MaterialCardScreen3 extends StatelessWidget {
                 height: 32.h,
               ),
               InkWell(
-                  onTap: onPressed2,
+                  onTap: (){},
                   child: Container(
                     height: 176,
                     decoration: BoxDecoration(
