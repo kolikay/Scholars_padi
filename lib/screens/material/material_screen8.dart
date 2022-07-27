@@ -54,7 +54,7 @@ class MaterialScreen8 extends StatelessWidget {
               Column(
                 children: [
                   Row(
-                    children: [
+                    children: const [
                       MaterialCards(),
                       MaterialCards(),
                     ],
@@ -63,7 +63,10 @@ class MaterialScreen8 extends StatelessWidget {
                     height: 15.h,
                   ),
                   Row(
-                    children: [],
+                    children: const [
+                      MaterialCards(),
+                      MaterialCards(),
+                    ],
                   ),
                 ],
               )
@@ -116,7 +119,7 @@ class MaterialCards extends StatelessWidget {
                 height: 10.h,
               ),
               Padding(
-                padding: const EdgeInsets.all(10.0),
+                padding: EdgeInsets.only(left: 10.0.w, right: 10.w),
                 child: Column(
                   children: [
                     Text(
@@ -130,11 +133,21 @@ class MaterialCards extends StatelessWidget {
                     SizedBox(
                       height: 10.h,
                     ),
-                    NormalText(
-                      text: '22/06/2022',
-                      fontWeight: FontWeight.bold,
-                      size: 10.sp,
-                      color: Colors.black38,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NormalText(
+                          text: '22/06/2022',
+                          fontWeight: FontWeight.bold,
+                          size: 10.sp,
+                          color: Colors.black38,
+                        ),
+                        Icon(
+                          Icons.menu,
+                          size: 6.h,
+                          color: Colors.black,
+                        ),
+                      ],
                     ),
                   ],
                 ),
