@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/material/material_card_screen2.dart';
+import 'package:scholars_padi/screens/material/material_card_screen3.dart';
 import 'package:scholars_padi/screens/material/reuseable_material_screen_list.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -103,7 +104,20 @@ class MaterialCardScreen1 extends StatelessWidget {
                                                             materialCard1:
                                                                 MaterialCards(
                                                               onPressed: () {
-                                                                
+                                                                Navigator.of(
+                                                                        context)
+                                                                    .push(
+                                                                  MaterialPageRoute(
+                                                                    builder:
+                                                                        (context) =>
+                                                                            MaterialCardScreen3(
+                                                                      onPressed1:
+                                                                          () {},
+                                                                      onPressed2:
+                                                                          () {},
+                                                                    ),
+                                                                  ),
+                                                                );
                                                               },
                                                               cardMessage:
                                                                   'CHM 101',
