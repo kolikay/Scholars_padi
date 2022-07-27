@@ -5,8 +5,10 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MaterialScreen3 extends StatelessWidget {
+   final String title;
   const MaterialScreen3({
     Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -17,7 +19,7 @@ class MaterialScreen3 extends StatelessWidget {
         preferredSize: Size.fromHeight(103.h),
         child: ReuseableAppBar1(
           title: NormalText(
-            text: 'Faculty Of Science',
+            text: title,
             color: Colors.white,
             fontWeight: FontWeight.w500,
           ),
@@ -98,7 +100,7 @@ class MaterialCards extends StatelessWidget {
       onTap: () {
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: ((context) => const MaterialScreen4()),
+            builder: ((context) =>  MaterialScreen4(title: cardMessage,)),
           ),
         );
       },

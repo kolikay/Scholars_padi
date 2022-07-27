@@ -7,7 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
 class MaterialScreen5 extends StatelessWidget {
+  final String title;
   const MaterialScreen5({
+    required this.title,
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +20,7 @@ class MaterialScreen5 extends StatelessWidget {
         preferredSize: Size.fromHeight(103.h),
         child: ReuseableAppBar1(
           title: NormalText(
-            text: 'Materials',
+            text: title,
             color: Colors.white,
           ),
           firstAppIcon: IconButton(
@@ -57,7 +59,9 @@ class MaterialScreen5 extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const MaterialScreen6()),
+                      builder: ((context) => const MaterialScreen6(
+                            title: 'Harmattan Semester',
+                          )),
                     ),
                   );
                 },
@@ -95,7 +99,15 @@ class MaterialScreen5 extends StatelessWidget {
                 height: 32.h,
               ),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: ((context) => const MaterialScreen6(
+                            title: 'Rain Semester',
+                          )),
+                    ),
+                  );
+                },
                 child: Container(
                   child: Center(
                     child: NormalText(

@@ -49,7 +49,7 @@ class MaterialCardScreen1 extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const MaterialScreen2()),
+                      builder: ((context) => const MaterialScreen2(title: 'Class Materials',)),
                     ),
                   );
                 },
@@ -86,7 +86,7 @@ class MaterialCardScreen1 extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const MaterialScreen2()),
+                      builder: ((context) => const MaterialScreen2(title: 'Other Materials',)),
                     ),
                   );
                 },
