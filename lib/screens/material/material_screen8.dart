@@ -1,9 +1,13 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/material/material_screen7.dart';
+import 'package:scholars_padi/screens/material/material_screen9.dart';
+
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
 class MaterialScreen8 extends StatelessWidget {
   final String title;
@@ -54,7 +58,7 @@ class MaterialScreen8 extends StatelessWidget {
               Column(
                 children: [
                   Row(
-                    children: const [
+                    children: [
                       MaterialCards(),
                       MaterialCards(),
                     ],
@@ -63,7 +67,7 @@ class MaterialScreen8 extends StatelessWidget {
                     height: 15.h,
                   ),
                   Row(
-                    children: const [
+                    children: [
                       MaterialCards(),
                       MaterialCards(),
                     ],
@@ -76,15 +80,120 @@ class MaterialScreen8 extends StatelessWidget {
   }
 }
 
-class MaterialCards extends StatelessWidget {
-  const MaterialCards({
+class MaterialCards extends StatefulWidget {
+  bool isFav = false;
+  MaterialCards({
     Key? key,
   }) : super(key: key);
 
   @override
+  State<MaterialCards> createState() => _MaterialCardsState();
+}
+
+class _MaterialCardsState extends State<MaterialCards> {
+  bottomSheet(BuildContext context) async {
+    return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (builder) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: AppColor.darkContainer,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          height: 364.h,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30.h,
+              ),
+              NormalText(
+                text: 'View your preferred Material and text book',
+                fontWeight: FontWeight.w400,
+                size: 14.sp,
+                color: Colors.black,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Text Book Name',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Fundamental University Physical Chemistry',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Author',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'By Prof. Abass Akande',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Published Year',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'December 2020',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              ReuseableButton(
+                  text: 'Continue to read',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: ((context) => const MaterialScreen9(
+                              title: 'BestBrain CHM',
+                            )),
+                      ),
+                    );
+                  })
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        bottomSheet(context);
+      },
       child: Padding(
         padding: EdgeInsets.all(2.5.h),
         child: Container(
@@ -97,23 +206,45 @@ class MaterialCards extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 160.h,
-                width: 200.w,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(
-                      5.53.w,
-                    ),
-                    topLeft: Radius.circular(
-                      5.53.w,
+              Stack(
+                children: [
+                  Container(
+                    height: 160.h,
+                    width: 200.w,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(
+                          5.53.w,
+                        ),
+                        topLeft: Radius.circular(
+                          5.53.w,
+                        ),
+                      ),
+                      image: const DecorationImage(
+                        fit: BoxFit.cover,
+                        image: AssetImage('lib/assets/matImage2.png'),
+                      ),
                     ),
                   ),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('lib/assets/matImage2.png'),
+                  Positioned(
+                    top: 10,
+                    right: 10,
+                    child: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          widget.isFav = !widget.isFav;
+                        });
+                      },
+                      icon: Icon(
+                        !widget.isFav
+                            ? Icons.favorite_outline_sharp
+                            : Icons.favorite,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
               SizedBox(
                 height: 10.h,
@@ -140,11 +271,11 @@ class MaterialCards extends StatelessWidget {
                           text: '22/06/2022',
                           fontWeight: FontWeight.bold,
                           size: 10.sp,
-                          color: Colors.black38,
+                          color: Colors.black87,
                         ),
                         Icon(
-                          Icons.menu,
-                          size: 6.h,
+                          Icons.more_vert,
+                          size: 20.h,
                           color: Colors.black,
                         ),
                       ],
