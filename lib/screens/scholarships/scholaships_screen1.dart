@@ -5,7 +5,7 @@ import 'package:scholars_padi/screens/material/material_screen7.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 
 const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
@@ -53,71 +53,25 @@ class _ScholarshipScreen1State extends State<ScholarshipScreen1> {
             ),
             ValueListenableBuilder<int?>(
               valueListenable: selectedIndexNotifier,
-              builder: (_, selectedIndex, __) => Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: 60,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      children: [
-                        for (int i = 0; i <= 3; i++)
-                        // for(int x in names as List)
-                          CardButtons(
-                              key: ValueKey(i),
-                              cardButtonMessage: names[i],
-                              isFavorite: selectedIndex == i,
-                              onPressed: () => selectedIndex == i
-                                  ? selectedIndexNotifier.value = null
-                                  : selectedIndexNotifier.value = i),
-                      ],
-                    ),
-                  )
-                ],
+              builder: (_, selectedIndex, __) => SizedBox(
+                height: 60,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  children: [
+                    for (int i = 0; i <= 3; i++)
+                      CardButtons(
+                          key: ValueKey(i),
+                          cardButtonMessage: names[i],
+                          selected: selectedIndex == i,
+                          onPressed: () => selectedIndex == i
+                              ? selectedIndexNotifier.value = null
+                              : selectedIndexNotifier.value = i),
+                  ],
+                ),
               ),
             ),
 
-            // ListView(
-            //   scrollDirection: Axis.horizontal,
-            //   children: [
-            //     CardButtons(
-            //       cardButtonMessage: 'All',
-            //       onPressed: () {
-            //         setState(() {
-
-            //         });
-            //       },
-            //       buttonColor: Colors.white,
-            //       buttonColortext: Colors.black,
-            //     ),
-            //     CardButtons(
-            //       cardButtonMessage: 'Categories',
-            //         onPressed: () {
-            //         setState(() {
-
-            //         });
-            //       },
-            //       buttonColor:  Colors.white,
-            //       buttonColortext: Colors.black,
-            //     ),
-            //     CardButtons(
-            //       cardButtonMessage: 'Counties',
-            //        onPressed: () {
-            //         setState(() {
-
-            //         });
-            //       },
-            //       buttonColor:  Colors.white,
-            //       buttonColortext: Colors.black,
-            //     ),
-            //     CardButtons(
-            //       cardButtonMessage: 'Levels',
-            //       onPressed: () {},
-            //       buttonColor: Colors.green,
-            //       buttonColortext: Colors.black,
-            //     ),
-            //   ],
-            // ),
+       
           ],
         ),
       ),
@@ -128,12 +82,12 @@ class _ScholarshipScreen1State extends State<ScholarshipScreen1> {
 class CardButtons extends StatefulWidget {
   final String cardButtonMessage;
   final VoidCallback onPressed;
-  final bool isFavorite;
+  final bool selected;
 
-  CardButtons({
+  const CardButtons({
     Key? key,
     required this.cardButtonMessage,
-    required this.isFavorite,
+    required this.selected,
     required this.onPressed,
   }) : super(key: key);
 
@@ -150,7 +104,7 @@ class _CardButtonsState extends State<CardButtons> {
         onTap: widget.onPressed,
         child: Container(
           decoration: BoxDecoration(
-            color: widget.isFavorite ? Colors.red : Colors.green,
+            color: widget.selected ? AppColor.mainColor : Colors.white,
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.black12),
           ),
@@ -160,7 +114,7 @@ class _CardButtonsState extends State<CardButtons> {
               text: widget.cardButtonMessage,
               fontWeight: FontWeight.w500,
               size: 16.sp,
-              color: Colors.black,
+              color:widget.selected ? Colors.white :  Colors.black,
             ),
           ),
         ),
