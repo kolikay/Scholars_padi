@@ -106,7 +106,7 @@ class _CardButtonsState extends State<CardButtons> {
           child: Center(
             child: NormalText(
               text: widget.cardButtonMessage,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
               size: 16.sp,
               color: widget.selected ? Colors.white : Colors.black,
             ),
