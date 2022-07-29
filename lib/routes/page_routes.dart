@@ -10,6 +10,7 @@ import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
+import 'package:scholars_padi/screens/scholarships/scholaships_screen1.dart';
 
 import '../screens/authentication/views/login_screen.dart';
 
@@ -54,10 +55,20 @@ pushToHomePage(BuildContext context) async {
   );
 }
 
-pushReuseablesMaterialScreenCard(BuildContext context) async {
-  Navigator.of(context).pushReplacement(
+pushMaterialScreen(BuildContext context) async {
+  Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => const MaterialCardScreen1(),
+    ),
+  );
+}
+
+pushScholarshipScreen(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => 
+      
+       ScholarshipScreen1(),
     ),
   );
 }

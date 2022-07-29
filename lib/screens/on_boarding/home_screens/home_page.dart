@@ -235,7 +235,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                             children: <Widget>[
                               HomeConstants.newInkwell(context, 'Material',
                                   'lib/assets/material.png', () {
-                                pushReuseablesMaterialScreenCard(context);
+                                pushMaterialScreen(context);
                               }),
                               HomeConstants.newInkwell(context, 'Past Question',
                                   'lib/assets/pastQuestion.png', () {}),
@@ -244,7 +244,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               HomeConstants.newInkwell(context, 'Note Book',
                                   'lib/assets/notebook.png', () {}),
                               HomeConstants.newInkwell(context, 'Scholarships',
-                                  'lib/assets/scholaship.png', () {}),
+                                  'lib/assets/scholaship.png', () {
+                                pushScholarshipScreen(context);
+                              }),
                               HomeConstants.newInkwell(context, 'Notice Boards',
                                   'lib/assets/noticeBoard.png', () {}),
                               HomeConstants.newInkwell(context, 'Chats',
