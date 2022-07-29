@@ -93,7 +93,7 @@ class _CardButtonsState extends State<CardButtons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(5.0.h),
+      padding: EdgeInsets.all(6.0.h),
       child: InkWell(
         onTap: widget.onPressed,
         child: Container(
