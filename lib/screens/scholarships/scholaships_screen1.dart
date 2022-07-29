@@ -93,7 +93,7 @@ class _CardButtonsState extends State<CardButtons> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(6.0.h),
+      padding: EdgeInsets.all(5.0.h),
       child: InkWell(
         onTap: widget.onPressed,
         child: Container(
@@ -106,7 +106,7 @@ class _CardButtonsState extends State<CardButtons> {
           child: Center(
             child: NormalText(
               text: widget.cardButtonMessage,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.bold,
               size: 16.sp,
               color: widget.selected ? Colors.white : Colors.black,
             ),
