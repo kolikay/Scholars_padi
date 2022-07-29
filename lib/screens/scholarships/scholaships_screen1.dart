@@ -61,7 +61,7 @@ class _ScholarshipScreen1State extends State<ScholarshipScreen1> {
                     child: ListView(
                       scrollDirection: Axis.horizontal,
                       children: [
-                        for (int i = 0; i <= 4; i++)
+                        for (int i = 0; i <= 3; i++)
                         // for(int x in names as List)
                           CardButtons(
                               key: ValueKey(i),
