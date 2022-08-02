@@ -10,7 +10,7 @@ import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
-import 'package:scholars_padi/screens/scholarships/scholaships_screen1.dart';
+import 'package:scholars_padi/screens/scholarships/scholaships_main.dart';
 
 import '../screens/authentication/views/login_screen.dart';
 
