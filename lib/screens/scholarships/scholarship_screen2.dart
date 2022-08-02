@@ -73,7 +73,6 @@ class MaterialCards extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
           child: NormalText(
             text: cardMessage,
-            fontWeight: FontWeight.w500,
             size: 16.sp,
             color: Colors.black54,
           ),

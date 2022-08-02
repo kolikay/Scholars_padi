@@ -68,7 +68,7 @@ pushScholarshipScreen(BuildContext context) async {
     MaterialPageRoute(
       builder: (context) => 
       
-       ScholarshipScreen1(),
+      const ScholarshipScreen(),
     ),
   );
 }

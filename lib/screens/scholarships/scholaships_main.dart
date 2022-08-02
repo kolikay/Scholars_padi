@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/material/material_screen7.dart';
 import 'package:scholars_padi/screens/scholarships/scholarship_screen2.dart';
 import 'package:scholars_padi/screens/scholarships/scholarship_screen3.dart';
 import 'package:scholars_padi/screens/scholarships/scholarship_screen4.dart';
-import 'package:scholars_padi/screens/scholarships/scholaship_screen1.dart';
+import 'package:scholars_padi/screens/scholarships/scholarship_screen1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
-class ScholarshipScreen1 extends StatefulWidget {
-  const ScholarshipScreen1({
+class ScholarshipScreen extends StatefulWidget {
+  const ScholarshipScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ScholarshipScreen1> createState() => _ScholarshipScreen1State();
+  State<ScholarshipScreen> createState() => _ScholarshipScreenState();
 }
 
-class _ScholarshipScreen1State extends State<ScholarshipScreen1> {
+class _ScholarshipScreenState extends State<ScholarshipScreen> {
   final selectedIndexNotifier = ValueNotifier<int?>(0);
   int selectedPage = 0;
 
@@ -82,9 +81,11 @@ class _ScholarshipScreen1State extends State<ScholarshipScreen1> {
                                 onPressed: () {
                                   setState(() {
                                     selectedPage = i;
-                                    selectedIndex == i
-                                        ? selectedIndexNotifier.value = null
-                                        : selectedIndexNotifier.value = i;
+                                    selectedIndexNotifier.value = i;
+
+                                    // selectedIndex == i
+                                    //     ? selectedIndexNotifier.value = i
+                                    //     : selectedIndexNotifier.value = i;
                                   });
                                 }),
                         ],
