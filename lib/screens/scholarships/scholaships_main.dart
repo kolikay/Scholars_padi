@@ -51,7 +51,7 @@ class _ScholarshipScreenState extends State<ScholarshipScreen> {
             ),
             secondAppIcon: IconButton(
               onPressed: () {
-                print(selectedPage);
+             
               },
               icon: const Icon(Icons.search),
             ),

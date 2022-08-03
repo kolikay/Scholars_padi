@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/screens/notice_board/notice_screen2.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -16,7 +17,7 @@ class NoticeScreen1 extends StatelessWidget {
         preferredSize: Size.fromHeight(103.h),
         child: ReuseableAppBar1(
           title: NormalText(
-            text: 'Notice Board',
+            text: 'Faculty of Science',
             color: Colors.white,
           ),
           firstAppIcon: IconButton(
@@ -63,29 +64,39 @@ class NoticeScreen1 extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Stack(
-                            children: [
-                              Container(
-                                width: 110.w,
-                                height: 100.h,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5.53.w),
-                                  image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage('lib/assets/matImage1.png'),
+                          InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: ((context) => const NoticeScreen2()),
+                                ),
+                              );
+                            },
+                            child: Stack(
+                              children: [
+                                Container(
+                                  width: 110.w,
+                                  height: 100.h,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(5.53.w),
+                                    image: const DecorationImage(
+                                      fit: BoxFit.cover,
+                                      image: AssetImage(
+                                          'lib/assets/matImage1.png'),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                top: 40,
-                                left: 20,
-                                child: NormalText(
-                                  text: 'School\nManagement',
-                                  size: 12.sp,
-                                  color: Colors.white,
+                                Positioned(
+                                  top: 40,
+                                  left: 20,
+                                  child: NormalText(
+                                    text: 'School\nManagement',
+                                    size: 12.sp,
+                                    color: Colors.white,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                           SizedBox(
                             width: 10.w,
@@ -99,7 +110,8 @@ class NoticeScreen1 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5.53.w),
                                   image: const DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage('lib/assets/matImage1.png'),
+                                    image:
+                                        AssetImage('lib/assets/matImage1.png'),
                                   ),
                                 ),
                               ),
@@ -126,7 +138,8 @@ class NoticeScreen1 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5.53.w),
                                   image: const DecorationImage(
                                     fit: BoxFit.cover,
-                                    image: AssetImage('lib/assets/matImage1.png'),
+                                    image:
+                                        AssetImage('lib/assets/matImage1.png'),
                                   ),
                                 ),
                               ),
@@ -170,7 +183,7 @@ class NoticeScreen1 extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                      Card(
+                      card(
                           imgUrl: 'lib/assets/matImage2.png',
                           cardDate: '22/7/2022',
                           cardText:
@@ -179,7 +192,7 @@ class NoticeScreen1 extends StatelessWidget {
                       SizedBox(
                         height: 20.h,
                       ),
-                        Card(
+                      card(
                           imgUrl: 'lib/assets/matImage1.png',
                           cardDate: '22/2/2022',
                           cardText:
@@ -196,7 +209,7 @@ class NoticeScreen1 extends StatelessWidget {
     );
   }
 
-  Widget Card(
+  Widget card(
       {required String imgUrl,
       required String cardDate,
       required String cardText,
