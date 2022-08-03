@@ -248,7 +248,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 pushScholarshipScreen(context);
                               }),
                               HomeConstants.newInkwell(context, 'Notice Boards',
-                                  'lib/assets/noticeBoard.png', () {}),
+                                  'lib/assets/noticeBoard.png', () {
+                                pushNoticeScreen(context);
+                              }),
                               HomeConstants.newInkwell(context, 'Chats',
                                   'lib/assets/chat.png', () {}),
                               HomeConstants.newInkwell(context, 'More',

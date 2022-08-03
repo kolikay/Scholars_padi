@@ -106,7 +106,7 @@ class _ScholarshipScreen5State extends State<ScholarshipScreen5> {
               ),
               NormalText(
                 text: '2 Days ago',
-                size: 14.sp,
+                size: 12.sp,
                 fontWeight: FontWeight.bold,
                 color: AppColor.dullerBlack,
               ),
