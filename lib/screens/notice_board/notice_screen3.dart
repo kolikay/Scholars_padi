@@ -16,7 +16,7 @@ class NoticeScreen3 extends StatelessWidget {
         preferredSize: Size.fromHeight(103.h),
         child: ReuseableAppBar1(
           title: NormalText(
-            text: 'Notice Board',
+            text: '',
             color: Colors.white,
           ),
           firstAppIcon: IconButton(
@@ -27,13 +27,14 @@ class NoticeScreen3 extends StatelessWidget {
           ),
           secondAppIcon: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.share),
           ),
         ),
       ),
       body: Padding(
         padding:  EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h,),
             Container(

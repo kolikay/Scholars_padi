@@ -10,6 +10,7 @@ import 'package:scholars_padi/screens/on_boarding/home_screens/home_page.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
+import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'package:scholars_padi/screens/scholarships/scholaships_main.dart';
 
@@ -116,6 +117,14 @@ pushNoticeScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => const NoticeScreen1(),
+    ),
+  );
+}
+
+pushNotificationScreen(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) =>const NotificationScreen(),
     ),
   );
 }
