@@ -3,14 +3,17 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 
+// ignore: must_be_immutable
 class ReuseableAppBar1 extends StatelessWidget {
   final IconButton firstAppIcon;
   final IconButton secondAppIcon;
   final NormalText? title;
-  const ReuseableAppBar1(
+   final Color? backGroundColor;
+   const ReuseableAppBar1(
       {Key? key,
       required this.firstAppIcon,
       required this.secondAppIcon,
+      this.backGroundColor = AppColor.mainColor,
       this.title})
       : super(key: key);
 
@@ -22,7 +25,7 @@ class ReuseableAppBar1 extends StatelessWidget {
         child: title,
       ),
       toolbarHeight: 103.h,
-      backgroundColor: AppColor.mainColor,
+      backgroundColor: backGroundColor,
       leading: Center(
         child:
             Padding(padding: EdgeInsets.only(top: 20.0.h), child: firstAppIcon),
