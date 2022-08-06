@@ -15,12 +15,24 @@ class NotificationAllCards extends ConsumerStatefulWidget {
 
 class _NotificationAllCardsState extends ConsumerState<NotificationAllCards> {
   List<NotificationCards> noticeCard = [
-   const NotificationCards(
+    const NotificationCards(
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
-        cardTitle: 'OAU management shutdown school')
+        cardTitle: 'OAU management shutdown school'),
+    const NotificationCards(
+        cardMessage:
+            'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
+        cardDate: '18/08/2022',
+        cardTime: '11:05pm',
+        cardTitle: 'OAU management shutdown school'),
+    const NotificationCards(
+        cardMessage:
+            'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
+        cardDate: '18/08/2022',
+        cardTime: '11:05pm',
+        cardTitle: 'OAU management shutdown school'),
 
     // MaterialCards(
     //     onTap: () {},
@@ -47,15 +59,20 @@ class _NotificationAllCardsState extends ConsumerState<NotificationAllCards> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        MaterialCards(
-            onTap: () {},
-            cardMessage: noticeCard[0].cardMessage,
-            cardDate: noticeCard[0].cardDate,
-            cardTime: noticeCard[0].cardTime,
-            cardTitle: noticeCard[0].cardTitle)
-      ],
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return Column(
+          children: [
+            MaterialCards(
+                onTap: () {},
+                cardMessage: noticeCard[index].cardMessage,
+                cardDate: noticeCard[index].cardDate,
+                cardTime: noticeCard[index].cardTime,
+                cardTitle: noticeCard[index].cardTitle)
+          ],
+        );
+      },
+      itemCount: noticeCard.length,
     );
   }
 }
