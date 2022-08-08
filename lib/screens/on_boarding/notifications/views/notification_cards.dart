@@ -2,59 +2,64 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scholars_padi/screens/on_boarding/notifications/models/notification_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-
-
-class MaterialCards extends ConsumerStatefulWidget {
+class NotificationMaterialCards extends ConsumerStatefulWidget {
   final String cardMessage;
   final String cardTitle;
   final String cardDate;
   final String cardTime;
   final Color? borderColor;
-  final GestureTapCallback onTap;
+  final ValueChanged<bool> isSelected;
 
-  const MaterialCards(
+
+  const NotificationMaterialCards(
       {Key? key,
       required this.cardMessage,
       required this.cardDate,
       required this.cardTime,
       required this.cardTitle,
-      required this.onTap,
+      required this.isSelected,
       this.borderColor})
       : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _MaterialCardsState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _NotificationMaterialCardsState();
 }
 
-class _MaterialCardsState extends ConsumerState<MaterialCards> {
-  // bool selected = false;
+class _NotificationMaterialCardsState extends ConsumerState<NotificationMaterialCards> {
+  // to toggle card based on if it is selected or not
+  bool selected = false;
 
   @override
   Widget build(BuildContext context) {
-    // Notitification Notifier for app bar
-    final notificationViewModel = ref.watch(notificationProvider);
-    return Container(
-      width: 327.w,
-      height: 145.h,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(5.53.w),
-        border: notificationViewModel.selectedList.isEmpty
-            ? Border.all(
-                color: Colors.black12,
-              )
-            : Border.all(
-                color: AppColor.mainColor,
-                width: 2.0,
-                style: BorderStyle.solid),
-        color: const Color(0xffb580ff),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(10.0.w),
-        child: InkWell(
-          onTap: widget.onTap,
+    return InkWell(
+      onTap: () {
+        // change slected state to true and false
+        selected = !selected;
+
+        //notify parent widget of change in selected state
+        widget.isSelected(selected);
+      },
+      child: Container(
+        width: 327.w,
+        height: 145.h,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(5.53.w),
+          border: !selected
+              ? Border.all(
+                  color: Colors.black12,
+                )
+              : Border.all(
+                  color: AppColor.mainColor,
+                  width: 2.0,
+                  style: BorderStyle.solid),
+          color: const Color(0xffb580ff),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(10.0.w),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -93,7 +98,7 @@ class _MaterialCardsState extends ConsumerState<MaterialCards> {
                     width: 100.w,
                   ),
                   NormalText(
-                    text: widget.cardTime,
+                    text: widget.cardDate,
                     size: 11.sp,
                     color: AppColor.dullerBlack,
                   ),

@@ -7,6 +7,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 class ReuseableAppBar1 extends StatelessWidget {
   final IconButton firstAppIcon;
   final IconButton secondAppIcon;
+  final IconButton? thirdAppIcon;
   final NormalText? title;
    final Color? backGroundColor;
    const ReuseableAppBar1(
@@ -14,6 +15,7 @@ class ReuseableAppBar1 extends StatelessWidget {
       required this.firstAppIcon,
       required this.secondAppIcon,
       this.backGroundColor = AppColor.mainColor,
+      this.thirdAppIcon,
       this.title})
       : super(key: key);
 
@@ -31,9 +33,17 @@ class ReuseableAppBar1 extends StatelessWidget {
             Padding(padding: EdgeInsets.only(top: 20.0.h), child: firstAppIcon),
       ),
       actions: [
-        Padding(
-          padding: EdgeInsets.only(top: 20.0.h),
-          child: secondAppIcon,
+        Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(top: 20.0.h),
+              child: secondAppIcon,
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: 20.0.h),
+              child: thirdAppIcon,
+            )
+          ],
         )
       ],
     );

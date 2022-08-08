@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-           home: const TestingWork(),
+           home: const LandingPage(),
         routes: {
           HomePageScreen.id: (context) => const HomePageScreen(),
           CatergoriesSearchScreen.id: (context) => const CatergoriesSearchScreen(),
