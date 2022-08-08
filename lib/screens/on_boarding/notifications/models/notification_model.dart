@@ -22,3 +22,17 @@ class NotificationCards {
     // selected = !selected;
   }
 }
+
+
+// ignore_for_file: file_names
+
+class Item {
+ final String imageUrl;
+ final int rank;
+
+  Item({required this.imageUrl, this.rank = 0});
+
+  // void toggle() {
+  //   selected = !selected;
+  // }
+}

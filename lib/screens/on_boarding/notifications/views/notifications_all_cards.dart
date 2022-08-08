@@ -33,28 +33,6 @@ class _NotificationAllCardsState extends ConsumerState<NotificationAllCards> {
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'OAU management shutdown school'),
-
-    // MaterialCards(
-    //     onTap: () {},
-    //     cardMessage:
-    //         'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
-    //     cardDate: '18/08/2022',
-    //     cardTime: '11:05pm',
-    //     cardTitle: 'OAU management shutdown school'),
-    // MaterialCards(
-    //     onTap: () {},
-    //     cardMessage:
-    //         'We welcome you into the largest educational platform on campus where students get access to all departments materials/textbooks and other necessary information. Explore through the App and get the best experience so far.Thank You.',
-    //     cardDate: '18/08/2022',
-    //     cardTime: '11:05pm',
-    //     cardTitle: 'Scholar’s Padi'),
-    // MaterialCards(
-    //     onTap: () {},
-    //     cardMessage:
-    //         'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
-    //     cardDate: '18/08/2022',
-    //     cardTime: '11:05pm',
-    //     cardTitle: 'OAU management shutdown school'),
   ];
 
   @override
@@ -68,7 +46,8 @@ class _NotificationAllCardsState extends ConsumerState<NotificationAllCards> {
                 cardMessage: noticeCard[index].cardMessage,
                 cardDate: noticeCard[index].cardDate,
                 cardTime: noticeCard[index].cardTime,
-                cardTitle: noticeCard[index].cardTitle)
+                cardTitle: noticeCard[index].cardTitle),
+                SizedBox(height: 10.h,),
           ],
         );
       },

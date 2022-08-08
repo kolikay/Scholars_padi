@@ -3,7 +3,8 @@
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
-import 'package:scholars_padi/screens/on_boarding/notifications/view_models/notification_view_model.dart';
+import 'package:scholars_padi/screens/on_boarding/notifications/notifications_view_models/notification_view_model.dart';
+
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_model/profile_view_model.dart';
 
 
