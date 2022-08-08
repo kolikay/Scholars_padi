@@ -56,7 +56,7 @@ class _NotificationMaterialCardsState extends ConsumerState<NotificationMaterial
                   color: AppColor.mainColor,
                   width: 2.0,
                   style: BorderStyle.solid),
-          color: const Color(0xffb580ff),
+          color: const Color(0xffe1ccff),
         ),
         child: Padding(
           padding: EdgeInsets.all(10.0.w),
