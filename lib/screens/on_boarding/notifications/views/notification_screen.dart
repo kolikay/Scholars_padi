@@ -95,13 +95,25 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
             ),
             secondAppIcon: IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.delete,
+              icon: const Icon(
+                Icons.email_outlined,
+              ),
             ),
-          ),
             thirdAppIcon: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.email,
-            ),
-          ));
+              onPressed: () {
+                setState(() {
+                  for (int i = 0;
+                      i < notificationViewModel.selectedList.length;
+                      i++) {
+                    notificationViewModel.noticeCard
+                        .remove(notificationViewModel.selectedList[i]);
+                  }
+                  notificationViewModel.selectedList = [];
+                });
+              },
+              icon: const Icon(
+                Icons.delete,
+              ),
+            ));
   }
 }
