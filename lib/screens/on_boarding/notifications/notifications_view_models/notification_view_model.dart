@@ -70,11 +70,10 @@ class NotificationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // void updateCardColor(NotificationCardsModel cards,bool isRead ) {
-  //   print(isRead);
-  //   cards.cardColor = isRead ? Colors.white : const Color(0xffe1ccff);
-  //   notifyListeners();
-  // }
+  void updateCardColor(NotificationCardsModel cards) {
+    cards.cardColor = Colors.white;
+    notifyListeners();
+  }
 
   void resetSelectedList() {
     selectedList = [];

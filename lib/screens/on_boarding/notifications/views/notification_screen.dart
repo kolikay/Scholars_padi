@@ -175,13 +175,13 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                 setState(() {
                   //unread card function
                   
-                  // for (int i = 0;
-                  //     i < notificationViewModel.selectedList.length;
-                  //     i++) {
+                  for (int i = 0;
+                      i < notificationViewModel.selectedList.length;
+                      i++) {
                       
-                  //   notificationViewModel.updateCardColor(
-                  //       notificationViewModel.selectedList[i],);
-                  // }
+                    notificationViewModel.updateCardColor(
+                        notificationViewModel.selectedList[i],);
+                  }
                 });
               },
               icon: const Icon(
