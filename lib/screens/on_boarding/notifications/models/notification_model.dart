@@ -5,13 +5,17 @@ class NotificationCardsModel {
   final String cardTitle;
   final String cardDate;
   final String cardTime;
+  Color cardColor;
+  Color borderColor;
 
-  const NotificationCardsModel({
+  NotificationCardsModel({
     Key? key,
     required this.cardMessage,
     required this.cardDate,
     required this.cardTime,
     required this.cardTitle,
+    required this.cardColor,
+    required this.borderColor,
   });
 }
 

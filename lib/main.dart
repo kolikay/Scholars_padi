@@ -9,7 +9,7 @@ import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/p
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
-import 'screens/on_boarding/notifications/testings.dart';
+
 
 
 

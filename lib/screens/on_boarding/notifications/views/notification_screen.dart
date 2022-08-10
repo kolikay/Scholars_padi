@@ -1,7 +1,8 @@
+// ignore_for_file: use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/screens/material/material_screen2.dart';
 import 'package:scholars_padi/screens/on_boarding/notifications/notifications_view_models/notification_view_model.dart';
 import 'package:scholars_padi/screens/on_boarding/notifications/views/notification_cards.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
@@ -20,6 +21,7 @@ class NotificationScreen extends ConsumerStatefulWidget {
 }
 
 class _NotificationScreenState extends ConsumerState<NotificationScreen> {
+  // bool isSelected = false;
   @override
   Widget build(BuildContext context) {
     final notificationViewModel = ref.watch(notificationProvider);
@@ -27,6 +29,73 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(103.h),
         child: getAppBar(notificationViewModel),
+        // child: notificationViewModel.selectedList.isEmpty
+        // ? ReuseableAppBar1(
+        //     backGroundColor: AppColor.mainColor,
+        //     title: NormalText(
+        //       text: 'Notifications',
+        //       color: Colors.white,
+        //     ),
+        //     firstAppIcon: IconButton(
+        //       onPressed: () {
+        //         Navigator.pop(context);
+        //       },
+        //       icon: const Icon(Icons.arrow_back_ios),
+        //     ),
+        //     secondAppIcon: IconButton(
+        //       onPressed: () {},
+        //       icon: const Icon(Icons.search),
+        //     ),
+        //   )
+        // : ReuseableAppBar1(
+        //     backGroundColor: const Color(0xffbf000001),
+        //     title: NormalText(
+        //       text: "${notificationViewModel.selectedList.length} Selected",
+        //       color: Colors.white,
+        //     ),
+        //     firstAppIcon: IconButton(
+        //       onPressed: () {
+        //         Navigator.pop(context);
+        //       },
+        //       icon: const Icon(Icons.arrow_back_ios),
+        //     ),
+        //     secondAppIcon: IconButton(
+        //       onPressed: () {
+        //         setState(() {
+        //           //unread card function
+        //           for (int i = 0;
+        //               i < notificationViewModel.selectedList.length;
+        //               i++) {
+        //             isSelected = !isSelected;
+        //             notificationViewModel.updateCardColor(
+        //                 notificationViewModel.selectedList[i], isSelected);
+        //           }
+        //         });
+        //       },
+        //       icon: const Icon(
+        //         Icons.email_outlined,
+        //       ),
+        //     ),
+        //     thirdAppIcon: IconButton(
+        //       onPressed: () {
+        //         setState(() {
+        //           //deleted card function
+        //           for (int i = 0;
+        //               i < notificationViewModel.selectedList.length;
+        //               i++) {
+        //             notificationViewModel.deleteFromNoticeCardsList(
+        //                 notificationViewModel.selectedList[i]);
+
+        //             // notificationViewModel.noticeCard
+        //             //     .remove(notificationViewModel.selectedList[i]);
+        //           }
+        //           notificationViewModel.selectedList = [];
+        //         });
+        //       },
+        //       icon: const Icon(
+        //         Icons.delete,
+        //       ),
+        //     ))
       ),
       body: ListView.builder(
         itemCount: notificationViewModel.noticeCard.length,
@@ -37,6 +106,9 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                 height: 10.h,
               ),
               NotificationMaterialCards(
+                borderColor:
+                    notificationViewModel.noticeCard[index].borderColor,
+                cardColor: notificationViewModel.noticeCard[index].cardColor,
                 cardMessage:
                     notificationViewModel.noticeCard[index].cardMessage,
                 cardDate: notificationViewModel.noticeCard[index].cardDate,
@@ -45,11 +117,13 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                 // receives call back value from child widget and update state
                 isSelected: (value) {
                   setState(() {
+                    //select card function
+
                     if (value) {
-                      notificationViewModel.addSelectedList(
+                      notificationViewModel.addtoSelectedCardsList(
                           notificationViewModel.noticeCard[index]);
                     } else {
-                      notificationViewModel.deleteSelectedList(
+                      notificationViewModel.deleteFromSelectedCardsList(
                           notificationViewModel.noticeCard[index]);
                     }
                   });
@@ -62,7 +136,10 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
     );
   }
 
-  getAppBar(NotificationViewModel notificationViewModel) {
+  getAppBar(
+    NotificationViewModel notificationViewModel,
+  ) {
+    bool isRead = false;
     return notificationViewModel.selectedList.isEmpty
         ? ReuseableAppBar1(
             backGroundColor: AppColor.mainColor,
@@ -82,7 +159,7 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
             ),
           )
         : ReuseableAppBar1(
-            backGroundColor: const Color(0xffBF000001),
+            backGroundColor: const Color(0xffbf000001),
             title: NormalText(
               text: "${notificationViewModel.selectedList.length} Selected",
               color: Colors.white,
@@ -94,7 +171,19 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
               icon: const Icon(Icons.arrow_back_ios),
             ),
             secondAppIcon: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                setState(() {
+                  //unread card function
+                  
+                  // for (int i = 0;
+                  //     i < notificationViewModel.selectedList.length;
+                  //     i++) {
+                      
+                  //   notificationViewModel.updateCardColor(
+                  //       notificationViewModel.selectedList[i],);
+                  // }
+                });
+              },
               icon: const Icon(
                 Icons.email_outlined,
               ),
@@ -102,11 +191,15 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
             thirdAppIcon: IconButton(
               onPressed: () {
                 setState(() {
+                  //deleted card function
                   for (int i = 0;
                       i < notificationViewModel.selectedList.length;
                       i++) {
-                    notificationViewModel.noticeCard
-                        .remove(notificationViewModel.selectedList[i]);
+                    notificationViewModel.deleteFromNoticeCardsList(
+                        notificationViewModel.selectedList[i]);
+
+                    // notificationViewModel.noticeCard
+                    //     .remove(notificationViewModel.selectedList[i]);
                   }
                   notificationViewModel.selectedList = [];
                 });

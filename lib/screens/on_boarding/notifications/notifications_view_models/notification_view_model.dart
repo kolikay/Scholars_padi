@@ -1,39 +1,52 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/constants/appColor.dart';
 import '../models/notification_model.dart';
 
 class NotificationViewModel extends ChangeNotifier {
   List<NotificationCardsModel> noticeCard = [
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'OAU management shutdown school'),
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'new messges'),
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'OAU management shutdown school'),
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'OAU management shutdown school'),
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
         cardTime: '11:05pm',
         cardTitle: 'new messges'),
-    const NotificationCardsModel(
+    NotificationCardsModel(
+        borderColor: AppColor.mainColor,
+        cardColor: const Color(0xffe1ccff),
         cardMessage:
             'As a result of the ongoing protest, the management of Obafemi Awolowo University shut down the school till further notice...',
         cardDate: '18/08/2022',
@@ -42,13 +55,29 @@ class NotificationViewModel extends ChangeNotifier {
   ];
   List<NotificationCardsModel> selectedList = [];
 
-  void addSelectedList(NotificationCardsModel cards) {
+  void addtoSelectedCardsList(NotificationCardsModel cards) {
     selectedList.add(cards);
     notifyListeners();
   }
 
-  void deleteSelectedList(NotificationCardsModel cards) {
+  void deleteFromSelectedCardsList(NotificationCardsModel cards) {
     selectedList.remove(cards);
+    notifyListeners();
+  }
+
+  void deleteFromNoticeCardsList(NotificationCardsModel cards) {
+    noticeCard.remove(cards);
+    notifyListeners();
+  }
+
+  // void updateCardColor(NotificationCardsModel cards,bool isRead ) {
+  //   print(isRead);
+  //   cards.cardColor = isRead ? Colors.white : const Color(0xffe1ccff);
+  //   notifyListeners();
+  // }
+
+  void resetSelectedList() {
+    selectedList = [];
     notifyListeners();
   }
 }
