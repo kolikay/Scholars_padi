@@ -13,6 +13,7 @@ import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'package:scholars_padi/screens/scholarships/scholaships_main.dart';
+import 'package:scholars_padi/screens/school_portal/school_portal.dart';
 
 import '../screens/authentication/views/login_screen.dart';
 
@@ -125,6 +126,14 @@ pushNotificationScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) =>const NotificationScreen(),
+    ),
+  );
+}
+
+pushSchoolPortalScreen(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) =>const SchoolPortal(),
     ),
   );
 }

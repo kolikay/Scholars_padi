@@ -253,8 +253,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               }),
                               HomeConstants.newInkwell(context, 'Chats',
                                   'lib/assets/chat.png', () {}),
-                              HomeConstants.newInkwell(context, 'More',
-                                  'lib/assets/more.jpg', () {}),
+                              HomeConstants.newInkwell(
+                                  context, 'More', 'lib/assets/more.jpg', () {
+                                pushSchoolPortalScreen(context);
+                              }),
                             ],
                           ),
                         ),

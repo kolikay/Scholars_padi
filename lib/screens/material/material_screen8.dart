@@ -91,103 +91,6 @@ class MaterialCards extends StatefulWidget {
 }
 
 class _MaterialCardsState extends State<MaterialCards> {
-  bottomSheet(BuildContext context) async {
-    return showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      context: context,
-      builder: (builder) {
-        return Container(
-          decoration: const BoxDecoration(
-            color: AppColor.darkContainer,
-            borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20),
-              topRight: Radius.circular(20),
-            ),
-          ),
-          height: 364.h,
-          child: Column(
-            children: [
-              SizedBox(
-                height: 30.h,
-              ),
-              NormalText(
-                text: 'View your preferred Material and text book',
-                fontWeight: FontWeight.w400,
-                size: 14.sp,
-                color: Colors.black,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'Text Book Name',
-                fontWeight: FontWeight.w500,
-                size: 16.sp,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'Fundamental University Physical Chemistry',
-                fontWeight: FontWeight.w500,
-                size: 16.sp,
-                color: AppColor.dullerBlack,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'Author',
-                fontWeight: FontWeight.bold,
-                size: 16.sp,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'By Prof. Abass Akande',
-                fontWeight: FontWeight.bold,
-                size: 16.sp,
-                color: AppColor.dullerBlack,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'Published Year',
-                fontWeight: FontWeight.bold,
-                size: 16.sp,
-              ),
-              SizedBox(
-                height: 10.h,
-              ),
-              NormalText(
-                text: 'December 2020',
-                fontWeight: FontWeight.w500,
-                size: 16.sp,
-                color: AppColor.dullerBlack,
-              ),
-              SizedBox(
-                height: 24.h,
-              ),
-              ReuseableButton(
-                  text: 'Continue to read',
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: ((context) => const MaterialScreen9(
-                              title: 'BestBrain CHM',
-                            )),
-                      ),
-                    );
-                  })
-            ],
-          ),
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -287,6 +190,102 @@ class _MaterialCardsState extends State<MaterialCards> {
           ),
         ),
       ),
+    );
+  }
+   bottomSheet(BuildContext context) async {
+    return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      context: context,
+      builder: (builder) {
+        return Container(
+          decoration: const BoxDecoration(
+            color: AppColor.darkContainer,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          height: 364.h,
+          child: Column(
+            children: [
+              SizedBox(
+                height: 30.h,
+              ),
+              NormalText(
+                text: 'View your preferred Material and text book',
+                fontWeight: FontWeight.w400,
+                size: 14.sp,
+                color: Colors.black,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Text Book Name',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Fundamental University Physical Chemistry',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Author',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'By Prof. Abass Akande',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'Published Year',
+                fontWeight: FontWeight.bold,
+                size: 16.sp,
+              ),
+              SizedBox(
+                height: 10.h,
+              ),
+              NormalText(
+                text: 'December 2020',
+                fontWeight: FontWeight.w500,
+                size: 16.sp,
+                color: AppColor.dullerBlack,
+              ),
+              SizedBox(
+                height: 24.h,
+              ),
+              ReuseableButton(
+                  text: 'Continue to read',
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: ((context) => const MaterialScreen9(
+                              title: 'BestBrain CHM',
+                            )),
+                      ),
+                    );
+                  })
+            ],
+          ),
+        );
+      },
     );
   }
 }

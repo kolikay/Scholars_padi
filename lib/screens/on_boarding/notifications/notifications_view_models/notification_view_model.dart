@@ -79,6 +79,6 @@ class NotificationViewModel extends ChangeNotifier {
       }
     }
 
-    // notifyListeners();
+    notifyListeners();
   }
 }
