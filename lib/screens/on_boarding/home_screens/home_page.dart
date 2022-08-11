@@ -242,7 +242,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               HomeConstants.newInkwell(context, 'Scheduler',
                                   'lib/assets/schduler.png', () {}),
                               HomeConstants.newInkwell(context, 'Note Book',
-                                  'lib/assets/notebook.png', () {}),
+                                  'lib/assets/notebook.png', () {
+                                pushNoteBookScreen1(context);
+                              }),
                               HomeConstants.newInkwell(context, 'Scholarships',
                                   'lib/assets/scholaship.png', () {
                                 pushScholarshipScreen(context);

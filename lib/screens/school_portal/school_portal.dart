@@ -56,8 +56,8 @@ class _SchoolPortalState extends State<SchoolPortal> {
                   bottomSheet(context);
                 },
                 child: Container(
-                  width: 150.w,
-                  height: 150.h,
+                  width: 250.w,
+                  height: 250.h,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5.53.w),
                     image: const DecorationImage(
@@ -67,18 +67,27 @@ class _SchoolPortalState extends State<SchoolPortal> {
                   ),
                 ),
               ),
-              SizedBox(
-                height: 15.h,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  NormalText(
+                    text: 'You can assess the OAU eportal using the link below:',
+                    fontWeight: FontWeight.bold,
+                    size: 16.sp,
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  NormalText(
+                    text: 'www.eportal.oauife.edu.ng/login.php',
+                    size: 16.sp,
+                  )
+                ],
               ),
-              NormalText(
-                text: 'You can assess the OAU eportal using the link below',
-                fontWeight: FontWeight.bold,
-                size: 16.sp,
-              ),
-              SizedBox(
-                height: 15.h,
-              ),
-              NormalText(text: 'www.eportal.oauife.edu.ng/login.php', size: 16.sp,)
             ],
           ),
         ),
@@ -157,7 +166,11 @@ class _SchoolPortalState extends State<SchoolPortal> {
               SizedBox(
                 height: 24.h,
               ),
-              ReuseableButton(text: 'Copy Link', onPressed: () {}, textSize: 18.sp,),
+              ReuseableButton(
+                text: 'Copy Link',
+                onPressed: () {},
+                textSize: 18.sp,
+              ),
               SizedBox(
                 height: 10.h,
               ),
