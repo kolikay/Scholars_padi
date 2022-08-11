@@ -70,13 +70,15 @@ class NotificationViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void updateCardColor(NotificationCardsModel cards) {
-    cards.cardColor = Colors.white;
-    notifyListeners();
-  }
+  void updateCardColor() {
+    for (int i = 0; i < selectedList.length; i++) {
+      if (selectedList[i].cardColor == const Color(0xffe1ccff)) {
+        selectedList[i].cardColor = Colors.white;
+      } else if (selectedList[i].cardColor == Colors.white) {
+        selectedList[i].cardColor = const Color(0xffe1ccff);
+      }
+    }
 
-  void resetSelectedList() {
-    selectedList = [];
-    notifyListeners();
+    // notifyListeners();
   }
 }
