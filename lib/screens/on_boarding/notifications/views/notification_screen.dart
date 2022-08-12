@@ -9,6 +9,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 
 class NotificationScreen extends ConsumerStatefulWidget {
   const NotificationScreen({
@@ -119,6 +120,12 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                       i++) {
                     notificationViewModel.deleteFromNoticeCardsList(
                         notificationViewModel.selectedList[i]);
+                    ShowSnackBar.openSnackBar(
+                        context, "${notificationViewModel.selectedList.length}s Deleted", 'Undo delete', () {
+                          setState(() {
+                            
+                          });
+                        });
                   }
                   notificationViewModel.selectedList = [];
                 });

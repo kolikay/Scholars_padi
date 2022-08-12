@@ -3,12 +3,59 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
-class NoteBookScreen1 extends StatelessWidget {
+List<MaterialCards> card = List.of(allCards); 
+
+List<MaterialCards> allCards = const  [
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials  testing',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+];
+
+class NoteBookScreen1 extends StatefulWidget {
   const NoteBookScreen1({
     Key? key,
   }) : super(key: key);
 
+  @override
+  State<NoteBookScreen1> createState() => _NoteBookScreen1State();
+}
+
+class _NoteBookScreen1State extends State<NoteBookScreen1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,30 +109,39 @@ class NoteBookScreen1 extends StatelessWidget {
                 SizedBox(
                   height: 15.h,
                 ),
-                const MaterialCards(
-                  cardColor1: Colors.blue,
-                  cardDate: 'March 13, 2022  08:53AM',
-                  cardMessage: 'School Materials',
-                  cardColor2: Color(0xffd1ecfa),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                const MaterialCards(
-                  cardColor1: Colors.blue,
-                  cardDate: 'March 13, 2022  08:53AM',
-                  cardMessage: 'School Materials',
-                  cardColor2: Color(0xffd1ecfa),
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                const MaterialCards(
-                  cardColor1: Colors.blue,
-                  cardDate: 'March 13, 2022  08:53AM',
-                  cardMessage: 'School Materials',
-                  cardColor2: Color(0xffd1ecfa),
-                ),
+                Expanded(
+                  child: SizedBox(
+                    child: ListView.separated(
+                        separatorBuilder: (BuildContext context, int index) =>
+                            SizedBox(
+                              height: 10.h,
+                            ),
+                        itemCount: card.length,
+                        itemBuilder: (context, index) {
+                          final materialCard = card[index];
+                          return Slidable(
+                            actionExtentRatio: 0.25,
+                            actionPane: const SlidableDrawerActionPane(),
+                            secondaryActions: <Widget>[
+                              IconSlideAction(
+                                caption: 'Delete',
+                                color: Colors.red,
+                                icon: Icons.delete,
+                                onTap: () {
+                                 
+                                  onDismissed(index);
+                                },
+                              )
+                            ],
+                            child: MaterialCards(
+                                cardMessage: materialCard.cardMessage,
+                                cardDate: materialCard.cardDate,
+                                cardColor1: materialCard.cardColor1,
+                                cardColor2: materialCard.cardColor2),
+                          );
+                        }),
+                  ),
+                )
               ],
             ),
           ),
@@ -104,6 +160,13 @@ class NoteBookScreen1 extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void onDismissed(int index) {
+    // print(card[index].cardMessage);
+    setState(() {
+      card.removeAt(index);
+    });
   }
 }
 
@@ -145,11 +208,21 @@ class MaterialCards extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    NormalText(
-                      text: cardMessage,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                      size: 16.sp,
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NormalText(
+                          text: cardMessage,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          size: 16.sp,
+                        ),
+                        Icon(
+                          Icons.favorite_border,
+                          color: AppColor.mainColor,
+                          size: 20.sp,
+                        )
+                      ],
                     ),
                     SizedBox(
                       height: 10.h,
