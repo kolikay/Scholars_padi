@@ -121,7 +121,7 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                     notificationViewModel.deleteFromNoticeCardsList(
                         notificationViewModel.selectedList[i]);
                     ShowSnackBar.openSnackBar(
-                        context, "${notificationViewModel.selectedList.length}s Deleted", 'Undo delete', () {
+                        context, "${notificationViewModel.selectedList.length} item Deleted", 'Undo delete', () {
                           setState(() {
                             
                           });

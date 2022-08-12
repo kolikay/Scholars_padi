@@ -117,12 +117,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  icon: onEdit
+                  icon: !onEdit
                       ? Icon(
                           Icons.arrow_back_ios,
                           size: 30.w,
                         )
-                      : Icon(Icons.cancel, size: 30.w),
+                      : Icon(Icons.close, size: 30.w),
                 ),
               ),
             ),

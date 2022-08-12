@@ -209,7 +209,7 @@ class _MaterialCardsState extends State<MaterialCards> {
               color: widget.cardColor2,
               child: Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.h),
+                    EdgeInsets.only(left: 10.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
