@@ -4,10 +4,11 @@ import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 
-List<MaterialCards> card = List.of(allCards); 
+List<MaterialCards> card = List.of(allCards);
 
-List<MaterialCards> allCards = const  [
+List<MaterialCards> allCards = const [
   MaterialCards(
     cardColor1: Colors.blue,
     cardDate: 'March 13, 2022  08:53AM',
@@ -128,7 +129,6 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
                                 color: Colors.red,
                                 icon: Icons.delete,
                                 onTap: () {
-                                 
                                   onDismissed(index);
                                 },
                               )
@@ -163,14 +163,14 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
   }
 
   void onDismissed(int index) {
-    // print(card[index].cardMessage);
     setState(() {
       card.removeAt(index);
+      ShowSnackBar.openSnackBar(context, 'Item Deleted', 'Undo', () {});
     });
   }
 }
 
-class MaterialCards extends StatelessWidget {
+class MaterialCards extends StatefulWidget {
   const MaterialCards({
     Key? key,
     required this.cardMessage,
@@ -185,6 +185,12 @@ class MaterialCards extends StatelessWidget {
   final Color cardColor2;
 
   @override
+  State<MaterialCards> createState() => _MaterialCardsState();
+}
+
+class _MaterialCardsState extends State<MaterialCards> {
+  bool tapped = false;
+  @override
   Widget build(BuildContext context) {
     return Container(
       width: 327.w,
@@ -196,14 +202,14 @@ class MaterialCards extends StatelessWidget {
         children: [
           Container(
             width: 5,
-            color: cardColor1,
+            color: widget.cardColor1,
           ),
           Expanded(
             child: Container(
-              color: cardColor2,
+              color: widget.cardColor2,
               child: Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: 20.0.w, vertical: 10.h),
+                    EdgeInsets.symmetric(horizontal: 10.0.w, vertical: 10.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -212,23 +218,27 @@ class MaterialCards extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         NormalText(
-                          text: cardMessage,
+                          text: widget.cardMessage,
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                           size: 16.sp,
                         ),
-                        Icon(
-                          Icons.favorite_border,
-                          color: AppColor.mainColor,
-                          size: 20.sp,
+                        IconButton(
+                          onPressed: () {
+                            setState(() {
+                              tapped = !tapped;
+                            });
+                          },
+                          icon: Icon(
+                            !tapped ? Icons.favorite_border : Icons.favorite,
+                            color: AppColor.mainColor,
+                            size: 20.sp,
+                          ),
                         )
                       ],
                     ),
-                    SizedBox(
-                      height: 10.h,
-                    ),
                     NormalText(
-                      text: cardDate,
+                      text: widget.cardDate,
                       color: AppColor.dullBlack,
                       size: 12.sp,
                     ),
