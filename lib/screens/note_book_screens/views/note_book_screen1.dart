@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -8,11 +11,11 @@ import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 
 List<MaterialCards> card = List.of(allCards);
 
-List<MaterialCards> allCards = const [
+List<MaterialCards> allCards = [
   MaterialCards(
     cardColor1: Colors.blue,
     cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials  testing',
+    cardMessage: 'About Dubai',
     cardColor2: Color(0xffd1ecfa),
   ),
   MaterialCards(
@@ -147,6 +150,9 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
                               )
                             ],
                             child: MaterialCards(
+                                ontap: () {
+                                  pushNoteBookScreen3(context);
+                                },
                                 cardMessage: materialCard.cardMessage,
                                 cardDate: materialCard.cardDate,
                                 cardColor1: materialCard.cardColor1,
@@ -179,16 +185,20 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(
-                                        height: 32.h,
-                                        width: 56.h,
-                                        color: Colors.black87,
-                                        child: Center(child: NormalText(text: 'Note', color: Colors.white))
-                                      ),
+                                          height: 32.h,
+                                          width: 56.h,
+                                          color: Colors.black87,
+                                          child: Center(
+                                              child: NormalText(
+                                                  text: 'Note',
+                                                  color: Colors.white))),
                                       const SizedBox(
                                         width: 15,
                                       ),
                                       InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          pushNoteBookScreen2(context);
+                                        },
                                         child: Container(
                                           decoration: const BoxDecoration(
                                             shape: BoxShape.circle,
@@ -228,11 +238,13 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
                                       Container(
-                                        height: 32.h,
-                                        width: 76.h,
-                                        color: Colors.black87,
-                                        child: Center(child: NormalText(text: 'Checklist', color: Colors.white))
-                                      ),
+                                          height: 32.h,
+                                          width: 76.h,
+                                          color: Colors.black87,
+                                          child: Center(
+                                              child: NormalText(
+                                                  text: 'Checklist',
+                                                  color: Colors.white))),
                                       const SizedBox(
                                         width: 15,
                                       ),
@@ -301,18 +313,20 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
 }
 
 class MaterialCards extends StatefulWidget {
-  const MaterialCards({
-    Key? key,
-    required this.cardMessage,
-    required this.cardDate,
-    required this.cardColor1,
-    required this.cardColor2,
-  }) : super(key: key);
+  const MaterialCards(
+      {Key? key,
+      required this.cardMessage,
+      required this.cardDate,
+      required this.cardColor1,
+      required this.cardColor2,
+      this.ontap})
+      : super(key: key);
 
   final String cardMessage;
   final String cardDate;
   final Color cardColor1;
   final Color cardColor2;
+  final GestureTapCallback? ontap;
 
   @override
   State<MaterialCards> createState() => _MaterialCardsState();
@@ -335,43 +349,46 @@ class _MaterialCardsState extends State<MaterialCards> {
             color: widget.cardColor1,
           ),
           Expanded(
-            child: Container(
-              color: widget.cardColor2,
-              child: Padding(
-                padding: EdgeInsets.only(left: 10.h),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        NormalText(
-                          text: widget.cardMessage,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black,
-                          size: 16.sp,
-                        ),
-                        IconButton(
-                          onPressed: () {
-                            setState(() {
-                              tapped = !tapped;
-                            });
-                          },
-                          icon: Icon(
-                            !tapped ? Icons.favorite_border : Icons.favorite,
-                            color: AppColor.mainColor,
-                            size: 20.sp,
+            child: InkWell(
+              onTap: widget.ontap,
+              child: Container(
+                color: widget.cardColor2,
+                child: Padding(
+                  padding: EdgeInsets.only(left: 10.h),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          NormalText(
+                            text: widget.cardMessage,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            size: 16.sp,
                           ),
-                        )
-                      ],
-                    ),
-                    NormalText(
-                      text: widget.cardDate,
-                      color: AppColor.dullBlack,
-                      size: 12.sp,
-                    ),
-                  ],
+                          IconButton(
+                            onPressed: () {
+                              setState(() {
+                                tapped = !tapped;
+                              });
+                            },
+                            icon: Icon(
+                              !tapped ? Icons.favorite_border : Icons.favorite,
+                              color: AppColor.mainColor,
+                              size: 20.sp,
+                            ),
+                          )
+                        ],
+                      ),
+                      NormalText(
+                        text: widget.cardDate,
+                        color: AppColor.dullBlack,
+                        size: 12.sp,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
