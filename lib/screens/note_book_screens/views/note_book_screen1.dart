@@ -45,6 +45,18 @@ List<MaterialCards> allCards = const [
     cardMessage: 'School Materials',
     cardColor2: Color(0xffd1ecfa),
   ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
+  MaterialCards(
+    cardColor1: Colors.blue,
+    cardDate: 'March 13, 2022  08:53AM',
+    cardMessage: 'School Materials',
+    cardColor2: Color(0xffd1ecfa),
+  ),
 ];
 
 class NoteBookScreen1 extends StatefulWidget {
@@ -57,6 +69,7 @@ class NoteBookScreen1 extends StatefulWidget {
 }
 
 class _NoteBookScreen1State extends State<NoteBookScreen1> {
+  bool isVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -141,21 +154,138 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
                           );
                         }),
                   ),
+                ),
+                SizedBox(
+                  height: 200,
+                  width: double.infinity,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      !isVisible
+                          ? const SizedBox(
+                              height: 60,
+                            )
+                          : Visibility(
+                              visible: isVisible,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 32.h,
+                                        width: 56.h,
+                                        color: Colors.black87,
+                                        child: Center(child: NormalText(text: 'Note', color: Colors.white))
+                                      ),
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: AppColor.mainColor,
+                                          ),
+                                          height: 36.h,
+                                          width: 36.w,
+                                          child: const Icon(
+                                            Icons.note_add,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                ],
+                              ),
+                            ),
+                      !isVisible
+                          ? const SizedBox(
+                              height: 60,
+                            )
+                          : Visibility(
+                              visible: isVisible,
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Container(
+                                        height: 32.h,
+                                        width: 76.h,
+                                        color: Colors.black87,
+                                        child: Center(child: NormalText(text: 'Checklist', color: Colors.white))
+                                      ),
+                                      const SizedBox(
+                                        width: 15,
+                                      ),
+                                      InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          decoration: const BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: AppColor.mainColor,
+                                          ),
+                                          height: 36.h,
+                                          width: 36.w,
+                                          child: const Icon(
+                                            Icons.checklist_outlined,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 5.w,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                ],
+                              ),
+                            ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            isVisible = !isVisible;
+                          });
+                        },
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: AppColor.mainColor,
+                          ),
+                          height: 50.h,
+                          width: 50.w,
+                          child: Icon(
+                            !isVisible ? Icons.add : Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 )
               ],
             ),
-          ),
-        ),
-      ),
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: FloatingActionButton(
-          onPressed: () {},
-          backgroundColor: AppColor.mainColor,
-          child: Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 24.h,
           ),
         ),
       ),
@@ -208,8 +338,7 @@ class _MaterialCardsState extends State<MaterialCards> {
             child: Container(
               color: widget.cardColor2,
               child: Padding(
-                padding:
-                    EdgeInsets.only(left: 10.h),
+                padding: EdgeInsets.only(left: 10.h),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,

@@ -28,16 +28,27 @@ pushToNoInternetPage(BuildContext context) async {
 }
 
 pushToOnboardingPage(BuildContext context) async {
-  Navigator.of(context).pushReplacement(
+  Navigator.of(context).push(
     MaterialPageRoute(
       builder: (context) => const OnBoardingScreen(),
     ),
   );
 }
 
+// pushToLoginPage(BuildContext context) async {
+//   Navigator.of(context).pushNamed(LoginScreen.id);
+// }
+
 pushToLoginPage(BuildContext context) async {
-  Navigator.of(context).pushNamed(LoginScreen.id);
+  Navigator.of(context).pushReplacement(
+    MaterialPageRoute(
+      builder: (context) => const LoginScreen(),
+    ),
+  );
 }
+
+
+
 
 pushOnBoardingScreen(BuildContext context) async {
   Navigator.pushNamed(context, OnBoardingScreen.id);
