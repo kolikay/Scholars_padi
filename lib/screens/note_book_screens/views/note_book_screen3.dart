@@ -41,11 +41,9 @@ class _NoteBookScreen3State extends State<NoteBookScreen3> {
               ),
               thirdAppIcon: IconButton(
                 onPressed: () {
-                  // showDialog(
-                  //     context: context,
-                  //     builder: (BuildContext context) {
-                  //       return const MoreDialog();
-                  //     });
+                  setState(() {
+                    isVisible = !isVisible;
+                  });
                 },
                 icon: const Icon(Icons.more_vert),
               ),
@@ -93,11 +91,13 @@ Dubai does not have an oil-based economy. Its electricity and water provisions h
             ),
           ),
         ),
-        const Positioned(
-          right: 0,
-          top: 73,
-          child: MoreDialog(),
-        )
+        isVisible
+            ? const Positioned(
+                right: 0,
+                top: 80,
+                child: MoreDialog(),
+              )
+            : const SizedBox()
       ],
     );
   }
@@ -112,6 +112,7 @@ class MoreDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
+        padding:const EdgeInsets.all(10),
         color: AppColor.darkContainer,
         height: 130.h,
         width: 180.w,
@@ -120,12 +121,18 @@ class MoreDialog extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 20.w,
+                ),
                 Icon(
                   Icons.share,
                   color: AppColor.dullBlack,
-                  size: 36.h,
+                  size: 24.h,
+                ),
+                SizedBox(
+                  width: 20.w,
                 ),
                 NormalText(
                   text: 'Share',
@@ -134,35 +141,47 @@ class MoreDialog extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.w,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 20.w,
+                ),
                 Icon(
-                  Icons.share,
+                  Icons.favorite,
                   color: AppColor.dullBlack,
-                  size: 36.h,
+                  size: 24.h,
+                ),
+                SizedBox(
+                  width: 20.w,
                 ),
                 NormalText(
-                  text: 'Share',
+                  text: 'Favouriate',
                   color: AppColor.dullBlack,
                 )
               ],
             ),
             SizedBox(
-              height: 10.h,
+              height: 20.w,
             ),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
+                SizedBox(
+                  width: 20.w,
+                ),
                 Icon(
-                  Icons.share,
+                  Icons.delete,
                   color: AppColor.dullBlack,
-                  size: 36.h,
+                  size: 24.h,
+                ),
+                SizedBox(
+                  width: 20.w,
                 ),
                 NormalText(
-                  text: 'Share',
+                  text: 'Delete',
                   color: AppColor.dullBlack,
                 )
               ],
