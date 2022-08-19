@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,7 +47,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             ),
             firstAppIcon: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                pushOnBoardingScreen(context);
               },
               icon: const Icon(Icons.arrow_back_ios),
             ),

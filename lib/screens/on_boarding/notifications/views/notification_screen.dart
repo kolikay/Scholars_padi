@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/on_boarding/notifications/notifications_view_models/notification_view_model.dart';
 import 'package:scholars_padi/screens/on_boarding/notifications/views/notification_cards.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
@@ -82,7 +83,7 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
             ),
             firstAppIcon: IconButton(
               onPressed: () {
-                Navigator.pop(context);
+                pushOnBoardingScreen(context);
               },
               icon: const Icon(Icons.arrow_back_ios),
             ),

@@ -29,13 +29,13 @@ pushToNoInternetPage(BuildContext context) async {
   );
 }
 
-pushToOnboardingPage(BuildContext context) async {
-  Navigator.of(context).push(
-    MaterialPageRoute(
-      builder: (context) => const OnBoardingScreen(),
-    ),
-  );
-}
+// pushToOnboardingPage(BuildContext context) async {
+//   Navigator.of(context).push(
+//     MaterialPageRoute(
+//       builder: (context) => const OnBoardingScreen(),
+//     ),
+//   );
+// }
 
 // pushToLoginPage(BuildContext context) async {
 //   Navigator.of(context).pushNamed(LoginScreen.id);
@@ -50,10 +50,10 @@ pushToLoginPage(BuildContext context) async {
 }
 
 
-
-
 pushOnBoardingScreen(BuildContext context) async {
-  Navigator.pushNamed(context, OnBoardingScreen.id);
+  Navigator.of(context).pushNamedAndRemoveUntil(
+      OnBoardingScreen.id, (Route<dynamic> route) => false);
+
 }
 
 pushCategoriesPage(BuildContext context) async {
@@ -104,8 +104,6 @@ pushLogOutScreen(BuildContext context) async {
       });
 }
 
-
-
 pushDeleteNote(BuildContext context) async {
   showDialog(
       context: context,
@@ -113,6 +111,7 @@ pushDeleteNote(BuildContext context) async {
         return const DeleteNoteScreen();
       });
 }
+
 pushCatergoriesSearchScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(

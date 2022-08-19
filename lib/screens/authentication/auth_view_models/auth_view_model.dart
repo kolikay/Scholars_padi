@@ -29,7 +29,7 @@ class AuthViewModel extends ChangeNotifier {
     if (response is Success) {
       
     
-      pushToOnboardingPage(context);
+      pushOnBoardingScreen(context);
 
       // pushToHomePage(context);
       setLoading(false);
