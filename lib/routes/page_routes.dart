@@ -104,6 +104,15 @@ pushLogOutScreen(BuildContext context) async {
       });
 }
 
+
+
+pushDeleteNote(BuildContext context) async {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const DeleteNoteScreen();
+      });
+}
 pushCatergoriesSearchScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
