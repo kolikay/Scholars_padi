@@ -31,16 +31,16 @@ Widget notebookfavScreen() {
     cardColor1: Colors.pink,
     cardDate: 'March 13, 2022  08:53AM',
     cardMessage: 'School Materials',
-    cardColor2: Colors.pinkAccent,
+    cardColor2: Color.fromARGB(255, 239, 120, 159),
   ),
       SizedBox(
         height: 15.h,
       ),
       const  MaterialCards(
-    cardColor1: Colors.yellow,
+    cardColor1: Colors.yellowAccent,
     cardDate: 'March 13, 2022  08:53AM',
     cardMessage: 'Revision Materials',
-    cardColor2: Colors.yellowAccent,
+    cardColor2: Color.fromARGB(255, 246, 239, 177),
   ),
     ]),
   );

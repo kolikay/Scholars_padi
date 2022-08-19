@@ -26,7 +26,7 @@ Widget materialfavScreen() {
       ),
       const MaterialCards(
         cardMessage:
-            'Gates Cambridges Scholarship Fund For Undergraduates Students',
+            'Gates Cambridges Scholarship Fund For Students',
       ),
       SizedBox(
         height: 15.h,
@@ -52,16 +52,16 @@ class MaterialCards extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 327,
-      height: 85.h,
+      height: 179.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(5.53.w),
         border: Border.all(color: Colors.black12),
       ),
-      child: Row(
+      child: Column(
         children: [
           Container(
-            width: 104.w,
-            height: 85.h,
+            width: 327.w,
+            height: 95.h,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(5.w),
@@ -76,11 +76,27 @@ class MaterialCards extends StatelessWidget {
             child: Container(
               color: Colors.white,
               child: Padding(
-                padding: EdgeInsets.all(10.0.w),
-                child: NormalText(
-                  text: cardMessage,
-                  color: Colors.black,
-                  size: 14.sp,
+                padding: EdgeInsets.all(9.0.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        SizedBox(
+                          width: 235.w,
+                          child: NormalText(
+                            text: cardMessage,
+                            color: Colors.black,
+                            size: 14.sp,
+                          ),
+                        ),
+                       const Icon(Icons.more_vert)
+                      ],
+                    ),
+                    NormalText(text: '22/7/2022', size: 12.sp,color: AppColor.dullBlack,)
+                  ],
                 ),
               ),
             ),
