@@ -4,8 +4,6 @@ import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
-import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
 class NoteBookScreen3 extends StatefulWidget {
   const NoteBookScreen3({

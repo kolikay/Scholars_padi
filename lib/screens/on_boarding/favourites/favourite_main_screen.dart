@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/screens/scholarships/scholarship_screen2.dart';
-import 'package:scholars_padi/screens/scholarships/scholarship_screen3.dart';
-import 'package:scholars_padi/screens/scholarships/scholarship_screen4.dart';
-import 'package:scholars_padi/screens/scholarships/scholarship_screen1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'favourite_screen1.dart';
+import 'allfavourite_screen.dart';
+import 'material_fav_screen.dart';
+import 'notebook_fav_screen.dart';
+import 'notice_board_fav_screen.dart';
 
 const Color darkBlue = Color.fromARGB(255, 18, 32, 47);
 
@@ -26,13 +25,13 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   int selectedPage = 0;
 
   List<Widget> pages = [
-    favouriteScreen1(),
-    favouriteScreen1(),
-    favouriteScreen1(),
-    favouriteScreen1(),
+    allfavouriteScreen(),
+    materialfavScreen(),
+    noticeboardfavScreen(),
+    notebookfavScreen(),
   ];
 
-  List<String> names = ['All', 'Material', 'Past Questions', 'Note Book'];
+  List<String> names = ['All', 'Material', 'Notice Board', 'Note Book'];
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -52,9 +51,7 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
               icon: const Icon(Icons.arrow_back_ios),
             ),
             secondAppIcon: IconButton(
-              onPressed: () {
-             
-              },
+              onPressed: () {},
               icon: const Icon(Icons.search),
             ),
           ),
@@ -84,8 +81,6 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                                   setState(() {
                                     selectedPage = i;
                                     selectedIndexNotifier.value = i;
-
-                          
                                   });
                                 }),
                         ],
@@ -94,7 +89,12 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
                   ],
                 ),
               ),
-              pages[selectedPage]
+              SizedBox(
+                height: 500.h,
+                child: ListView(
+                  children: [pages[selectedPage]],
+                ),
+              )
             ],
           ),
         ),
