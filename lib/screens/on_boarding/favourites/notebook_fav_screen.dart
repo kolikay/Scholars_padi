@@ -28,19 +28,19 @@ Widget notebookfavScreen() {
         height: 15.h,
       ),
       const  MaterialCards(
-    cardColor1: Colors.blue,
+    cardColor1: Colors.pink,
     cardDate: 'March 13, 2022  08:53AM',
     cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
+    cardColor2: Colors.pinkAccent,
   ),
       SizedBox(
         height: 15.h,
       ),
       const  MaterialCards(
-    cardColor1: Colors.blue,
+    cardColor1: Colors.yellow,
     cardDate: 'March 13, 2022  08:53AM',
     cardMessage: 'Revision Materials',
-    cardColor2: Color(0xffd1ecfa),
+    cardColor2: Colors.yellowAccent,
   ),
     ]),
   );
