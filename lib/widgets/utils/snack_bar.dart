@@ -8,23 +8,27 @@ class ShowSnackBar {
       String buttontext, GestureTapCallback onPressed) async {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(backgroundColor: Colors.black,
-        content: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            NormalText(
-              text: message,
-              color: Colors.white,
-              size: 16.sp,
-            ),
-            TextButton(
-              onPressed: onPressed,
-              child: NormalText(
-                text: buttontext,
+      duration: const Duration(seconds: 1),
+        content: SizedBox(
+          height: 40.h,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              NormalText(
+                text: message,
                 color: Colors.white,
                 size: 16.sp,
               ),
-            ),
-          ],
+              TextButton(
+                onPressed: onPressed,
+                child: NormalText(
+                  text: buttontext,
+                  color: Colors.white,
+                  size: 16.sp,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
