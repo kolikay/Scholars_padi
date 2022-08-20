@@ -61,7 +61,7 @@ dev_dependencies:
   #state management
   flutter_riverpod: ^1.0.1
   #App Responsivness
-  flutter_screenutil: 5.0.0+2
+  flutter_screenutil: 5.0.2
   #image picker
   image_picker: 0.8.3+1
 
