@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-
+import 'package:scholars_padi/routes/page_routes.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({Key? key}) : super(key: key);
@@ -34,7 +34,7 @@ class AboutUsScreen extends StatelessWidget {
                 left: 35,
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    pushOnBoardingScreen(context);
                   },
                   icon: const Icon(
                     Icons.close,
@@ -95,7 +95,7 @@ class AboutUsScreen extends StatelessWidget {
                         style: TextStyle(
                             height: 2.h,
                             fontSize: 14.sp,
-                            color: AppColor.dullerBlack,
+                            color: AppColor.dullBlack,
                             fontWeight: FontWeight.bold),
                       ),
                     ],

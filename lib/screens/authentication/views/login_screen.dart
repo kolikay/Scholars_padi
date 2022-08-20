@@ -115,6 +115,12 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                       height: 24.h,
                                     ),
                                     MyTextField(
+                                        validator: (val) {
+                                        if (val!.isEmpty) {
+                                          return 'The password Field is required';
+                                        }
+                                        return null;
+                                      },
                                         obcureText: _isObscure,
                                         keyBoardType: TextInputType.text,
                                         isPassword: true,
@@ -166,8 +172,11 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   text: 'Sign In',
                                   textSize: 14.sp,
                                   onPressed: () async {
-                                    // authViewModel.loginUser(login_url, context);
-                                    pushOnBoardingScreen(context);
+                                    if (_formKey.currentState!.validate()) {
+                                      authViewModel.loginUser(
+                                          'https://www.google.com/', context);
+                                    }
+                                    FocusScope.of(context).unfocus();
                                   },
                                 ),
                               ],

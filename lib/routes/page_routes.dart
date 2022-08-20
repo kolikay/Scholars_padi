@@ -49,11 +49,9 @@ pushToLoginPage(BuildContext context) async {
   );
 }
 
-
 pushOnBoardingScreen(BuildContext context) async {
   Navigator.of(context).pushNamedAndRemoveUntil(
       OnBoardingScreen.id, (Route<dynamic> route) => false);
-
 }
 
 pushCategoriesPage(BuildContext context) async {
@@ -182,4 +180,9 @@ pushNoteBookScreen3(BuildContext context) async {
       builder: (context) => const NoteBookScreen3(),
     ),
   );
+}
+
+logout(BuildContext context) async {
+  Navigator.of(context).pushNamedAndRemoveUntil(
+    LoginScreen.id, (Route<dynamic> route) => false);
 }

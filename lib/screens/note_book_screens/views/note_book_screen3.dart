@@ -112,7 +112,7 @@ class _NoteBookScreen3State extends State<NoteBookScreen3> {
         isVisible
             ? const Positioned(
                 right: 0,
-                top: 80,
+                top: 110,
                 child: MoreDialog(),
               )
             : const SizedBox()
@@ -137,8 +137,8 @@ class _MoreDialogState extends State<MoreDialog> {
     return Material(
       child: Container(
         color: AppColor.darkContainer,
-        height: 150.h,
-        width: 180.w,
+        height: 160.h,
+        width: 190.w,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -147,7 +147,7 @@ class _MoreDialogState extends State<MoreDialog> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 20.w,
+                  width: 10.w,
                 ),
                 IconButton(
                   onPressed: () {},
@@ -158,7 +158,7 @@ class _MoreDialogState extends State<MoreDialog> {
                   ),
                 ),
                 SizedBox(
-                  width: 20.w,
+                  width: 10.w,
                 ),
                 NormalText(
                   text: 'Share',
@@ -166,14 +166,14 @@ class _MoreDialogState extends State<MoreDialog> {
                 )
               ],
             ),
-            SizedBox(
-              height: 10.w,
-            ),
+            // SizedBox(
+            //   height: 10.w,
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 SizedBox(
-                  width: 20.w,
+                  width: 10.w,
                 ),
                 IconButton(
                   onPressed: () {
@@ -188,7 +188,7 @@ class _MoreDialogState extends State<MoreDialog> {
                   ),
                 ),
                 SizedBox(
-                  width: 20.w,
+                  width: 10.w,
                 ),
                 NormalText(
                   text: isFavourite ? 'Favourite' : 'Unfavourite',
@@ -196,9 +196,9 @@ class _MoreDialogState extends State<MoreDialog> {
                 )
               ],
             ),
-            SizedBox(
-              height: 10.w,
-            ),
+            // SizedBox(
+            //   height: 10.w,
+            // ),
             InkWell(
               onTap: () {
                 pushDeleteNote(context);
@@ -207,7 +207,7 @@ class _MoreDialogState extends State<MoreDialog> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   SizedBox(
-                    width: 20.w,
+                    width: 10.w,
                   ),
                   IconButton(
                     onPressed: () {
@@ -220,7 +220,7 @@ class _MoreDialogState extends State<MoreDialog> {
                     ),
                   ),
                   SizedBox(
-                    width: 20.w,
+                    width: 10.w,
                   ),
                   NormalText(
                     text: 'Delete',
@@ -251,7 +251,7 @@ class _DeleteNoteScreenState extends State<DeleteNoteScreen> {
     return Center(
       child: Dialog(
         child: SizedBox(
-          height: 150.h,
+          height: 155.h,
           width: 237.w,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -259,7 +259,7 @@ class _DeleteNoteScreenState extends State<DeleteNoteScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
-                  height: 14.h,
+                  height: 10.h,
                 ),
                 NormalText(
                   text: 'Delete',
@@ -267,14 +267,11 @@ class _DeleteNoteScreenState extends State<DeleteNoteScreen> {
                   size: 23.sp,
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 10.h,
                 ),
                 NormalText(
                   text: 'Are you sure you want to delete this note?',
                   color: AppColor.dullBlack,
-                ),
-                SizedBox(
-                  height: 14.h,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,

@@ -134,11 +134,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
               SizedBox(
                 height: 15.h,
               ),
-              DrawerIcons(
-                icon: Icons.share,
-                iconColor: Colors.black54,
-                imageName: 'Share',
-              ),
               SizedBox(
                 height: 15.h,
               ),

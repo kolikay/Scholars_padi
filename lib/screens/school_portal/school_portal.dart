@@ -104,7 +104,7 @@ class _SchoolPortalState extends State<SchoolPortal> {
               topRight: Radius.circular(20),
             ),
           ),
-          height: 364.h,
+          height: 370.h,
           child: Column(
             children: [
               SizedBox(
@@ -121,7 +121,7 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'Year of Establishment',
-                fontWeight: FontWeight.w500,
+                fontWeight: FontWeight.bold,
                 size: 16.sp,
               ),
               SizedBox(
@@ -129,7 +129,7 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'October 1972',
-                fontWeight: FontWeight.w500,
+        
                 size: 16.sp,
                 color: AppColor.dullerBlack,
               ),
@@ -146,7 +146,7 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'Ile-Ife, Osun State, Nigeria.',
-                fontWeight: FontWeight.bold,
+                
                 size: 16.sp,
                 color: AppColor.dullerBlack,
               ),
@@ -155,12 +155,11 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'www.eportal.oauife.edu.ng/login.php',
-                fontWeight: FontWeight.bold,
                 size: 16.sp,
                 color: AppColor.dullerBlack,
               ),
               SizedBox(
-                height: 24.h,
+                height: 20.h,
               ),
               ReuseableButton(
                 text: 'Copy Link',

@@ -9,14 +9,23 @@ import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/p
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
-
-
-
+import 'package:flutter/services.dart';
 
 
 void main() {
+  // add these lines
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  // run app
   runApp(const ProviderScope(child: MyApp()));
 }
+
+
+// void main() {
+//   runApp(const ProviderScope(child: MyApp()));
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,6 +35,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: () {
         return MaterialApp(
+          debugShowCheckedModeBanner: false,
           title: 'Skill Connect',
           theme: ThemeData(
             primarySwatch: Colors.blue,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
@@ -25,7 +26,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 24.h,),
+                SizedBox(
+                  height: 24.h,
+                ),
                 NormalText(
                   text: 'Log Out',
                   fontWeight: FontWeight.w500,
@@ -38,25 +41,45 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   color: AppColor.dullerBlack,
                   thickness: 1.h,
                 ),
-                SizedBox(height:14.h,),
-                NormalText(text: 'Are you sure you want to log out?', fontWeight: FontWeight.w600, color: AppColor.dullerBlack,),
-                SizedBox(height: 14.h,),
+                SizedBox(
+                  height: 14.h,
+                ),
+                NormalText(
+                  text: 'Are you sure you want to log out?',
+                  fontWeight: FontWeight.w600,
+                  color: AppColor.dullerBlack,
+                ),
+                SizedBox(
+                  height: 14.h,
+                ),
                 ReuseableButton(
                   text: 'Yes',
-                  onPressed: () {},
+                  onPressed: () {
+                    logout(context);
+                  },
                   backGroundColor: Colors.red,
                 ),
                 SizedBox(
                   height: 15.h,
                 ),
                 InkWell(
-                  onTap: (){},
+                  onTap: () {},
                   child: Container(
                     width: 220.w,
                     height: 50.h,
-                    child: Center(child: NormalText(text: 'No', fontWeight: FontWeight.w600,)),
+                    child: Center(
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: NormalText(
+                          text: 'No',
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(5),
                         border: Border.all(color: AppColor.dullBlack)),
                   ),
                 ),

@@ -174,7 +174,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       scafoldKey.currentState!.openDrawer();
                     },
                     secondButton: () {
-                      pushCategoriesPage(context);
+                      pushCatergoriesSearchScreen(context);
                     },
                   ),
                 ),
@@ -238,7 +238,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                 pushMaterialScreen(context);
                               }),
                               HomeConstants.newInkwell(context, 'Past Question',
-                                  'lib/assets/pastQuestion.png', () {}),
+                                  'lib/assets/pastQuestion.png', () {
+
+                                  }),
                               HomeConstants.newInkwell(context, 'Scheduler',
                                   'lib/assets/schduler.png', () {}),
                               HomeConstants.newInkwell(context, 'Note Book',
@@ -257,7 +259,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                                   'lib/assets/chat.png', () {}),
                               HomeConstants.newInkwell(
                                   context, 'More', 'lib/assets/more.jpg', () {
-                                pushSchoolPortalScreen(context);
+                                 pushCategoriesPage(context);
                               }),
                             ],
                           ),
@@ -280,14 +282,14 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         ],
                       ),
                       const ReuseableCards(
-                        date: 'jan',
+                        date: '2nd january, 2022',
                         note:
-                            'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+                            'Added New Notes',
                       ),
                       const ReuseableCards(
-                        date: 'jan',
+                        date: '5th My, 2022',
                         note:
-                            'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+                            'Visited, www.eportal.oauife.edu.ng/login.php',
                       ),
                     ],
                   ),
