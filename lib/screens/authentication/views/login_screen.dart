@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
@@ -22,7 +20,6 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +177,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                       'https://www.google.com/', context);
                                 }
                                 FocusScope.of(context).unfocus();
+                                // pushOnBoardingScreen(context);
                               },
                             ),
                           ],
