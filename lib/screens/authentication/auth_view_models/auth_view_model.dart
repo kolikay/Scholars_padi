@@ -1,9 +1,13 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
+
+
+
+
+
 
 class AuthViewModel extends ChangeNotifier {
   bool _loading = false;
@@ -23,12 +27,11 @@ class AuthViewModel extends ChangeNotifier {
 
   loginUser(url, context) async {
     setLoading(true);
-
-    final response = await WebServices.sendRequest(url, context);
+    final response = await WebServices.sendPostRequest(url,  {}, context);
+    
 
     if (response is Success) {
       
-    
       pushOnBoardingScreen(context);
 
       // pushToHomePage(context);
