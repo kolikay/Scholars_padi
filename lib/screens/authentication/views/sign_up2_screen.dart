@@ -14,7 +14,7 @@ import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 class SignUpScreen2 extends ConsumerStatefulWidget {
   final String fullName;
   final String userName;
-  final String? faculty;
+  final String faculty;
   final String? department;
   final String gender;
 
@@ -23,7 +23,7 @@ class SignUpScreen2 extends ConsumerStatefulWidget {
     required this.fullName,
     required this.userName,
     this.department,
-    this.faculty,
+    required this.faculty,
     required this.gender,
   }) : super(key: key);
   @override
@@ -43,7 +43,10 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
       "username": widget.userName.trim(),
       "gender": widget.gender.trim(),
       "email": _emailCont.text.trim(),
+      "faculty": widget.faculty.trim(),
       "password_hash": _password1Cont.text.trim(),
+
+      
     };
     return body;
   }
@@ -164,12 +167,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
                           textSize: 14.sp,
                           text: 'Sign Up',
                           onPressed: () {
-                            authViewModel.registerUser(
-                                '$baseApi/account/register',
-                                getInputedData(),
-                                context);
-
-                            if (_formKey.currentState!.validate()) {}
+                            if (_formKey.currentState!.validate()) {
+                              authViewModel.registerUser(
+                                  '$baseApi/account/register',
+                                  getInputedData(),
+                                  context);
+                            }
                             FocusScope.of(context).unfocus();
                           },
                         ),

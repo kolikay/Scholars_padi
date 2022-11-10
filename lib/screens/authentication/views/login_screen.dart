@@ -3,8 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/screens/authentication/views/verify_otp_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
@@ -176,7 +178,6 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               text: 'Sign In',
                               textSize: 14.sp,
                               onPressed: () async {
-                              
                                 if (_formKey.currentState!.validate()) {
                                   authViewModel.loginUser(
                                       '$baseApi/account/login',

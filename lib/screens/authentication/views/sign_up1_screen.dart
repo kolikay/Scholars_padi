@@ -20,7 +20,6 @@ class _SignUpScreenState extends State<SignUpScreen1> {
   final _facultyCont = TextEditingController();
   final _departmentCont = TextEditingController();
 
-
 // Initial Selected Value
   String dropdownvalue = 'Male';
 
@@ -100,6 +99,12 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 24.h,
                             ),
                             MyTextField(
+                                validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'Field Cannot be empty';
+                                }
+                                return null;
+                              },
                               controller: _facultyCont,
                               obcureText: false,
                               keyBoardType: TextInputType.text,
@@ -118,43 +123,42 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isReadOnly: false,
                               labelText: 'Department',
                             ),
-                              SizedBox(
+                            SizedBox(
                               height: 24.h,
                             ),
-                             Container(
-                      padding: const EdgeInsets.only(left: 20),
-                      width: 343.w,
-                      height: 55.h,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        border: Border.all(width: 0.5, color: Colors.black),
-                        borderRadius: BorderRadius.circular(5.r),
-                      ),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          isDense: false,
-                          isExpanded: true,
-                          // Initial Value
-                          value: dropdownvalue,
-                          // Down Arrow Icon
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          // Array list of items
-                          items: genders.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items),
-                            );
-                          }).toList(),
-                          // After selecting the desired option,it will
-                          // change button value to selected value
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              dropdownvalue = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10),
+                              width: 343.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(3.r),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  isDense: false,
+                                  isExpanded: true,
+                                  // Initial Value
+                                  value: dropdownvalue,
+                                  // Down Arrow Icon
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  // Array list of items
+                                  items: genders.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  // After selecting the desired option,it will
+                                  // change button value to selected value
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownvalue = newValue!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
                           ],
                         )),
                     SizedBox(

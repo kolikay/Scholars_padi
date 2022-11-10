@@ -10,16 +10,14 @@ class ReuseableInfoWidget extends StatelessWidget {
   final String bottonText;
   final GestureTapCallback onPressed;
 
-
-  const ReuseableInfoWidget(
-      {Key? key,
-      required this.logo,
-      required this.maintext,
-      required this.detailsText,
-      required this.bottonText,
-      required this.onPressed,
-})
-      : super(key: key);
+  const ReuseableInfoWidget({
+    Key? key,
+    required this.logo,
+    required this.maintext,
+    required this.detailsText,
+    required this.bottonText,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,23 +37,31 @@ class ReuseableInfoWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 32.h,
+              height: 22.h,
             ),
             NormalText(
               text: maintext,
               size: 23.h,
               fontWeight: FontWeight.w600,
             ),
-             SizedBox(
+            SizedBox(
               height: 28.h,
             ),
             Container(
-              padding: EdgeInsets.symmetric(vertical: 18.h , horizontal: 18.h),
-              child: NormalText(text: detailsText, size: 14.sp, textAlign: TextAlign.center,),
-            ),  SizedBox(
-              height: 48.h,
+                width: 324.w,
+                height: 120.h,
+                padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 18.h),
+                child: Text(
+                  detailsText,
+                  style:
+                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
+                  textAlign: TextAlign.center,
+                )),
+            SizedBox(
+              height: 38.h,
             ),
-            ReuseableButton(text: bottonText,textSize: 14, onPressed: onPressed),
+            ReuseableButton(
+                text: bottonText, textSize: 14, onPressed: onPressed),
           ],
         ),
       ),

@@ -162,7 +162,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           ),
           ReuseableButton(
             backGroundColor:
-                _isActive ? AppColor.mainColor : AppColor.dullBlack,
+                AppColor.mainColor,
             isActive: _isActive,
             text: 'Verify',
             textSize: 14.sp,
@@ -170,7 +170,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => 
-                  
                  ReuseableInfoWidget(
                     bottonText: 'Proceed to login',
                     onPressed: () {
@@ -183,7 +182,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                     logo: 'lib/assets/emailVerifyIcon.png',
                     maintext: 'Email Verified',
                     detailsText:
-                        'Your account has been verified successfully,Please login to continue.',
+                        'Your account has been verified successfully, Please login to continue.',
                   ),
                 ),
               );

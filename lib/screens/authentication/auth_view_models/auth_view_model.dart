@@ -1,12 +1,11 @@
 // import 'dart:io';
-import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
+
 import 'package:scholars_padi/screens/authentication/views/verify_otp_screen.dart';
 import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
-
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
 
 class AuthViewModel extends ChangeNotifier {
@@ -51,7 +50,6 @@ class AuthViewModel extends ChangeNotifier {
     final response = await WebServices.sendPostRequest(url, body, context);
 
     if (response is Success) {
-      print(response.response);
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => ReuseableInfoWidget(
@@ -66,7 +64,7 @@ class AuthViewModel extends ChangeNotifier {
             logo: 'lib/assets/verifyIcon.png',
             maintext: 'Congratulations',
             detailsText:
-                'Your account has been successfully  created.\nKindly go to your email to verify your account\nIf you did not receive an email, you can resend one.',
+                'Your account has been successfully created. Kindly go to your email to verify your account. If you did not receive an email, you can resend one',
           ),
         ),
       );
