@@ -20,6 +20,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -105,6 +107,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     }
                                     return null;
                                   },
+                                  controller: emailController,
                                   obcureText: false,
                                   keyBoardType: TextInputType.emailAddress,
                                   isPassword: false,
@@ -121,6 +124,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                       }
                                       return null;
                                     },
+                                    controller: passwordController,
                                     obcureText: _isObscure,
                                     keyBoardType: TextInputType.text,
                                     isPassword: true,
@@ -172,9 +176,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               text: 'Sign In',
                               textSize: 14.sp,
                               onPressed: () async {
+                              
                                 if (_formKey.currentState!.validate()) {
                                   authViewModel.loginUser(
-                                      'https://www.google.com/', context);
+                                      '$baseApi/account/login',
+                                      {
+                                        "email": emailController.text.trim(),
+                                        "password":
+                                            passwordController.text.trim(),
+                                      },
+                                      context);
                                 }
                                 FocusScope.of(context).unfocus();
                                 // pushOnBoardingScreen(context);

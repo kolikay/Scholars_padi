@@ -70,6 +70,7 @@ dev_dependencies:
 
   #sending request
   dio: ^4.0.6
+  universal_io: ^2.0.4
 
   #manage local state
   shared_preferences: ^2.0.15

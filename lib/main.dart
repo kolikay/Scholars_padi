@@ -45,7 +45,7 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.blue,
           ),
-           home: const LandingPage(),
+           home: const LoginScreen(),
         routes: {
           HomePageScreen.id: (context) => const HomePageScreen(),
           CatergoriesSearchScreen.id: (context) => const CatergoriesSearchScreen(),

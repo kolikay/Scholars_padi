@@ -1,5 +1,3 @@
-
-
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:convert';
@@ -13,51 +11,45 @@ import 'package:dio/dio.dart';
 
 import '../constants/shared_preferences.dart';
 
-
-
-
 class WebServices {
   final dio = Dio();
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
     final token = UserPreferences.getToken();
-    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
- 
-    if (isConnected) {
-      try {
-        final response = await Dio().post(url, data: jsonEncode(body), options: Options(headers: header));
 
-        if (response.statusCode == 200) {
-          return Success(code: response.statusCode, response: response.data);
-        } else if (response.statusCode == 201) {
-          return Success(code: response.statusCode, response: response.data);
-        }
-      } on DioError catch (error) {
-        // Handle error and display on snackbar
+    // if (isConnected) {
+    try {
+      final response = await Dio()
+          .post(url, data: jsonEncode(body), options: Options(headers: header));
 
-        ShowSnackBar.buildErrorSnackbar(
-            context, error.response!.data.toString(), Colors.pink[100]!);
-        return Failure(
-            code: error.response!.statusCode,
-            errorResponse: {'error': error.response!.data.toString()});
+      if (response.statusCode == 200) {
+        return Success(code: response.statusCode, response: response.data);
+      } else if (response.statusCode == 201) {
+        return Success(code: response.statusCode, response: response.data);
       }
-      //push to no internet screen if isConnected is false
-    } else {
-      pushToNoInternetPage(context);
+    } on DioError catch (error) {
+      // Handle error and display on snackbar
+
+      ShowSnackBar.buildErrorSnackbar(
+          context, error.response!.data.toString(), Colors.pink[100]!);
       return Failure(
-          code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+          code: error.response!.statusCode,
+          errorResponse: {'error': error.response!.data.toString()});
     }
+    //push to no internet screen if isConnected is false
+    // } else {
+    //   pushToNoInternetPage(context);
+    //   return Failure(
+    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+    // }
   }
-
-
-
-
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
@@ -92,13 +84,9 @@ class WebServices {
     }
   }
 
-
-
-
-
 //handles patch requests
   static Future sendPatchRequest(String url, Object body, context) async {
-    final token =  UserPreferences.getToken();
+    final token = UserPreferences.getToken();
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
@@ -121,9 +109,9 @@ class WebServices {
         // Handle error
         ShowSnackBar.buildErrorSnackbar(
             context, error.response!.data.toString(), Colors.pink[100]!);
-        return Failure(
-            code: error.response!.statusCode,
-            errorResponse: {'error': error.response!.data.toString(),});
+        return Failure(code: error.response!.statusCode, errorResponse: {
+          'error': error.response!.data.toString(),
+        });
       }
       //push to no internet screen if isConnected is false
     } else {
@@ -133,14 +121,8 @@ class WebServices {
     }
   }
 
-
-
-  
-
   //handles patch requests
   static Future uploadImageToApi(String url, File? image, context) async {
-
-
     final token = UserPreferences.getToken();
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
