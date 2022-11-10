@@ -51,7 +51,7 @@ class ReuseableInfoWidget extends StatelessWidget {
             ),
             Container(
               padding: EdgeInsets.symmetric(vertical: 18.h , horizontal: 18.h),
-              child: NormalText(text: detailsText, size: 14.sp,),
+              child: NormalText(text: detailsText, size: 14.sp, textAlign: TextAlign.center,),
             ),  SizedBox(
               height: 48.h,
             ),

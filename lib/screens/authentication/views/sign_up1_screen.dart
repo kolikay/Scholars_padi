@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/authentication/views/sign_up2_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
@@ -18,6 +19,17 @@ class _SignUpScreenState extends State<SignUpScreen1> {
   final _usernameCont = TextEditingController();
   final _facultyCont = TextEditingController();
   final _departmentCont = TextEditingController();
+
+
+// Initial Selected Value
+  String dropdownvalue = 'Male';
+
+  // List of items in our dropdown menu
+  var genders = [
+    'Male',
+    'Female',
+    'Others',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +69,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               validator: (val) {
                                 if (val!.isEmpty) {
                                   return 'Field Cannot be empty';
-                                }return null;
+                                }
+                                return null;
                               },
                               controller: _fullnameCont,
                               obcureText: false,
@@ -104,7 +117,44 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isPassword: false,
                               isReadOnly: false,
                               labelText: 'Department',
-                            )
+                            ),
+                              SizedBox(
+                              height: 24.h,
+                            ),
+                             Container(
+                      padding: const EdgeInsets.only(left: 20),
+                      width: 343.w,
+                      height: 55.h,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(width: 0.5, color: Colors.black),
+                        borderRadius: BorderRadius.circular(5.r),
+                      ),
+                      child: DropdownButtonHideUnderline(
+                        child: DropdownButton(
+                          isDense: false,
+                          isExpanded: true,
+                          // Initial Value
+                          value: dropdownvalue,
+                          // Down Arrow Icon
+                          icon: const Icon(Icons.keyboard_arrow_down),
+                          // Array list of items
+                          items: genders.map((String items) {
+                            return DropdownMenuItem(
+                              value: items,
+                              child: Text(items),
+                            );
+                          }).toList(),
+                          // After selecting the desired option,it will
+                          // change button value to selected value
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              dropdownvalue = newValue!;
+                            });
+                          },
+                        ),
+                      ),
+                    ),
                           ],
                         )),
                     SizedBox(
@@ -125,6 +175,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                                     userName: _usernameCont.text,
                                     department: _departmentCont.text,
                                     faculty: _facultyCont.text,
+                                    gender: dropdownvalue,
                                   ),
                                 ),
                               );
