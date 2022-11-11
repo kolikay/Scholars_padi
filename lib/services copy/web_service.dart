@@ -8,7 +8,7 @@ import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:simple_connection_checker/simple_connection_checker.dart';
 import 'package:dio/dio.dart';
-import 'package:scholars_padi/constants/status_codes.dart';
+
 
 class WebServices {
   final dio = Dio();

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
@@ -55,7 +55,7 @@ class _LogOutScreenState extends State<LogOutScreen> {
                 ReuseableButton(
                   text: 'Yes',
                   onPressed: () {
-                    logout(context);
+                    AuthViewModel.instance.logOutUser(context);
                   },
                   backGroundColor: Colors.red,
                 ),
@@ -63,7 +63,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   height: 15.h,
                 ),
                 InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(context);
+                  },
                   child: Container(
                     width: 220.w,
                     height: 50.h,
