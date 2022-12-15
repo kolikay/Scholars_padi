@@ -19,6 +19,16 @@ class _SignUpScreenState extends State<SignUpScreen1> {
   final _facultyCont = TextEditingController();
   final _departmentCont = TextEditingController();
 
+// Initial Selected Value
+  String dropdownvalue = 'Male';
+
+  // List of items in our dropdown menu
+  var genders = [
+    'Male',
+    'Female',
+    'Others',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,7 +67,8 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               validator: (val) {
                                 if (val!.isEmpty) {
                                   return 'Field Cannot be empty';
-                                }return null;
+                                }
+                                return null;
                               },
                               controller: _fullnameCont,
                               obcureText: false,
@@ -87,6 +98,12 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 24.h,
                             ),
                             MyTextField(
+                                validator: (val) {
+                                if (val!.isEmpty) {
+                                  return 'Field Cannot be empty';
+                                }
+                                return null;
+                              },
                               controller: _facultyCont,
                               obcureText: false,
                               keyBoardType: TextInputType.text,
@@ -104,7 +121,43 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               isPassword: false,
                               isReadOnly: false,
                               labelText: 'Department',
-                            )
+                            ),
+                            SizedBox(
+                              height: 24.h,
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(left: 10),
+                              width: 343.w,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border.all(color: Colors.black),
+                                borderRadius: BorderRadius.circular(3.r),
+                              ),
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton(
+                                  isDense: false,
+                                  isExpanded: true,
+                                  // Initial Value
+                                  value: dropdownvalue,
+                                  // Down Arrow Icon
+                                  icon: const Icon(Icons.keyboard_arrow_down),
+                                  // Array list of items
+                                  items: genders.map((String items) {
+                                    return DropdownMenuItem(
+                                      value: items,
+                                      child: Text(items),
+                                    );
+                                  }).toList(),
+                                  // After selecting the desired option,it will
+                                  // change button value to selected value
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownvalue = newValue!;
+                                    });
+                                  },
+                                ),
+                              ),
+                            ),
                           ],
                         )),
                     SizedBox(
@@ -125,6 +178,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                                     userName: _usernameCont.text,
                                     department: _departmentCont.text,
                                     faculty: _facultyCont.text,
+                                    gender: dropdownvalue,
                                   ),
                                 ),
                               );

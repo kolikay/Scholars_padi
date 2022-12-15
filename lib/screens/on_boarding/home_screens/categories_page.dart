@@ -51,22 +51,31 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                     children: <Widget>[
                       HomeConstants.categoryCard(
                           context, 'Material', 'lib/assets/material.png', () {
-                    
+                        pushMaterialScreen(context);
                       }),
                       HomeConstants.categoryCard(context, 'Past Question',
                           'lib/assets/pastQuestion.png', () {}),
                       HomeConstants.categoryCard(context, 'Scheduler',
                           'lib/assets/schduler.png', () {}),
-                      HomeConstants.categoryCard(context, 'Note Book',
-                          'lib/assets/notebook.png', () {}),
-                      HomeConstants.categoryCard(context, 'Scholarships',
-                          'lib/assets/scholaship.png', () {}),
+                      HomeConstants.categoryCard(
+                          context, 'Note Book', 'lib/assets/notebook.png', () {
+                        pushNoteBookScreen1(context);
+                      }),
+                      HomeConstants.categoryCard(
+                          context, 'Scholarships', 'lib/assets/scholaship.png',
+                          () {
+                        pushScholarshipScreen(context);
+                      }),
                       HomeConstants.categoryCard(context, 'Notice Boards',
-                          'lib/assets/noticeBoard.png', () {}),
+                          'lib/assets/noticeBoard.png', () {
+                        pushNoticeScreen(context);
+                      }),
                       HomeConstants.categoryCard(
                           context, 'Chats', 'lib/assets/chat.png', () {}),
                       HomeConstants.categoryCard(context, 'School Portal',
-                          'lib/assets/schoolPortal.png', () {}),
+                          'lib/assets/schoolPortal.png', () {
+                        pushSchoolPortalScreen(context);
+                      }),
                       HomeConstants.categoryCard(context, 'School Calender',
                           'lib/assets/calender.png', () {}),
                     ]),

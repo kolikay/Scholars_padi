@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
-import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scholars_padi/screens/on_boarding/notifications/models/notification_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -11,25 +9,28 @@ class NotificationMaterialCards extends ConsumerStatefulWidget {
   final String cardTitle;
   final String cardDate;
   final String cardTime;
-  final Color? borderColor;
+  final Color borderColor;
+ final Color cardColor ;
   final ValueChanged<bool> isSelected;
 
-
-  const NotificationMaterialCards(
-      {Key? key,
-      required this.cardMessage,
-      required this.cardDate,
-      required this.cardTime,
-      required this.cardTitle,
-      required this.isSelected,
-      this.borderColor})
-      : super(key: key);
+  const NotificationMaterialCards({
+    Key? key,
+    required this.cardMessage,
+    required this.cardDate,
+    required this.cardTime,
+    required this.cardTitle,
+    required this.isSelected,
+   required this.borderColor,
+    required this.cardColor,
+  }) : super(key: key);
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => _NotificationMaterialCardsState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _NotificationMaterialCardsState();
 }
 
-class _NotificationMaterialCardsState extends ConsumerState<NotificationMaterialCards> {
+class _NotificationMaterialCardsState
+    extends ConsumerState<NotificationMaterialCards> {
   // to toggle card based on if it is selected or not
   bool selected = false;
 
@@ -47,17 +48,16 @@ class _NotificationMaterialCardsState extends ConsumerState<NotificationMaterial
         width: 327.w,
         height: 145.h,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5.53.w),
-          border: !selected
-              ? Border.all(
-                  color: Colors.black12,
-                )
-              : Border.all(
-                  color: AppColor.mainColor,
-                  width: 2.0,
-                  style: BorderStyle.solid),
-          color: const Color(0xffe1ccff),
-        ),
+            borderRadius: BorderRadius.circular(5.53.w),
+            border: !selected
+                ? Border.all(
+                    color: Colors.black12,
+                  )
+                : Border.all(
+                    color: AppColor.mainColor,
+                    width: 2.0,
+                    style: BorderStyle.solid),
+            color: widget.cardColor),
         child: Padding(
           padding: EdgeInsets.all(10.0.w),
           child: Column(

@@ -3,6 +3,8 @@ import 'package:scholars_padi/screens/authentication/views/sign_up1_screen.dart'
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/screens/landing_page_screens/no_internet.dart';
 import 'package:scholars_padi/screens/material/material_screen1.dart';
+import 'package:scholars_padi/screens/note_book_screens/views/nore_book_screen2.dart';
+import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen1.dart';
 import 'package:scholars_padi/screens/notice_board/notice_screen1.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_search_screen.dart';
@@ -13,8 +15,10 @@ import 'package:scholars_padi/screens/on_boarding/settings/log_out_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'package:scholars_padi/screens/scholarships/scholaships_main.dart';
+import 'package:scholars_padi/screens/school_portal/school_portal.dart';
 
 import '../screens/authentication/views/login_screen.dart';
+import '../screens/note_book_screens/views/note_book_screen3.dart';
 
 pushToNoInternetPage(BuildContext context) async {
   Navigator.push(
@@ -25,20 +29,34 @@ pushToNoInternetPage(BuildContext context) async {
   );
 }
 
-pushToOnboardingPage(BuildContext context) async {
+// pushToOnboardingPage(BuildContext context) async {
+//   Navigator.of(context).push(
+//     MaterialPageRoute(
+//       builder: (context) => const OnBoardingScreen(),
+//     ),
+//   );
+// }
+
+// pushToLoginPage(BuildContext context) async {
+//   Navigator.of(context).pushNamed(LoginScreen.id);
+// }
+
+pushToLoginPage(BuildContext context) async {
   Navigator.of(context).pushReplacement(
     MaterialPageRoute(
-      builder: (context) => const OnBoardingScreen(),
+      builder: (context) => const LoginScreen(),
     ),
   );
 }
 
-pushToLoginPage(BuildContext context) async {
-  Navigator.of(context).pushNamed(LoginScreen.id);
-}
+
 
 pushOnBoardingScreen(BuildContext context) async {
-  Navigator.pushNamed(context, OnBoardingScreen.id);
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const OnBoardingScreen(),
+    ),
+  );
 }
 
 pushCategoriesPage(BuildContext context) async {
@@ -89,6 +107,14 @@ pushLogOutScreen(BuildContext context) async {
       });
 }
 
+pushDeleteNote(BuildContext context) async {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return const DeleteNoteScreen();
+      });
+}
+
 pushCatergoriesSearchScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
@@ -124,7 +150,40 @@ pushNoticeScreen(BuildContext context) async {
 pushNotificationScreen(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) =>const NotificationScreen(),
+      builder: (context) => const NotificationScreen(),
     ),
   );
 }
+
+pushSchoolPortalScreen(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const SchoolPortal(),
+    ),
+  );
+}
+
+pushNoteBookScreen1(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const NoteBookScreen1(),
+    ),
+  );
+}
+
+pushNoteBookScreen2(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const NoteBookScreen2(),
+    ),
+  );
+}
+
+pushNoteBookScreen3(BuildContext context) async {
+  Navigator.of(context).push(
+    MaterialPageRoute(
+      builder: (context) => const NoteBookScreen3(),
+    ),
+  );
+}
+

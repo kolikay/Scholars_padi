@@ -1,28 +1,32 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'homepage_constant_widgets.dart';
 
-class HomePageScreen extends StatefulWidget {
+class HomePageScreen extends ConsumerStatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
 
   static const String id = 'homepage_screen';
 
   @override
-  State<HomePageScreen> createState() => _HomePageScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomePageScreenState();
 }
 
-class _HomePageScreenState extends State<HomePageScreen> {
+class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
 
   @override
   Widget build(BuildContext context) {
+    //user data update notifire
+    final userApiData = ref.watch(userProvider);
     return SafeArea(
       child: Scaffold(
         key: scafoldKey,
@@ -61,7 +65,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           height: 8.h,
                         ),
                         NormalText(
-                          text: 'Kolawole',
+                          text: userApiData.fullname ?? '',
                           size: 19.2.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -70,7 +74,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                           height: 8.h,
                         ),
                         NormalText(
-                          text: 'Kolawole@yahoo.com',
+                          text: userApiData.email ?? '',
                           size: 14.sp,
                           fontWeight: FontWeight.w500,
                           color: Colors.white,
@@ -146,6 +150,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
               DrawerIcons(
                 onPressed: () {
                   pushLogOutScreen(context);
+                 
                 },
                 icon: Icons.logout,
                 imageName: 'Logout',
@@ -174,7 +179,7 @@ class _HomePageScreenState extends State<HomePageScreen> {
                       scafoldKey.currentState!.openDrawer();
                     },
                     secondButton: () {
-                      pushCategoriesPage(context);
+                      pushCatergoriesSearchScreen(context);
                     },
                   ),
                 ),
@@ -242,7 +247,9 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               HomeConstants.newInkwell(context, 'Scheduler',
                                   'lib/assets/schduler.png', () {}),
                               HomeConstants.newInkwell(context, 'Note Book',
-                                  'lib/assets/notebook.png', () {}),
+                                  'lib/assets/notebook.png', () {
+                                pushNoteBookScreen1(context);
+                              }),
                               HomeConstants.newInkwell(context, 'Scholarships',
                                   'lib/assets/scholaship.png', () {
                                 pushScholarshipScreen(context);
@@ -253,8 +260,10 @@ class _HomePageScreenState extends State<HomePageScreen> {
                               }),
                               HomeConstants.newInkwell(context, 'Chats',
                                   'lib/assets/chat.png', () {}),
-                              HomeConstants.newInkwell(context, 'More',
-                                  'lib/assets/more.jpg', () {}),
+                              HomeConstants.newInkwell(
+                                  context, 'More', 'lib/assets/more.jpg', () {
+                                pushCategoriesPage(context);
+                              }),
                             ],
                           ),
                         ),
@@ -276,14 +285,12 @@ class _HomePageScreenState extends State<HomePageScreen> {
                         ],
                       ),
                       const ReuseableCards(
-                        date: 'jan',
-                        note:
-                            'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+                        date: '2nd january, 2022',
+                        note: 'Added New Notes',
                       ),
                       const ReuseableCards(
-                        date: 'jan',
-                        note:
-                            'jjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj',
+                        date: '5th My, 2022',
+                        note: 'Visited, www.eportal.oauife.edu.ng/login.php',
                       ),
                     ],
                   ),

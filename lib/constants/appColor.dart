@@ -7,9 +7,11 @@ class AppColor {
 
  static const Color mainColor = Color(0xff6200EE);
 
-static const Color dullBlack = Colors.black54;
+static const Color dullBlack = Colors.black;
 
-static const Color dullerBlack = Colors.black45;
+// static const Color dullerBlack = Color(0xffbfbfbf);
+
+static const Color dullerBlack = Colors.black;
 
 static const Color darkContainer = Color(0xffE5E5E5);
 

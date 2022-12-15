@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
+import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -91,7 +92,16 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    //profile picture update notifire
     final profileViewModel = ref.watch(profileViewModelProvider);
+
+    //user data update notifire
+    final userApiData = ref.watch(userProvider);
+
+    _email.text = userApiData.email ?? '';
+    _fullnameCont.text = userApiData.fullname ?? '';
+    _usernameCont.text = userApiData.username ?? '';
+
     return Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(103.h),
@@ -115,14 +125,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                 ),
                 child: IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    pushOnBoardingScreen(context);
                   },
-                  icon: onEdit
+                  icon: !onEdit
                       ? Icon(
                           Icons.arrow_back_ios,
                           size: 30.w,
                         )
-                      : Icon(Icons.cancel, size: 30.w),
+                      : Icon(Icons.close, size: 30.w),
                 ),
               ),
             ),
@@ -203,7 +213,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   height: 10.h,
                 ),
                 NormalText(
-                  text: 'Kolawole Johnson',
+                  text: userApiData.fullname!,
                   fontWeight: FontWeight.w500,
                   size: 19.2.sp,
                 ),
@@ -274,28 +284,30 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       SizedBox(
                         height: 24.h,
                       ),
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _password,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: !onEdit,
-                        labelText: 'Password',
-                        sufixIcon: IconButton(
-                          color: Colors.black54,
-                          icon: Icon(_isObscure
-                              ? Icons.visibility
-                              : Icons.visibility_off),
-                          onPressed: onEdit
-                              ? () {
-                                  setState(() {
-                                    _isObscure = !_isObscure;
-                                  });
-                                }
-                              : null,
-                        ),
-                      ),
+                      onEdit
+                          ? MyTextField(
+                              enable: onEdit,
+                              controller: _password,
+                              obcureText: false,
+                              keyBoardType: TextInputType.text,
+                              isPassword: false,
+                              isReadOnly: !onEdit,
+                              labelText: 'Password',
+                              sufixIcon: IconButton(
+                                color: Colors.black54,
+                                icon: Icon(_isObscure
+                                    ? Icons.visibility
+                                    : Icons.visibility_off),
+                                onPressed: onEdit
+                                    ? () {
+                                        setState(() {
+                                          _isObscure = !_isObscure;
+                                        });
+                                      }
+                                    : null,
+                              ),
+                            )
+                          : const SizedBox(),
                       SizedBox(
                         height: 24.h,
                       ),

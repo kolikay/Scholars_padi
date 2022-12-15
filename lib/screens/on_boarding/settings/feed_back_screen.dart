@@ -54,7 +54,7 @@ class _FeedBackScreenState extends State<FeedBackScreen> {
                       TextSpan(
                           text: 'For technical support,please ',
                           style: TextStyle(
-                              fontSize: 16.sp, fontWeight: FontWeight.bold)),
+                              fontSize: 16.sp, fontWeight: FontWeight.bold, color: AppColor.dullBlack)),
                       TextSpan(
                         text: 'Contact Us',
                         style: TextStyle(

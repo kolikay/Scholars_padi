@@ -208,10 +208,13 @@ class ReuseableCards extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      NormalText(
-                        text: note,
-                        size: 14.sp,
-                        fontWeight: FontWeight.w500,
+                      Padding(
+                        padding: const EdgeInsets.only(top:10.0),
+                        child: NormalText(
+                          text: note,
+                          size: 14.sp,
+                          fontWeight: FontWeight.w500,
+                        ),
                       ),
                       Container(
                         height: 10.h,

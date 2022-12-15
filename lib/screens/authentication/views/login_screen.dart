@@ -20,6 +20,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 class _LoginScreenState extends ConsumerState<LoginScreen> {
   bool _isObscure = true;
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,195 +29,225 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     return SafeArea(
       child: Scaffold(
-          body: !authViewModel.loading
-              ? SingleChildScrollView(
-                  child: Padding(
-                    padding:
-                        EdgeInsets.only(top: 40.h, left: 20.w, right: 20.w),
-                    child: Column(
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.only(top: 40.h, left: 20.w, right: 20.w),
+                child: Column(
+                  children: [
+                    SizedBox(
+                        height: 125.h,
+                        width: 121.21.w,
+                        child: Image.asset(
+                          'lib/assets/logo.png',
+                          fit: BoxFit.contain,
+                        )),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                            height: 125.h,
-                            width: 121.21.w,
-                            child: Image.asset(
-                              'lib/assets/logo.png',
-                              fit: BoxFit.contain,
-                            )),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 36.h,
-                            ),
-                            NormalText(
-                              text: 'Sign In',
-                              size: 23,
-                              fontWeight: FontWeight.w500,
-                            ),
-                            SizedBox(
-                              height: 5.h,
-                            ),
-                            NormalText(
-                              text: 'Enter your info to continue',
-                            ),
-                            SizedBox(
-                              height: 35.h,
-                            ),
-                            Visibility(
-                              visible: authViewModel.loginError,
-                              child: Container(
-                                color: Colors.pink[100],
-                                height: 100.h,
-                                child: Row(
-                                  children: [
-                                    SizedBox(
-                                      width: 5.h,
-                                    ),
-                                    SizedBox(
-                                        child: Icon(
-                                      Icons.ac_unit,
-                                      color: const Color(0xffD32f2f),
-                                      size: 24.w,
-                                    )),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    SizedBox(
-                                        child: NormalText(
-                                      text:
-                                          'we didnt recognize that email address \nor password you can try again or use\n another login option',
-                                      color: Colors.black54,
-                                      size: 14.sp,
-                                    )),
-                                  ],
+                          height: 36.h,
+                        ),
+                        NormalText(
+                          text: 'Sign In',
+                          size: 23,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        SizedBox(
+                          height: 5.h,
+                        ),
+                        NormalText(
+                          text: 'Enter your info to continue',
+                        ),
+                        SizedBox(
+                          height: 35.h,
+                        ),
+                        Visibility(
+                          visible: authViewModel.loginError,
+                          child: Container(
+                            color: Colors.pink[100],
+                            height: 100.h,
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 5.h,
                                 ),
-                              ),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            Form(
-                                key: _formKey,
-                                child: Column(
-                                  children: [
-                                    MyTextField(
-                                      validator: (val) {
-                                        if (val!.isEmpty) {
-                                          return 'The Email Field is required';
-                                        }
-                                        return null;
-                                      },
-                                      obcureText: false,
-                                      keyBoardType: TextInputType.emailAddress,
-                                      isPassword: false,
-                                      isReadOnly: false,
-                                      labelText: 'Email Address',
-                                    ),
-                                    SizedBox(
-                                      height: 24.h,
-                                    ),
-                                    MyTextField(
-                                        obcureText: _isObscure,
-                                        keyBoardType: TextInputType.text,
-                                        isPassword: true,
-                                        isReadOnly: false,
-                                        labelText: 'Enter Password',
-                                        sufixIcon: IconButton(
-                                            color: AppColor.dullBlack,
-                                            icon: Icon(_isObscure
-                                                ? Icons.visibility
-                                                : Icons.visibility_off),
-                                            onPressed: () {
-                                              setState(() {
-                                                _isObscure = !_isObscure;
-                                              });
-                                            })),
-                                  ],
+                                SizedBox(
+                                    child: Icon(
+                                  Icons.ac_unit,
+                                  color: const Color(0xffD32f2f),
+                                  size: 24.w,
                                 )),
-                            SizedBox(
-                              height: 16.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                TextButton(
-                                  onPressed: () {
-                                    pushEmailPasswordChangeScreen(context);
-                                  },
-                                  style: TextButton.styleFrom(
-                                    padding: EdgeInsets.zero,
-                                  ),
-                                  child: NormalText(
-                                    size: 14.sp,
-                                    text: 'Forgot Password?',
-                                    color: AppColor.mainColor,
-                                    fontWeight: FontWeight.w500,
-                                  ),
+                                const SizedBox(
+                                  width: 10,
                                 ),
+                                SizedBox(
+                                    child: NormalText(
+                                  text:
+                                      'we didnt recognize that email address \nor password you can try again or use\n another login option',
+                                  color: Colors.black54,
+                                  size: 14.sp,
+                                )),
                               ],
                             ),
-                            SizedBox(
-                              height: 40.h,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.h,
+                        ),
+                        Form(
+                            key: _formKey,
+                            child: Column(
                               children: [
-                                ReuseableButton(
-                                  height: 55.h,
-                                  width: 290.h,
-                                  text: 'Sign In',
-                                  textSize: 14.sp,
-                                  onPressed: () async {
-                                    // authViewModel.loginUser(login_url, context);
-                                    pushToOnboardingPage(context);
+                                MyTextField(
+                                  validator: (val) {
+                                    if (val!.isEmpty) {
+                                      return 'The Email Field is required';
+                                    }
+                                    return null;
                                   },
+                                  controller: emailController,
+                                  obcureText: false,
+                                  keyBoardType: TextInputType.emailAddress,
+                                  isPassword: false,
+                                  isReadOnly: false,
+                                  labelText: 'Email Address',
                                 ),
+                                SizedBox(
+                                  height: 24.h,
+                                ),
+                                MyTextField(
+                                    validator: (val) {
+                                      if (val!.isEmpty) {
+                                        return 'The password Field is required';
+                                      }
+                                      return null;
+                                    },
+                                    controller: passwordController,
+                                    obcureText: _isObscure,
+                                    keyBoardType: TextInputType.text,
+                                    isPassword: true,
+                                    isReadOnly: false,
+                                    labelText: 'Enter Password',
+                                    sufixIcon: IconButton(
+                                        color: AppColor.dullBlack,
+                                        icon: Icon(_isObscure
+                                            ? Icons.visibility
+                                            : Icons.visibility_off),
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure = !_isObscure;
+                                          });
+                                        })),
                               ],
+                            )),
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            TextButton(
+                              onPressed: () {
+                                pushEmailPasswordChangeScreen(context);
+                              },
+                              style: TextButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                              ),
+                              child: NormalText(
+                                size: 14.sp,
+                                text: 'Forgot Password?',
+                                color: AppColor.mainColor,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ],
                         ),
                         SizedBox(
-                          height: 70.h,
+                          height: 40.h,
                         ),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            TextButton(
-                              onPressed: () {
-                                pushSignUpScreen1(context);
+                            ReuseableButton(
+                              height: 55.h,
+                              width: 290.h,
+                              text: 'Sign In',
+                              textSize: 14.sp,
+                              onPressed: () async {
+                                if (_formKey.currentState!.validate()) {
+                                  authViewModel.loginUser(
+                                      '$baseApi/account/login',
+                                      {
+                                        "email": emailController.text.trim(),
+                                        "password":
+                                            passwordController.text.trim(),
+                                      },
+                                      context);
+                                }
+                                FocusScope.of(context).unfocus();
+                                // pushOnBoardingScreen(context);
                               },
-                              child: RichText(
-                                text: TextSpan(
-                                  style: TextStyle(
-                                    color: Colors.black87,
-                                    fontSize: 16.sp,
-                                  ),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: 'Dont have an account? ',
-                                        style: TextStyle(
-                                            color: AppColor.dullBlack,
-                                            fontSize: 14.sp)),
-                                    TextSpan(
-                                      text: 'Sign Up',
-                                      style: TextStyle(
-                                          color: AppColor.mainColor,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 16.sp),
-                                    ),
-                                  ],
-                                ),
-                              ),
                             ),
                           ],
                         ),
                       ],
                     ),
-                  ),
-                )
-              : const ProgressDialog(
-                  message: 'Loading....',
-                )),
+                    SizedBox(
+                      height: 70.h,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TextButton(
+                          onPressed: () {
+                            pushSignUpScreen1(context);
+                          },
+                          child: RichText(
+                            text: TextSpan(
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16.sp,
+                              ),
+                              children: <TextSpan>[
+                                TextSpan(
+                                    text: 'Dont have an account? ',
+                                    style: TextStyle(
+                                        color: AppColor.dullBlack,
+                                        fontSize: 14.sp)),
+                                TextSpan(
+                                  text: 'Sign Up',
+                                  style: TextStyle(
+                                      color: AppColor.mainColor,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 16.sp),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              child: authViewModel.loading
+                  ? const Center(
+                      child: ProgressDialog(
+                        message: 'Loading....',
+                      ),
+                    )
+                  : const SizedBox(),
+            ),
+          ],
+        ),
+        // : const ProgressDialog(
+        //     message: 'Loading....',
+        //   ),
+      ),
     );
   }
 }
