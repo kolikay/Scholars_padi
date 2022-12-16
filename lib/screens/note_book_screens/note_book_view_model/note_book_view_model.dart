@@ -44,6 +44,7 @@ class NoteViewModel extends ChangeNotifier {
   searchNote(NoteModel note) {
     oneNoteFromServer.content = note.content;
     oneNoteFromServer.title = note.title;
+    oneNoteFromServer.createdAt = note.createdAt;
   }
 
 //Save Notes  funtions

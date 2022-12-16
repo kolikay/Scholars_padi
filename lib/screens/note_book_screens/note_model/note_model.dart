@@ -17,16 +17,19 @@ class NoteModel extends ChangeNotifier {
     this.title,
     this.content,
     this.isFav,
+    this.createdAt,
   });
 
   String? title;
   String? content;
   bool? isFav;
+  String? createdAt;
 
   factory NoteModel.fromJson(Map<String, dynamic> json) => NoteModel(
         title: json["title"],
         content: json["content"],
         isFav: json["isFav"],
+        createdAt: json["created_at"],
       );
 
   Map<String, dynamic> toJson() => {

@@ -91,7 +91,7 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         NormalText(
-                          text: 'March 27, 2022 08:00pm',
+                          text: notes.oneNoteFromServer.createdAt ?? '',
                           color: AppColor.dullerBlack,
                           size: 12.sp,
                         ),
