@@ -3,7 +3,7 @@ import 'package:scholars_padi/screens/authentication/views/sign_up1_screen.dart'
 import 'package:scholars_padi/screens/change_password/email_password_change_screen.dart';
 import 'package:scholars_padi/screens/landing_page_screens/no_internet.dart';
 import 'package:scholars_padi/screens/material/material_screen1.dart';
-import 'package:scholars_padi/screens/note_book_screens/views/nore_book_screen2.dart';
+import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen2.dart';
 import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen1.dart';
 import 'package:scholars_padi/screens/notice_board/notice_screen1.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
@@ -182,7 +182,7 @@ pushNoteBookScreen2(BuildContext context) async {
 pushNoteBookScreen3(BuildContext context) async {
   Navigator.of(context).push(
     MaterialPageRoute(
-      builder: (context) => const NoteBookScreen3(),
+      builder: (context) =>const NoteBookScreen3(),
     ),
   );
 }

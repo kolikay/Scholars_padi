@@ -61,22 +61,21 @@ class WebServices {
       'Authorization': 'Bearer $token',
     };
     // if (isConnected) {
-      try {
-        final response =
-            await Dio().get(url, options: Options(headers: header));
+    try {
+      final response = await Dio().get(url, options: Options(headers: header));
 
-        if (response.statusCode == 200) {
-          return Success(code: response.statusCode, response: response.data);
-        }
-      } on DioError catch (error) {
-        // Handle error
-        ShowSnackBar.buildErrorSnackbar(
-            context, error.response!.data.toString(), Colors.pink[100]!);
-        return Failure(
-            code: error.response!.statusCode,
-            errorResponse: {'error': error.response!.data.toString()});
+      if (response.statusCode == 200) {
+        return Success(code: response.statusCode, response: response.data);
       }
-      //push to no internet screen if isConnected is false
+    } on DioError catch (error) {
+      // Handle error
+      ShowSnackBar.buildErrorSnackbar(
+          context, error.response!.data.toString(), Colors.pink[100]!);
+      return Failure(
+          code: error.response!.statusCode,
+          errorResponse: {'error': error.response!.data.toString()});
+    }
+    //push to no internet screen if isConnected is false
     // } else {
     //   pushToNoInternetPage(context);
     //   return Failure(
@@ -171,22 +170,27 @@ class WebServices {
       'Authorization': 'Bearer $token',
     };
     // if (isConnected) {
-      try {
-        final response =
-            await Dio().delete(url, options: Options(headers: header));
+    try {
+      final response =
+          await Dio().delete(url, options: Options(headers: header));
 
-        if (response.statusCode == 200) {
-          return Success(code: response.statusCode, response: response.data);
-        }
-      } on DioError catch (error) {
-        // Handle error
-        ShowSnackBar.buildErrorSnackbar(
-            context, error.response!.data.toString(), Colors.pink[100]!);
-        return Failure(
-            code: error.response!.statusCode,
-            errorResponse: {'error': error.response!.data.toString()});
+      if (response.statusCode == 200 ||
+          response.statusCode == 202 ||
+          response.statusCode == 201
+          ) {
+        return Success(code: response.statusCode, response: response.data);
+      } else {
+        return Failure(code: 402, errorResponse: {'failed':"failed"});
       }
-      //push to no internet screen if isConnected is false
+    } on DioError catch (error) {
+      // Handle error
+      ShowSnackBar.buildErrorSnackbar(
+          context, error.response!.data.toString(), Colors.pink[100]!);
+      return Failure(
+          code: error.response!.statusCode,
+          errorResponse: {'error': error.response!.data.toString()});
+    }
+    //push to no internet screen if isConnected is false
     // } else {
     //   pushToNoInternetPage(context);
     //   return Failure(

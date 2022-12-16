@@ -2,79 +2,41 @@
 
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/screens/note_book_screens/note_book_view_model/note_book_view_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-List<MaterialCards> card = List.of(allCards);
-
-List<MaterialCards> allCards = [
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'About Dubai',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color(0xffd1ecfa),
-  ),
-];
-
-class NoteBookScreen1 extends StatefulWidget {
+class NoteBookScreen1 extends ConsumerStatefulWidget {
   const NoteBookScreen1({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<NoteBookScreen1> createState() => _NoteBookScreen1State();
+  ConsumerState<NoteBookScreen1> createState() => _NoteBookScreen1State();
 }
 
-class _NoteBookScreen1State extends State<NoteBookScreen1> {
+class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
   bool isVisible = false;
+  final searchController = TextEditingController();
+
+  @override
+  void initState() {
+    NoteViewModel.instance.getSavedNotes(context);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
+    //user data update notifire
+    final notes = ref.watch(noteViewModelProvider);
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(103.h),
@@ -95,237 +57,229 @@ class _NoteBookScreen1State extends State<NoteBookScreen1> {
           ),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        height: 812.h,
-        color: AppColor.darkContainer,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.w),
-          child: Center(
-            child: Column(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // SizedBox(
-                //   height: 120.h,
-                //   width: 120.h,
-                //   child: Icon(
-                //     Icons.note_alt_outlined,
-                //     size: 120.h,
-                //     color: AppColor.dullerBlack,
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 20.h,
-                // ),
-                // NormalText(
-                //   text: 'Make your life organized by recording daily notes',
-                //   size: 16.sp,
-                //   color: AppColor.dullerBlack,
-                // ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                Expanded(
-                  child: SizedBox(
-                    child: ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) =>
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                        itemCount: card.length,
-                        itemBuilder: (context, index) {
-                          final materialCard = card[index];
-                          return Slidable(
-                            actionExtentRatio: 0.25,
-                            actionPane: const SlidableDrawerActionPane(),
-                            secondaryActions: <Widget>[
-                              IconSlideAction(
-                                caption: 'Delete',
-                                color: Colors.red,
-                                icon: Icons.delete,
-                                onTap: () {
-                                  onDismissed(index);
-                                },
-                              )
-                            ],
-                            child: MaterialCards(
-                                ontap: () {
-                                  pushNoteBookScreen3(context);
-                                },
-                                cardMessage: materialCard.cardMessage,
-                                cardDate: materialCard.cardDate,
-                                cardColor1: materialCard.cardColor1,
-                                cardColor2: materialCard.cardColor2),
-                          );
-                        }),
-                  ),
-                ),
-                SizedBox(
-                  height: 200,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      SizedBox(
-                        height: 10.h,
+      body: Stack(
+        children: [
+          Container(
+            width: double.infinity,
+            height: 812.h,
+            color: AppColor.darkContainer,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
+              child: Center(
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    Expanded(
+                      child: SizedBox(
+                        child: ListView.separated(
+                            separatorBuilder:
+                                (BuildContext context, int index) => SizedBox(
+                                      height: 10.h,
+                                    ),
+                            itemCount: notes.noteFromServer.length,
+                            itemBuilder: (context, index) {
+                              // final materialCard = card[index];
+                              return Slidable(
+                                actionExtentRatio: 0.25,
+                                actionPane: const SlidableDrawerActionPane(),
+                                secondaryActions: <Widget>[
+                                  IconSlideAction(
+                                    caption: 'Delete',
+                                    color: Colors.red,
+                                    icon: Icons.delete,
+                                    onTap: () {
+                                       onDismissed(ref, notes.noteFromServer[index].title);
+                                    },
+                                  )
+                                ],
+                                child: MaterialCards(
+                                  ontap: () {
+                                    notes.getSingleNotes(
+                                        context,
+                                        notes.noteFromServer[index].title ??
+                                            '');
+                                    pushNoteBookScreen3(context);
+                                  },
+                                  cardMessage:
+                                      notes.noteFromServer[index].title!,
+                                  cardDate: DateTime.now().toString(),
+                                ),
+                              );
+                            }),
                       ),
-                      !isVisible
-                          ? const SizedBox(
-                              height: 60,
-                            )
-                          : Visibility(
-                              visible: isVisible,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                    ),
+                    SizedBox(
+                      height: 200,
+                      width: double.infinity,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          !isVisible
+                              ? const SizedBox(
+                                  height: 60,
+                                )
+                              : Visibility(
+                                  visible: isVisible,
+                                  child: Column(
                                     children: [
-                                      Container(
-                                          height: 32.h,
-                                          width: 56.h,
-                                          color: Colors.black87,
-                                          child: Center(
-                                              child: NormalText(
-                                                  text: 'Note',
-                                                  color: Colors.white))),
-                                      const SizedBox(
-                                        width: 15,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
-                                      InkWell(
-                                        onTap: () {
-                                          pushNoteBookScreen2(context);
-                                        },
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppColor.mainColor,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                              height: 32.h,
+                                              width: 56.h,
+                                              color: Colors.black87,
+                                              child: Center(
+                                                  child: NormalText(
+                                                      text: 'Note',
+                                                      color: Colors.white))),
+                                          const SizedBox(
+                                            width: 15,
                                           ),
-                                          height: 36.h,
-                                          width: 36.w,
-                                          child: const Icon(
-                                            Icons.note_add,
-                                            color: Colors.white,
+                                          InkWell(
+                                            onTap: () {
+                                              pushNoteBookScreen2(context);
+                                            },
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: AppColor.mainColor,
+                                              ),
+                                              height: 36.h,
+                                              width: 36.w,
+                                              child: const Icon(
+                                                Icons.note_add,
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            width: 5.w,
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(
-                                        width: 5.w,
+                                        height: 10.h,
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                ],
-                              ),
-                            ),
-                      !isVisible
-                          ? const SizedBox(
-                              height: 60,
-                            )
-                          : Visibility(
-                              visible: isVisible,
-                              child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
+                                ),
+                          !isVisible
+                              ? const SizedBox(
+                                  height: 60,
+                                )
+                              : Visibility(
+                                  visible: isVisible,
+                                  child: Column(
                                     children: [
-                                      Container(
-                                          height: 32.h,
-                                          width: 76.h,
-                                          color: Colors.black87,
-                                          child: Center(
-                                              child: NormalText(
-                                                  text: 'Checklist',
-                                                  color: Colors.white))),
-                                      const SizedBox(
-                                        width: 15,
+                                      SizedBox(
+                                        height: 10.h,
                                       ),
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Container(
-                                          decoration: const BoxDecoration(
-                                            shape: BoxShape.circle,
-                                            color: AppColor.mainColor,
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          Container(
+                                              height: 32.h,
+                                              width: 76.h,
+                                              color: Colors.black87,
+                                              child: Center(
+                                                  child: NormalText(
+                                                      text: 'Checklist',
+                                                      color: Colors.white))),
+                                          const SizedBox(
+                                            width: 15,
                                           ),
-                                          height: 36.h,
-                                          width: 36.w,
-                                          child: const Icon(
-                                            Icons.checklist_outlined,
-                                            color: Colors.white,
+                                          InkWell(
+                                            onTap: () {},
+                                            child: Container(
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                color: AppColor.mainColor,
+                                              ),
+                                              height: 36.h,
+                                              width: 36.w,
+                                              child: const Icon(
+                                                Icons.checklist_outlined,
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            width: 5.w,
+                                          ),
+                                        ],
                                       ),
                                       SizedBox(
-                                        width: 5.w,
+                                        height: 10.h,
                                       ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                ],
+                                ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                isVisible = !isVisible;
+                              });
+                            },
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: AppColor.mainColor,
+                              ),
+                              height: 50.h,
+                              width: 50.w,
+                              child: Icon(
+                                !isVisible ? Icons.add : Icons.close,
+                                color: Colors.white,
                               ),
                             ),
-                      InkWell(
-                        onTap: () {
-                          setState(() {
-                            isVisible = !isVisible;
-                          });
-                        },
-                        child: Container(
-                          decoration: const BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: AppColor.mainColor,
                           ),
-                          height: 50.h,
-                          width: 50.w,
-                          child: Icon(
-                            !isVisible ? Icons.add : Icons.close,
-                            color: Colors.white,
-                          ),
-                        ),
+                        ],
                       ),
-                    ],
-                  ),
-                )
-              ],
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+          Positioned(
+            child: notes.loading
+                ? const Center(
+                    child: ProgressDialog(
+                      message: 'Loading....',
+                    ),
+                  )
+                : const SizedBox(),
+          ),
+        ],
       ),
     );
   }
 
-  void onDismissed(int index) {
-    setState(() {
-      card.removeAt(index);
-      ShowSnackBar.openSnackBar(context, 'Item Deleted', 'Undo', () {});
-    });
+  void onDismissed( WidgetRef ref, String noteTitle) {
+    final notes = ref.watch(noteViewModelProvider);
+    notes.deleteNote(context, noteTitle);
   }
 }
 
 class MaterialCards extends StatefulWidget {
   const MaterialCards(
-      {Key? key,
-      required this.cardMessage,
-      required this.cardDate,
-      required this.cardColor1,
-      required this.cardColor2,
-      this.ontap})
+      {Key? key, required this.cardMessage, required this.cardDate, this.ontap})
       : super(key: key);
 
   final String cardMessage;
   final String cardDate;
-  final Color cardColor1;
-  final Color cardColor2;
+
   final GestureTapCallback? ontap;
 
   @override
@@ -346,13 +300,13 @@ class _MaterialCardsState extends State<MaterialCards> {
         children: [
           Container(
             width: 5,
-            color: widget.cardColor1,
+            color: Colors.blue,
           ),
           Expanded(
             child: InkWell(
               onTap: widget.ontap,
               child: Container(
-                color: widget.cardColor2,
+                color: Color(0xffd1ecfa),
                 child: Padding(
                   padding: EdgeInsets.only(left: 10.h),
                   child: Column(

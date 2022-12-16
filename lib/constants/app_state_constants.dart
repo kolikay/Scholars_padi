@@ -3,15 +3,31 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/models/models.dart';
 import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
+import 'package:scholars_padi/screens/note_book_screens/note_book_view_model/note_book_view_model.dart';
 import 'package:scholars_padi/screens/on_boarding/notifications/notifications_view_models/notification_view_model.dart';
 
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_model/profile_view_model.dart';
 
+import '../screens/note_book_screens/note_model/note_model.dart';
+
 const baseApi = 'http://44.204.69.28/api';
 
+
+//auth view providers
 final authViewModelProvider = ChangeNotifierProvider<AuthViewModel>((ref) {
   return AuthViewModel.instance;
 });
+
+//note view providers
+final noteViewModelProvider = ChangeNotifierProvider<NoteViewModel>((ref) {
+  return NoteViewModel.instance;
+});
+
+
+
+
+
+
 
 final profileViewModelProvider =
     ChangeNotifierProvider<ProfileModelView>((ref) {
