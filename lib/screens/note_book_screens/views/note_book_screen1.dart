@@ -90,7 +90,9 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                     color: Colors.red,
                                     icon: Icons.delete,
                                     onTap: () {
-                                       onDismissed(ref, notes.noteFromServer[index].title);
+                                      notes.setLoading(true);
+                                      onDismissed(ref,
+                                          notes.noteFromServer[index].title);
                                     },
                                   )
                                 ],
@@ -266,7 +268,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
     );
   }
 
-  void onDismissed( WidgetRef ref, String noteTitle) {
+  void onDismissed(WidgetRef ref, String noteTitle) {
     final notes = ref.watch(noteViewModelProvider);
     notes.deleteNote(context, noteTitle);
   }
