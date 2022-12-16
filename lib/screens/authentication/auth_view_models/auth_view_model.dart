@@ -28,7 +28,6 @@ class AuthViewModel extends ChangeNotifier {
   bool get loginError => _loginError;
 
 // empty list to save user data from api
-
   List<UserModel> userData = [];
 
 //instance of usermodel
@@ -168,4 +167,7 @@ class AuthViewModel extends ChangeNotifier {
 
     setLoading(false);
   }
+
+
+
 }

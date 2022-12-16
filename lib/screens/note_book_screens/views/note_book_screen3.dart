@@ -1,121 +1,149 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
-class NoteBookScreen3 extends StatefulWidget {
+
+
+class NoteBookScreen3 extends ConsumerStatefulWidget {
+  
   const NoteBookScreen3({
     Key? key,
+  
   }) : super(key: key);
 
   @override
-  State<NoteBookScreen3> createState() => _NoteBookScreen3State();
+  ConsumerState<NoteBookScreen3> createState() => _NoteBookScreen3State();
 }
 
-class _NoteBookScreen3State extends State<NoteBookScreen3> {
+class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
   bool isVisible = false;
+
+  // @override
+  // void initState() {
+  //   NoteViewModel.instance.getSingleNotes(context, '');
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
+    final notes = ref.watch(noteViewModelProvider);
+
     return Stack(
       children: [
-        Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size.fromHeight(103.h),
-            child: InkWell(
-              onTap: () {
-                if (isVisible == true) {
-                  setState(() {
-                    isVisible = false;
-                  });
-                }
-              },
-              child: ReuseableAppBar1(
-                title: NormalText(
-                  text: 'About Dubai',
-                  color: Colors.white,
-                ),
-                firstAppIcon: IconButton(
-                  onPressed: () {
-                    Navigator.pop(context);
+        Stack(
+          children: [
+            Scaffold(
+              appBar: PreferredSize(
+                preferredSize: Size.fromHeight(103.h),
+                child: InkWell(
+                  onTap: () {
+                    if (isVisible == true) {
+                      setState(() {
+                        isVisible = false;
+                      });
+                    }
                   },
-                  icon: const Icon(Icons.arrow_back_ios),
+                  child: ReuseableAppBar1(
+                    title: NormalText(
+                      text: notes.oneNoteFromServer.title ?? '',
+                      color: Colors.white,
+                    ),
+                    firstAppIcon: IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
+                    secondAppIcon: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(Icons.edit),
+                    ),
+                    thirdAppIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          isVisible = !isVisible;
+                        });
+                      },
+                      icon: const Icon(Icons.more_vert),
+                    ),
+                  ),
                 ),
-                secondAppIcon: IconButton(
-                  onPressed: () {},
-                  icon: const Icon(Icons.edit),
-                ),
-                thirdAppIcon: IconButton(
-                  onPressed: () {
+              ),
+              body: InkWell(
+                onTap: () {
+                  if (isVisible == true) {
                     setState(() {
-                      isVisible = !isVisible;
+                      isVisible = false;
                     });
-                  },
-                  icon: const Icon(Icons.more_vert),
+                  }
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(24.0),
+                  child: SizedBox(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        NormalText(
+                          text: 'March 27, 2022 08:00pm',
+                          color: AppColor.dullerBlack,
+                          size: 12.sp,
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        NormalText(
+                          text: notes.oneNoteFromServer.title ?? '',
+                          size: 19.2,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        SizedBox(
+                          height: 15.h,
+                        ),
+                        NormalText(
+                          text:
+                              """Dubai is the capital city of the Emirate of Dubai, one of the wealthiest of the seven emirates that constitute the federation of the United Arab Emirates, which was created in 1971 following independence from Great Britain. 
+                
+                Dubai is a city of skyscrapers, ports, and  beaches, where big business takes place alongside sun-seeking tourism. Dubai is relatively crime-free place where administrative efficiency and openness to business have encouraged astounding growth.
+                
+                Dubai’s population has grown steadily over the past two centuries, from just a few thousand local inhabitants to well over two million.
+                
+                Dubai does not have an oil-based economy. Its electricity and water provisions have largely kept up with the city’s population growth.    
+                """,
+                          color: Colors.black87,
+                          size: 14.sp,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
-          body: InkWell(
-            onTap: () {
-              if (isVisible == true) {
-                setState(() {
-                  isVisible = false;
-                });
-              }
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(24.0),
-              child: SizedBox(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    NormalText(
-                      text: 'March 27, 2022 08:00pm',
-                      color: AppColor.dullerBlack,
-                      size: 12.sp,
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    NormalText(
-                      text: 'About Dubai',
-                      size: 19.2,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    SizedBox(
-                      height: 15.h,
-                    ),
-                    NormalText(
-                      text:
-                          """Dubai is the capital city of the Emirate of Dubai, one of the wealthiest of the seven emirates that constitute the federation of the United Arab Emirates, which was created in 1971 following independence from Great Britain. 
-            
-            Dubai is a city of skyscrapers, ports, and  beaches, where big business takes place alongside sun-seeking tourism. Dubai is relatively crime-free place where administrative efficiency and openness to business have encouraged astounding growth.
-            
-            Dubai’s population has grown steadily over the past two centuries, from just a few thousand local inhabitants to well over two million.
-            
-            Dubai does not have an oil-based economy. Its electricity and water provisions have largely kept up with the city’s population growth.    
-            """,
-                      color: Colors.black87,
-                      size: 14.sp,
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
+            isVisible
+                ? const Positioned(
+                    right: 0,
+                    top: 110,
+                    child: MoreDialog(),
+                  )
+                : const SizedBox()
+          ],
         ),
-        isVisible
-            ? const Positioned(
-                right: 0,
-                top: 110,
-                child: MoreDialog(),
-              )
-            : const SizedBox()
+        Positioned(
+          child: notes.loading
+              ? const Center(
+                  child: ProgressDialog(
+                    message: 'Loading....',
+                  ),
+                )
+              : const SizedBox(),
+        ),
       ],
     );
   }
