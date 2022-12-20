@@ -12,6 +12,7 @@ import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
 
 class AuthViewModel extends ChangeNotifier {
   static final AuthViewModel _instance = AuthViewModel._();
@@ -66,7 +67,6 @@ class AuthViewModel extends ChangeNotifier {
     if (response.code == 200 || response.code == 201) {
       // save login user token from api response
       UserPreferences.setLoginUerToken(response.response!['access_token']);
-
       // get logged in user details
       await getLoginUserData(context);
 
@@ -168,6 +168,23 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
+  //   Future getAllUsers(context) async {
+  //   var response = await WebServices.sendGetRequest(
+  //     baseApi,
+  //     context,
+  //   );
 
+  //   if (response.response['statusCode'] == SUCCESS) {
+  //     // final  result = jsonDecode(response.response);
+  //     final List result = response.response['data']['users'];
 
+  //     // userData = result.map(((e) => AllUsersModel.fromJson(e))).toList();
+  //     userData = result.map(((e) => UserModel.fromJson(e))).toList();
+
+  //     notifyListeners();
+  //   } else {
+  //     throw Failure(
+  //         code: UNKNOWN_ERROR, errorResponse: {'error': 'Unknown Error'});
+  //   }
+  // }
 }

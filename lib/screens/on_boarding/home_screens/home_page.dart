@@ -27,6 +27,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   Widget build(BuildContext context) {
     //user data update notifire
     final userApiData = ref.watch(userProvider);
+    final notes = ref.watch(noteViewModelProvider);
     return SafeArea(
       child: Scaffold(
         key: scafoldKey,
@@ -150,7 +151,6 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
               DrawerIcons(
                 onPressed: () {
                   pushLogOutScreen(context);
-                 
                 },
                 icon: Icons.logout,
                 imageName: 'Logout',
@@ -248,6 +248,8 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                                   'lib/assets/schduler.png', () {}),
                               HomeConstants.newInkwell(context, 'Note Book',
                                   'lib/assets/notebook.png', () {
+                                    //get saved note from server and display on note screen 1
+                                notes.getSavedNotes(context);
                                 pushNoteBookScreen1(context);
                               }),
                               HomeConstants.newInkwell(context, 'Scholarships',

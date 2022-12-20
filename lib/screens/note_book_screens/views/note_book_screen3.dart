@@ -2,19 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
+import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
-
-
 class NoteBookScreen3 extends ConsumerStatefulWidget {
-  
   const NoteBookScreen3({
     Key? key,
-  
   }) : super(key: key);
 
   @override
@@ -23,6 +20,8 @@ class NoteBookScreen3 extends ConsumerStatefulWidget {
 
 class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
   bool isVisible = false;
+  bool onEdit = true;
+  final contentController = TextEditingController();
 
   // @override
   // void initState() {
@@ -33,6 +32,8 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
   @override
   Widget build(BuildContext context) {
     final notes = ref.watch(noteViewModelProvider);
+
+    contentController.text = notes.oneNoteFromServer.title ?? '';
 
     return Stack(
       children: [
@@ -61,8 +62,18 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                       icon: const Icon(Icons.arrow_back_ios),
                     ),
                     secondAppIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(Icons.edit),
+                      onPressed: () {
+                        setState(() {
+                          onEdit = !onEdit;
+                        });
+
+                        notes.setLoading(true);
+                        // print(notes.noteFromServer[0].title);
+                        notes.editNote(context, notes.noteFromServer[0].title);
+                      },
+                      icon: onEdit
+                          ? const Icon(Icons.edit)
+                          : const Icon(Icons.save),
                     ),
                     thirdAppIcon: IconButton(
                       onPressed: () {
@@ -107,18 +118,12 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                         SizedBox(
                           height: 15.h,
                         ),
-                        NormalText(
-                          text:
-                              """Dubai is the capital city of the Emirate of Dubai, one of the wealthiest of the seven emirates that constitute the federation of the United Arab Emirates, which was created in 1971 following independence from Great Britain. 
-                
-                Dubai is a city of skyscrapers, ports, and  beaches, where big business takes place alongside sun-seeking tourism. Dubai is relatively crime-free place where administrative efficiency and openness to business have encouraged astounding growth.
-                
-                Dubai’s population has grown steadily over the past two centuries, from just a few thousand local inhabitants to well over two million.
-                
-                Dubai does not have an oil-based economy. Its electricity and water provisions have largely kept up with the city’s population growth.    
-                """,
-                          color: Colors.black87,
-                          size: 14.sp,
+                        TextFormField(
+                          readOnly: onEdit,
+                          controller: contentController,
+                          decoration: const InputDecoration(
+                            border: InputBorder.none,
+                          ),
                         ),
                       ],
                     ),

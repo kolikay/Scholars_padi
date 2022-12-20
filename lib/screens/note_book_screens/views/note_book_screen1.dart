@@ -26,17 +26,17 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
   bool isVisible = false;
   final searchController = TextEditingController();
 
-  @override
-  void initState() {
-    NoteViewModel.instance.getSavedNotes(context);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   NoteViewModel.instance.getSavedNotes(context);
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
     //user data update notifire
     final notes = ref.watch(noteViewModelProvider);
-
+    
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(103.h),

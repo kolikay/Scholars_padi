@@ -41,6 +41,7 @@ class NoteViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+
   searchNote(NoteModel note) {
     oneNoteFromServer.content = note.content;
     oneNoteFromServer.title = note.title;
@@ -126,6 +127,29 @@ class NoteViewModel extends ChangeNotifier {
   Future deleteNote(context, noteTitle) async {
     var response = await WebServices.sendDeleteRequest(
         "$baseApi/notes/$noteTitle/delete", context);
+
+    if (response.code == 202) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NoteBookScreen1(),
+        ),
+      );
+
+      ShowSnackBar.buildErrorSnackbar(
+          context, response!.toString(), Colors.green[100]!);
+    } else {
+      ShowSnackBar.buildErrorSnackbar(
+          context, response!.toString(), Colors.pink[100]!);
+    }
+
+    setLoading(false);
+  }
+
+    // Edit note function
+  Future editNote(context, noteTitle) async {
+    var response = await WebServices.sendPutRequest(
+        "$baseApi/notes/$noteTitle/update", context);
 
     if (response.code == 202) {
       Navigator.push(

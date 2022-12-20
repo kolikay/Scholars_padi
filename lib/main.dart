@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen3.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
@@ -18,8 +19,6 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await UserPreferences.init();
-
-  
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -47,11 +46,12 @@ class _MyAppState extends State<MyApp> {
     if (token.length > 5) {
       bool hasExpired = JwtDecoder.isExpired(token);
 
+      Duration tm = JwtDecoder.getRemainingTime(token);
+      print(tm.toString());
       setState(() {
         expired = hasExpired;
       });
     }
-
 
     if (!expired) {
       auth.getLoginUserData(context);
@@ -69,6 +69,7 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
+          //  home: LoginScreen(),
           home: expired ? const LoginScreen() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
