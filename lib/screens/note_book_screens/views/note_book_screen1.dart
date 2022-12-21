@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/note_book_screens/note_book_view_model/note_book_view_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
-import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class NoteBookScreen1 extends ConsumerStatefulWidget {
@@ -36,7 +34,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
   Widget build(BuildContext context) {
     //user data update notifire
     final notes = ref.watch(noteViewModelProvider);
-    
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(103.h),
@@ -47,7 +45,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
           ),
           firstAppIcon: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              pushOnBoardingScreen(context);
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),

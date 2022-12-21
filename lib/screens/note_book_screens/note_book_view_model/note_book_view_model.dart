@@ -3,12 +3,12 @@
 import 'dart:io';
 
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/note_book_screens/note_model/note_model.dart';
 import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen1.dart';
+import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen2.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 
@@ -128,13 +128,10 @@ class NoteViewModel extends ChangeNotifier {
     var response = await WebServices.sendDeleteRequest(
         "$baseApi/notes/$noteTitle/delete", context);
 
-    if (response.code == 202) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const NoteBookScreen1(),
-        ),
-      );
+    if (response.code == 200 || response.code == 202) {
+    
+    getSavedNotes(context);
+    pushNoteBookScreen1(context);
 
       ShowSnackBar.buildErrorSnackbar(
           context, response!.toString(), Colors.green[100]!);

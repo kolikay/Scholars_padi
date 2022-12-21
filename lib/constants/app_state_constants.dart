@@ -8,7 +8,7 @@ import 'package:scholars_padi/screens/on_boarding/notifications/notifications_vi
 
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_model/profile_view_model.dart';
 
-import '../screens/note_book_screens/note_model/note_model.dart';
+
 
 const baseApi = 'http://44.204.69.28/api';
 

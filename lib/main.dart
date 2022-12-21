@@ -1,8 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen3.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
@@ -45,15 +46,14 @@ class _MyAppState extends State<MyApp> {
 
     if (token.length > 5) {
       bool hasExpired = JwtDecoder.isExpired(token);
-
-      Duration tm = JwtDecoder.getRemainingTime(token);
-      print(tm.toString());
+      Duration sm = JwtDecoder.getRemainingTime(token);
+      print(sm);
       setState(() {
         expired = hasExpired;
       });
     }
 
-    if (!expired) {
+    if (expired == false) {
       auth.getLoginUserData(context);
     }
 
@@ -69,7 +69,7 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          //  home: LoginScreen(),
+          // home: NoteBookScreen1(),
           home: expired ? const LoginScreen() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
