@@ -134,10 +134,10 @@ class NoteViewModel extends ChangeNotifier {
     pushNoteBookScreen1(context);
 
       ShowSnackBar.buildErrorSnackbar(
-          context, response!.toString(), Colors.green[100]!);
+          context, 'Note Deleted Successfully', Colors.green[100]!);
     } else {
       ShowSnackBar.buildErrorSnackbar(
-          context, response!.toString(), Colors.pink[100]!);
+          context, 'An Error has occured', Colors.pink[100]!);
     }
 
     setLoading(false);

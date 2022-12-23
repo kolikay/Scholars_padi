@@ -178,7 +178,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   authViewModel.loginUser(
-                                      '$baseApi/account/login',
+                                      '$baseApi/account/login/',
                                       {
                                         "email": emailController.text.trim(),
                                         "password":

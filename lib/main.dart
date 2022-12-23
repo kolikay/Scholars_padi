@@ -46,8 +46,7 @@ class _MyAppState extends State<MyApp> {
 
     if (token.length > 5) {
       bool hasExpired = JwtDecoder.isExpired(token);
-      Duration sm = JwtDecoder.getRemainingTime(token);
-      print(sm);
+    
       setState(() {
         expired = hasExpired;
       });

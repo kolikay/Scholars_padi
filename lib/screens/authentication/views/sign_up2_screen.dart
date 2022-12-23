@@ -43,8 +43,6 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
       "email": _emailCont.text.trim(),
       "faculty": widget.faculty.trim(),
       "password_hash": _password1Cont.text.trim(),
-
-      
     };
     return body;
   }
@@ -167,9 +165,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               authViewModel.registerUser(
-                                  '$baseApi/account/register',
-                                  getInputedData(),
-                                  context);
+                                  getInputedData(), context);
                             }
                             FocusScope.of(context).unfocus();
                           },

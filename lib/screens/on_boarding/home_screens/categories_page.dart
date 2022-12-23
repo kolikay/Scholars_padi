@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'homepage_constant_widgets.dart';
@@ -19,6 +20,7 @@ class CategoriesPage extends ConsumerStatefulWidget {
 class _CategoriesPageState extends ConsumerState<CategoriesPage> {
   @override
   Widget build(BuildContext context) {
+    final notes = ref.watch(noteViewModelProvider);
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -59,7 +61,9 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                           'lib/assets/schduler.png', () {}),
                       HomeConstants.categoryCard(
                           context, 'Note Book', 'lib/assets/notebook.png', () {
-                        pushNoteBookScreen1(context);
+                          //get saved note from server and display on note screen 1
+                                notes.getSavedNotes(context);
+                                pushNoteBookScreen1(context);
                       }),
                       HomeConstants.categoryCard(
                           context, 'Scholarships', 'lib/assets/scholaship.png',

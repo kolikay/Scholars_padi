@@ -29,13 +29,14 @@ class WebServices {
       final response = await Dio()
           .post(url, data: jsonEncode(body), options: Options(headers: header));
 
+
       if (response.statusCode == 200) {
         return Success(code: response.statusCode, response: response.data);
       } else if (response.statusCode == 201) {
         return Success(code: response.statusCode, response: response.data);
       }
     } on DioError catch (error) {
-      // Handle error and display on snackbar
+            // Handle error and display on snackbar
       if (error.response!.statusCode == 422) {
         await UserPreferences.resetSharedPref();
         Navigator.of(context).pushReplacement(
@@ -49,7 +50,7 @@ class WebServices {
       }
 
       ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.statusCode.toString(), Colors.pink[100]!);
+          context, error.response!.data.toString(), Colors.pink[100]!);
       return Failure(
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});

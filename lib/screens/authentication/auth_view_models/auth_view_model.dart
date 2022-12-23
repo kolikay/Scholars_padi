@@ -13,7 +13,6 @@ import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
 
-
 class AuthViewModel extends ChangeNotifier {
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
@@ -62,12 +61,13 @@ class AuthViewModel extends ChangeNotifier {
 //login funtions
   loginUser(url, Object body, context) async {
     setLoading(true);
+
     final response = await WebServices.sendPostRequest(url, body, context);
-    print(response.code);
 
     if (response.code == 200 || response.code == 201) {
       // save login user token from api response
       UserPreferences.setLoginUerToken(response.response!['access_token']);
+
       // get logged in user details
       await getLoginUserData(context);
 
@@ -77,7 +77,7 @@ class AuthViewModel extends ChangeNotifier {
       });
 
       setLoading(false);
-    }  else {
+    } else {
       setLoginError(true);
       setLoading(false);
     }
@@ -90,9 +90,10 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   //registration funtions
-  registerUser(url, Object body, context) async {
+  registerUser(Object body, context) async {
     setLoading(true);
-    final response = await WebServices.sendPostRequest(url, body, context);
+    final response = await WebServices.sendPostRequest(
+        '$baseApi/account/register/', body, context);
 
     if (response is Success) {
       Navigator.of(context).push(

@@ -29,6 +29,22 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
   //   NoteViewModel.instance.getSavedNotes(context);
   //   super.initState();
   // }
+  List<Color> firstColor = [
+    Colors.blue,
+    Colors.orange,
+    Colors.red,
+    // Colors.blue,
+    // Colors.orange,
+    // Colors.red,
+  ];
+  List<Color> secondColor = [
+    Color(0xffd1ecfa),
+    Color(0xffFFC847),
+    Color(0xffF65B3C),
+    // Color(0xffd1ecfa),
+    // Color(0xffFFC847),
+    // Color(0xffF65B3C),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +75,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
         children: [
           Container(
             width: double.infinity,
-            height: 812.h,
+            height: double.infinity,
             color: AppColor.darkContainer,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -95,6 +111,8 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                   )
                                 ],
                                 child: MaterialCards(
+                                  color1: index >= 3 ? Colors.green : firstColor[index],
+                                  color2:index >= 3 ? Color.fromARGB(255, 158, 209, 160) : secondColor[index],
                                   ontap: () {
                                     notes.getSingleNotes(
                                         context,
@@ -274,11 +292,18 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
 
 class MaterialCards extends StatefulWidget {
   const MaterialCards(
-      {Key? key, required this.cardMessage, required this.cardDate, this.ontap})
+      {Key? key,
+      required this.cardMessage,
+      required this.cardDate,
+      this.ontap,
+      required this.color1,
+      required this.color2})
       : super(key: key);
 
   final String cardMessage;
   final String cardDate;
+  final Color color1;
+  final Color color2;
 
   final GestureTapCallback? ontap;
 
@@ -288,6 +313,10 @@ class MaterialCards extends StatefulWidget {
 
 class _MaterialCardsState extends State<MaterialCards> {
   bool tapped = false;
+  List colors = [
+    [Colors.yellow, Colors.green],
+    [Colors.blue, Colors.pink]
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -300,13 +329,15 @@ class _MaterialCardsState extends State<MaterialCards> {
         children: [
           Container(
             width: 5,
-            color: Colors.blue,
+            // color: Colors.blue,
+            color: widget.color1,
           ),
           Expanded(
             child: InkWell(
               onTap: widget.ontap,
               child: Container(
-                color: Color(0xffd1ecfa),
+                // color: Color(0xffd1ecfa),
+                color: widget.color2,
                 child: Padding(
                   padding: EdgeInsets.only(left: 10.h),
                   child: Column(

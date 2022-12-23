@@ -66,9 +66,9 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                           onEdit = !onEdit;
                         });
 
-                        notes.setLoading(true);
-                        // print(notes.noteFromServer[0].title);
-                        notes.editNote(context, notes.noteFromServer[0].title);
+                        // notes.setLoading(true);
+                        // // print(notes.noteFromServer[0].title);
+                        // notes.editNote(context, notes.noteFromServer[0].title);
                       },
                       icon: onEdit
                           ? const Icon(Icons.edit)
