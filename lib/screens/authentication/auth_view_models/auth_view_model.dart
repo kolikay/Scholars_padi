@@ -66,10 +66,7 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
 
     try {
-      final response = await WebServices.sendPostRequest(
-          'http://44.204.69.28/api/account/login/',
-          {"email": "kolikay1989@gmail.com", "password": "password"},
-          context);
+      final response = await WebServices.sendPostRequest(url, body, context);
 
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
