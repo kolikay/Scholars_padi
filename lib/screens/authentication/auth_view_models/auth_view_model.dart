@@ -17,6 +17,8 @@ class AuthViewModel extends ChangeNotifier {
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
 
+
+
   static AuthViewModel get instance {
     return _instance;
   }
@@ -61,8 +63,11 @@ class AuthViewModel extends ChangeNotifier {
 //login funtions
   loginUser(url, Object body, context) async {
     setLoading(true);
+    
 
     final response = await WebServices.sendPostRequest(url, body, context);
+
+
 
     if (response.code == 200 || response.code == 201) {
       // save login user token from api response
@@ -77,7 +82,9 @@ class AuthViewModel extends ChangeNotifier {
       });
 
       setLoading(false);
+    
     } else {
+
       setLoginError(true);
       setLoading(false);
     }
@@ -85,8 +92,10 @@ class AuthViewModel extends ChangeNotifier {
     if (response is SocketException) {
       pushToNoInternetPage(context);
       setLoading(false);
+   
     }
     setLoading(false);
+   
   }
 
   //registration funtions
