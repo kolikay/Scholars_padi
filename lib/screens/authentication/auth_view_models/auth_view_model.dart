@@ -12,12 +12,13 @@ import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
+import 'package:dio/dio.dart';
 
 class AuthViewModel extends ChangeNotifier {
+  Dio dio = Dio();
+
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
-
-
 
   static AuthViewModel get instance {
     return _instance;
@@ -63,39 +64,43 @@ class AuthViewModel extends ChangeNotifier {
 //login funtions
   loginUser(url, Object body, context) async {
     setLoading(true);
-    
 
-    final response = await WebServices.sendPostRequest(url, body, context);
+    try {
+      final response = await WebServices.sendPostRequest(
+          'http://44.204.69.28/api/account/login/',
+          {"email": "kolikay1989@gmail.com", "password": "password"},
+          context);
 
+      if (response.code == 200 || response.code == 201) {
+        // save login user token from api response
 
+        //uncomment after test
+        // UserPreferences.setLoginUerToken(response.response!['access_token']);
 
-    if (response.code == 200 || response.code == 201) {
-      // save login user token from api response
-      UserPreferences.setLoginUerToken(response.response!['access_token']);
+        // // get logged in user details
+        //uncomment after test
+        // await getLoginUserData(context);
 
-      // get logged in user details
-      await getLoginUserData(context);
+        Future.delayed(const Duration(milliseconds: 500), () {
+          //navigate to onbording screen after 30 seconds
+          pushOnBoardingScreen(context);
+        });
 
-      Future.delayed(const Duration(milliseconds: 500), () {
-        //navigate to onbording screen after 30 seconds
-        pushOnBoardingScreen(context);
-      });
+        setLoading(false);
+        return true;
+      } else {
+        setLoginError(true);
+        setLoading(false);
+      }
 
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
       setLoading(false);
-    
-    } else {
-
-      setLoginError(true);
-      setLoading(false);
+    } on HttpException catch (e) {
+      return e.message;
     }
-
-    if (response is SocketException) {
-      pushToNoInternetPage(context);
-      setLoading(false);
-   
-    }
-    setLoading(false);
-   
   }
 
   //registration funtions
@@ -178,6 +183,33 @@ class AuthViewModel extends ChangeNotifier {
 
     setLoading(false);
   }
+
+// class AuthRepository {
+//   Dio dio = Dio();
+
+//   AuthRepository();
+
+//   Future<bool> login({
+//     required String email,
+//     required String password,
+//   }) async {
+//     try {
+//       final result = await dio.post(
+//         'https://reqres.in/api/login',
+//         data: {'email': email, 'password': password},
+//       );
+
+//       if (result.statusCode != 200) {
+//         return false;
+//       }
+//     } on DioError catch (e) {
+//       print(e.message);
+//       return false;
+//     }
+
+//     return true;
+//   }
+// }
 
   //   Future getAllUsers(context) async {
   //   var response = await WebServices.sendGetRequest(

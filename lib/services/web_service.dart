@@ -16,12 +16,16 @@ class WebServices {
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
-    final token = UserPreferences.getToken();
+
+    //uncomment after test 
+    // final token = UserPreferences.getToken();
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+
+      //uncomment after test 
+      // 'Authorization': 'Bearer $token',
     };
 
     // if (isConnected) {
@@ -48,9 +52,9 @@ class WebServices {
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.data.toString(), Colors.pink[100]!);
+//uncomment after test
+      // ShowSnackBar.buildErrorSnackbar(
+      //     context, error.response!.data.toString(), Colors.pink[100]!);
       return Failure(
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});
