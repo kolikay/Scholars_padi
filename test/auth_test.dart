@@ -20,33 +20,55 @@ class MockContext extends Mock implements BuildContext {}
 
 @GenerateMocks([Dio])
 void main() {
-  MockDio mockDio = MockDio();
+  // MockDio mockDio = MockDio();
 
+  late MockDio mockDio;
   late AuthViewModel auth;
   var cont;
 
   setUp(() {
+    mockDio = MockDio();
     auth = AuthViewModel.instance;
   });
 
-  test('Successfully logged in user', () async {
-    // Stubbing
-    when(mockDio.post(
-      'http://44.204.69.28/api/account/login/',
-      data: {"email": "kolikay1989@gmail.com", "password": "password"},
-    )).thenAnswer(
-      (inv) => Future.value(Response(
-        statusCode: 200,
-        data: {'token': 'ASjwweiBE'},
-        requestOptions: RequestOptions(path: 'http://44.204.69.28/api/account/login/'),
-      )),
-    );
+  group('Authentication function tests', () {
+    test('Test logged in Function', () async {
+      // Stubbing
+      when(mockDio.post(
+        'http://44.204.69.28/api/account/login/',
+        data: {"email": "kolikay1989@gmail.com", "password": "password"},
+      )).thenAnswer(
+        (inv) => Future.value(Response(
+          statusCode: 200,
+          data: {'token': 'ASjwweiBE'},
+          requestOptions:
+              RequestOptions(path: 'http://44.204.69.28/api/account/login/'),
+        )),
+      );
 
-    expect(
-      await auth.loginUser('http://44.204.69.28/api/account/login/',
-          {"email": "kolikay1989@gmail.com", "password": "password"}, cont),
-      true,
-    );
+      expect(
+        await auth.loginUser('http://44.204.69.28/api/account/login/',
+            {"email": "kolikay1989@gmail.com", "password": "password"}, cont),
+        true,
+      );
+    });
+
+    test('Test logOut Function', () async {
+      // Stubbing
+      when(mockDio.delete('http://44.204.69.28/api/account/logout/'))
+          .thenAnswer(
+        (inv) => Future.value(Response(
+          statusCode: 200,
+          data: {'token': 'ASjwweiBE'},
+          requestOptions:
+              RequestOptions(path: 'http://44.204.69.28/api/account/logout'),
+        )),
+      );
+      expect(
+        await auth.logOutUser(cont),
+        true,
+      );
+    });
   });
 }
 

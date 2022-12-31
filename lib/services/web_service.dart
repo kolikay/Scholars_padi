@@ -18,7 +18,7 @@ class WebServices {
   static Future sendPostRequest(String url, Object body, context) async {
 
     //uncomment after test 
-    // final token = UserPreferences.getToken();
+   // final token = UserPreferences.getToken();
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -79,6 +79,7 @@ class WebServices {
     // if (isConnected) {
     try {
       final response = await Dio().get(url, options: Options(headers: header));
+      
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Success(code: response.statusCode, response: response.data);
@@ -205,13 +206,13 @@ class WebServices {
 
   //handles Delete requests
   static Future sendDeleteRequest(String url, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    // final token = UserPreferences.getToken() ?? '';
 
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+      // 'Authorization': 'Bearer $token',
     };
     // if (isConnected) {
     try {
@@ -237,8 +238,8 @@ class WebServices {
             errorResponse: {'error': error.response!.data.toString()});
       }
 
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.statusCode.toString(), Colors.pink[100]!);
+      // ShowSnackBar.buildErrorSnackbar(
+      //     context, error.response!.statusCode.toString(), Colors.pink[100]!);
       return Failure(
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});
