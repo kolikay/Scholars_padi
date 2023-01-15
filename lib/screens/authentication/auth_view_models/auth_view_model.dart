@@ -52,6 +52,7 @@ class AuthViewModel extends ChangeNotifier {
     userApiData.email = newUser.email;
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
+    userData.add(newUser);
 
     // userApiData.dob = newUser.dob;
     // userApiData.occupation = newUser.occupation;
@@ -165,9 +166,8 @@ class AuthViewModel extends ChangeNotifier {
   //login funtions
   // save user data function
   Future logOutUser(context) async {
-    
-    var response =
-        await WebServices.sendDeleteRequest("http://44.204.69.28/api/account/logout", context);
+    var response = await WebServices.sendDeleteRequest(
+        "http://44.204.69.28/api/account/logout", context);
     // Navigator.pop(context);
 
     if (response.code == 200 || response.code == 401) {
