@@ -89,6 +89,7 @@ class AuthViewModel extends ChangeNotifier {
       } else {
         setLoginError(true);
         setLoading(false);
+        return false;
       }
 
       if (response is SocketException) {
@@ -180,7 +181,5 @@ class AuthViewModel extends ChangeNotifier {
       //     context, response!.data.toString(), Colors.pink[100]!);
       return false;
     }
-
-    setLoading(false);
   }
 }

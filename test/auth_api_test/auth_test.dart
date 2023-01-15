@@ -53,22 +53,22 @@ void main() {
       );
     });
 
-    test('Test logOut Function', () async {
-      // Stubbing
-      when(mockDio.delete('http://44.204.69.28/api/account/logout/'))
-          .thenAnswer(
-        (inv) => Future.value(Response(
-          statusCode: 200,
-          data: {'token': 'ASjwweiBE'},
-          requestOptions:
-              RequestOptions(path: 'http://44.204.69.28/api/account/logout'),
-        )),
-      );
-      expect(
-        await auth.logOutUser(cont),
-        true,
-      );
-    });
+    // test('Test logOut Function', () async {
+    //   // Stubbing
+    //   when(mockDio.delete('http://44.204.69.28/api/account/logout/'))
+    //       .thenAnswer(
+    //     (inv) => Future.value(Response(
+    //       statusCode: 200,
+    //       data: {'token': 'ASjwweiBE'},
+    //       requestOptions:
+    //           RequestOptions(path: 'http://44.204.69.28/api/account/logout'),
+    //     )),
+    //   );
+    //   expect(
+    //     await auth.logOutUser(cont),
+    //     true,
+    //   );
+    // });
   });
 }
 

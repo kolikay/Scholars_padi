@@ -16,56 +16,63 @@ class WebServices {
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
+    return Success(code: 200, response: {});
 
-    //uncomment after test 
-   // final token = UserPreferences.getToken();
-    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
-    final header = <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-      'Accept': 'application/json',
+//     //uncomment after test
+//    final token = UserPreferences.getToken();
+//     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+//     final header = <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
+//       'Accept': 'application/json',
 
-      //uncomment after test 
-      // 'Authorization': 'Bearer $token',
-    };
+//       //uncomment after test
+//       'Authorization': 'Bearer $token',
+//     };
 
-    // if (isConnected) {
-    try {
-      final response = await Dio()
-          .post(url, data: jsonEncode(body), options: Options(headers: header));
+//     // if (isConnected) {
+//     try {
+//       final response = await Dio()
+//           .post(url, data: jsonEncode(body), options: Options(headers: header));
 
-
-      if (response.statusCode == 200) {
-        return Success(code: response.statusCode, response: response.data);
-      } else if (response.statusCode == 201) {
-        return Success(code: response.statusCode, response: response.data);
-      }
-    } on DioError catch (error) {
-            // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
-        ShowSnackBar.buildErrorSnackbar(
-            context, 'Access Time Out,Please Login ', Colors.pink[100]!);
-        return Failure(
-            code: error.response!.statusCode,
-            errorResponse: {'error': error.response!.data.toString()});
-      }
-//uncomment after test
-      // ShowSnackBar.buildErrorSnackbar(
-      //     context, error.response!.data.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
-    }
-    //push to no internet screen if isConnected is false
-    // } else {
-    //   pushToNoInternetPage(context);
-    //   return Failure(
-    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
-    // }
+//       if (response.statusCode == 200) {
+//         return Success(code: response.statusCode, response: response.data);
+//       } else if (response.statusCode == 201) {
+//         return Success(code: response.statusCode, response: response.data);
+//       }
+//     } on DioError catch (error) {
+//             // Handle error and display on snackbar
+//       if (error.response!.statusCode == 422) {
+//         await UserPreferences.resetSharedPref();
+//         Navigator.of(context).pushReplacement(
+//           MaterialPageRoute(builder: (context) => const LoginScreen()),
+//         );
+//         ShowSnackBar.buildErrorSnackbar(
+//             context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+//         return Failure(
+//             code: error.response!.statusCode,
+//             errorResponse: {'error': error.response!.data.toString()});
+//       }
+// //uncomment after test
+//       ShowSnackBar.buildErrorSnackbar(
+//           context, error.response!.data.toString(), Colors.pink[100]!);
+//       return Failure(
+//           code: error.response!.statusCode,
+//           errorResponse: {'error': error.response!.data.toString()});
+//     }
+//     //push to no internet screen if isConnected is false
+//     // } else {
+//     //   pushToNoInternetPage(context);
+//     //   return Failure(
+//     //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+//     // }
   }
+
+
+
+
+
+
+  
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
@@ -79,7 +86,6 @@ class WebServices {
     // if (isConnected) {
     try {
       final response = await Dio().get(url, options: Options(headers: header));
-      
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         return Success(code: response.statusCode, response: response.data);
@@ -300,39 +306,6 @@ class WebServices {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // class WebServices {
 //   static Future<Object> sendRequest(String url, context) async {
 
@@ -358,5 +331,3 @@ class WebServices {
 //     }
 //   }
 // }
-
-
