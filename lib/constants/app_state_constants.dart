@@ -10,7 +10,10 @@ import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_m
 
 
 
-const baseApi = 'http://44.204.69.28/api';
+
+
+
+const baseApi = 'https://scholarspadi.com/api';
 
 
 //auth view providers
@@ -22,10 +25,6 @@ final authViewModelProvider = ChangeNotifierProvider<AuthViewModel>((ref) {
 final noteViewModelProvider = ChangeNotifierProvider<NoteViewModel>((ref) {
   return NoteViewModel.instance;
 });
-
-
-
-
 
 
 

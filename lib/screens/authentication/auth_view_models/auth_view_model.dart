@@ -64,13 +64,10 @@ class AuthViewModel extends ChangeNotifier {
 //login funtions
   loginUser(url, Object body, context) async {
     setLoading(true);
-
     try {
       final response = await WebServices.sendPostRequest(url, body, context);
-
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
-
         //uncomment after test
         // UserPreferences.setLoginUerToken(response.response!['access_token']);
 
@@ -96,6 +93,7 @@ class AuthViewModel extends ChangeNotifier {
       }
       setLoading(false);
     } on HttpException catch (e) {
+      setLoading(false);
       return e.message;
     }
   }

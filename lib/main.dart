@@ -68,8 +68,8 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          // home: NoteBookScreen1(),
-          home: expired ? const LoginScreen() : const OnBoardingScreen(),
+          home: OnBoardingScreen(),
+          // home: expired ? const LoginScreen() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
             CatergoriesSearchScreen.id: (context) =>

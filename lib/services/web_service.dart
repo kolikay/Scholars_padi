@@ -16,48 +16,48 @@ class WebServices {
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
-
-    //uncomment after test 
+    //uncomment after test
     // final token = UserPreferences.getToken();
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
 
-      //uncomment after test 
+      //uncomment after test
       // 'Authorization': 'Bearer $token',
     };
 
     // if (isConnected) {
+
     try {
       final response = await Dio()
           .post(url, data: jsonEncode(body), options: Options(headers: header));
 
-
-      if (response.statusCode == 200) {
-        return Success(code: response.statusCode, response: response.data);
-      } else if (response.statusCode == 201) {
+      if (response.statusCode == 200 || response.statusCode == 201) {
         return Success(code: response.statusCode, response: response.data);
       }
     } on DioError catch (error) {
-            // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
-        ShowSnackBar.buildErrorSnackbar(
-            context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+      // Handle error and display on snackbar
+      if (error.response == null) {
+        
+        return Failure(code: 503, errorResponse: 'Server Unavailable');
+      }else  if (error.response!.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+          ShowSnackBar.buildErrorSnackbar(
+              context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+          return Failure(
+              code: error.response!.statusCode,
+              errorResponse: {'error': error.response!.data.toString()});
+        }
+        //uncomment after test
+        // ShowSnackBar.buildErrorSnackbar(
+        //     context, error.response!.data.toString(), Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
-      }
-//uncomment after test
-      // ShowSnackBar.buildErrorSnackbar(
-      //     context, error.response!.data.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
     }
     //push to no internet screen if isConnected is false
     // } else {
@@ -299,39 +299,6 @@ class WebServices {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // class WebServices {
 //   static Future<Object> sendRequest(String url, context) async {
 
@@ -357,5 +324,3 @@ class WebServices {
 //     }
 //   }
 // }
-
-
