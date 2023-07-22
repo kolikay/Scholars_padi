@@ -1,11 +1,8 @@
 // import 'dart:io';
 
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/models/models.dart';
-import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/screens/authentication/views/verify_otp_screen.dart';
-import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
@@ -52,6 +49,7 @@ class AuthViewModel extends ChangeNotifier {
     userApiData.email = newUser.email;
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
+    userData.add(newUser);
 
     // userApiData.dob = newUser.dob;
     // userApiData.occupation = newUser.occupation;
@@ -85,6 +83,7 @@ class AuthViewModel extends ChangeNotifier {
       } else {
         setLoginError(true);
         setLoading(false);
+        return false;
       }
 
       if (response is SocketException) {
@@ -163,66 +162,19 @@ class AuthViewModel extends ChangeNotifier {
   //login funtions
   // save user data function
   Future logOutUser(context) async {
-    var response =
-        await WebServices.sendDeleteRequest("$baseApi/account/logout", context);
-    Navigator.pop(context);
+    var response = await WebServices.sendDeleteRequest(
+        "http://44.204.69.28/api/account/logout", context);
+    // Navigator.pop(context);
 
-    if (response.code == SUCCESS) {
-      await UserPreferences.resetSharedPref();
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          LoginScreen.id, (Route<dynamic> route) => false);
+    if (response.code == 200 || response.code == 401) {
+      // await UserPreferences.resetSharedPref();
+      // Navigator.of(context).pushNamedAndRemoveUntil(
+      //     LoginScreen.id, (Route<dynamic> route) => false);
+      return true;
     } else {
-      ShowSnackBar.buildErrorSnackbar(
-          context, response!.data.toString(), Colors.pink[100]!);
+      // ShowSnackBar.buildErrorSnackbar(
+      //     context, response!.data.toString(), Colors.pink[100]!);
+      return false;
     }
-
-    setLoading(false);
   }
-
-// class AuthRepository {
-//   Dio dio = Dio();
-
-//   AuthRepository();
-
-//   Future<bool> login({
-//     required String email,
-//     required String password,
-//   }) async {
-//     try {
-//       final result = await dio.post(
-//         'https://reqres.in/api/login',
-//         data: {'email': email, 'password': password},
-//       );
-
-//       if (result.statusCode != 200) {
-//         return false;
-//       }
-//     } on DioError catch (e) {
-//       print(e.message);
-//       return false;
-//     }
-
-//     return true;
-//   }
-// }
-
-  //   Future getAllUsers(context) async {
-  //   var response = await WebServices.sendGetRequest(
-  //     baseApi,
-  //     context,
-  //   );
-
-  //   if (response.response['statusCode'] == SUCCESS) {
-  //     // final  result = jsonDecode(response.response);
-  //     final List result = response.response['data']['users'];
-
-  //     // userData = result.map(((e) => AllUsersModel.fromJson(e))).toList();
-  //     userData = result.map(((e) => UserModel.fromJson(e))).toList();
-
-  //     notifyListeners();
-  //   } else {
-  //     throw Failure(
-  //         code: UNKNOWN_ERROR, errorResponse: {'error': 'Unknown Error'});
-  //   }
-  // }
 }

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/screens/note_book_screens/note_model/note_model.dart';
 import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen1.dart';
-import 'package:scholars_padi/screens/note_book_screens/views/note_book_screen2.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 

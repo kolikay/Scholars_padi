@@ -37,12 +37,11 @@ class ReuseableButton extends StatelessWidget {
       width: width,
       child: TextButton(
           style: TextButton.styleFrom(
-            shape: RoundedRectangleBorder(
+            foregroundColor: Colors.white, shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5.r),
             ),
             backgroundColor: backGroundColor,
             minimumSize: Size.fromHeight(70.h),
-            primary: Colors.white,
           ),
           onPressed: isActive ? onPressed : null,
           child: NormalText(
