@@ -47,7 +47,7 @@ class WebServices {
           MaterialPageRoute(builder: (context) => const LoginScreen()),
         );
         ShowSnackBar.buildErrorSnackbar(
-            context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+            context, 'Access time Out,Please Login ', Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
