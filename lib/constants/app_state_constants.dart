@@ -10,9 +10,6 @@ import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_m
 
 
 
-
-
-
 const baseApi = 'https://scholarspadi.com/api';
 
 

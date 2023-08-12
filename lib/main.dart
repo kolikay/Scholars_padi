@@ -44,6 +44,7 @@ class _MyAppState extends State<MyApp> {
     String token = UserPreferences.getToken() ?? '';
 
     if (token.length > 5) {
+      
       bool hasExpired = JwtDecoder.isExpired(token);
     
       setState(() {
@@ -67,8 +68,8 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          home: const OnBoardingScreen(),
-          // home: expired ? const LoginScreen() : const OnBoardingScreen(),
+          // home: const OnBoardingScreen(),
+          home: expired ? const LoginScreen() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
             CatergoriesSearchScreen.id: (context) =>

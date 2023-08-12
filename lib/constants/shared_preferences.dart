@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPreferences {
+
 static SharedPreferences? _preferences;
 
 
@@ -18,7 +19,7 @@ static SharedPreferences? _preferences;
 
 
   //set usertoken
-  static Future setLoginUerToken(String token) async => await _preferences!.setString('token', token);
+   Future setLoginUerToken(String token) async => await _preferences!.setString('token', token);
   // get token
   static String? getToken() => _preferences!.getString('token');
 

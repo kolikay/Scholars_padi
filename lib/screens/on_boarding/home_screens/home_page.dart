@@ -292,7 +292,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                       ),
                       const ReuseableCards(
                         date: '5th My, 2022',
-                        note: 'Visited, www.eportal.oauife.edu.ng/login.php',
+                        note: 'Visited, www.eportal.oauife.edu.ng',
                       ),
                     ],
                   ),

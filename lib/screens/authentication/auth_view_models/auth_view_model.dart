@@ -3,6 +3,7 @@
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/models/models.dart';
 import 'package:scholars_padi/screens/authentication/views/verify_otp_screen.dart';
+import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
@@ -10,9 +11,13 @@ import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:dio/dio.dart';
+import 'package:scholars_padi/constants/shared_preferences.dart';
+
+import '../views/login_screen.dart';
 
 class AuthViewModel extends ChangeNotifier {
   Dio dio = Dio();
+  final userPref = UserPreferences();
 
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
@@ -66,12 +71,13 @@ class AuthViewModel extends ChangeNotifier {
       final response = await WebServices.sendPostRequest(url, body, context);
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
-        //uncomment after test
-        // UserPreferences.setLoginUerToken(response.response!['access_token']);
+        // uncomment after test
+        print(response.response);
+        userPref.setLoginUerToken(response.response!['access_token']);
 
-        // // get logged in user details
-        //uncomment after test
-        // await getLoginUserData(context);
+        // get logged in user details
+        // uncomment after test
+        await getLoginUserData(context);
 
         Future.delayed(const Duration(milliseconds: 500), () {
           //navigate to onbording screen after 30 seconds
@@ -86,11 +92,11 @@ class AuthViewModel extends ChangeNotifier {
         return false;
       }
 
-      if (response is SocketException) {
-        pushToNoInternetPage(context);
-        setLoading(false);
-      }
-      setLoading(false);
+      // if (response is SocketException) {
+      //   pushToNoInternetPage(context);
+      //   setLoading(false);
+      // }
+      // setLoading(false);
     } on HttpException catch (e) {
       setLoading(false);
       return e.message;
@@ -163,17 +169,16 @@ class AuthViewModel extends ChangeNotifier {
   // save user data function
   Future logOutUser(context) async {
     var response = await WebServices.sendDeleteRequest(
-        "http://44.204.69.28/api/account/logout", context);
-    // Navigator.pop(context);
+        "$baseApi/account/logout", context);
 
     if (response.code == 200 || response.code == 401) {
-      // await UserPreferences.resetSharedPref();
-      // Navigator.of(context).pushNamedAndRemoveUntil(
-      //     LoginScreen.id, (Route<dynamic> route) => false);
+      await UserPreferences.resetSharedPref();
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          LoginScreen.id, (Route<dynamic> route) => false);
       return true;
     } else {
-      // ShowSnackBar.buildErrorSnackbar(
-      //     context, response!.data.toString(), Colors.pink[100]!);
+      ShowSnackBar.buildErrorSnackbar(
+          context, response!.data.toString(), Colors.pink[100]!);
       return false;
     }
   }
