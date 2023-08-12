@@ -121,7 +121,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                     pushNoteBookScreen3(context);
                                   },
                                   cardMessage:
-                                      notes.noteFromServer[index].title!,
+                                      notes.noteFromServer[index].title ?? '',
                                   cardDate: DateTime.now().toString(),
                                 ),
                               );

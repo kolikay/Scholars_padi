@@ -16,23 +16,18 @@ class WebServices {
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
-
-    //uncomment after test 
-    // final token = UserPreferences.getToken();
+    final token = UserPreferences.getToken();
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
 
-      //uncomment after test 
-      // 'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $token',
     };
-
     // if (isConnected) {
     try {
       final response = await Dio()
           .post(url, data: jsonEncode(body), options: Options(headers: header));
-
 
       if (response.statusCode == 200) {
         return Success(code: response.statusCode, response: response.data);
@@ -52,9 +47,9 @@ class WebServices {
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-//uncomment after test
-      // ShowSnackBar.buildErrorSnackbar(
-      //     context, error.response!.data.toString(), Colors.pink[100]!);
+
+      ShowSnackBar.buildErrorSnackbar(
+          context, error.response!.data.toString(), Colors.pink[100]!);
       return Failure(
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});
@@ -68,11 +63,6 @@ class WebServices {
   }
 
 
-
-
-
-
-  
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
@@ -212,13 +202,13 @@ class WebServices {
 
   //handles Delete requests
   static Future sendDeleteRequest(String url, context) async {
-    // final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getToken() ?? '';
 
     // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      // 'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer $token',
     };
     // if (isConnected) {
     try {
@@ -244,8 +234,8 @@ class WebServices {
             errorResponse: {'error': error.response!.data.toString()});
       }
 
-      // ShowSnackBar.buildErrorSnackbar(
-      //     context, error.response!.statusCode.toString(), Colors.pink[100]!);
+      ShowSnackBar.buildErrorSnackbar(
+          context, error.response!.statusCode.toString(), Colors.pink[100]!);
       return Failure(
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});
@@ -305,29 +295,3 @@ class WebServices {
     // }
   }
 }
-
-// class WebServices {
-//   static Future<Object> sendRequest(String url, context) async {
-
-//     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
-
-//     try {
-//       if (isConnected) {
-//         var response = await http.get(Uri.parse(url));
-
-//         if (response.statusCode == 200) {
-//           Navigator.pop(context);
-//           return Success(response: response.body);
-//         } else {
-//           return Failure(
-//               code: USER_INVALID_RESPONSE, errorResponse: 'Invalid Response');
-//         }
-//       } else {
-//         return const SocketException('No Data Found');
-//       }
-//     } catch (e) {
-//       Navigator.pop(context);
-//       return Failure(code: UNKNOWN_ERROR, errorResponse: 'Unknown Error');
-//     }
-//   }
-// }

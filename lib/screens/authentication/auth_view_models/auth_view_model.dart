@@ -32,7 +32,8 @@ class AuthViewModel extends ChangeNotifier {
   bool _loginError = false;
   bool get loginError => _loginError;
 
-// empty list to save user data from api
+
+ // empty list to save user data from api
   List<UserModel> userData = [];
 
 //instance of usermodel
@@ -71,8 +72,7 @@ class AuthViewModel extends ChangeNotifier {
       final response = await WebServices.sendPostRequest(url, body, context);
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
-        // uncomment after test
-        print(response.response);
+   
         userPref.setLoginUerToken(response.response!['access_token']);
 
         // get logged in user details
@@ -153,7 +153,7 @@ class AuthViewModel extends ChangeNotifier {
       final result = response.response;
 
       addUserdata(UserModel.fromJson(result));
-      // userData.add(UserModel.fromJson(result));
+   
 
       notifyListeners();
 

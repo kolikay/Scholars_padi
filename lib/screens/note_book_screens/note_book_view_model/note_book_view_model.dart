@@ -78,7 +78,7 @@ class NoteViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
-  // get all notes rom server
+  // get all notes from server
   Future getSavedNotes(context) async {
     setLoading(true);
 
@@ -100,13 +100,11 @@ class NoteViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
-// get single notes rom server
+// get single notes from server
   Future getSingleNotes(context, search) async {
     setLoading(true);
-
     var response =
-        await WebServices.sendGetRequest("$baseApi/notes/$search", context);
-
+        await WebServices.sendGetRequest("$baseApi/notes/$search/?query=$search", context);
     if (response.code == SUCCESS) {
       final result = response.response;
 
