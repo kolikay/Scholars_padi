@@ -40,7 +40,6 @@ class NoteViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-
   searchNote(NoteModel note) {
     oneNoteFromServer.content = note.content;
     oneNoteFromServer.title = note.title;
@@ -87,7 +86,6 @@ class NoteViewModel extends ChangeNotifier {
 
     if (response.code == SUCCESS) {
       final result = response.response;
-
       noteFromServer = result.map(((e) => NoteModel.fromJson(e))).toList();
 
       // notifyListeners();
@@ -103,8 +101,8 @@ class NoteViewModel extends ChangeNotifier {
 // get single notes from server
   Future getSingleNotes(context, search) async {
     setLoading(true);
-    var response =
-        await WebServices.sendGetRequest("$baseApi/notes/$search/?query=$search", context);
+    var response = await WebServices.sendGetRequest(
+        "$baseApi/notes/$search/?query=$search", context);
     if (response.code == SUCCESS) {
       final result = response.response;
 
@@ -126,9 +124,8 @@ class NoteViewModel extends ChangeNotifier {
         "$baseApi/notes/$noteTitle/delete", context);
 
     if (response.code == 200 || response.code == 202) {
-    
-    getSavedNotes(context);
-    pushNoteBookScreen1(context);
+      getSavedNotes(context);
+      pushNoteBookScreen1(context);
 
       ShowSnackBar.buildErrorSnackbar(
           context, 'Note Deleted Successfully', Colors.green[100]!);
@@ -140,7 +137,7 @@ class NoteViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
-    // Edit note function
+  // Edit note function
   Future editNote(context, noteTitle) async {
     var response = await WebServices.sendPutRequest(
         "$baseApi/notes/$noteTitle/update", context);

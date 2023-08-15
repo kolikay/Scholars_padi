@@ -48,8 +48,13 @@ class _NoteBookScreen2State extends ConsumerState<NoteBookScreen2> {
             icon: const Icon(Icons.save),
           ),
           thirdAppIcon: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+            onPressed: () {
+              setState(() {
+                isFavourite = !isFavourite;
+              });
+  
+            },
+            icon: Icon(Icons.favorite, color: isFavourite ? Colors.red : Colors.white ),
           ),
         ),
       ),

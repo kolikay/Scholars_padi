@@ -111,8 +111,16 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                   )
                                 ],
                                 child: MaterialCards(
-                                  color1: index >= 3 ? Colors.green : firstColor[index],
-                                  color2:index >= 3 ? Color.fromARGB(255, 158, 209, 160) : secondColor[index],
+                                  color1: index >= 3
+                                      ? Colors.green
+                                      : firstColor[index],
+                                  color2: index >= 3
+                                      ? Color.fromARGB(255, 158, 209, 160)
+                                      : secondColor[index],
+                                  favcolor:
+                                      notes.noteFromServer[index].is_favourite
+                                          ? Colors.red
+                                          : Colors.white,
                                   ontap: () {
                                     notes.getSingleNotes(
                                         context,
@@ -297,13 +305,15 @@ class MaterialCards extends StatefulWidget {
       required this.cardDate,
       this.ontap,
       required this.color1,
-      required this.color2})
+      required this.color2,
+      required this.favcolor})
       : super(key: key);
 
   final String cardMessage;
   final String cardDate;
   final Color color1;
   final Color color2;
+  final Color favcolor;
 
   final GestureTapCallback? ontap;
 
@@ -360,8 +370,10 @@ class _MaterialCardsState extends State<MaterialCards> {
                               });
                             },
                             icon: Icon(
-                              !tapped ? Icons.favorite_border : Icons.favorite,
-                              color: AppColor.mainColor,
+                              // !tapped ? Icons.favorite_border : Icons.favorite,
+                              // color: AppColor.mainColor,
+                              Icons.favorite,
+                              color: widget.favcolor,
                               size: 20.sp,
                             ),
                           )

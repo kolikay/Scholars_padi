@@ -32,7 +32,7 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
   Widget build(BuildContext context) {
     final notes = ref.watch(noteViewModelProvider);
 
-    contentController.text = notes.oneNoteFromServer.title ?? '';
+    contentController.text = notes.oneNoteFromServer.content ?? '';
 
     return Stack(
       children: [
