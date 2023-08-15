@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
+import 'package:intl/intl.dart';
 
 class NoteBookScreen3 extends ConsumerStatefulWidget {
   const NoteBookScreen3({
@@ -33,6 +34,10 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
     final notes = ref.watch(noteViewModelProvider);
 
     contentController.text = notes.oneNoteFromServer.content ?? '';
+
+    String dateOBDCommand = notes.oneNoteFromServer.createdAt ?? '';
+    DateTime date = DateTime.parse(dateOBDCommand);
+    String formattedDate = DateFormat('yyyy-MM-dd').format(date);
 
     return Stack(
       children: [
@@ -101,7 +106,7 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         NormalText(
-                          text: notes.oneNoteFromServer.createdAt ?? '',
+                          text: formattedDate,
                           color: AppColor.dullerBlack,
                           size: 12.sp,
                         ),

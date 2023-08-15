@@ -10,6 +10,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class NoteBookScreen1 extends ConsumerStatefulWidget {
   const NoteBookScreen1({
@@ -95,6 +96,12 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                             itemCount: notes.noteFromServer.length,
                             itemBuilder: (context, index) {
                               // final materialCard = card[index];
+                              String dateOBDCommand =
+                                  notes.noteFromServer[index].createdAt;
+                              DateTime date = DateTime.parse(dateOBDCommand);
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(date);
+
                               return Slidable(
                                 actionExtentRatio: 0.25,
                                 actionPane: const SlidableDrawerActionPane(),
@@ -126,11 +133,16 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                         context,
                                         notes.noteFromServer[index].title ??
                                             '');
-                                    pushNoteBookScreen3(context);
+                                    Future.delayed(
+                                        const Duration(milliseconds: 500), () {
+                                      //navigate to onbording screen after 30 seconds
+                                       pushNoteBookScreen3(context);
+                                    });
+                                   
                                   },
                                   cardMessage:
                                       notes.noteFromServer[index].title ?? '',
-                                  cardDate: DateTime.now().toString(),
+                                  cardDate: formattedDate,
                                 ),
                               );
                             }),
