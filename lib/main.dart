@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
 import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
@@ -69,7 +70,7 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.purple,
           ),
           // home: const OnBoardingScreen(),
-          home: expired ? const LoginScreen() : const OnBoardingScreen(),
+          home: expired ? const LandingPage() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
             CatergoriesSearchScreen.id: (context) =>

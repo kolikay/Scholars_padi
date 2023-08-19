@@ -123,6 +123,8 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
                           height: 15.h,
                         ),
                         TextFormField(
+                          maxLines: null,
+                          keyboardType: TextInputType.multiline,
                           readOnly: onEdit,
                           controller: contentController,
                           decoration: const InputDecoration(
