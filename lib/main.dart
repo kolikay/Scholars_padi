@@ -69,8 +69,8 @@ class _MyAppState extends State<MyApp> {
           theme: ThemeData(
             primarySwatch: Colors.purple,
           ),
-          // home: const OnBoardingScreen(),
-          home: expired ? const LandingPage() : const OnBoardingScreen(),
+          home: const LoginScreen(),
+          // home: expired ? const LandingPage() : const OnBoardingScreen(),
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
             CatergoriesSearchScreen.id: (context) =>

@@ -32,8 +32,7 @@ class AuthViewModel extends ChangeNotifier {
   bool _loginError = false;
   bool get loginError => _loginError;
 
-
- // empty list to save user data from api
+  // empty list to save user data from api
   List<UserModel> userData = [];
 
 //instance of usermodel
@@ -72,7 +71,7 @@ class AuthViewModel extends ChangeNotifier {
       final response = await WebServices.sendPostRequest(url, body, context);
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
-   
+
         userPref.setLoginUerToken(response.response!['access_token']);
 
         // get logged in user details
@@ -86,8 +85,13 @@ class AuthViewModel extends ChangeNotifier {
 
         setLoading(false);
         return true;
-      } else {
+      } else if (response.code == 400) {
+        print('object');
+        print(response.code);
         setLoginError(true);
+        setLoading(false);
+        return false;
+      } else {
         setLoading(false);
         return false;
       }
@@ -153,7 +157,6 @@ class AuthViewModel extends ChangeNotifier {
       final result = response.response;
 
       addUserdata(UserModel.fromJson(result));
-   
 
       notifyListeners();
 
@@ -168,8 +171,8 @@ class AuthViewModel extends ChangeNotifier {
   //login funtions
   // save user data function
   Future logOutUser(context) async {
-    var response = await WebServices.sendDeleteRequest(
-        "$baseApi/account/logout", context);
+    var response =
+        await WebServices.sendDeleteRequest("$baseApi/account/logout", context);
 
     if (response.code == 200 || response.code == 401) {
       await UserPreferences.resetSharedPref();

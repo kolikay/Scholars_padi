@@ -17,14 +17,14 @@ class WebServices {
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
     final token = UserPreferences.getToken();
-    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
 
       'Authorization': 'Bearer $token',
     };
-    // if (isConnected) {
+    if (isConnected) {
     try {
       final response = await Dio()
           .post(url, data: jsonEncode(body), options: Options(headers: header));
@@ -54,12 +54,12 @@ class WebServices {
           code: error.response!.statusCode,
           errorResponse: {'error': error.response!.data.toString()});
     }
-    //push to no internet screen if isConnected is false
-    // } else {
-    //   pushToNoInternetPage(context);
-    //   return Failure(
-    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
-    // }
+    // push to no internet screen if isConnected is false
+    } else {
+      pushToNoInternetPage(context);
+      return Failure(
+          code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+    }
   }
 
 
@@ -67,13 +67,13 @@ class WebServices {
 //handles get requests
   static Future sendGetRequest(String url, context) async {
     final token = UserPreferences.getToken() ?? '';
-    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    // if (isConnected) {
+    if (isConnected) {
     try {
       final response = await Dio().get(url, options: Options(headers: header));
 
@@ -106,11 +106,11 @@ class WebServices {
           errorResponse: {'error': error.response!.data.toString()});
     }
     //push to no internet screen if isConnected is false
-    // } else {
-    //   pushToNoInternetPage(context);
-    //   return Failure(
-    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
-    // }
+    } else {
+      pushToNoInternetPage(context);
+      return Failure(
+          code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+    }
   }
 
 //handles patch requests
@@ -204,13 +204,13 @@ class WebServices {
   static Future sendDeleteRequest(String url, context) async {
     final token = UserPreferences.getToken() ?? '';
 
-    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    // if (isConnected) {
+     if (isConnected) {
     try {
       final response =
           await Dio().delete(url, options: Options(headers: header));
@@ -241,24 +241,24 @@ class WebServices {
           errorResponse: {'error': error.response!.data.toString()});
     }
     //push to no internet screen if isConnected is false
-    // } else {
-    //   pushToNoInternetPage(context);
-    //   return Failure(
-    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
-    // }
+    } else {
+      pushToNoInternetPage(context);
+      return Failure(
+          code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+    }
   }
 
   //handles Put requests
   static Future sendPutRequest(String url, context) async {
     final token = UserPreferences.getToken() ?? '';
 
-    // bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
+    bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-    // if (isConnected) {
+    if (isConnected) {
     try {
       final response = await Dio().put(url, options: Options(headers: header));
 
@@ -288,10 +288,10 @@ class WebServices {
           errorResponse: {'error': error.response!.data.toString()});
     }
     //push to no internet screen if isConnected is false
-    // } else {
-    //   pushToNoInternetPage(context);
-    //   return Failure(
-    //       code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
-    // }
+    } else {
+      pushToNoInternetPage(context);
+      return Failure(
+          code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
+    }
   }
 }

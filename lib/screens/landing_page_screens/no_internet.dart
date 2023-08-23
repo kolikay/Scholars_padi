@@ -13,18 +13,12 @@ class NoInternetScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: Container(
+          width: double.infinity,
           color: AppColor.darkContainer,
           child: Column(
             children: [
               SizedBox(
                 height: 30.h,
-              ),
-              ReuseableAppbar(
-                color: Colors.white,
-                firstAppIcon: Icons.backspace,
-                secondAppIcon: Icons.search_off_rounded,
-                firstButton: () {},
-                secondButton: () {},
               ),
               Expanded(
                 child: Padding(

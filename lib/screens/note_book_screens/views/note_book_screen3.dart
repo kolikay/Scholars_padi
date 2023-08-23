@@ -34,6 +34,8 @@ class _NoteBookScreen3State extends ConsumerState<NoteBookScreen3> {
     final notes = ref.watch(noteViewModelProvider);
 
     contentController.text = notes.oneNoteFromServer.content ?? '';
+    
+    Future.delayed(const Duration(seconds: 3));
 
     String dateOBDCommand = notes.oneNoteFromServer.createdAt ?? '';
     DateTime date = DateTime.parse(dateOBDCommand);
