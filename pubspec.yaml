@@ -34,10 +34,15 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  intl: ^0.18.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  integration_test:
+    sdk: flutter
+  # mockito: 5.2.0
+  build_runner: 2.2.0 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -51,7 +56,7 @@ dev_dependencies:
   smooth_page_indicator: ^1.0.0+2
   flutter_native_splash: 1.2.0
   #extra fonts
-  google_fonts: 2.2.0
+  google_fonts: ^5.0.0
   #pin codes fields
   pin_code_fields: ^7.4.0
   #icon launcher
@@ -61,7 +66,7 @@ dev_dependencies:
   #state management
   flutter_riverpod: ^1.0.1
   #App Responsivness
-  flutter_screenutil: 5.5.3+2 
+  flutter_screenutil: 5.8.3 
   #image picker
   image_picker: 0.8.3+1
 

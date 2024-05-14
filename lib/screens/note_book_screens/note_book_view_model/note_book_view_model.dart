@@ -3,7 +3,6 @@
 import 'dart:io';
 
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -44,6 +43,7 @@ class NoteViewModel extends ChangeNotifier {
   searchNote(NoteModel note) {
     oneNoteFromServer.content = note.content;
     oneNoteFromServer.title = note.title;
+    oneNoteFromServer.createdAt = note.createdAt;
   }
 
 //Save Notes  funtions
@@ -77,7 +77,7 @@ class NoteViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
-  // get all notes rom server
+  // get all notes from server
   Future getSavedNotes(context) async {
     setLoading(true);
 
@@ -86,7 +86,6 @@ class NoteViewModel extends ChangeNotifier {
 
     if (response.code == SUCCESS) {
       final result = response.response;
-
       noteFromServer = result.map(((e) => NoteModel.fromJson(e))).toList();
 
       // notifyListeners();
@@ -99,13 +98,11 @@ class NoteViewModel extends ChangeNotifier {
     setLoading(false);
   }
 
-// get single notes rom server
+// get single notes from server
   Future getSingleNotes(context, search) async {
     setLoading(true);
-
-    var response =
-        await WebServices.sendGetRequest("$baseApi/notes/$search", context);
-
+    var response = await WebServices.sendGetRequest(
+        "$baseApi/notes/$search/?query=$search", context);
     if (response.code == SUCCESS) {
       final result = response.response;
 
@@ -125,6 +122,25 @@ class NoteViewModel extends ChangeNotifier {
   Future deleteNote(context, noteTitle) async {
     var response = await WebServices.sendDeleteRequest(
         "$baseApi/notes/$noteTitle/delete", context);
+
+    if (response.code == 200 || response.code == 202) {
+      getSavedNotes(context);
+      pushNoteBookScreen1(context);
+
+      ShowSnackBar.buildErrorSnackbar(
+          context, 'Note Deleted Successfully', Colors.green[100]!);
+    } else {
+      ShowSnackBar.buildErrorSnackbar(
+          context, 'An Error has occured', Colors.pink[100]!);
+    }
+
+    setLoading(false);
+  }
+
+  // Edit note function
+  Future editNote(context, noteTitle) async {
+    var response = await WebServices.sendPutRequest(
+        "$baseApi/notes/$noteTitle/update", context);
 
     if (response.code == 202) {
       Navigator.push(

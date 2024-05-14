@@ -52,12 +52,25 @@ class _LogOutScreenState extends State<LogOutScreen> {
                 SizedBox(
                   height: 14.h,
                 ),
-                ReuseableButton(
-                  text: 'Yes',
-                  onPressed: () {
+                InkWell(
+                  onTap: () {
                     AuthViewModel.instance.logOutUser(context);
                   },
-                  backGroundColor: Colors.red,
+                  child: Container(
+                    width: 220.w,
+                    height: 50.h,
+                    child: Center(
+                      child: NormalText(
+                        text: 'Yes',
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    decoration: BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(color: AppColor.dullBlack),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   height: 15.h,
@@ -70,14 +83,9 @@ class _LogOutScreenState extends State<LogOutScreen> {
                     width: 220.w,
                     height: 50.h,
                     child: Center(
-                      child: InkWell(
-                        onTap: () {
-                          Navigator.pop(context);
-                        },
-                        child: NormalText(
-                          text: 'No',
-                          fontWeight: FontWeight.w600,
-                        ),
+                      child: NormalText(
+                        text: 'No',
+                        fontWeight: FontWeight.w600,
                       ),
                     ),
                     decoration: BoxDecoration(

@@ -101,6 +101,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                             child: Column(
                               children: [
                                 MyTextField(
+                                  key: const Key('testKeyEmail'),
                                   validator: (val) {
                                     if (val!.isEmpty) {
                                       return 'The Email Field is required';
@@ -118,6 +119,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   height: 24.h,
                                 ),
                                 MyTextField(
+                                  key: const Key('testKeyPassword'),
                                     validator: (val) {
                                       if (val!.isEmpty) {
                                         return 'The password Field is required';
@@ -149,6 +151,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
+                               key: const Key('testKeyloginButton'),
                               onPressed: () {
                                 pushEmailPasswordChangeScreen(context);
                               },
@@ -178,7 +181,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
                                   authViewModel.loginUser(
-                                      '$baseApi/account/login',
+                                      '$baseApi/account/login/',
                                       {
                                         "email": emailController.text.trim(),
                                         "password":

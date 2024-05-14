@@ -4,14 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/note_book_screens/note_book_view_model/note_book_view_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:scholars_padi/widgets/utils/progress_bar.dart';
-import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 
 class NoteBookScreen1 extends ConsumerStatefulWidget {
   const NoteBookScreen1({
@@ -26,11 +25,27 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
   bool isVisible = false;
   final searchController = TextEditingController();
 
-  @override
-  void initState() {
-    NoteViewModel.instance.getSavedNotes(context);
-    super.initState();
-  }
+  // @override
+  // void initState() {
+  //   NoteViewModel.instance.getSavedNotes(context);
+  //   super.initState();
+  // }
+  List<Color> firstColor = [
+    Colors.blue,
+    Colors.orange,
+    Colors.red,
+    // Colors.blue,
+    // Colors.orange,
+    // Colors.red,
+  ];
+  List<Color> secondColor = [
+    Color(0xffd1ecfa),
+    Color(0xffFFC847),
+    Color(0xffF65B3C),
+    // Color(0xffd1ecfa),
+    // Color(0xffFFC847),
+    // Color(0xffF65B3C),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +62,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
           ),
           firstAppIcon: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              pushOnBoardingScreen(context);
             },
             icon: const Icon(Icons.arrow_back_ios),
           ),
@@ -61,7 +76,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
         children: [
           Container(
             width: double.infinity,
-            height: 812.h,
+            height: double.infinity,
             color: AppColor.darkContainer,
             child: Padding(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
@@ -81,6 +96,12 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                             itemCount: notes.noteFromServer.length,
                             itemBuilder: (context, index) {
                               // final materialCard = card[index];
+                              String dateOBDCommand =
+                                  notes.noteFromServer[index].createdAt;
+                              DateTime date = DateTime.parse(dateOBDCommand);
+                              String formattedDate =
+                                  DateFormat('yyyy-MM-dd').format(date);
+
                               return Slidable(
                                 actionExtentRatio: 0.25,
                                 actionPane: const SlidableDrawerActionPane(),
@@ -90,21 +111,38 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                                     color: Colors.red,
                                     icon: Icons.delete,
                                     onTap: () {
-                                       onDismissed(ref, notes.noteFromServer[index].title);
+                                      notes.setLoading(true);
+                                      onDismissed(ref,
+                                          notes.noteFromServer[index].title);
                                     },
                                   )
                                 ],
                                 child: MaterialCards(
+                                  color1: index >= 3
+                                      ? Colors.green
+                                      : firstColor[index],
+                                  color2: index >= 3
+                                      ? Color.fromARGB(255, 158, 209, 160)
+                                      : secondColor[index],
+                                  favcolor:
+                                      notes.noteFromServer[index].is_favourite
+                                          ? Colors.red
+                                          : Colors.white,
                                   ontap: () {
                                     notes.getSingleNotes(
                                         context,
                                         notes.noteFromServer[index].title ??
                                             '');
-                                    pushNoteBookScreen3(context);
+                                    Future.delayed(
+                                        const Duration(milliseconds: 500), () {
+                                      //navigate to onbording screen after 30 seconds
+                                       pushNoteBookScreen3(context);
+                                    });
+                                   
                                   },
                                   cardMessage:
-                                      notes.noteFromServer[index].title!,
-                                  cardDate: DateTime.now().toString(),
+                                      notes.noteFromServer[index].title ?? '',
+                                  cardDate: formattedDate,
                                 ),
                               );
                             }),
@@ -266,7 +304,7 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
     );
   }
 
-  void onDismissed( WidgetRef ref, String noteTitle) {
+  void onDismissed(WidgetRef ref, String noteTitle) {
     final notes = ref.watch(noteViewModelProvider);
     notes.deleteNote(context, noteTitle);
   }
@@ -274,11 +312,20 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
 
 class MaterialCards extends StatefulWidget {
   const MaterialCards(
-      {Key? key, required this.cardMessage, required this.cardDate, this.ontap})
+      {Key? key,
+      required this.cardMessage,
+      required this.cardDate,
+      this.ontap,
+      required this.color1,
+      required this.color2,
+      required this.favcolor})
       : super(key: key);
 
   final String cardMessage;
   final String cardDate;
+  final Color color1;
+  final Color color2;
+  final Color favcolor;
 
   final GestureTapCallback? ontap;
 
@@ -288,6 +335,10 @@ class MaterialCards extends StatefulWidget {
 
 class _MaterialCardsState extends State<MaterialCards> {
   bool tapped = false;
+  List colors = [
+    [Colors.yellow, Colors.green],
+    [Colors.blue, Colors.pink]
+  ];
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -300,13 +351,15 @@ class _MaterialCardsState extends State<MaterialCards> {
         children: [
           Container(
             width: 5,
-            color: Colors.blue,
+            // color: Colors.blue,
+            color: widget.color1,
           ),
           Expanded(
             child: InkWell(
               onTap: widget.ontap,
               child: Container(
-                color: Color(0xffd1ecfa),
+                // color: Color(0xffd1ecfa),
+                color: widget.color2,
                 child: Padding(
                   padding: EdgeInsets.only(left: 10.h),
                   child: Column(
@@ -329,8 +382,10 @@ class _MaterialCardsState extends State<MaterialCards> {
                               });
                             },
                             icon: Icon(
-                              !tapped ? Icons.favorite_border : Icons.favorite,
-                              color: AppColor.mainColor,
+                              // !tapped ? Icons.favorite_border : Icons.favorite,
+                              // color: AppColor.mainColor,
+                              Icons.favorite,
+                              color: widget.favcolor,
                               size: 20.sp,
                             ),
                           )

@@ -1,9 +1,7 @@
 // import 'dart:io';
 
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/models/models.dart';
-import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/screens/authentication/views/verify_otp_screen.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 import 'package:universal_io/io.dart';
@@ -12,8 +10,15 @@ import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
+import 'package:dio/dio.dart';
+import 'package:scholars_padi/constants/shared_preferences.dart';
+
+import '../views/login_screen.dart';
 
 class AuthViewModel extends ChangeNotifier {
+  Dio dio = Dio();
+  final userPref = UserPreferences();
+
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
 
@@ -27,7 +32,7 @@ class AuthViewModel extends ChangeNotifier {
   bool _loginError = false;
   bool get loginError => _loginError;
 
-// empty list to save user data from api
+  // empty list to save user data from api
   List<UserModel> userData = [];
 
 //instance of usermodel
@@ -49,6 +54,7 @@ class AuthViewModel extends ChangeNotifier {
     userApiData.email = newUser.email;
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
+    userData.add(newUser);
 
     // userApiData.dob = newUser.dob;
     // userApiData.occupation = newUser.occupation;
@@ -61,37 +67,51 @@ class AuthViewModel extends ChangeNotifier {
 //login funtions
   loginUser(url, Object body, context) async {
     setLoading(true);
-    final response = await WebServices.sendPostRequest(url, body, context);
+    try {
+      final response = await WebServices.sendPostRequest(url, body, context);
+      if (response.code == 200 || response.code == 201) {
+        // save login user token from api response
 
-    if (response.code == 200 || response.code == 201) {
-      // save login user token from api response
-      UserPreferences.setLoginUerToken(response.response!['access_token']);
+        userPref.setLoginUerToken(response.response!['access_token']);
 
-      // get logged in user details
-      await getLoginUserData(context);
+        // get logged in user details
+        // uncomment after test
+        await getLoginUserData(context);
 
-      Future.delayed(const Duration(milliseconds: 500), () {
-        //navigate to onbording screen after 30 seconds
-        pushOnBoardingScreen(context);
-      });
+        Future.delayed(const Duration(milliseconds: 500), () {
+          //navigate to onbording screen after 30 seconds
+          pushOnBoardingScreen(context);
+        });
 
+        setLoading(false);
+        return true;
+      } else if (response.code == 400) {
+        print('object');
+        print(response.code);
+        setLoginError(true);
+        setLoading(false);
+        return false;
+      } else {
+        setLoading(false);
+        return false;
+      }
+
+      // if (response is SocketException) {
+      //   pushToNoInternetPage(context);
+      //   setLoading(false);
+      // }
+      // setLoading(false);
+    } on HttpException catch (e) {
       setLoading(false);
-    } else {
-      setLoginError(true);
-      setLoading(false);
+      return e.message;
     }
-
-    if (response is SocketException) {
-      pushToNoInternetPage(context);
-      setLoading(false);
-    }
-    setLoading(false);
   }
 
   //registration funtions
-  registerUser(url, Object body, context) async {
+  registerUser(Object body, context) async {
     setLoading(true);
-    final response = await WebServices.sendPostRequest(url, body, context);
+    final response = await WebServices.sendPostRequest(
+        '$baseApi/account/register/', body, context);
 
     if (response is Success) {
       Navigator.of(context).push(
@@ -137,7 +157,6 @@ class AuthViewModel extends ChangeNotifier {
       final result = response.response;
 
       addUserdata(UserModel.fromJson(result));
-      // userData.add(UserModel.fromJson(result));
 
       notifyListeners();
 
@@ -154,20 +173,16 @@ class AuthViewModel extends ChangeNotifier {
   Future logOutUser(context) async {
     var response =
         await WebServices.sendDeleteRequest("$baseApi/account/logout", context);
-    Navigator.pop(context);
 
-    if (response.code == SUCCESS) {
+    if (response.code == 200 || response.code == 401) {
       await UserPreferences.resetSharedPref();
       Navigator.of(context).pushNamedAndRemoveUntil(
           LoginScreen.id, (Route<dynamic> route) => false);
+      return true;
     } else {
       ShowSnackBar.buildErrorSnackbar(
           context, response!.data.toString(), Colors.pink[100]!);
+      return false;
     }
-
-    setLoading(false);
   }
-
-
-
 }

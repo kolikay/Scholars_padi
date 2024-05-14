@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
@@ -49,61 +48,68 @@ class _NoteBookScreen2State extends ConsumerState<NoteBookScreen2> {
             icon: const Icon(Icons.save),
           ),
           thirdAppIcon: IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.more_vert),
+            onPressed: () {
+              setState(() {
+                isFavourite = !isFavourite;
+              });
+  
+            },
+            icon: Icon(Icons.favorite, color: isFavourite ? Colors.red : Colors.white ),
           ),
         ),
       ),
       body: Stack(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: SizedBox(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  NormalText(
-                    text: DateTime.now().toString(),
-                    color: AppColor.dullerBlack,
-                    size: 12.sp,
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  TextField(
-                    controller: titileController,
-                    keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
-                      hintText: 'Title',
-                      helperStyle: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.bold,
-                          color: AppColor.dullBlack),
+          SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: SizedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    NormalText(
+                      text: DateTime.now().toString(),
+                      color: AppColor.dullerBlack,
+                      size: 12.sp,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15.h,
-                  ),
-                  SizedBox(
-                    height: 300.h,
-                    width: double.infinity,
-                    child: TextFormField(
-                      maxLines: null,
-                      expands: true,
-                      controller: contentController,
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    TextField(
+                      controller: titileController,
                       keyboardType: TextInputType.text,
                       decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'wrtie notes',
+                        hintText: 'Title',
                         helperStyle: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.bold,
                             color: AppColor.dullBlack),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 15.h,
+                    ),
+                    SizedBox(
+                      height: 300.h,
+                      width: double.infinity,
+                      child: TextFormField(
+                        maxLines: null,
+                        expands: true,
+                        controller: contentController,
+                        keyboardType: TextInputType.text,
+                        decoration: InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'wrtie notes',
+                          helperStyle: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.bold,
+                              color: AppColor.dullBlack),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
