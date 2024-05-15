@@ -12,7 +12,6 @@ import '../constants/shared_preferences.dart';
 import '../screens/authentication/views/login_screen.dart';
 
 class WebServices {
-  final dio = Dio();
 
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
@@ -21,48 +20,51 @@ class WebServices {
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-
       'Authorization': 'Bearer $token',
     };
     if (isConnected) {
-    try {
-      final response = await Dio()
-          .post(url, data: jsonEncode(body), options: Options(headers: header));
+      try {
+        final response = await Dio().post(url,
+            data: jsonEncode(body), options: Options(headers: header));
 
-      if (response.statusCode == 200) {
-        return Success(code: response.statusCode, response: response.data);
-      } else if (response.statusCode == 201) {
-        return Success(code: response.statusCode, response: response.data);
-      }
-    } on DioError catch (error) {
-            // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        if (response.statusCode == 200) {
+          return Success(code: response.statusCode, response: response.data);
+        } else if (response.statusCode == 201) {
+          return Success(code: response.statusCode, response: response.data);
+        }
+      } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(
+              context, 'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
+        if (error.response!.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+          ShowSnackBar.buildErrorSnackbar(
+              context, 'Access time Out,Please Login ', Colors.pink[100]!);
+          return Failure(
+              code: error.response!.statusCode,
+              errorResponse: {'error': error.response!.data.toString()});
+        }
+
         ShowSnackBar.buildErrorSnackbar(
-            context, 'Access time Out,Please Login ', Colors.pink[100]!);
+            context, error.response!.data.toString(), Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.data.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
-    }
-    // push to no internet screen if isConnected is false
+      // push to no internet screen if isConnected is false
     } else {
       pushToNoInternetPage(context);
       return Failure(
           code: NO_INTERNET, errorResponse: {'error': 'No Internet'});
     }
   }
-
-
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
@@ -74,38 +76,39 @@ class WebServices {
       'Authorization': 'Bearer $token',
     };
     if (isConnected) {
-    try {
-      final response = await Dio().get(url, options: Options(headers: header));
+      try {
+        final response =
+            await Dio().get(url, options: Options(headers: header));
 
-      if (response.statusCode == 200 || response.statusCode == 201) {
-        return Success(code: response.statusCode, response: response.data);
-      } else if (response.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
-      }
-    } on DioError catch (error) {
-      // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        if (response.statusCode == 200 || response.statusCode == 201) {
+          return Success(code: response.statusCode, response: response.data);
+        } else if (response.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+        }
+      } on DioError catch (error) {
+        // Handle error and display on snackbar
+        if (error.response!.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+          ShowSnackBar.buildErrorSnackbar(
+              context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+          return Failure(
+              code: error.response!.statusCode,
+              errorResponse: {'error': error.response!.data.toString()});
+        }
+
         ShowSnackBar.buildErrorSnackbar(
-            context, 'Access Time Out,Please Login ', Colors.pink[100]!);
+            context, error.response!.statusCode.toString(), Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.statusCode.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
-    }
-    //push to no internet screen if isConnected is false
+      //push to no internet screen if isConnected is false
     } else {
       pushToNoInternetPage(context);
       return Failure(
@@ -210,37 +213,37 @@ class WebServices {
       'Accept': 'application/json',
       'Authorization': 'Bearer $token',
     };
-     if (isConnected) {
-    try {
-      final response =
-          await Dio().delete(url, options: Options(headers: header));
+    if (isConnected) {
+      try {
+        final response =
+            await Dio().delete(url, options: Options(headers: header));
 
-      if (response.statusCode == 200 ||
-          response.statusCode == 202 ||
-          response.statusCode == 201) {
-        return Success(code: response.statusCode, response: response.data);
-      } else {
-        return Failure(code: 402, errorResponse: {'failed': "failed"});
-      }
-    } on DioError catch (error) {
-      // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        if (response.statusCode == 200 ||
+            response.statusCode == 202 ||
+            response.statusCode == 201) {
+          return Success(code: response.statusCode, response: response.data);
+        } else {
+          return Failure(code: 402, errorResponse: {'failed': "failed"});
+        }
+      } on DioError catch (error) {
+        // Handle error and display on snackbar
+        if (error.response!.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+          return Failure(
+              code: error.response!.statusCode,
+              errorResponse: {'error': error.response!.data.toString()});
+        }
+
+        ShowSnackBar.buildErrorSnackbar(
+            context, error.response!.statusCode.toString(), Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.statusCode.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
-    }
-    //push to no internet screen if isConnected is false
+      //push to no internet screen if isConnected is false
     } else {
       pushToNoInternetPage(context);
       return Failure(
@@ -259,35 +262,36 @@ class WebServices {
       'Authorization': 'Bearer $token',
     };
     if (isConnected) {
-    try {
-      final response = await Dio().put(url, options: Options(headers: header));
+      try {
+        final response =
+            await Dio().put(url, options: Options(headers: header));
 
-      if (response.statusCode == 200 ||
-          response.statusCode == 202 ||
-          response.statusCode == 201) {
-        return Success(code: response.statusCode, response: response.data);
-      } else {
-        return Failure(code: 402, errorResponse: {'failed': "failed"});
-      }
-    } on DioError catch (error) {
-      // Handle error and display on snackbar
-      if (error.response!.statusCode == 422) {
-        await UserPreferences.resetSharedPref();
-        Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => const LoginScreen()),
-        );
+        if (response.statusCode == 200 ||
+            response.statusCode == 202 ||
+            response.statusCode == 201) {
+          return Success(code: response.statusCode, response: response.data);
+        } else {
+          return Failure(code: 402, errorResponse: {'failed': "failed"});
+        }
+      } on DioError catch (error) {
+        // Handle error and display on snackbar
+        if (error.response!.statusCode == 422) {
+          await UserPreferences.resetSharedPref();
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+          );
+          return Failure(
+              code: error.response!.statusCode,
+              errorResponse: {'error': error.response!.data.toString()});
+        }
+
+        ShowSnackBar.buildErrorSnackbar(
+            context, error.response!.statusCode.toString(), Colors.pink[100]!);
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
       }
-
-      ShowSnackBar.buildErrorSnackbar(
-          context, error.response!.statusCode.toString(), Colors.pink[100]!);
-      return Failure(
-          code: error.response!.statusCode,
-          errorResponse: {'error': error.response!.data.toString()});
-    }
-    //push to no internet screen if isConnected is false
+      //push to no internet screen if isConnected is false
     } else {
       pushToNoInternetPage(context);
       return Failure(

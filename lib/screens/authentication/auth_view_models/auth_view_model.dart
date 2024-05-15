@@ -85,13 +85,15 @@ class AuthViewModel extends ChangeNotifier {
 
         setLoading(false);
         return true;
-      } else if (response.code == 400) {
-        print('object');
-        print(response.code);
-        setLoginError(true);
-        setLoading(false);
-        return false;
-      } else {
+      }
+      //  else if (response.code == 400) {
+      //   print('object');
+      //   print(response.code);
+      //   setLoginError(true);
+      //   setLoading(false);
+      //   return false;
+      // } 
+      else {
         setLoading(false);
         return false;
       }

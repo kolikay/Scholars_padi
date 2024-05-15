@@ -102,9 +102,13 @@ class _NoteBookScreen1State extends ConsumerState<NoteBookScreen1> {
                               String formattedDate =
                                   DateFormat('yyyy-MM-dd').format(date);
 
-                              return Slidable(
+                              return 
+                              
+                              Slidable(
+                              
+                               
                                 actionExtentRatio: 0.25,
-                                actionPane: const SlidableDrawerActionPane(),
+                                 actionPane: const SlidableDrawerActionPane(),
                                 secondaryActions: <Widget>[
                                   IconSlideAction(
                                     caption: 'Delete',
