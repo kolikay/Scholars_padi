@@ -64,51 +64,6 @@ class AuthViewModel extends ChangeNotifier {
     // userApiData.gender = newUser.gender;
   }
 
-//login funtions
-  loginUser(url, Object body, context) async {
-    setLoading(true);
-    try {
-      final response = await WebServices.sendPostRequest(url, body, context);
-      if (response.code == 200 || response.code == 201) {
-        // save login user token from api response
-
-        userPref.setLoginUerToken(response.response!['access_token']);
-
-        // get logged in user details
-        // uncomment after test
-        await getLoginUserData(context);
-
-        Future.delayed(const Duration(milliseconds: 500), () {
-          //navigate to onbording screen after 30 seconds
-          pushOnBoardingScreen(context);
-        });
-
-        setLoading(false);
-        return true;
-      }
-      //  else if (response.code == 400) {
-      //   print('object');
-      //   print(response.code);
-      //   setLoginError(true);
-      //   setLoading(false);
-      //   return false;
-      // }
-      else {
-        setLoading(false);
-        return false;
-      }
-
-      // if (response is SocketException) {
-      //   pushToNoInternetPage(context);
-      //   setLoading(false);
-      // }
-      // setLoading(false);
-    } on HttpException catch (e) {
-      setLoading(false);
-      return e.message;
-    }
-  }
-
   //registration funtions
   registerUser(Object body, context) async {
     setLoading(true);
@@ -147,6 +102,53 @@ class AuthViewModel extends ChangeNotifier {
       setLoading(false);
     }
     setLoading(false);
+  }
+
+//login funtions
+  loginUser(url, Object body, context) async {
+    setLoading(true);
+    try {
+      final response = await WebServices.sendPostRequest(url, body, context);
+     
+      if (response.code == 200 || response.code == 201) {
+        // save login user token from api response
+
+        userPref.setLoginUerToken(response.response!['access_token']);
+
+        // get logged in user details
+        // uncomment after test
+        await getLoginUserData(context);
+
+        Future.delayed(const Duration(milliseconds: 500), () {
+          //navigate to onbording screen after 30 seconds
+          pushOnBoardingScreen(context);
+        });
+
+        setLoading(false);
+        return true;
+      }
+      //  else if (response.code == 400) {
+      //   print('object');
+      //   print(response.code);
+      //   setLoginError(true);
+      //   setLoading(false);
+      //   return false;
+      // }
+      else {
+          
+        setLoading(false);
+        return false;
+      }
+
+      // if (response is SocketException) {
+      //   pushToNoInternetPage(context);
+      //   setLoading(false);
+      // }
+      // setLoading(false);
+    } on HttpException catch (e) {
+      setLoading(false);
+      return e.message;
+    }
   }
 
   // save user data function

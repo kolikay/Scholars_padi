@@ -94,7 +94,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             padding: EdgeInsets.only(left: 50.w, right: 50.w),
             child: PinCodeTextField(
               keyboardType: TextInputType.number,
-              length: 4,
+              length: 5,
               appContext: context,
               obscureText: true,
               animationType: AnimationType.fade,
