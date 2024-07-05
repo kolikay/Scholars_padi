@@ -12,7 +12,6 @@ import '../constants/shared_preferences.dart';
 import '../screens/authentication/views/login_screen.dart';
 
 class WebServices {
-
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
     final token = UserPreferences.getToken();
@@ -34,8 +33,8 @@ class WebServices {
         }
       } on DioError catch (error) {
         if (error.response == null) {
-          ShowSnackBar.buildErrorSnackbar(
-              context, 'Server Not Available,Try Again later ', Colors.pink[100]!);
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
           return Failure(
               code: NO_INTERNET,
               errorResponse: {'error': 'Server Not Available'});
@@ -54,6 +53,7 @@ class WebServices {
 
         ShowSnackBar.buildErrorSnackbar(
             context, error.response!.data.toString(), Colors.pink[100]!);
+
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});
@@ -89,6 +89,13 @@ class WebServices {
           );
         }
       } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
         // Handle error and display on snackbar
         if (error.response!.statusCode == 422) {
           await UserPreferences.resetSharedPref();
@@ -138,6 +145,13 @@ class WebServices {
           return Success(code: response.statusCode, response: response.data);
         }
       } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
         // Handle error
         ShowSnackBar.buildErrorSnackbar(
             context, error.response!.data.toString(), Colors.pink[100]!);
@@ -178,6 +192,13 @@ class WebServices {
           return Success(code: response.statusCode, response: response.data);
         }
       } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
         // Handle error and display on snackbar
         if (error.response!.statusCode == 422) {
           await UserPreferences.resetSharedPref();
@@ -226,6 +247,13 @@ class WebServices {
           return Failure(code: 402, errorResponse: {'failed': "failed"});
         }
       } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
         // Handle error and display on snackbar
         if (error.response!.statusCode == 422) {
           await UserPreferences.resetSharedPref();
@@ -274,6 +302,13 @@ class WebServices {
           return Failure(code: 402, errorResponse: {'failed': "failed"});
         }
       } on DioError catch (error) {
+        if (error.response == null) {
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Server Not Available,Try Again later ', Colors.pink[100]!);
+          return Failure(
+              code: NO_INTERNET,
+              errorResponse: {'error': 'Server Not Available'});
+        }
         // Handle error and display on snackbar
         if (error.response!.statusCode == 422) {
           await UserPreferences.resetSharedPref();

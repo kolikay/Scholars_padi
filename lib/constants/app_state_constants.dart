@@ -10,7 +10,8 @@ import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view_m
 
 
 
-const baseApi = 'https://scholarspadi.com/api';
+// const baseApi = 'https://scholarspadi.com/api';
+const baseApi = 'http://44.217.144.107/api';
 
 
 //auth view providers

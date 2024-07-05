@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scholars_padi/screens/authentication/views/sign_up2_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
@@ -18,6 +19,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
   final _usernameCont = TextEditingController();
   final _facultyCont = TextEditingController();
   final _departmentCont = TextEditingController();
+  final _phoneNumberCont = TextEditingController();
 
 // Initial Selected Value
   String dropdownvalue = 'Male';
@@ -98,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 24.h,
                             ),
                             MyTextField(
-                                validator: (val) {
+                              validator: (val) {
                                 if (val!.isEmpty) {
                                   return 'Field Cannot be empty';
                                 }
@@ -115,12 +117,15 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                               height: 24.h,
                             ),
                             MyTextField(
-                              controller: _departmentCont,
+                              inputFormat: <TextInputFormatter>[
+                                FilteringTextInputFormatter.digitsOnly
+                              ],
+                              controller: _phoneNumberCont,
                               obcureText: false,
-                              keyBoardType: TextInputType.text,
+                              keyBoardType: TextInputType.number,
                               isPassword: false,
                               isReadOnly: false,
-                              labelText: 'Department',
+                              labelText: 'Phone Number',
                             ),
                             SizedBox(
                               height: 24.h,
@@ -178,6 +183,7 @@ class _SignUpScreenState extends State<SignUpScreen1> {
                                     userName: _usernameCont.text,
                                     department: _departmentCont.text,
                                     faculty: _facultyCont.text,
+                                    phoneNumber: _phoneNumberCont.text,
                                     gender: dropdownvalue,
                                   ),
                                 ),

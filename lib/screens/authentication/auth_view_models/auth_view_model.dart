@@ -92,7 +92,7 @@ class AuthViewModel extends ChangeNotifier {
       //   setLoginError(true);
       //   setLoading(false);
       //   return false;
-      // } 
+      // }
       else {
         setLoading(false);
         return false;
@@ -112,8 +112,9 @@ class AuthViewModel extends ChangeNotifier {
   //registration funtions
   registerUser(Object body, context) async {
     setLoading(true);
+
     final response = await WebServices.sendPostRequest(
-        '$baseApi/account/register/', body, context);
+        '$baseApi/auth/signup', body, context);
 
     if (response is Success) {
       Navigator.of(context).push(

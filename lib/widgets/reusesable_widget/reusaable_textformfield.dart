@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -15,8 +16,9 @@ class MyTextField extends StatefulWidget {
   final bool isReadOnly;
   final Color borderColor;
   final TextInputType keyBoardType;
+  final List<TextInputFormatter>? inputFormat;
   final String? Function(String?)? validator;
-   final bool enable;
+  final bool enable;
 
   const MyTextField({
     Key? key,
@@ -29,6 +31,7 @@ class MyTextField extends StatefulWidget {
     required this.labelText,
     this.prefixIcon,
     this.sufixIcon,
+    this.inputFormat,
     required this.keyBoardType,
     this.validator,
     this.enable = true,
@@ -44,14 +47,19 @@ class _MyTextFieldState extends State<MyTextField> {
     return SizedBox(
       width: 327.w,
       child: TextFormField(
+        inputFormatters: widget.inputFormat,
         controller: widget.controller,
         readOnly: widget.isReadOnly,
         obscureText: widget.obcureText,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
-          focusedBorder: widget.enable? OutlineInputBorder(
-            borderSide: BorderSide(color: AppColor.mainColor, width: 2.0.w),
-          ) : OutlineInputBorder(),
+          contentPadding:
+              EdgeInsets.symmetric(vertical: 10.h, horizontal: 10.w),
+          focusedBorder: widget.enable
+              ? OutlineInputBorder(
+                  borderSide:
+                      BorderSide(color: AppColor.mainColor, width: 2.0.w),
+                )
+              : OutlineInputBorder(),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(color: Colors.black, width: 1.0.w),
           ),

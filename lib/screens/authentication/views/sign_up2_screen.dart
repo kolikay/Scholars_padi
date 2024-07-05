@@ -15,6 +15,7 @@ class SignUpScreen2 extends ConsumerStatefulWidget {
   final String faculty;
   final String? department;
   final String gender;
+  final String phoneNumber;
 
   const SignUpScreen2({
     Key? key,
@@ -23,6 +24,7 @@ class SignUpScreen2 extends ConsumerStatefulWidget {
     this.department,
     required this.faculty,
     required this.gender,
+    required this.phoneNumber,
   }) : super(key: key);
   @override
   ConsumerState<SignUpScreen2> createState() => _SignUpScreenState();
@@ -39,10 +41,12 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
     final body = {
       "full_name": widget.fullName.trim(),
       "username": widget.userName.trim(),
+      "password": _password1Cont.text.trim(),
+      "passConfirm": _password1Cont.text.trim(),
       "gender": widget.gender.trim(),
-      "email": _emailCont.text.trim(),
       "faculty": widget.faculty.trim(),
-      "password_hash": _password1Cont.text.trim(),
+      "email": _emailCont.text.trim(),
+      "phoneNumber": widget.phoneNumber.trim(),
     };
     return body;
   }
