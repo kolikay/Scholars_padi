@@ -67,34 +67,75 @@ class AuthViewModel extends ChangeNotifier {
   //registration funtions
   registerUser(Object body, context) async {
     setLoading(true);
-
     final response = await WebServices.sendPostRequest(
         '$baseApi/auth/signup', body, context);
+    print(response.response);
 
+    try {
+      if (response.code == 200 || response.code == 201) {
+        userPref.setLoginUerToken(response.response!["userData"]['_id']);
+        print('object');
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ReuseableInfoWidget(
+              bottonText: 'Confirm Email',
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const VerifyOtpScreen(),
+                  ),
+                );
+              },
+              logo: 'lib/assets/verifyIcon.png',
+              maintext: 'Congratulations',
+              detailsText:
+                  'Your account has been successfully created. Kindly go to your email to verify your account. If you did not receive an email, you can resend one',
+            ),
+          ),
+        );
+        // pushOnBoardingScreen(context);
+        setLoading(false);
+      }
+      if (response is Failure) {
+        setLoading(false);
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+      setLoading(false);
+    } catch (e) {}
+  }
+
+  //Verify email funtions
+  verifyUserEmail(Object body, context) async {
+    setLoading(true);
+    final response = await WebServices.sendPostRequest(
+        '$baseApi/auth/verify-otp', body, context);
     if (response is Success) {
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => ReuseableInfoWidget(
-            bottonText: 'Confirm Email',
+            bottonText: 'Proceed to login',
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const VerifyOtpScreen(),
-                ),
+                MaterialPageRoute(builder: (context) => const LoginScreen()),
               );
             },
-            logo: 'lib/assets/verifyIcon.png',
-            maintext: 'Congratulations',
+            logo: 'lib/assets/emailVerifyIcon.png',
+            maintext: 'Email Verified',
             detailsText:
-                'Your account has been successfully created. Kindly go to your email to verify your account. If you did not receive an email, you can resend one',
+                'Your account has been verified successfully, Please login to continue.',
           ),
         ),
       );
 
-      // pushOnBoardingScreen(context);
       setLoading(false);
+      return Success;
     }
     if (response is Failure) {
+      ShowSnackBar.buildErrorSnackbar(
+          context, 'Email Verification Failed', Colors.pink[100]!);
       setLoading(false);
     }
     if (response is SocketException) {
@@ -109,7 +150,7 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     try {
       final response = await WebServices.sendPostRequest(url, body, context);
-     
+
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
 
@@ -135,7 +176,6 @@ class AuthViewModel extends ChangeNotifier {
       //   return false;
       // }
       else {
-          
         setLoading(false);
         return false;
       }

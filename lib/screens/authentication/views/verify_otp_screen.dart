@@ -2,13 +2,17 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
+import 'package:scholars_padi/constants/shared_preferences.dart';
+import 'package:scholars_padi/constants/status_codes.dart';
+import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
+import 'package:scholars_padi/widgets/utils/snack_bar.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   const VerifyOtpScreen({
@@ -42,6 +46,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String pinCode = '';
     return SafeArea(
         child: Scaffold(
       body: Column(
@@ -76,11 +81,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 NormalText(
-                  text: 'Enter verification code to reset your',
+                  text: 'Enter verification code to confirm your ',
                   size: 16.sp,
                 ),
-                 NormalText(
-                  text: 'Password',
+                NormalText(
+                  text: 'email',
                   size: 16.sp,
                 ),
               ],
@@ -89,7 +94,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           SizedBox(
             height: 25.h,
           ),
-    
           Padding(
             padding: EdgeInsets.only(left: 50.w, right: 50.w),
             child: PinCodeTextField(
@@ -110,16 +114,23 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 activeFillColor: Colors.white,
               ),
               onChanged: (val) {
-                if (val.length > 3) {
-                  setState(() {
-                    _isActive = !_isActive;
-                  });
-                }
+                print(val);
+                // if (val.length > 3) {
+                //   setState(() {
+                //     _isActive = !_isActive;
+                //   });
+                // }
+              },
+              onSubmitted: (pin) {
+                setState(() {
+                  pinCode = pin;
+                });
+                print(pin);
               },
             ),
           ),
           Padding(
-            padding:EdgeInsets.only(right: 50.w),
+            padding: EdgeInsets.only(right: 50.w),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -139,10 +150,10 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   fontSize: 16.sp,
                 ),
                 children: <TextSpan>[
-                   TextSpan(
+                  TextSpan(
                       text: 'Didn\'t you receive an Otp? ',
-                      style:
-                          TextStyle(color: AppColor.dullBlack, fontSize: 16.sp)),
+                      style: TextStyle(
+                          color: AppColor.dullBlack, fontSize: 16.sp)),
                   TextSpan(
                     text: 'Resend Code',
                     style: TextStyle(
@@ -160,31 +171,16 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             height: 45.h,
           ),
           ReuseableButton(
-            backGroundColor:
-                AppColor.mainColor,
-            isActive: _isActive,
+            backGroundColor: AppColor.mainColor,
+            // isActive: _isActive,
             text: 'Verify',
             textSize: 14.sp,
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => 
-                 ReuseableInfoWidget(
-                    bottonText: 'Proceed to login',
-                    onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen()
-                        ),
-                      );
-                    },
-                    logo: 'lib/assets/emailVerifyIcon.png',
-                    maintext: 'Email Verified',
-                    detailsText:
-                        'Your account has been verified successfully, Please login to continue.',
-                  ),
-                ),
-              );
+            onPressed: () async {
+              String? token = UserPreferences.getToken();
+              await AuthViewModel.instance.verifyUserEmail({
+                "_id": token,
+                "otp": pinCode,
+              }, context);
             },
           ),
         ],

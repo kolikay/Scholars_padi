@@ -25,7 +25,6 @@ class WebServices {
       try {
         final response = await Dio().post(url,
             data: jsonEncode(body), options: Options(headers: header));
-        print(response.data);
 
         if (response.statusCode == 200) {
           return Success(code: response.statusCode, response: response.data);
