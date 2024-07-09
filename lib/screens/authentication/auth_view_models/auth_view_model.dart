@@ -109,56 +109,61 @@ class AuthViewModel extends ChangeNotifier {
 
   //Verify email funtions
   verifyUserEmail(Object body, context) async {
-    setLoading(true);
-    final response = await WebServices.sendPostRequest(
-        '$baseApi/auth/verify-otp', body, context);
-    if (response is Success) {
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (context) => ReuseableInfoWidget(
-            bottonText: 'Proceed to login',
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const LoginScreen()),
-              );
-            },
-            logo: 'lib/assets/emailVerifyIcon.png',
-            maintext: 'Email Verified',
-            detailsText:
-                'Your account has been verified successfully, Please login to continue.',
+    try {
+      setLoading(true);
+      final response = await WebServices.sendPostRequest(
+          '$baseApi/auth/verify-otp', body, context);
+      if (response is Success) {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => ReuseableInfoWidget(
+              bottonText: 'Proceed to login',
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+              logo: 'lib/assets/emailVerifyIcon.png',
+              maintext: 'Email Verified',
+              detailsText:
+                  'Your account has been verified successfully, Please login to continue.',
+            ),
           ),
-        ),
-      );
+        );
 
+        setLoading(false);
+        return Success;
+      }
+      if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Email Verification Failed', Colors.pink[100]!);
+        setLoading(false);
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+    } catch (e) {
       setLoading(false);
-      return Success;
     }
-    if (response is Failure) {
-      ShowSnackBar.buildErrorSnackbar(
-          context, 'Email Verification Failed', Colors.pink[100]!);
-      setLoading(false);
-    }
-    if (response is SocketException) {
-      pushToNoInternetPage(context);
-      setLoading(false);
-    }
-    setLoading(false);
   }
 
 //login funtions
-  loginUser(url, Object body, context) async {
-    setLoading(true);
+  loginUser(Object body, context) async {
     try {
-      final response = await WebServices.sendPostRequest(url, body, context);
+      setLoading(true);
+      final response = await WebServices.sendPostRequest(
+          '$baseApi/auth/signin', body, context);
+      
 
       if (response.code == 200 || response.code == 201) {
         // save login user token from api response
 
-        userPref.setLoginUerToken(response.response!['access_token']);
+      userPref.setLoginUerToken(response.response!["userData"]["user"]['_id']);
 
         // get logged in user details
         // uncomment after test
-        await getLoginUserData(context);
+        // await getLoginUserData(context);
 
         Future.delayed(const Duration(milliseconds: 500), () {
           //navigate to onbording screen after 30 seconds

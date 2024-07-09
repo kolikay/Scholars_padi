@@ -12,21 +12,25 @@ import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 import 'package:scholars_padi/widgets/utils/snack_bar.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class VerifyOtpScreen extends StatefulWidget {
+class VerifyOtpScreen extends ConsumerStatefulWidget {
   const VerifyOtpScreen({
     Key? key,
   }) : super(key: key);
   @override
-  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() =>
+      _VerifyOtpScreenState();
 }
 
-class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
   bool _isActive = false;
   int secondsRemaining = 30;
   bool enableResend = false;
   Timer? timer;
+  final pinController = TextEditingController();
 
   @override
   initState() {
@@ -46,31 +50,45 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authViewModel = ref.watch(authViewModelProvider);
     String pinCode = '';
     return SafeArea(
         child: Scaffold(
       body: Column(
         children: [
-          Container(
-            padding: EdgeInsets.only(left: 24.w),
-            color: AppColor.mainColor,
-            height: 80.h,
-            child: Row(
-              children: [
-                const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
+          Stack(
+            children: [
+              Container(
+                padding: EdgeInsets.only(left: 24.w),
+                color: AppColor.mainColor,
+                height: 80.h,
+                child: Row(
+                  children: [
+                    const Icon(
+                      Icons.arrow_back_ios,
+                      color: Colors.white,
+                    ),
+                    SizedBox(
+                      width: 28.w,
+                    ),
+                    NormalText(
+                      text: 'Verification',
+                      color: Colors.white,
+                      size: 19.2.sp,
+                    )
+                  ],
                 ),
-                SizedBox(
-                  width: 28.w,
-                ),
-                NormalText(
-                  text: 'Verification',
-                  color: Colors.white,
-                  size: 19.2.sp,
-                )
-              ],
-            ),
+              ),
+              Positioned(
+                child: authViewModel.loading
+                    ? const Center(
+                        child: ProgressDialog(
+                          message: 'Loading....',
+                        ),
+                      )
+                    : const SizedBox(),
+              ),
+            ],
           ),
           SizedBox(
             height: 2.h,
@@ -97,6 +115,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
           Padding(
             padding: EdgeInsets.only(left: 50.w, right: 50.w),
             child: PinCodeTextField(
+              controller: pinController,
               keyboardType: TextInputType.number,
               length: 5,
               appContext: context,
@@ -114,18 +133,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 activeFillColor: Colors.white,
               ),
               onChanged: (val) {
-                print(val);
                 // if (val.length > 3) {
                 //   setState(() {
                 //     _isActive = !_isActive;
                 //   });
                 // }
-              },
-              onSubmitted: (pin) {
-                setState(() {
-                  pinCode = pin;
-                });
-                print(pin);
               },
             ),
           ),
@@ -176,10 +188,11 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
             text: 'Verify',
             textSize: 14.sp,
             onPressed: () async {
-              String? token = UserPreferences.getToken();
+              String? id = UserPreferences.getToken();
+
               await AuthViewModel.instance.verifyUserEmail({
-                "_id": token,
-                "otp": pinCode,
+                "_id": id,
+                "otp": pinController.text,
               }, context);
             },
           ),
