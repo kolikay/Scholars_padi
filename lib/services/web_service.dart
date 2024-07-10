@@ -14,7 +14,7 @@ import '../screens/authentication/views/login_screen.dart';
 class WebServices {
 //handles post requests
   static Future sendPostRequest(String url, Object body, context) async {
-    final token = UserPreferences.getToken();
+    final token = UserPreferences.getId();
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -68,7 +68,7 @@ class WebServices {
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getId() ?? '';
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
@@ -125,7 +125,7 @@ class WebServices {
 
 //handles patch requests
   static Future sendPatchRequest(String url, Object body, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getId() ?? '';
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
@@ -169,7 +169,7 @@ class WebServices {
 
   //handles patch requests
   static Future uploadImageToApi(String url, File? image, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getId() ?? '';
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
@@ -226,7 +226,7 @@ class WebServices {
 
   //handles Delete requests
   static Future sendDeleteRequest(String url, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getId() ?? '';
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
@@ -281,7 +281,7 @@ class WebServices {
 
   //handles Put requests
   static Future sendPutRequest(String url, context) async {
-    final token = UserPreferences.getToken() ?? '';
+    final token = UserPreferences.getId() ?? '';
 
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{

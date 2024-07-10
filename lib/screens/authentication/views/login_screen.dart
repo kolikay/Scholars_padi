@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
+import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
@@ -22,6 +23,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final userPref = UserPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +121,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                   height: 24.h,
                                 ),
                                 MyTextField(
-                                  key: const Key('testKeyPassword'),
+                                    key: const Key('testKeyPassword'),
                                     validator: (val) {
                                       if (val!.isEmpty) {
                                         return 'The password Field is required';
@@ -151,7 +153,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             TextButton(
-                               key: const Key('testKeyloginButton'),
+                              key: const Key('testKeyloginButton'),
                               onPressed: () {
                                 pushEmailPasswordChangeScreen(context);
                               },
@@ -180,16 +182,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               textSize: 14.sp,
                               onPressed: () async {
                                 if (_formKey.currentState!.validate()) {
-                                  authViewModel.loginUser(
-                                      
-                                      {
-                                        "email": emailController.text.trim(),
-                                        "password":
-                                            passwordController.text.trim(),
-                                      },
-                                      context);
+                                  authViewModel.loginUser({
+                                    "email": emailController.text.trim(),
+                                    "password": passwordController.text.trim(),
+                                  }, context);
                                 }
                                 FocusScope.of(context).unfocus();
+                                //Set user email address
+                                UserPreferences.setEmail(emailController.text);
                                 // pushOnBoardingScreen(context);
                               },
                             ),

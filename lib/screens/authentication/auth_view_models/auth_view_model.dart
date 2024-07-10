@@ -69,12 +69,11 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     final response = await WebServices.sendPostRequest(
         '$baseApi/auth/signup', body, context);
-    print(response.response);
 
     try {
       if (response.code == 200 || response.code == 201) {
-        userPref.setLoginUerToken(response.response!["userData"]['_id']);
-        print('object');
+        UserPreferences.setLoginUserId(response.response!["userData"]['_id']);
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ReuseableInfoWidget(
@@ -148,27 +147,78 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
+  //request OTP funtions
+  requestOTP(Object body, context) async {
+    try {
+      setLoading(true);
+      final response = await WebServices.sendPostRequest(
+          '$baseApi/auth/request-otp', body, context);
+      if (response is Success) {
+        print(response.response);
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Otp Sent to your email, ', Colors.green);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const VerifyOtpScreen(),
+          ),
+        );
+
+        setLoading(false);
+        return Success;
+      }
+      if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Couldnot send Otp, Pleae try again', Colors.pink[100]!);
+        setLoading(false);
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
+  }
+
 //login funtions
   loginUser(Object body, context) async {
     try {
       setLoading(true);
       final response = await WebServices.sendPostRequest(
           '$baseApi/auth/signin', body, context);
-      
 
       if (response.code == 200 || response.code == 201) {
-        // save login user token from api response
+     
+        //save logged in User Token
+        UserPreferences.setLoginUserId(
+            response.response!["userData"]["user"]['_id']);
 
-      userPref.setLoginUerToken(response.response!["userData"]["user"]['_id']);
+        // check if user is verified
+        bool verified = response.response!["userData"]["user"]['verified'];
 
-        // get logged in user details
-        // uncomment after test
-        // await getLoginUserData(context);
+        if (verified == true) {
+          // get logged in user details
+          // uncomment after test
+          // await getLoginUserData(context);
 
-        Future.delayed(const Duration(milliseconds: 500), () {
-          //navigate to onbording screen after 30 seconds
-          pushOnBoardingScreen(context);
-        });
+          Future.delayed(const Duration(milliseconds: 500), () {
+            //navigate to onbording screen after 30 seconds
+            pushOnBoardingScreen(context);
+          });
+          setLoading(false);
+        } else {
+          String? email = UserPreferences.getEmail() ?? '';
+
+          requestOTP({'email': email}, context);
+
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Please Verify Your Email to continue', Colors.pink[100]!);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const VerifyOtpScreen(),
+            ),
+          );
+        }
 
         setLoading(false);
         return true;

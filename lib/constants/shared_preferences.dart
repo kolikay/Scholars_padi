@@ -19,9 +19,13 @@ static SharedPreferences? _preferences;
 
 
   //set usertoken
-   Future setLoginUerToken(String token) async => await _preferences!.setString('token', token);
+  static Future setLoginUserId(String id) async => await _preferences!.setString('id', id);
   // get token
-  static String? getToken() => _preferences!.getString('token');
+  static String? getId() => _preferences!.getString('id');
+
+
+
+  
 
    //set usertoken
   static Future setUerRefreshToken(String refreshToken) async => await _preferences!.setString('refreshToken', refreshToken);
@@ -42,10 +46,10 @@ static SharedPreferences? _preferences;
 
 
     //set usertoken
-  static Future setUsername(String username) async => await _preferences!.setString('username', username);
+  static Future setEmail(String email) async => await _preferences!.setString('email', email);
   
   // get token
-  static String? getUsername() => _preferences!.getString('username');
+  static String? getEmail() => _preferences!.getString('email');
  
  static  resetSharedPref() => _preferences!.clear();
 

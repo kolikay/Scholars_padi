@@ -51,12 +51,12 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
   @override
   Widget build(BuildContext context) {
     final authViewModel = ref.watch(authViewModelProvider);
-    String pinCode = '';
+
     return SafeArea(
         child: Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Stack(
+          Column(
             children: [
               Container(
                 padding: EdgeInsets.only(left: 24.w),
@@ -79,130 +79,131 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                   ],
                 ),
               ),
-              Positioned(
-                child: authViewModel.loading
-                    ? const Center(
-                        child: ProgressDialog(
-                          message: 'Loading....',
-                        ),
-                      )
-                    : const SizedBox(),
+              SizedBox(
+                height: 15.h,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 26.w, right: 25.w),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    NormalText(
+                      text: 'Enter verification code to confirm your ',
+                      size: 16.sp,
+                    ),
+                    NormalText(
+                      text: 'email',
+                      size: 16.sp,
+                    ),
+                  ],
+                ),
+              ),
+           
+              Padding(
+                padding: EdgeInsets.only(left: 50.w, right: 50.w),
+                child: PinCodeTextField(
+                  controller: pinController,
+                  keyboardType: TextInputType.number,
+                  length: 5,
+                  appContext: context,
+                  obscureText: true,
+                  animationType: AnimationType.fade,
+                  pinTheme: PinTheme(
+                    fieldOuterPadding: EdgeInsets.symmetric(vertical: 15.h),
+                    shape: PinCodeFieldShape.box,
+                    selectedColor: AppColor.mainColor,
+                    activeColor: AppColor.mainColor,
+                    inactiveColor: AppColor.dullBlack,
+                    borderRadius: BorderRadius.circular(5.r),
+                    fieldHeight: 46.h,
+                    fieldWidth: 53.w,
+                    activeFillColor: Colors.white,
+                  ),
+                  onChanged: (val) {
+                    if (val.length > 4) {
+                      setState(() {
+                        _isActive = !_isActive;
+                      });
+                    }
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right: 50.w),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    NormalText(
+                      text: '00.$secondsRemaining' 'sec',
+                      color: AppColor.dullBlack,
+                    ),
+                  ],
+                ),
+              ),
+              TextButton(
+                onPressed: enableResend ? _resendCode : null,
+                child: RichText(
+                  text: TextSpan(
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 16.sp,
+                    ),
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: 'Didn\'t you receive an Otp? ',
+                          style: TextStyle(
+                              color: AppColor.dullBlack, fontSize: 16.sp)),
+                      TextSpan(
+                        text: 'Resend Code',
+                        style: TextStyle(
+                            color: enableResend
+                                ? AppColor.mainColor
+                                : AppColor.dullBlack,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 18.sp),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 45.h,
+              ),
+              ReuseableButton(
+                backGroundColor:!_isActive ? AppColor.dullBlack : AppColor.mainColor,
+                isActive: _isActive,
+                text: 'Verify',
+                textSize: 14.sp,
+                onPressed: () async {
+                  String id = UserPreferences.getId() ?? '';
+
+                  await AuthViewModel.instance.verifyUserEmail({
+                    "_id": id,
+                    "otp": pinController.text,
+                  }, context);
+                },
               ),
             ],
           ),
-          SizedBox(
-            height: 2.h,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 26.w, right: 25.w),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                NormalText(
-                  text: 'Enter verification code to confirm your ',
-                  size: 16.sp,
-                ),
-                NormalText(
-                  text: 'email',
-                  size: 16.sp,
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 25.h,
-          ),
-          Padding(
-            padding: EdgeInsets.only(left: 50.w, right: 50.w),
-            child: PinCodeTextField(
-              controller: pinController,
-              keyboardType: TextInputType.number,
-              length: 5,
-              appContext: context,
-              obscureText: true,
-              animationType: AnimationType.fade,
-              pinTheme: PinTheme(
-                fieldOuterPadding: EdgeInsets.symmetric(vertical: 15.h),
-                shape: PinCodeFieldShape.box,
-                selectedColor: AppColor.mainColor,
-                activeColor: AppColor.mainColor,
-                inactiveColor: AppColor.dullBlack,
-                borderRadius: BorderRadius.circular(5.r),
-                fieldHeight: 46.h,
-                fieldWidth: 53.w,
-                activeFillColor: Colors.white,
-              ),
-              onChanged: (val) {
-                // if (val.length > 3) {
-                //   setState(() {
-                //     _isActive = !_isActive;
-                //   });
-                // }
-              },
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(right: 50.w),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                NormalText(
-                  text: '00.$secondsRemaining' 'sec',
-                  color: AppColor.dullBlack,
-                ),
-              ],
-            ),
-          ),
-          TextButton(
-            onPressed: enableResend ? _resendCode : null,
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 16.sp,
-                ),
-                children: <TextSpan>[
-                  TextSpan(
-                      text: 'Didn\'t you receive an Otp? ',
-                      style: TextStyle(
-                          color: AppColor.dullBlack, fontSize: 16.sp)),
-                  TextSpan(
-                    text: 'Resend Code',
-                    style: TextStyle(
-                        color: enableResend
-                            ? AppColor.mainColor
-                            : AppColor.dullBlack,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 18.sp),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 45.h,
-          ),
-          ReuseableButton(
-            backGroundColor: AppColor.mainColor,
-            // isActive: _isActive,
-            text: 'Verify',
-            textSize: 14.sp,
-            onPressed: () async {
-              String? id = UserPreferences.getToken();
-
-              await AuthViewModel.instance.verifyUserEmail({
-                "_id": id,
-                "otp": pinController.text,
-              }, context);
-            },
+          Positioned(
+            child: authViewModel.loading
+                ? const Center(
+                    child: ProgressDialog(
+                      message: 'Loading....',
+                    ),
+                  )
+                : const SizedBox(),
           ),
         ],
       ),
     ));
   }
 
-  void _resendCode() {
-    //other code here
+  void _resendCode() async {
+    String? id = UserPreferences.getId();
+    await AuthViewModel.instance.requestOTP({
+      "email": id,
+    }, context);
     setState(() {
       secondsRemaining = 30;
       enableResend = false;
