@@ -154,7 +154,6 @@ class AuthViewModel extends ChangeNotifier {
       final response = await WebServices.sendPostRequest(
           '$baseApi/auth/request-otp', body, context);
       if (response is Success) {
-        print(response.response);
         ShowSnackBar.buildErrorSnackbar(
             context, 'Otp Sent to your email, ', Colors.green);
         Navigator.of(context).push(
@@ -168,7 +167,7 @@ class AuthViewModel extends ChangeNotifier {
       }
       if (response is Failure) {
         ShowSnackBar.buildErrorSnackbar(
-            context, 'Couldnot send Otp, Pleae try again', Colors.pink[100]!);
+            context, 'Could not send Otp, Please try again', Colors.pink[100]!);
         setLoading(false);
       }
       if (response is SocketException) {
@@ -188,7 +187,6 @@ class AuthViewModel extends ChangeNotifier {
           '$baseApi/auth/signin', body, context);
 
       if (response.code == 200 || response.code == 201) {
-     
         //save logged in User Token
         UserPreferences.setLoginUserId(
             response.response!["userData"]["user"]['_id']);
@@ -243,6 +241,34 @@ class AuthViewModel extends ChangeNotifier {
     } on HttpException catch (e) {
       setLoading(false);
       return e.message;
+    }
+  }
+
+  //request OTP for Forget Password
+  changePassword(Object body, context) async {
+    try {
+      setLoading(true);
+      final response = await WebServices.sendPatchRequest(
+          '$baseApi/auth/verify-forget-password', body, context);
+      if (response is Success) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Password Changed Successfully, ', Colors.green);
+
+        setLoading(false);
+        return Success;
+      }
+      if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Password reset failed', Colors.pink[100]!);
+        setLoading(false);
+        
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
     }
   }
 

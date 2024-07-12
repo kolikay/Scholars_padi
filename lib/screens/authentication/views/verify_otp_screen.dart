@@ -170,7 +170,7 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                 height: 45.h,
               ),
               ReuseableButton(
-                backGroundColor:!_isActive ? AppColor.dullBlack : AppColor.mainColor,
+                backGroundColor:!_isActive ? Colors.grey : AppColor.mainColor,
                 isActive: _isActive,
                 text: 'Verify',
                 textSize: 14.sp,
@@ -200,9 +200,9 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
   }
 
   void _resendCode() async {
-    String? id = UserPreferences.getId();
+    String? email = UserPreferences.getEmail();
     await AuthViewModel.instance.requestOTP({
-      "email": id,
+      "email": email,
     }, context);
     setState(() {
       secondsRemaining = 30;

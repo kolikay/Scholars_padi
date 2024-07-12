@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
+import 'package:scholars_padi/constants/shared_preferences.dart';
+import 'package:scholars_padi/constants/status_codes.dart';
+import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 import 'package:scholars_padi/screens/change_password/passord_resetpin_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
@@ -74,26 +77,33 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
           ReuseableButton(
             text: 'Send Email',
             textSize: 14.sp,
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ReuseableInfoWidget(
-                    bottonText: 'Proceed',
-                    onPressed: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) =>
-                                    const PasswordResetPinScreen(),
-                              ),
-                            );
-                    },
-                    logo: 'lib/assets/emailVerifyIcon.png',
-                    maintext: 'Email Sent',
-                    detailsText:
-                        'Resets Instruction has been sent to email kolilay@yahoo.com',
+            onPressed: () async {
+              UserPreferences.setEmail(_emailCont.text);
+              var responce = await AuthViewModel.instance.requestOTP({
+                "email": _emailCont.text,
+              }, context);
+
+              if (responce == Success) {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ReuseableInfoWidget(
+                      bottonText: 'Proceed',
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const PasswordResetPinScreen(),
+                          ),
+                        );
+                      },
+                      logo: 'lib/assets/emailVerifyIcon.png',
+                      maintext: 'Email Sent',
+                      detailsText:
+                          'Resets Instruction has been sent to email kolilay@yahoo.com',
+                    ),
                   ),
-                ),
-              );
+                );
+              }
             },
           ),
         ],

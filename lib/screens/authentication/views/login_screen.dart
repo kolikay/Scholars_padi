@@ -247,9 +247,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
             ),
           ],
         ),
-        // : const ProgressDialog(
-        //     message: 'Loading....',
-        //   ),
+ 
       ),
     );
   }
