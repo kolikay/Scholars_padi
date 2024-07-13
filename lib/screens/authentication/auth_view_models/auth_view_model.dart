@@ -72,7 +72,6 @@ class AuthViewModel extends ChangeNotifier {
 
     try {
       if (response.code == 200 || response.code == 201) {
-        
         UserPreferences.setLoginUserId(response.response!["userData"]['_id']);
 
         Navigator.of(context).push(
@@ -189,6 +188,9 @@ class AuthViewModel extends ChangeNotifier {
 
       if (response.code == 200 || response.code == 201) {
         //save logged in User Token
+        UserPreferences.setUserToken(response.response!["userData"]['token']);
+
+        //save logged in User ID
         UserPreferences.setLoginUserId(
             response.response!["userData"]["user"]['_id']);
 
@@ -262,7 +264,6 @@ class AuthViewModel extends ChangeNotifier {
         ShowSnackBar.buildErrorSnackbar(
             context, 'Password reset failed', Colors.pink[100]!);
         setLoading(false);
-        
       }
       if (response is SocketException) {
         pushToNoInternetPage(context);
@@ -299,14 +300,15 @@ class AuthViewModel extends ChangeNotifier {
   // save user data function
   Future logOutUser(context) async {
     var response =
-        await WebServices.sendDeleteRequest("$baseApi/account/logout", context);
+        await WebServices.sendGetRequest("$baseApi/auth/signout", context);
 
-    if (response.code == 200 || response.code == 401) {
+    if (response.code == 200 || response.code == 203) {
       await UserPreferences.resetSharedPref();
       Navigator.of(context).pushNamedAndRemoveUntil(
           LoginScreen.id, (Route<dynamic> route) => false);
       return true;
     } else {
+
       ShowSnackBar.buildErrorSnackbar(
           context, response!.data.toString(), Colors.pink[100]!);
       return false;

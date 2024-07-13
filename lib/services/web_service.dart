@@ -68,19 +68,20 @@ class WebServices {
 
 //handles get requests
   static Future sendGetRequest(String url, context) async {
-    final token = UserPreferences.getId() ?? '';
+    final token = UserPreferences.getUserToken() ?? '';
     bool isConnected = await SimpleConnectionChecker.isConnectedToInternet();
     final header = <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
       'Accept': 'application/json',
-      'Authorization': 'Bearer $token',
+      'Authorization': 'SCHOLAR.S-PADDI $token',
     };
     if (isConnected) {
       try {
         final response =
             await Dio().get(url, options: Options(headers: header));
+      
 
-        if (response.statusCode == 200 || response.statusCode == 201) {
+        if (response.statusCode == 200 || response.statusCode == 201 ||  response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         } else if (response.statusCode == 422) {
           await UserPreferences.resetSharedPref();
