@@ -72,6 +72,7 @@ class AuthViewModel extends ChangeNotifier {
 
     try {
       if (response.code == 200 || response.code == 201) {
+        
         UserPreferences.setLoginUserId(response.response!["userData"]['_id']);
 
         Navigator.of(context).push(
