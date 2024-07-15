@@ -80,7 +80,6 @@ class WebServices {
         final response =
             await Dio().get(url, options: Options(headers: header));
       
-
         if (response.statusCode == 200 || response.statusCode == 201 ||  response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         } else if (response.statusCode == 422) {

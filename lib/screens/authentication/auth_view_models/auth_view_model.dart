@@ -179,6 +179,45 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
+    //request OTP funtions
+  forgetPassword(Object body, context) async {
+    try {
+      setLoading(true);
+      final response = await WebServices.sendPostRequest(
+          '$baseApi/auth/forgetPass', body, context);
+      if (response is Success) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Otp Sent to your email, ', Colors.green);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const VerifyOtpScreen(),
+          ),
+        );
+
+        setLoading(false);
+        return Success;
+      }
+      if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Could not send Otp, Please try again', Colors.pink[100]!);
+        setLoading(false);
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
+  }
+
+
+
+
+
+
+
+
 //login funtions
   loginUser(Object body, context) async {
     try {

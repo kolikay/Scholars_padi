@@ -78,8 +78,10 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
             text: 'Send Email',
             textSize: 14.sp,
             onPressed: () async {
+              
               UserPreferences.setEmail(_emailCont.text);
-              var responce = await AuthViewModel.instance.requestOTP({
+              
+              var responce = await AuthViewModel.instance.forgetPassword({
                 "email": _emailCont.text,
               }, context);
 
