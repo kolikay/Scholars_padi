@@ -23,7 +23,7 @@ class UserModel  extends ChangeNotifier{
     this.confirmed,
     // this.active,
     // this.about,
-    // this.gender,
+    this.gender,
     // this.interest,
     // this.location,
     // this.name,
@@ -40,7 +40,7 @@ class UserModel  extends ChangeNotifier{
   bool? confirmed;
   // bool? active;
   // String? about;
-  // String? gender;
+  String? gender;
   // String? interest;
   // String? location;
   // String? name;
@@ -57,7 +57,7 @@ class UserModel  extends ChangeNotifier{
         confirmed: json["confirmed"],
         // active: json["active"],
         // about: json["about"],
-        // gender: json["gender"],
+        gender: json["gender"],
         // interest: json["interest"],
         // location: json["location"],
         // name: json["name"],

@@ -1,14 +1,13 @@
-
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
+import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 import 'screens/authentication/auth_view_models/auth_view_model.dart';
-import 'screens/authentication/views/verify_otp_screen.dart';
 import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
 import 'package:flutter/services.dart';
@@ -38,25 +37,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    
-    // final auth = AuthViewModel.instance;
-
-    // bool expired = true;
-
-    // String token = UserPreferences.getToken() ?? '';
-
-    // if (token.length > 5) {
-      
-    //   bool hasExpired = JwtDecoder.isExpired(token);
-    
-    //   setState(() {
-    //     expired = hasExpired;
-    //   });
-    // }
-
-    // if (expired == false) {
-    //   auth.getLoginUserData(context);
-    // }
+   
 
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
@@ -121,15 +102,3 @@ class _MyAppState extends State<MyApp> {
 //     );
 //   }
 // }
-
-
-
-
-
-
-
-
-
-
-
-

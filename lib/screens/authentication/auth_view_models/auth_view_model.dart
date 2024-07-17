@@ -8,7 +8,8 @@ import 'package:universal_io/io.dart';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/services/web_service.dart';
+
+import '../../../services/web_service.dart';
 import '../../../widgets/reusesable_widget/reusable_info_widget.dart';
 import 'package:dio/dio.dart';
 import 'package:scholars_padi/constants/shared_preferences.dart';
@@ -17,7 +18,6 @@ import '../views/login_screen.dart';
 
 class AuthViewModel extends ChangeNotifier {
   Dio dio = Dio();
-  final userPref = UserPreferences();
 
   static final AuthViewModel _instance = AuthViewModel._();
   AuthViewModel._();
@@ -50,6 +50,8 @@ class AuthViewModel extends ChangeNotifier {
 
 //store user data
   addUserdata(UserModel newUser) {
+    print(newUser.email);
+    print('object');
     userApiData.fullname = newUser.fullname;
     userApiData.email = newUser.email;
     userApiData.username = newUser.username;
@@ -179,7 +181,7 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
-    //request OTP funtions
+  //request OTP funtions
   forgetPassword(Object body, context) async {
     try {
       setLoading(true);
@@ -211,13 +213,6 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
-
-
-
-
-
-
-
 //login funtions
   loginUser(Object body, context) async {
     try {
@@ -245,6 +240,9 @@ class AuthViewModel extends ChangeNotifier {
             //navigate to onbording screen after 30 seconds
             pushOnBoardingScreen(context);
           });
+          addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
+
+          notifyListeners();
           setLoading(false);
         } else {
           String? email = UserPreferences.getEmail() ?? '';
@@ -314,7 +312,7 @@ class AuthViewModel extends ChangeNotifier {
   }
 
   // save user data function
-  Future getLoginUserData(context) async {
+  Future getLoginUserDat(context) async {
     setLoading(true);
 
     var response = await WebServices.sendGetRequest(
@@ -347,9 +345,8 @@ class AuthViewModel extends ChangeNotifier {
           LoginScreen.id, (Route<dynamic> route) => false);
       return true;
     } else {
-
       ShowSnackBar.buildErrorSnackbar(
-          context, response!.data.toString(), Colors.pink[100]!);
+          context, response.errorResponse.toString(), Colors.pink[100]!);
       return false;
     }
   }
