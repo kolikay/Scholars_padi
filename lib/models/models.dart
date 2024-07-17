@@ -6,7 +6,6 @@
 
 import 'dart:convert';
 
-
 import 'package:flutter/cupertino.dart';
 
 UserModel userDataModelFromJson(String str) =>
@@ -14,56 +13,60 @@ UserModel userDataModelFromJson(String str) =>
 
 String userDataModelToJson(UserModel data) => json.encode(data.toJson());
 
-class UserModel  extends ChangeNotifier{
+class UserModel extends ChangeNotifier {
   UserModel({
     this.id,
     this.email,
     this.username,
     this.fullname,
     this.confirmed,
-    // this.active,
-    // this.about,
+    this.active,
+    this.role,
     this.gender,
-    // this.interest,
-    // this.location,
-    // this.name,
-    // this.occupation,
+    this.phoneNumber,
+    this.verified,
+    this.faculty,
     // this.surname,
-    // this.photo,
+    this.profilePhoto,
     // this.dob,
   });
 
   String? id;
-  String? email;
-  String? username;
   String? fullname;
-  bool? confirmed;
-  // bool? active;
-  // String? about;
+  String? username;
+  String? email;
   String? gender;
-  // String? interest;
+  String? faculty;
+  String? profilePhoto;
+  bool? confirmed;
+  bool? active;
+  String? role;
+  String? phoneNumber;
+    bool? verified;
   // String? location;
   // String? name;
-  // String? occupation;
-  // String? surname;
-  // String? photo;
+
+
   // String? dob;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         id: json["_id"],
-        email: json["email"],
-        username: json["username"],
         fullname: json["full_name"],
-        confirmed: json["confirmed"],
-        // active: json["active"],
-        // about: json["about"],
+        username: json["username"],
+        email: json["email"],
         gender: json["gender"],
-        // interest: json["interest"],
+        confirmed: json["confirmed"],
+        verified:json["verified"] ,
+        faculty: json["faculty"],
+        active: json["active"],
+        role: json["role"],
+        phoneNumber: json["phoneNumber"],
+        profilePhoto: json["profilePhoto"],
+
         // location: json["location"],
-        // name: json["name"],
+
         // occupation: json["occupation"],
-        // surname: json["surname"],
-        // photo: json["photo"],
+
         // dob: json["dob"],
       );
 

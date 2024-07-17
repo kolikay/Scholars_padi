@@ -32,9 +32,6 @@ class AuthViewModel extends ChangeNotifier {
   bool _loginError = false;
   bool get loginError => _loginError;
 
-  // empty list to save user data from api
-  List<UserModel> userData = [];
-
 //instance of usermodel
   UserModel userApiData = UserModel();
 
@@ -50,20 +47,16 @@ class AuthViewModel extends ChangeNotifier {
 
 //store user data
   addUserdata(UserModel newUser) {
-    print(newUser.email);
-    print('object');
     userApiData.fullname = newUser.fullname;
     userApiData.email = newUser.email;
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
-    userData.add(newUser);
-
-    // userApiData.dob = newUser.dob;
-    // userApiData.occupation = newUser.occupation;
-    // userApiData.photo = newUser.photo;
-    // userApiData.about = newUser.about;
-    // userApiData.interest = newUser.interest;
-    // userApiData.gender = newUser.gender;
+    userApiData.verified = newUser.verified;
+    userApiData.profilePhoto = newUser.profilePhoto;
+    userApiData.role = newUser.role;
+    userApiData.faculty = newUser.faculty;
+    userApiData.gender = newUser.gender;
+    userApiData.phoneNumber = newUser.phoneNumber;
   }
 
   //registration funtions
@@ -232,15 +225,12 @@ class AuthViewModel extends ChangeNotifier {
         bool verified = response.response!["userData"]["user"]['verified'];
 
         if (verified == true) {
-          // get logged in user details
-          // uncomment after test
-          // await getLoginUserData(context);
-
           Future.delayed(const Duration(milliseconds: 500), () {
             //navigate to onbording screen after 30 seconds
             pushOnBoardingScreen(context);
           });
-          addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
+          addUserdata(
+              UserModel.fromJson(response.response!["userData"]["user"]));
 
           notifyListeners();
           setLoading(false);
@@ -257,27 +247,14 @@ class AuthViewModel extends ChangeNotifier {
             ),
           );
         }
-
         setLoading(false);
         return true;
-      }
-      //  else if (response.code == 400) {
-      //   print('object');
-      //   print(response.code);
-      //   setLoginError(true);
-      //   setLoading(false);
-      //   return false;
-      // }
-      else {
+      } else {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.errorResponse.toString(), Colors.pink[100]!);
         setLoading(false);
         return false;
       }
-
-      // if (response is SocketException) {
-      //   pushToNoInternetPage(context);
-      //   setLoading(false);
-      // }
-      // setLoading(false);
     } on HttpException catch (e) {
       setLoading(false);
       return e.message;
@@ -309,28 +286,6 @@ class AuthViewModel extends ChangeNotifier {
     } catch (e) {
       setLoading(false);
     }
-  }
-
-  // save user data function
-  Future getLoginUserDat(context) async {
-    setLoading(true);
-
-    var response = await WebServices.sendGetRequest(
-        "$baseApi/account/user/current/", context);
-
-    if (response.code == SUCCESS) {
-      final result = response.response;
-
-      addUserdata(UserModel.fromJson(result));
-
-      notifyListeners();
-
-      setLoading(false);
-    } else {
-      setLoading(false);
-    }
-
-    setLoading(false);
   }
 
   //login funtions

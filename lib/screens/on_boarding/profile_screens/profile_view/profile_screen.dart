@@ -23,7 +23,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _fullnameCont = TextEditingController();
   final _usernameCont = TextEditingController();
   final _facultyCont = TextEditingController();
-  final _departmentCont = TextEditingController();
+  final _phoneCont = TextEditingController();
   final _email = TextEditingController();
   final _password = TextEditingController();
   bool _isObscure = true;
@@ -101,6 +101,8 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _email.text = userApiData.email ?? '';
     _fullnameCont.text = userApiData.fullname ?? '';
     _usernameCont.text = userApiData.username ?? '';
+    _facultyCont.text = userApiData.faculty ?? '';
+    _phoneCont.text = userApiData.phoneNumber ?? '';
 
     return Scaffold(
         appBar: PreferredSize(
@@ -262,12 +264,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       ),
                       MyTextField(
                         enable: onEdit,
-                        controller: _departmentCont,
+                        controller: _phoneCont,
                         obcureText: false,
                         keyBoardType: TextInputType.text,
                         isPassword: false,
                         isReadOnly: !onEdit,
-                        labelText: 'Department',
+                        labelText: 'Phone Number',
                       ),
                       SizedBox(
                         height: 24.h,
