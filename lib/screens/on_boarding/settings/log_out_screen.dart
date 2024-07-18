@@ -1,56 +1,60 @@
+// ignore_for_file: depend_on_referenced_packages
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 
-class LogOutScreen extends StatefulWidget {
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+class LogOutScreen extends ConsumerStatefulWidget {
   const LogOutScreen({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<LogOutScreen> createState() => _LogOutScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _LogOutScreenState();
 }
 
-class _LogOutScreenState extends State<LogOutScreen> {
+class _LogOutScreenState extends ConsumerState<LogOutScreen> {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Dialog(
         child: SizedBox(
-          height: 278.h,
+          height: 260.h,
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: 24.h,
+                  height: 14.h,
                 ),
                 NormalText(
                   text: 'Log Out',
                   fontWeight: FontWeight.w500,
-                  size: 23.sp,
+                  size: 30.sp,
                 ),
                 SizedBox(
-                  height: 15.h,
+                  height: 5.h,
                 ),
                 Divider(
                   color: AppColor.dullerBlack,
                   thickness: 1.h,
                 ),
                 SizedBox(
-                  height: 14.h,
+                  height: 5.h,
                 ),
                 NormalText(
-                  text: 'Are you sure you want to log out?',
+                  text: 'Are you sure ?',
                   fontWeight: FontWeight.w600,
                   color: AppColor.dullerBlack,
+                  size: 20.sp,
                 ),
                 SizedBox(
-                  height: 14.h,
+                  height: 5.h,
                 ),
                 InkWell(
                   onTap: () {
@@ -59,16 +63,17 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   child: Container(
                     width: 220.w,
                     height: 50.h,
-                    child: Center(
-                      child: NormalText(
-                        text: 'Yes',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(color: AppColor.dullBlack),
+                    ),
+                    child: Center(
+                      child: NormalText(
+                        text: 'Yes',
+                        fontWeight: FontWeight.w600,
+                        size: 18.sp,
+                      ),
                     ),
                   ),
                 ),
@@ -82,15 +87,16 @@ class _LogOutScreenState extends State<LogOutScreen> {
                   child: Container(
                     width: 220.w,
                     height: 50.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        border: Border.all(color: AppColor.dullBlack)),
                     child: Center(
                       child: NormalText(
                         text: 'No',
                         fontWeight: FontWeight.w600,
+                         size: 18.sp,
                       ),
                     ),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        border: Border.all(color: AppColor.dullBlack)),
                   ),
                 ),
               ],

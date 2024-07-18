@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -114,20 +115,19 @@ class WebServices {
       try {
         final response = await Dio().patch(url,
             data: jsonEncode(body), options: Options(headers: header));
+        print(response.data);
+
         if (response.statusCode == 200 ||
             response.statusCode == 201 ||
             response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
-          await UserPreferences.resetSharedPref();
-
           ShowSnackBar.buildErrorSnackbar(
               context, 'Server is unavailable', Colors.pink[100]!);
         }
-
         return Failure(
             code: error.response!.statusCode,
             errorResponse: {'error': error.response!.data.toString()});

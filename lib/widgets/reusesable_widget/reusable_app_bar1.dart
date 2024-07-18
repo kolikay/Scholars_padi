@@ -36,11 +36,11 @@ class ReuseableAppBar1 extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 20.0.h),
+              padding: EdgeInsets.only(top: 20.0.h, left: 20.w),
               child: secondAppIcon,
             ),
             Padding(
-              padding: EdgeInsets.only(top: 20.0.h),
+              padding: EdgeInsets.only(top: 20.0.h, right: 20.w),
               child: thirdAppIcon,
             )
           ],

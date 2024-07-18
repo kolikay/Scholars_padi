@@ -80,16 +80,17 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
             title: NormalText(
               text: 'Notifications',
               color: Colors.white,
+              fontWeight: FontWeight.w500,
             ),
             firstAppIcon: IconButton(
               onPressed: () {
                 pushOnBoardingScreen(context);
               },
-              icon: const Icon(Icons.arrow_back_ios),
+              icon: Icon(Icons.arrow_back_ios, color: Colors.white, size: 30.w,),
             ),
             secondAppIcon: IconButton(
               onPressed: () {},
-              icon: const Icon(Icons.search),
+              icon: Icon(Icons.search, color: Colors.white,size: 30.w,),
             ),
           )
         : ReuseableAppBar1(

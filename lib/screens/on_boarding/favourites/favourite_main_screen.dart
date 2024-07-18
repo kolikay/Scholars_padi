@@ -48,11 +48,11 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
             onPressed: () {
               pushOnBoardingScreen(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon:  Icon(Icons.arrow_back_ios,color: Colors.white, size: 30.w,),
           ),
           secondAppIcon: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search),
+            icon:  Icon(Icons.search, color: Colors.white, size: 30.w,),
           ),
         ),
       ),

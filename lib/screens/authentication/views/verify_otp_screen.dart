@@ -64,9 +64,14 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                 height: 80.h,
                 child: Row(
                   children: [
-                    const Icon(
-                      Icons.arrow_back_ios,
-                      color: Colors.white,
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: const Icon(
+                        Icons.arrow_back_ios,
+                        color: Colors.white,
+                      ),
                     ),
                     SizedBox(
                       width: 28.w,
@@ -75,6 +80,7 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                       text: 'Verification',
                       color: Colors.white,
                       size: 19.2.sp,
+                      fontWeight: FontWeight.w600,
                     )
                   ],
                 ),
@@ -98,7 +104,6 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                   ],
                 ),
               ),
-           
               Padding(
                 padding: EdgeInsets.only(left: 50.w, right: 50.w),
                 child: PinCodeTextField(
@@ -170,7 +175,7 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
                 height: 45.h,
               ),
               ReuseableButton(
-                backGroundColor:!_isActive ? Colors.grey : AppColor.mainColor,
+                backGroundColor: !_isActive ? Colors.grey : AppColor.mainColor,
                 isActive: _isActive,
                 text: 'Verify',
                 textSize: 14.sp,

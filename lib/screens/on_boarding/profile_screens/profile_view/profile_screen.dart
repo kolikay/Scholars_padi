@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:scholars_padi/constants/appColor.dart';
@@ -97,6 +98,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final profileViewModel = ref.watch(profileViewModelProvider);
     final authViewModel = ref.watch(authViewModelProvider);
 
+    print(profileViewModel.uploadImage);
     //user data update notifire
     final userApiData = ref.watch(userProvider);
 
@@ -105,6 +107,23 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _usernameCont.text = userApiData.username ?? '';
     _facultyCont.text = userApiData.faculty ?? '';
     _phoneCont.text = userApiData.phoneNumber ?? '';
+
+    // bool submit = true;
+
+    //check to make sure form is ofdated before sending request
+    // checkInputedData() {
+    //     print(profileViewModel.uploadImage);
+    //     print(userApiData.profilePhoto);
+    //   if (_fullnameCont.text.trim() == userApiData.fullname &&
+    //       _usernameCont.text.trim() == userApiData.username &&
+    //       _phoneCont.text.trim() == userApiData.phoneNumber &&
+    //       profileViewModel.uploadImage == userApiData.profilePhoto) {
+    //     setState(() {
+    //       submit = false;
+    //     });
+
+    //   }
+    // }
 
     return Scaffold(
         appBar: PreferredSize(
@@ -154,25 +173,28 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       onEdit = !onEdit;
                       !onEdit
                           ? authViewModel.updateUserProfile({
-                              "profilePicture": profileViewModel.image ?? '',
-                              "full_name": _fullnameCont.text.trim() !=
-                                      userApiData.fullname
-                                  ? _fullnameCont.text.trim()
-                                  : null,
-                              "username": _usernameCont.text.trim() !=
-                                      userApiData.username
-                                  ? _usernameCont.text.trim()
-                                  : null,
-                              "phoneNumber": _phoneCont.text.trim() !=
-                                      userApiData.phoneNumber
-                                  ? _phoneCont.text.trim()
-                                  : null,
-                              "faculty": _facultyCont.text.trim() !=
-                                      userApiData.faculty
-                                  ? _facultyCont.text.trim()
-                                  : null,
+                              "profilePicture":
+                                  profileViewModel.uploadImage ?? '',
+                              "full_name": _fullnameCont.text.trim(),
+                              "username": _usernameCont.text.trim(),
+                              "phoneNumber": _phoneCont.text.trim(),
+                              "faculty": _facultyCont.text.trim(),
                             }, context)
                           : null;
+
+                      // checkInputedData();
+
+                      //  if (submit == true) {
+                      //   !onEdit
+                      //       ? authViewModel.updateUserProfile({
+                      //           "profilePicture": profileViewModel.image ?? '',
+                      //           "full_name": _fullnameCont.text.trim(),
+                      //           "username": _usernameCont.text.trim(),
+                      //           "phoneNumber": _phoneCont.text.trim(),
+                      //           "faculty": _facultyCont.text.trim(),
+                      //         }, context)
+                      //       : null;
+                      //  }
                     });
                   },
                   icon: onEdit
@@ -218,19 +240,33 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                               )
-                            : Container(
-                                height: 130.h,
-                                width: 130.w,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                      'lib/assets/homepageimage.png',
+                            : userApiData.phoneNumber == null
+                                ? Container(
+                                    height: 130.h,
+                                    width: 130.w,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: NetworkImage(
+                                          userApiData.profilePhoto!,
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    height: 130.h,
+                                    width: 130.w,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                        fit: BoxFit.cover,
+                                        image: AssetImage(
+                                          'lib/assets/homepageimage.png',
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ),
                         onEdit
                             ? Positioned(
                                 top: 35.h,

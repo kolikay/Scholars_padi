@@ -39,8 +39,8 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                        height: 125.h,
-                        width: 121.21.w,
+                        height: 130.h,
+                        width: 130.w,
                         child: Image.asset(
                           'lib/assets/logo.png',
                           fit: BoxFit.contain,
@@ -61,10 +61,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         ),
                         NormalText(
                           text: 'Enter your info to continue',
+                          size: 20.sp,
                         ),
-                        SizedBox(
-                          height: 35.h,
-                        ),
+                     
                         Visibility(
                           visible: authViewModel.loginError,
                           child: Container(
@@ -96,7 +95,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                           ),
                         ),
                         SizedBox(
-                          height: 20.h,
+                          height: 10.h,
                         ),
                         Form(
                             key: _formKey,
@@ -146,9 +145,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                         })),
                               ],
                             )),
-                        SizedBox(
-                          height: 16.h,
-                        ),
+                 
                         Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
@@ -160,11 +157,14 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                               style: TextButton.styleFrom(
                                 padding: EdgeInsets.zero,
                               ),
-                              child: NormalText(
-                                size: 14.sp,
-                                text: 'Forgot Password?',
-                                color: AppColor.mainColor,
-                                fontWeight: FontWeight.w500,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: NormalText(
+                                  size: 14.sp,
+                                  text: 'Forgot Password?',
+                                  color: AppColor.mainColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
                               ),
                             ),
                           ],
@@ -218,7 +218,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                     text: 'Dont have an account? ',
                                     style: TextStyle(
                                         color: AppColor.dullBlack,
-                                        fontSize: 14.sp)),
+                                        fontSize: 20.sp)),
                                 TextSpan(
                                   text: 'Sign Up',
                                   style: TextStyle(
