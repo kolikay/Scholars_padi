@@ -26,7 +26,9 @@ class WebServices {
         final response = await Dio().post(url,
             data: jsonEncode(body), options: Options(headers: header));
 
-        if (response.statusCode == 200 || response.statusCode == 201|| response.statusCode == 203) {
+        if (response.statusCode == 200 ||
+            response.statusCode == 201 ||
+            response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         }
       } on DioError catch (error) {
@@ -63,8 +65,10 @@ class WebServices {
       try {
         final response =
             await Dio().get(url, options: Options(headers: header));
-       
-        if (response.statusCode == 200 || response.statusCode == 201|| response.statusCode == 203) {
+
+        if (response.statusCode == 200 ||
+            response.statusCode == 201 ||
+            response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         } else if (response.statusCode == 422) {
           await UserPreferences.resetSharedPref();
@@ -73,7 +77,6 @@ class WebServices {
           );
         }
       } on DioError catch (error) {
-     
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();
@@ -111,10 +114,11 @@ class WebServices {
       try {
         final response = await Dio().patch(url,
             data: jsonEncode(body), options: Options(headers: header));
-
-        if (response.statusCode == 200 || response.statusCode == 201|| response.statusCode == 203) {
+        if (response.statusCode == 200 ||
+            response.statusCode == 201 ||
+            response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
-        } 
+        }
       } on DioError catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
@@ -155,9 +159,11 @@ class WebServices {
         final response = await Dio()
             .patch(url, data: formData, options: Options(headers: header));
 
-        if (response.statusCode == 200 || response.statusCode == 201|| response.statusCode == 203) {
+        if (response.statusCode == 200 ||
+            response.statusCode == 201 ||
+            response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
-        } 
+        }
       } on DioError catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {

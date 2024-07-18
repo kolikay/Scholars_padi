@@ -35,69 +35,67 @@ class _FavouriteScreenState extends State<FavouriteScreen> {
   List<String> names = ['All', 'Material', 'Notice Board', 'Note Book'];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: Size.fromHeight(103.h),
-          child: ReuseableAppBar1(
-            title: NormalText(
-              text: 'Favourite',
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
-            ),
-            firstAppIcon: IconButton(
-              onPressed: () {
-                pushOnBoardingScreen(context);
-              },
-              icon: const Icon(Icons.arrow_back_ios),
-            ),
-            secondAppIcon: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.search),
-            ),
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(103.h),
+        child: ReuseableAppBar1(
+          title: NormalText(
+            text: 'Favourite',
+            color: Colors.white,
+            fontWeight: FontWeight.w500,
+          ),
+          firstAppIcon: IconButton(
+            onPressed: () {
+              pushOnBoardingScreen(context);
+            },
+            icon: const Icon(Icons.arrow_back_ios),
+          ),
+          secondAppIcon: IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.search),
           ),
         ),
-        body: Padding(
-          padding: EdgeInsets.only(left: 24.0.w),
-          child: Column(
-            children: [
-              ValueListenableBuilder<int?>(
-                valueListenable: selectedIndexNotifier,
-                builder: (_, selectedIndex, __) => Column(
-                  children: [
-                    SizedBox(
-                      height: 20.h,
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(left: 24.0.w),
+        child: Column(
+          children: [
+            ValueListenableBuilder<int?>(
+              valueListenable: selectedIndexNotifier,
+              builder: (_, selectedIndex, __) => Column(
+                children: [
+                  SizedBox(
+                    height: 20.h,
+                  ),
+                  SizedBox(
+                    height: 60,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        for (int i = 0; i <= 3; i++)
+                          CardButtons(
+                              key: ValueKey(i),
+                              cardButtonMessage: names[i],
+                              selected: selectedIndex == i,
+                              onPressed: () {
+                                setState(() {
+                                  selectedPage = i;
+                                  selectedIndexNotifier.value = i;
+                                });
+                              }),
+                      ],
                     ),
-                    SizedBox(
-                      height: 60,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (int i = 0; i <= 3; i++)
-                            CardButtons(
-                                key: ValueKey(i),
-                                cardButtonMessage: names[i],
-                                selected: selectedIndex == i,
-                                onPressed: () {
-                                  setState(() {
-                                    selectedPage = i;
-                                    selectedIndexNotifier.value = i;
-                                  });
-                                }),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 500.h,
-                child: ListView(
-                  children: [pages[selectedPage]],
-                ),
-              )
-            ],
-          ),
+            ),
+            SizedBox(
+              height: 500.h,
+              child: ListView(
+                children: [pages[selectedPage]],
+              ),
+            )
+          ],
         ),
       ),
     );

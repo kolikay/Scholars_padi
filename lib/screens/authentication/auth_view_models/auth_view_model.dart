@@ -288,6 +288,34 @@ class AuthViewModel extends ChangeNotifier {
     }
   }
 
+  //request OTP for Forget Password
+  updateUserProfile(Object body, context) async {
+    try {
+      setLoading(true);
+      final response = await WebServices.sendPatchRequest(
+          '$baseApi/auth/UpdateMe', body, context);
+
+      if (response is Success) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Profile Updated Successfully, ', Colors.green);
+
+        setLoading(false);
+        return Success;
+      }
+      if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, 'Profile Updated failed', Colors.pink[100]!);
+        setLoading(false);
+      }
+      if (response is SocketException) {
+        pushToNoInternetPage(context);
+        setLoading(false);
+      }
+    } catch (e) {
+      setLoading(false);
+    }
+  }
+
   //login funtions
   // save user data function
   Future logOutUser(context) async {

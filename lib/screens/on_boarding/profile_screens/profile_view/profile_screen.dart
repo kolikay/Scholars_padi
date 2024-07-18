@@ -7,6 +7,7 @@ import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scholars_padi/widgets/utils/progress_bar.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -25,9 +26,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _facultyCont = TextEditingController();
   final _phoneCont = TextEditingController();
   final _email = TextEditingController();
-  final _password = TextEditingController();
-  bool _isObscure = true;
-  bool _isObscure1 = true;
+  // final _password = TextEditingController();
+  // bool _isObscure = true;
+  // bool _isObscure1 = true;
 
   bottomSheet(BuildContext context, WidgetRef ref) async {
     final profileViewModel = ref.watch(profileViewModelProvider);
@@ -94,6 +95,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   Widget build(BuildContext context) {
     //profile picture update notifire
     final profileViewModel = ref.watch(profileViewModelProvider);
+    final authViewModel = ref.watch(authViewModelProvider);
 
     //user data update notifire
     final userApiData = ref.watch(userProvider);
@@ -132,9 +134,14 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   icon: !onEdit
                       ? Icon(
                           Icons.arrow_back_ios,
+                          color: Colors.white,
                           size: 30.w,
                         )
-                      : Icon(Icons.close, size: 30.w),
+                      : Icon(
+                          Icons.close,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
                 ),
               ),
             ),
@@ -145,211 +152,253 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                   onPressed: () {
                     setState(() {
                       onEdit = !onEdit;
+                      !onEdit
+                          ? authViewModel.updateUserProfile({
+                              "profilePicture": profileViewModel.image ?? '',
+                              "full_name": _fullnameCont.text.trim() !=
+                                      userApiData.fullname
+                                  ? _fullnameCont.text.trim()
+                                  : null,
+                              "username": _usernameCont.text.trim() !=
+                                      userApiData.username
+                                  ? _usernameCont.text.trim()
+                                  : null,
+                              "phoneNumber": _phoneCont.text.trim() !=
+                                      userApiData.phoneNumber
+                                  ? _phoneCont.text.trim()
+                                  : null,
+                              "faculty": _facultyCont.text.trim() !=
+                                      userApiData.faculty
+                                  ? _facultyCont.text.trim()
+                                  : null,
+                            }, context)
+                          : null;
                     });
                   },
                   icon: onEdit
-                      ? Icon(Icons.save, size: 30.w)
-                      : Icon(Icons.edit, size: 30.w),
+                      ? Icon(
+                          Icons.save,
+                          size: 30.w,
+                          color: Colors.white,
+                        )
+                      : Icon(
+                          Icons.edit,
+                          size: 30.w,
+                          color: Colors.white,
+                        ),
                 ),
               )
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            height: 821.h,
-            width: double.infinity,
-            color: AppColor.darkContainer,
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 24.h,
-                ),
-                Stack(
+        body: Stack(
+          children: [
+            SingleChildScrollView(
+              child: Container(
+                height: 621.h,
+                width: double.infinity,
+                color: AppColor.darkContainer,
+                child: Column(
                   children: [
-                    // ClipOval(child: Image.file(image!, width: 100.w, height: 100.h, fit: BoxFit.cover,), )
-                    profileViewModel.image != null
-                        ? Container(
-                            height: 130.h,
-                            width: 130.w,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: FileImage(profileViewModel.image!),
-                              ),
-                            ),
-                          )
-                        : Container(
-                            height: 130.h,
-                            width: 130.w,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                              image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: AssetImage(
-                                  'lib/assets/homepageimage.png',
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Stack(
+                      children: [
+                        // ClipOval(child: Image.file(image!, width: 100.w, height: 100.h, fit: BoxFit.cover,), )
+                        profileViewModel.image != null
+                            ? Container(
+                                height: 130.h,
+                                width: 130.w,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: FileImage(profileViewModel.image!),
+                                  ),
+                                ),
+                              )
+                            : Container(
+                                height: 130.h,
+                                width: 130.w,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: AssetImage(
+                                      'lib/assets/homepageimage.png',
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
+                        onEdit
+                            ? Positioned(
+                                top: 35.h,
+                                left: 35.w,
+                                child: IconButton(
+                                  color: Colors.white,
+                                  iconSize: 40.w,
+                                  icon: const Icon(
+                                    Icons.camera_alt,
+                                  ),
+                                  onPressed: () {
+                                    bottomSheet(context, ref);
+                                  },
+                                ),
+                              )
+                            : const SizedBox(),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.h,
+                    ),
+                    NormalText(
+                      text: userApiData.fullname!,
+                      fontWeight: FontWeight.w500,
+                      size: 19.2.sp,
+                    ),
+                    SizedBox(
+                      height: 24.h,
+                    ),
+                    Form(
+                      key: _formKey,
+                      child: Column(
+                        children: [
+                          MyTextField(
+                            enable: onEdit,
+                            controller: _fullnameCont,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: !onEdit,
+                            labelText: 'Full Name',
                           ),
-                    onEdit
-                        ? Positioned(
-                            top: 35.h,
-                            left: 35.w,
-                            child: IconButton(
-                              color: Colors.white,
-                              iconSize: 40.w,
-                              icon: const Icon(
-                                Icons.camera_alt,
-                              ),
-                              onPressed: () {
-                                bottomSheet(context, ref);
-                              },
-                            ),
-                          )
-                        : const SizedBox(),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          MyTextField(
+                            enable: onEdit,
+                            controller: _usernameCont,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: !onEdit,
+                            labelText: 'Username',
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          MyTextField(
+                            enable: onEdit,
+                            controller: _facultyCont,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: !onEdit,
+                            labelText: 'Faculty',
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          MyTextField(
+                            enable: onEdit,
+                            controller: _phoneCont,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: !onEdit,
+                            labelText: 'Phone Number',
+                          ),
+                          SizedBox(
+                            height: 24.h,
+                          ),
+                          MyTextField(
+                            enable: onEdit,
+                            controller: _email,
+                            obcureText: false,
+                            keyBoardType: TextInputType.text,
+                            isPassword: false,
+                            isReadOnly: false,
+                            labelText: 'Email',
+                          ),
+                          // SizedBox(
+                          //   height: 24.h,
+                          // ),
+                          // onEdit
+                          //     ? MyTextField(
+                          //         enable: onEdit,
+                          //         controller: _password,
+                          //         obcureText: false,
+                          //         keyBoardType: TextInputType.text,
+                          //         isPassword: false,
+                          //         isReadOnly: !onEdit,
+                          //         labelText: 'Password',
+                          //         sufixIcon: IconButton(
+                          //           color: Colors.black54,
+                          //           icon: Icon(_isObscure
+                          //               ? Icons.visibility
+                          //               : Icons.visibility_off),
+                          //           onPressed: onEdit
+                          //               ? () {
+                          //                   setState(() {
+                          //                     _isObscure = !_isObscure;
+                          //                   });
+                          //                 }
+                          //               : null,
+                          //         ),
+                          //       )
+                          //     : const SizedBox(),
+                          // SizedBox(
+                          //   height: 24.h,
+                          // ),
+                          // onEdit
+                          //     ? MyTextField(
+                          //         validator: (pass) {
+                          //           if (pass != _password.text) {
+                          //             return 'Password Dont match';
+                          //           }
+                          //           return null;
+                          //         },
+                          //         controller: _password,
+                          //         obcureText: false,
+                          //         keyBoardType: TextInputType.text,
+                          //         isPassword: false,
+                          //         isReadOnly: !onEdit,
+                          //         labelText: 'Confirm Password',
+                          //         sufixIcon: IconButton(
+                          //           color: Colors.black54,
+                          //           icon: Icon(_isObscure1
+                          //               ? Icons.visibility
+                          //               : Icons.visibility_off),
+                          //           onPressed: onEdit
+                          //               ? () {
+                          //                   setState(
+                          //                     () {
+                          //                       _isObscure1 = !_isObscure1;
+                          //                     },
+                          //                   );
+                          //                 }
+                          //               : null,
+                          //         ),
+                          //       )
+                          //     : const SizedBox()
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: 10.h,
-                ),
-                NormalText(
-                  text: userApiData.fullname!,
-                  fontWeight: FontWeight.w500,
-                  size: 19.2.sp,
-                ),
-                SizedBox(
-                  height: 24.h,
-                ),
-                Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _fullnameCont,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: !onEdit,
-                        labelText: 'Full Name',
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _usernameCont,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: !onEdit,
-                        labelText: 'Username',
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _facultyCont,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: !onEdit,
-                        labelText: 'Faculty',
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _phoneCont,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: !onEdit,
-                        labelText: 'Phone Number',
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      MyTextField(
-                        enable: onEdit,
-                        controller: _email,
-                        obcureText: false,
-                        keyBoardType: TextInputType.text,
-                        isPassword: false,
-                        isReadOnly: false,
-                        labelText: 'Email',
-                      ),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      onEdit
-                          ? MyTextField(
-                              enable: onEdit,
-                              controller: _password,
-                              obcureText: false,
-                              keyBoardType: TextInputType.text,
-                              isPassword: false,
-                              isReadOnly: !onEdit,
-                              labelText: 'Password',
-                              sufixIcon: IconButton(
-                                color: Colors.black54,
-                                icon: Icon(_isObscure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: onEdit
-                                    ? () {
-                                        setState(() {
-                                          _isObscure = !_isObscure;
-                                        });
-                                      }
-                                    : null,
-                              ),
-                            )
-                          : const SizedBox(),
-                      SizedBox(
-                        height: 24.h,
-                      ),
-                      onEdit
-                          ? MyTextField(
-                              validator: (pass) {
-                                if (pass != _password.text) {
-                                  return 'Password Dont match';
-                                }
-                                return null;
-                              },
-                              controller: _password,
-                              obcureText: false,
-                              keyBoardType: TextInputType.text,
-                              isPassword: false,
-                              isReadOnly: !onEdit,
-                              labelText: 'Confirm Password',
-                              sufixIcon: IconButton(
-                                color: Colors.black54,
-                                icon: Icon(_isObscure1
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
-                                onPressed: onEdit
-                                    ? () {
-                                        setState(
-                                          () {
-                                            _isObscure1 = !_isObscure1;
-                                          },
-                                        );
-                                      }
-                                    : null,
-                              ),
-                            )
-                          : const SizedBox()
-                    ],
-                  ),
-                ),
-              ],
+              ),
             ),
-          ),
+            Positioned(
+              child: authViewModel.loading
+                  ? const Center(
+                      child: ProgressDialog(
+                        message: 'Loading....',
+                      ),
+                    )
+                  : const SizedBox(),
+            ),
+          ],
         ));
   }
 }
