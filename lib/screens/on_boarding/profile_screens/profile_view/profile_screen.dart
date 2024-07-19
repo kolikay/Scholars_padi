@@ -27,7 +27,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
   final _facultyCont = TextEditingController();
   final _phoneCont = TextEditingController();
   final _email = TextEditingController();
-  // final _password = TextEditingController();
+  String? _profilePhone;
   // bool _isObscure = true;
   // bool _isObscure1 = true;
 
@@ -98,10 +98,9 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final profileViewModel = ref.watch(profileViewModelProvider);
     final authViewModel = ref.watch(authViewModelProvider);
 
-    print(profileViewModel.uploadImage);
     //user data update notifire
     final userApiData = ref.watch(userProvider);
-
+    _profilePhone = userApiData.profilePhoto ?? '';
     _email.text = userApiData.email ?? '';
     _fullnameCont.text = userApiData.fullname ?? '';
     _usernameCont.text = userApiData.username ?? '';
@@ -173,8 +172,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                       onEdit = !onEdit;
                       !onEdit
                           ? authViewModel.updateUserProfile({
-                              "profilePicture":
-                                  profileViewModel.uploadImage ?? '',
+                              "profilePhoto": profileViewModel.uploadImage,
                               "full_name": _fullnameCont.text.trim(),
                               "username": _usernameCont.text.trim(),
                               "phoneNumber": _phoneCont.text.trim(),
@@ -240,7 +238,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                               )
-                            : userApiData.phoneNumber == null
+                            : userApiData.profilePhoto!.length > 1 
                                 ? Container(
                                     height: 130.h,
                                     width: 130.w,
@@ -249,7 +247,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: NetworkImage(
-                                          userApiData.profilePhoto!,
+                                          _profilePhone!,
                                         ),
                                       ),
                                     ),

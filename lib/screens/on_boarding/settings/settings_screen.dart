@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/screens/on_boarding/home_screens/homepage_constant_widgets.dart';
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/about_us_screen.dart';
@@ -12,18 +13,21 @@ import 'package:scholars_padi/screens/on_boarding/settings/notification_screen.d
 import 'package:scholars_padi/screens/on_boarding/settings/rate_us_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/themes._settings.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerStatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);
   static const String id = 'settings_screen';
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen> {
+class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
+    final profileViewModel = ref.watch(profileViewModelProvider);
+   final userApiData = ref.watch(userProvider);
     return SafeArea(
         child: Scaffold(
       appBar: PreferredSize(
@@ -54,19 +58,31 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 SizedBox(
                   height: 16.h,
                 ),
-                Container(
-                  height: 70.h,
-                  width: 70.w,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: AssetImage(
-                        'lib/assets/homepageimage.png',
+                userApiData.profilePhoto!.length > 1 
+                    ? Container(
+                        height: 85.h,
+                        width: 85.w,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(userApiData.profilePhoto!),
+                          ),
+                        ),
+                      )
+                    : Container(
+                        height: 70.h,
+                        width: 70.w,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                            fit: BoxFit.cover,
+                            image: AssetImage(
+                              'lib/assets/homepageimage.png',
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ),
                 SizedBox(
                   height: 8.h,
                 ),

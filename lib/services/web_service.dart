@@ -115,8 +115,6 @@ class WebServices {
       try {
         final response = await Dio().patch(url,
             data: jsonEncode(body), options: Options(headers: header));
-        print(response.data);
-
         if (response.statusCode == 200 ||
             response.statusCode == 201 ||
             response.statusCode == 203) {

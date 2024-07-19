@@ -64,9 +64,12 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     final response = await WebServices.sendPostRequest(
         '$baseApi/auth/signup', body, context);
+    print(response.code);
 
     try {
-      if (response.code == 200 || response.code == 201) {
+      if (response.code == 200 ||
+          response.code == 201 ||
+          response.code == 203) {
         UserPreferences.setLoginUserId(response.response!["userData"]['_id']);
 
         Navigator.of(context).push(
@@ -91,14 +94,20 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
       }
       if (response is Failure) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.errorResponse.toString(), Colors.pink[100]!);
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
       setLoading(false);
-    } catch (e) {}
+    } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
+    }
   }
 
   //Verify email funtions
@@ -127,17 +136,19 @@ class AuthViewModel extends ChangeNotifier {
 
         setLoading(false);
         return Success;
-      }
-      if (response is Failure) {
+      } else if (response is Failure) {
         ShowSnackBar.buildErrorSnackbar(
             context, 'Email Verification Failed', Colors.pink[100]!);
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
     } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
     }
   }
@@ -159,17 +170,19 @@ class AuthViewModel extends ChangeNotifier {
 
         setLoading(false);
         return Success;
-      }
-      if (response is Failure) {
+      } else if (response is Failure) {
         ShowSnackBar.buildErrorSnackbar(
             context, 'Could not send Otp, Please try again', Colors.pink[100]!);
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
     } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
     }
   }
@@ -198,10 +211,13 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
     } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
     }
   }
@@ -256,6 +272,7 @@ class AuthViewModel extends ChangeNotifier {
         return false;
       }
     } on HttpException catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
       return e.message;
     }
@@ -280,10 +297,13 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
     } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
     }
   }
@@ -295,7 +315,11 @@ class AuthViewModel extends ChangeNotifier {
       final response = await WebServices.sendPatchRequest(
           '$baseApi/auth/UpdateMe', body, context);
 
-      if (response is Success) {
+      if (response.code == 200) {
+        addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
+
+        notifyListeners();
+
         ShowSnackBar.buildErrorSnackbar(
             context, 'Profile Updated Successfully, ', Colors.green);
 
@@ -308,10 +332,13 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
       }
       if (response is SocketException) {
+        ShowSnackBar.buildErrorSnackbar(
+            context, response.message, Colors.pink[100]!);
         pushToNoInternetPage(context);
         setLoading(false);
       }
     } catch (e) {
+      ShowSnackBar.buildErrorSnackbar(context, e.toString(), Colors.pink[100]!);
       setLoading(false);
     }
   }

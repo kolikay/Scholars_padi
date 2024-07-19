@@ -28,6 +28,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     //user data update notifire
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
+    final profileViewModel = ref.watch(profileViewModelProvider);
     return Scaffold(
       key: scafoldKey,
       drawer: Container(
@@ -48,19 +49,32 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                       SizedBox(
                         height: 62.h,
                       ),
-                      Container(
-                        height: 85.h,
-                        width: 85.w,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: AssetImage(
-                              'lib/assets/homepageimage.png',
+                      userApiData.profilePhoto!.length > 1
+                          ? Container(
+                              height: 85.h,
+                              width: 85.w,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image:
+                                      NetworkImage(userApiData.profilePhoto!),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              height: 85.h,
+                              width: 85.w,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: AssetImage(
+                                    'lib/assets/homepageimage.png',
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
                       SizedBox(
                         height: 8.h,
                       ),
@@ -75,8 +89,8 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                       ),
                       NormalText(
                         text: userApiData.email ?? '',
-                        size: 14.sp,
-                        fontWeight: FontWeight.w500,
+                        size: 12.sp,
+                        fontWeight: FontWeight.w300,
                         color: Colors.white,
                       )
                     ],
@@ -188,7 +202,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                   // enlargeCenterPage: true,
                   viewportFraction: 0.9.w,
                   // autoPlay: true,
-    
+
                   onPageChanged: (index, reason) =>
                       setState(() => HomeConstants.activeImageIndex = index),
                   autoPlayInterval: const Duration(seconds: 2),
@@ -237,17 +251,19 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                           mainAxisSpacing: 1,
                           crossAxisCount: 4,
                           children: <Widget>[
-                            HomeConstants.newInkwell(context, 'Material',
-                                'lib/assets/material.png', () {
+                            HomeConstants.newInkwell(
+                                context, 'Material', 'lib/assets/material.png',
+                                () {
                               pushMaterialScreen(context);
                             }),
                             HomeConstants.newInkwell(context, 'Past Question',
                                 'lib/assets/pastQuestion.png', () {}),
                             HomeConstants.newInkwell(context, 'Scheduler',
                                 'lib/assets/schduler.png', () {}),
-                            HomeConstants.newInkwell(context, 'Note Book',
-                                'lib/assets/notebook.png', () {
-                                  //get saved note from server and display on note screen 1
+                            HomeConstants.newInkwell(
+                                context, 'Note Book', 'lib/assets/notebook.png',
+                                () {
+                              //get saved note from server and display on note screen 1
                               notes.getSavedNotes(context);
                               pushNoteBookScreen1(context);
                             }),
@@ -259,8 +275,8 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                                 'lib/assets/noticeBoard.png', () {
                               pushNoticeScreen(context);
                             }),
-                            HomeConstants.newInkwell(context, 'Chats',
-                                'lib/assets/chat.png', () {}),
+                            HomeConstants.newInkwell(
+                                context, 'Chats', 'lib/assets/chat.png', () {}),
                             HomeConstants.newInkwell(
                                 context, 'More', 'lib/assets/more.jpg', () {
                               pushCategoriesPage(context);
