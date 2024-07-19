@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -29,7 +30,6 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
 
-
     return Scaffold(
       key: scafoldKey,
       drawer: Container(
@@ -38,6 +38,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
         width: 290.w,
         child: Column(
           children: [
+            Container(height: 20,color: AppColor.mainColor,),
             //drawer top container for image and name
             Stack(
               children: [
@@ -179,7 +180,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
           child: Column(
             children: [
               SizedBox(
-                height: 30.h,
+                height: 50.h,
               ),
               Padding(
                 padding: EdgeInsets.symmetric(

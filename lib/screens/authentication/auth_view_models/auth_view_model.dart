@@ -242,38 +242,38 @@ class AuthViewModel extends ChangeNotifier {
           pushOnBoardingScreen(context);
         });
 
-        addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
+        // addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
 
-        notifyListeners();
-        setLoading(false);
+        // notifyListeners();
+        // setLoading(false);
 
         // check if user is verified
-        // bool verified = response.response!["userData"]["user"]['verified'];
+       bool verified = response.response!["userData"]["user"]['verified'];
 
         // UNCOMMENT WHEN API IS FIXED
-        // if (verified == true) {
-        //   Future.delayed(const Duration(milliseconds: 500), () {
-        //     //navigate to onbording screen after 30 seconds
-        //     pushOnBoardingScreen(context);
-        //   });
-        //   addUserdata(
-        //       UserModel.fromJson(response.response!["userData"]["user"]));
+        if (verified == true) {
+          Future.delayed(const Duration(milliseconds: 500), () {
+            //navigate to onbording screen after 30 seconds
+            pushOnBoardingScreen(context);
+          });
+          addUserdata(
+              UserModel.fromJson(response.response!["userData"]["user"]));
 
-        //   notifyListeners();
-        //   setLoading(false);
-        // } else {
-        //   String? email = UserPreferences.getEmail() ?? '';
+          notifyListeners();
+          setLoading(false);
+        } else {
+          String? email = UserPreferences.getEmail() ?? '';
 
-        //   requestOTP({'email': email}, context);
+          requestOTP({'email': email}, context);
 
-        //   ShowSnackBar.buildErrorSnackbar(context,
-        //       'Please Verify Your Email to continue', Colors.pink[100]!);
-        //   Navigator.of(context).push(
-        //     MaterialPageRoute(
-        //       builder: (context) => const VerifyOtpScreen(),
-        //     ),
-        //   );
-        // }
+          ShowSnackBar.buildErrorSnackbar(context,
+              'Please Verify Your Email to continue', Colors.pink[100]!);
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => const VerifyOtpScreen(),
+            ),
+          );
+        }
         setLoading(false);
         return true;
       } else {
