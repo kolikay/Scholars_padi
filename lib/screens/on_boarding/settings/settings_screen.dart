@@ -58,7 +58,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 SizedBox(
                   height: 16.h,
                 ),
-                userApiData.profilePhoto!.length > 1 
+               userApiData.profilePhoto!.contains('http')
                     ? Container(
                         height: 85.h,
                         width: 85.w,

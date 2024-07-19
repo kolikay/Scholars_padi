@@ -107,6 +107,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _facultyCont.text = userApiData.faculty ?? '';
     _phoneCont.text = userApiData.phoneNumber ?? '';
 
+
+    
+    
+    
+
+
     // bool submit = true;
 
     //check to make sure form is ofdated before sending request
@@ -238,7 +244,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                               )
-                            : userApiData.profilePhoto!.length > 1 
+                            : userApiData.profilePhoto!.contains('http')
                                 ? Container(
                                     height: 130.h,
                                     width: 130.w,

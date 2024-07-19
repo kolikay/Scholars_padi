@@ -1,20 +1,17 @@
-
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
+
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
-import 'package:scholars_padi/screens/on_boarding/on_boarding_screen.dart';
+
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
-import 'package:scholars_padi/widgets/reusesable_widget/reusable_info_widget.dart';
-import 'screens/authentication/auth_view_models/auth_view_model.dart';
+
 import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
 import 'package:flutter/services.dart';
 import 'constants/shared_preferences.dart';
-import 'package:jwt_decoder/jwt_decoder.dart';
 
 void main() async {
   // add these lines

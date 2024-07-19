@@ -4,7 +4,9 @@ import 'dart:io';
 import 'package:cloudinary/cloudinary.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/constants/shared_preferences.dart';
+import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 
 class ProfileModelView extends ChangeNotifier {
   File? image;
@@ -36,13 +38,17 @@ class ProfileModelView extends ChangeNotifier {
           folder: 'ProfilePix',
           fileName: userEmail,
           progressCallback: (count, total) {
+            AuthViewModel.instance.setLoading(true);
+
             print('Uploading image from file with progress: $count/$total');
           });
 
       if (response.isSuccessful) {
         setUploadImageUrl(response.secureUrl);
+        AuthViewModel.instance.setLoading(false);
       }
     } catch (e) {
+      AuthViewModel.instance.setLoading(false);
       print('failed to pick image: $e');
     }
   }
