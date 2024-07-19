@@ -103,14 +103,15 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(Icons.arrow_back_ios),
+              icon:  Icon(Icons.arrow_back_ios,color: Colors.white, size: 30.w),
             ),
             secondAppIcon: IconButton(
               onPressed: () {
                 notificationViewModel.updateCardColor();
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.email_outlined,
+                color: Colors.white,size: 30.w,
               ),
             ),
             thirdAppIcon: IconButton(
