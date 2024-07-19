@@ -132,8 +132,10 @@ class _NotificationScreenState extends ConsumerState<NotificationScreen> {
                   notificationViewModel.selectedList = [];
                 });
               },
-              icon: const Icon(
+              icon:  Icon(
                 Icons.delete,
+                color: Colors.white, size: 30.w
+
               ),
             ));
   }
