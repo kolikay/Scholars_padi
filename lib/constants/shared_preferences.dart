@@ -23,12 +23,10 @@ static SharedPreferences? _preferences;
   // get token
   static String? getId() => _preferences!.getString('id');
 
-
    //set usertoken
   static Future setUserToken(String userToken) async => await _preferences!.setString('token', userToken);
   // get token
   static String? getUserToken() => _preferences!.getString('token');
-
 
   //set userpic
   static Future setUserProfilePix(String token) async => await _preferences!.setString('profilePic', token);

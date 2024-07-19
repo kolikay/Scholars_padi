@@ -6,8 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
-
-
 import 'package:scholars_padi/screens/on_boarding/profile_screens/profile_view/profile_screen.dart';
 import 'package:scholars_padi/screens/on_boarding/settings/settings_screen.dart';
 
@@ -15,6 +13,8 @@ import 'screens/on_boarding/home_screens/categories_search_screen.dart';
 import 'screens/on_boarding/home_screens/home_page.dart';
 import 'package:flutter/services.dart';
 import 'constants/shared_preferences.dart';
+
+
 
 void main() async {
   // add these lines

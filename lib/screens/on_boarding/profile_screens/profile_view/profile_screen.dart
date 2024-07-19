@@ -243,7 +243,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                   ),
                                 ),
                               )
-                            : userApiData.profilePhoto!.contains('http')
+                            : userApiData.profilePhoto != null
                                 ? Container(
                                     height: 130.h,
                                     width: 130.w,
@@ -352,12 +352,12 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                             height: 24.h,
                           ),
                           MyTextField(
-                            enable: onEdit,
+                            enable: false,
                             controller: _email,
                             obcureText: false,
                             keyBoardType: TextInputType.text,
                             isPassword: false,
-                            isReadOnly: false,
+                            isReadOnly: true,
                             labelText: 'Email',
                           ),
                           // SizedBox(

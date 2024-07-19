@@ -50,7 +50,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                       SizedBox(
                         height: 62.h,
                       ),
-                      userApiData.profilePhoto!.contains('http')
+                      userApiData.profilePhoto != null
                           ? Container(
                               height: 85.h,
                               width: 85.w,

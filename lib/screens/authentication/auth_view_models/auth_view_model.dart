@@ -52,11 +52,12 @@ class AuthViewModel extends ChangeNotifier {
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
     userApiData.verified = newUser.verified;
-    userApiData.profilePhoto = newUser.profilePhoto ?? 'a';
+    userApiData.profilePhoto = newUser.profilePhoto;
     userApiData.role = newUser.role;
     userApiData.faculty = newUser.faculty;
     userApiData.gender = newUser.gender;
     userApiData.phoneNumber = newUser.phoneNumber;
+    notifyListeners();
   }
 
   //registration funtions
