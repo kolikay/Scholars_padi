@@ -64,7 +64,7 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     final response = await WebServices.sendPostRequest(
         '$baseApi/auth/signup', body, context);
-    print(response.code);
+  
 
     try {
       if (response.code == 200 ||
@@ -248,7 +248,7 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
 
         // check if user is verified
-        bool verified = response.response!["userData"]["user"]['verified'];
+        // bool verified = response.response!["userData"]["user"]['verified'];
 
         // UNCOMMENT WHEN API IS FIXED
         // if (verified == true) {

@@ -39,6 +39,18 @@ dependencies:
   # cloudinary_flutter: ^1.0.0
   # cloudinary_url_gen: ^1.0.0
 
+  flutter_riverpod: any
+  shared_preferences: any
+  flutter_screenutil: any
+  universal_io: any
+  dio: any
+  pin_code_fields: any
+  smooth_page_indicator: any
+  flutter_slidable: any
+  carousel_slider: any
+  image_picker: any
+  simple_connection_checker: any
+  google_fonts: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -54,35 +66,32 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^4.0.0
   
-  #Slider for landing page
-  carousel_slider: ^4.1.1
-  smooth_page_indicator: ^1.0.0+2
-  flutter_native_splash: ^2.4.0
-  #extra fonts
-  google_fonts: ^6.2.1
-  #pin codes fields
-  pin_code_fields: ^8.0.1
-  #icon launcher
-  flutter_launcher_icons: ^0.13.1
-  #check connection package
-  simple_connection_checker: ^0.2.1
-  #state management
-  flutter_riverpod: ^2.5.1
-  #App Responsivness
-  flutter_screenutil: ^5.9.0 
-  #image picker
-  image_picker: ^1.1.1
+  # #Slider for landing page
+  # carousel_slider: ^4.1.1
+  # smooth_page_indicator: ^1.0.0+2
+  # flutter_native_splash: ^2.4.0
+  # #extra fonts
+  # google_fonts: ^6.2.1
+  # #pin codes fields
+  # pin_code_fields: ^8.0.1
+  # #icon launcher
+  # flutter_launcher_icons: ^0.13.1
+  # #check connection package
+  # simple_connection_checker: ^0.2.1
+  # flutter_screenutil: ^5.9.0 
+  # #image picker
+  # image_picker: ^1.1.1
 
-  #slidable widget
-  flutter_slidable: 0.6.0
+  # #slidable widget
+  # flutter_slidable: 0.6.0
 
-  #sending request
-  dio: ^5.4.3+1
-  universal_io: ^2.0.4
-  jwt_decoder: ^2.0.1
+  # #sending request
+  # dio: ^5.4.3+1
+  # universal_io: ^2.0.4
+  # jwt_decoder: ^2.0.1
 
-  #manage local state
-  shared_preferences: ^2.0.15
+  # #manage local state
+  # shared_preferences: ^2.0.15
   
 
 # flutter pub run flutter_native_splash:create

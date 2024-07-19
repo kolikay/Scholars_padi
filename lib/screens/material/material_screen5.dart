@@ -66,6 +66,12 @@ class MaterialScreen5 extends StatelessWidget {
                   );
                 },
                 child: Container(
+                  width: 327.w,
+                  height: 178.h,
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(5.53.w),
+                  ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -87,12 +93,6 @@ class MaterialScreen5 extends StatelessWidget {
                       ),
                     ],
                   ),
-                  width: 327.w,
-                  height: 178.h,
-                  decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(5.53.w),
-                  ),
                 ),
               ),
               SizedBox(
@@ -109,6 +109,12 @@ class MaterialScreen5 extends StatelessWidget {
                   );
                 },
                 child: Container(
+                  width: 327.w,
+                  height: 178.h,
+                  decoration: BoxDecoration(
+                    color: Colors.orange,
+                    borderRadius: BorderRadius.circular(5.53.w),
+                  ),
                   child: Center(
                     child: NormalText(
                       text: 'Rain Semester Courses',
@@ -116,12 +122,6 @@ class MaterialScreen5 extends StatelessWidget {
                       color: Colors.white,
                       size: 23,
                     ),
-                  ),
-                  width: 327.w,
-                  height: 178.h,
-                  decoration: BoxDecoration(
-                    color: Colors.orange,
-                    borderRadius: BorderRadius.circular(5.53.w),
                   ),
                 ),
               ),

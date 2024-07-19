@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -32,7 +31,7 @@ class WebServices {
             response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();
@@ -77,7 +76,7 @@ class WebServices {
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();
@@ -162,7 +161,7 @@ class WebServices {
             response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();
@@ -205,7 +204,7 @@ class WebServices {
         } else {
           return Failure(code: 402, errorResponse: {'failed': "failed"});
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();
@@ -248,7 +247,7 @@ class WebServices {
         } else {
           return Failure(code: 402, errorResponse: {'failed': "failed"});
         }
-      } on DioError catch (error) {
+      } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
           await UserPreferences.resetSharedPref();

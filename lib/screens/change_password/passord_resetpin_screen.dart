@@ -1,13 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/shared_preferences.dart';
 import 'package:scholars_padi/constants/status_codes.dart';
 import 'package:scholars_padi/screens/authentication/auth_view_models/auth_view_model.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
-import 'package:scholars_padi/screens/change_password/enter_newpassword_screen.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusaable_textformfield.dart';

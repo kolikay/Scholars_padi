@@ -26,7 +26,7 @@ class SettingsScreen extends ConsumerStatefulWidget {
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-    final profileViewModel = ref.watch(profileViewModelProvider);
+
    final userApiData = ref.watch(userProvider);
     return SafeArea(
         child: Scaffold(

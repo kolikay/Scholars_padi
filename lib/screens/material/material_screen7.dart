@@ -65,11 +65,6 @@ class MaterialScreen7 extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        child: const Icon(
-                          Icons.book,
-                          color: Colors.white,
-                          size: 80,
-                        ),
                         width: 327.w,
                         height: 130.h,
                         decoration: BoxDecoration(
@@ -82,6 +77,11 @@ class MaterialScreen7 extends StatelessWidget {
                               5.53.w,
                             ),
                           ),
+                        ),
+                        child: const Icon(
+                          Icons.book,
+                          color: Colors.white,
+                          size: 80,
                         ),
                       ),
                       SizedBox(
@@ -118,11 +118,7 @@ class MaterialScreen7 extends StatelessWidget {
                   child: Column(
                     children: [
                       Container(
-                        child: const Icon(
-                          Icons.question_mark_rounded,
-                          color: Colors.white,
-                          size: 80,
-                        ),
+                        // ignore: sort_child_properties_last
                         width: 327.w,
                         height: 130.h,
                         decoration: BoxDecoration(
@@ -135,6 +131,12 @@ class MaterialScreen7 extends StatelessWidget {
                               5.53.w,
                             ),
                           ),
+                        ),
+                        // ignore: sort_child_properties_last
+                        child: const Icon(
+                          Icons.question_mark_rounded,
+                          color: Colors.white,
+                          size: 80,
                         ),
                       ),
                       SizedBox(

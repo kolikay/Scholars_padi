@@ -28,7 +28,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     //user data update notifire
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
-    final profileViewModel = ref.watch(profileViewModelProvider);
+
     return Scaffold(
       key: scafoldKey,
       drawer: Container(

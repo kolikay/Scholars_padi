@@ -2,7 +2,7 @@
 //
 //     final userDataModel = userDataModelFromJson(jsonString);
 
-// ignore_for_file: file_names
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'dart:convert';
 
