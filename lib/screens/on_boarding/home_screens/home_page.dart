@@ -29,6 +29,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
 
+
     return Scaffold(
       key: scafoldKey,
       drawer: Container(

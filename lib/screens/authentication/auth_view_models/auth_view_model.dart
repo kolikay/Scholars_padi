@@ -52,7 +52,7 @@ class AuthViewModel extends ChangeNotifier {
     userApiData.username = newUser.username;
     userApiData.confirmed = newUser.confirmed;
     userApiData.verified = newUser.verified;
-    userApiData.profilePhoto = newUser.profilePhoto;
+    userApiData.profilePhoto = newUser.profilePhoto ?? 'a';
     userApiData.role = newUser.role;
     userApiData.faculty = newUser.faculty;
     userApiData.gender = newUser.gender;
@@ -64,7 +64,6 @@ class AuthViewModel extends ChangeNotifier {
     setLoading(true);
     final response = await WebServices.sendPostRequest(
         '$baseApi/auth/signup', body, context);
-  
 
     try {
       if (response.code == 200 ||
@@ -237,10 +236,10 @@ class AuthViewModel extends ChangeNotifier {
         UserPreferences.setLoginUserId(
             response.response!["userData"]["user"]['_id']);
 
-                      Future.delayed(const Duration(milliseconds: 500), () {
-            //navigate to onbording screen after 30 seconds
-            pushOnBoardingScreen(context);
-          });
+        Future.delayed(const Duration(milliseconds: 500), () {
+          //navigate to onbording screen after 30 seconds
+          pushOnBoardingScreen(context);
+        });
 
         addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
 

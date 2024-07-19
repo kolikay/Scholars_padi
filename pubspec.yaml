@@ -51,6 +51,7 @@ dependencies:
   image_picker: any
   simple_connection_checker: any
   google_fonts: any
+  jwt_decoder: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,7 +89,7 @@ dev_dependencies:
   # #sending request
   # dio: ^5.4.3+1
   # universal_io: ^2.0.4
-  # jwt_decoder: ^2.0.1
+  
 
   # #manage local state
   # shared_preferences: ^2.0.15

@@ -34,8 +34,6 @@ class WebServices {
       } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
-          await UserPreferences.resetSharedPref();
-
           ShowSnackBar.buildErrorSnackbar(
               context, 'Server is unavailable', Colors.pink[100]!);
         }
@@ -71,7 +69,6 @@ class WebServices {
             response.statusCode == 203) {
           return Success(code: response.statusCode, response: response.data);
         } else if (response.statusCode == 422) {
-          await UserPreferences.resetSharedPref();
           Navigator.of(context).pushReplacement(
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
@@ -164,8 +161,6 @@ class WebServices {
       } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
-          await UserPreferences.resetSharedPref();
-
           ShowSnackBar.buildErrorSnackbar(
               context, 'Server is unavailable', Colors.pink[100]!);
         }
@@ -207,8 +202,6 @@ class WebServices {
       } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
-          await UserPreferences.resetSharedPref();
-
           ShowSnackBar.buildErrorSnackbar(
               context, 'Server is unavailable', Colors.pink[100]!);
         }
@@ -250,8 +243,6 @@ class WebServices {
       } on DioException catch (error) {
         // Handle error and display on snackbar
         if (error.response!.statusCode == 502) {
-          await UserPreferences.resetSharedPref();
-
           ShowSnackBar.buildErrorSnackbar(
               context, 'Server is unavailable', Colors.pink[100]!);
         }
