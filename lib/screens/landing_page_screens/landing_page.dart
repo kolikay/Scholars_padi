@@ -47,20 +47,20 @@ class _LandingPageState extends State<LandingPage> {
             children: [
               buildPage(
                   color: Colors.white10,
-                  urlImage: 'lib/assets/landingImage1.png',
+                  urlImage: 'assets/images/landingImage1.png',
                   title: 'Library Accessibility',
                   subTitle1: 'Materials of all classes are made',
                   subTitle2: ' available and note can be jot',
                   subTitle3: ' down for personal uses'),
               buildPage(
                   color: Colors.white,
-                  urlImage: 'lib/assets/landingImage2.png',
+                  urlImage: 'assets/images/landingImage2.png',
                   title: 'Activity Reminder',
                   subTitle1: 'Reminders are used to reduce the ',
                   subTitle2: 'rate of forgetfulnessof students'),
               buildPage(
                   color: Colors.white,
-                  urlImage: 'lib/assets/landingImage3.png',
+                  urlImage: 'assets/images/landingImage3.png',
                   title: 'Latest Information',
                   subTitle1: 'Latest new on campus and',
                   subTitle2: 'scholarship aids can be accessed',

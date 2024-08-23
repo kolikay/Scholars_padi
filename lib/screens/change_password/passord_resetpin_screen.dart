@@ -250,7 +250,7 @@ class _PasswordResetPinScreenState extends State<PasswordResetPinScreen> {
                                 builder: (context) => const LoginScreen()),
                           );
                         },
-                        logo: 'lib/assets/emailVerifyIcon.png',
+                        logo: 'assets/images/emailVerifyIcon.png',
                         maintext: 'Password change was successful',
                         detailsText:
                             'Your password change is successful. \n Proceed to Login',

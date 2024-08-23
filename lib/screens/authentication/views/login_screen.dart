@@ -42,7 +42,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                         height: 130.h,
                         width: 130.w,
                         child: Image.asset(
-                          'lib/assets/logo.png',
+                          'assets/images/logo.png',
                           fit: BoxFit.contain,
                         )),
                     Column(

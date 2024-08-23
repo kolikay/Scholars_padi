@@ -106,12 +106,6 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     _facultyCont.text = userApiData.faculty ?? '';
     _phoneCont.text = userApiData.phoneNumber ?? '';
 
-
-    
-    
-    
-
-
     // bool submit = true;
 
     //check to make sure form is ofdated before sending request
@@ -265,7 +259,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
                                       image: DecorationImage(
                                         fit: BoxFit.cover,
                                         image: AssetImage(
-                                          'lib/assets/homepageimage.png',
+                                          'assets/images/homepageimage.png',
                                         ),
                                       ),
                                     ),

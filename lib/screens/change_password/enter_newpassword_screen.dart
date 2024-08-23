@@ -133,7 +133,7 @@
 //                             builder: (context) => const LoginScreen()),
 //                       );
 //                     },
-//                     logo: 'lib/assets/verifyIcon.png',
+//                     logo: 'assets/images/verifyIcon.png',
 //                     maintext: 'New Password Set',
 //                     detailsText:
 //                         'Your new password has been set successfully \n Proceed to sign in to continue',

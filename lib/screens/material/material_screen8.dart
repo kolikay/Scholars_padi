@@ -125,7 +125,7 @@ class _MaterialCardsState extends State<MaterialCards> {
                       ),
                       image: const DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('lib/assets/matImage2.png'),
+                        image: AssetImage('assets/images/matImage2.png'),
                       ),
                     ),
                   ),
@@ -192,7 +192,8 @@ class _MaterialCardsState extends State<MaterialCards> {
       ),
     );
   }
-   bottomSheet(BuildContext context) async {
+
+  bottomSheet(BuildContext context) async {
     return showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: context,

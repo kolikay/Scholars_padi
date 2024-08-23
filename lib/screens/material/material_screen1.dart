@@ -49,7 +49,9 @@ class MaterialCardScreen1 extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const MaterialScreen2(title: 'Class Materials',)),
+                      builder: ((context) => const MaterialScreen2(
+                            title: 'Class Materials',
+                          )),
                     ),
                   );
                 },
@@ -62,7 +64,7 @@ class MaterialCardScreen1 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.53.w),
                         image: const DecorationImage(
                           fit: BoxFit.contain,
-                          image: AssetImage('lib/assets/matImage1.png'),
+                          image: AssetImage('assets/images/matImage1.png'),
                         ),
                       ),
                     ),
@@ -86,7 +88,9 @@ class MaterialCardScreen1 extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: ((context) => const MaterialScreen2(title: 'Other Materials',)),
+                      builder: ((context) => const MaterialScreen2(
+                            title: 'Other Materials',
+                          )),
                     ),
                   );
                 },
@@ -99,7 +103,7 @@ class MaterialCardScreen1 extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5.53.w),
                         image: const DecorationImage(
                           fit: BoxFit.contain,
-                          image: AssetImage('lib/assets/matImage2.png'),
+                          image: AssetImage('assets/images/matImage2.png'),
                         ),
                       ),
                     ),

@@ -25,8 +25,7 @@ Widget materialfavScreen() {
         height: 15.h,
       ),
       const MaterialCards(
-        cardMessage:
-            'Gates Cambridges Scholarship Fund For Students',
+        cardMessage: 'Gates Cambridges Scholarship Fund For Students',
       ),
       SizedBox(
         height: 15.h,
@@ -68,7 +67,7 @@ class MaterialCards extends StatelessWidget {
                   bottomLeft: Radius.circular(5.w)),
               image: const DecorationImage(
                 fit: BoxFit.cover,
-                image: AssetImage('lib/assets/matImage1.png'),
+                image: AssetImage('assets/images/matImage1.png'),
               ),
             ),
           ),
@@ -92,10 +91,14 @@ class MaterialCards extends StatelessWidget {
                             size: 14.sp,
                           ),
                         ),
-                       const Icon(Icons.more_vert)
+                        const Icon(Icons.more_vert)
                       ],
                     ),
-                    NormalText(text: '22/7/2022', size: 12.sp,color: AppColor.dullBlack,)
+                    NormalText(
+                      text: '22/7/2022',
+                      size: 12.sp,
+                      color: AppColor.dullBlack,
+                    )
                   ],
                 ),
               ),

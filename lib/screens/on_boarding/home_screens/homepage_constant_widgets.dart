@@ -10,9 +10,9 @@ class HomeConstants {
   static int activeImageIndex = 0;
 
   static List<String> images = [
-    'lib/assets/homepageimage.png',
-    'lib/assets/homepageimage.png',
-    'lib/assets/homepageimage.png',
+    'assets/images/homepageimage.png',
+    'assets/images/homepageimage.png',
+    'assets/images/homepageimage.png',
   ];
 
   static Widget buildImage(String image, int index) {
@@ -209,7 +209,7 @@ class ReuseableCards extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top:10.0),
+                        padding: const EdgeInsets.only(top: 10.0),
                         child: NormalText(
                           text: note,
                           size: 14.sp,

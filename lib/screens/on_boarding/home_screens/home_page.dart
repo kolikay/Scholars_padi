@@ -1,6 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:pdfx/pdfx.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/constants/app_state_constants.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
@@ -9,8 +9,11 @@ import 'package:scholars_padi/widgets/reusesable_widget/reuseable_appbar.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
+// import 'package:internet_file/internet_file.dart';
 import 'homepage_constant_widgets.dart';
+
+
+
 
 class HomePageScreen extends ConsumerStatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
@@ -23,6 +26,22 @@ class HomePageScreen extends ConsumerStatefulWidget {
 
 class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
+  late PdfControllerPinch pdfControllerPinch;
+
+  @override
+  void initState() {
+  
+    super.initState();
+    pdfControllerPinch = PdfControllerPinch(
+        document: PdfDocument.openAsset('assets/pdf/sample.pdf'));
+  }
+  //   @override
+  // void initState() {
+
+  //   super.initState();
+  //   pdfControllerPinch = PdfControllerPinch(
+  //       document: PdfDocument.openData(InternetFile.get('https://hutchesonlab.fiu.edu/wp-content/uploads/sample-pdf.pdf')));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +49,9 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
 
-    return Scaffold(
+    return 
+    
+    Scaffold(
       key: scafoldKey,
       drawer: Container(
         color: AppColor.darkContainer,
@@ -38,7 +59,10 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
         width: 290.w,
         child: Column(
           children: [
-            Container(height: 20,color: AppColor.mainColor,),
+            Container(
+              height: 20,
+              color: AppColor.mainColor,
+            ),
             //drawer top container for image and name
             Stack(
               children: [
@@ -72,7 +96,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
                                   image: AssetImage(
-                                    'lib/assets/homepageimage.png',
+                                    'assets/images/homepageimage.png',
                                   ),
                                 ),
                               ),
@@ -173,7 +197,10 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
           ],
         ),
       ),
-      body: SingleChildScrollView(
+      body:
+      //  _buildUI()
+      
+      SingleChildScrollView(
         dragStartBehavior: DragStartBehavior.start,
         child: Container(
           color: AppColor.darkContainer,
@@ -254,33 +281,33 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                           crossAxisCount: 4,
                           children: <Widget>[
                             HomeConstants.newInkwell(
-                                context, 'Material', 'lib/assets/material.png',
+                                context, 'Material', 'assets/images/material.png',
                                 () {
                               pushMaterialScreen(context);
                             }),
                             HomeConstants.newInkwell(context, 'Past Question',
-                                'lib/assets/pastQuestion.png', () {}),
+                                'assets/images/pastQuestion.png', () {}),
                             HomeConstants.newInkwell(context, 'Scheduler',
-                                'lib/assets/schduler.png', () {}),
+                                'assets/images/schduler.png', () {}),
                             HomeConstants.newInkwell(
-                                context, 'Note Book', 'lib/assets/notebook.png',
+                                context, 'Note Book', 'assets/images/notebook.png',
                                 () {
                               //get saved note from server and display on note screen 1
                               notes.getSavedNotes(context);
                               pushNoteBookScreen1(context);
                             }),
                             HomeConstants.newInkwell(context, 'Scholarships',
-                                'lib/assets/scholaship.png', () {
+                                'assets/images/scholaship.png', () {
                               pushScholarshipScreen(context);
                             }),
                             HomeConstants.newInkwell(context, 'Notice Boards',
-                                'lib/assets/noticeBoard.png', () {
+                                'assets/images/noticeBoard.png', () {
                               pushNoticeScreen(context);
                             }),
                             HomeConstants.newInkwell(
-                                context, 'Chats', 'lib/assets/chat.png', () {}),
+                                context, 'Chats', 'assets/images/chat.png', () {}),
                             HomeConstants.newInkwell(
-                                context, 'More', 'lib/assets/more.jpg', () {
+                                context, 'More', 'assets/images/more.jpg', () {
                               pushCategoriesPage(context);
                             }),
                           ],
@@ -320,4 +347,14 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       ),
     );
   }
+
+  // _buildUI() {
+  //   return Column(
+  //     children: [
+  //       Expanded(
+  //         child: PdfViewPinch(controller: pdfControllerPinch,),
+  //       )
+  //     ],
+  //   );
+  // }
 }

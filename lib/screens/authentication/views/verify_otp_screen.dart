@@ -202,6 +202,7 @@ class _VerifyOtpScreenState extends ConsumerState<VerifyOtpScreen> {
 
   void _resendCode() async {
     String? email = UserPreferences.getEmail();
+
     await AuthViewModel.instance.requestOTP({
       "email": email,
     }, context);

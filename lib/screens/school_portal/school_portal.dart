@@ -58,7 +58,7 @@ class _SchoolPortalState extends State<SchoolPortal> {
                     borderRadius: BorderRadius.circular(5.53.w),
                     image: const DecorationImage(
                       fit: BoxFit.cover,
-                      image: AssetImage('lib/assets/educationLogo.JPG'),
+                      image: AssetImage('assets/images/educationLogo.JPG'),
                     ),
                   ),
                 ),
@@ -71,7 +71,8 @@ class _SchoolPortalState extends State<SchoolPortal> {
                     height: 15.h,
                   ),
                   NormalText(
-                    text: 'You can assess the OAU eportal using the link below:',
+                    text:
+                        'You can assess the OAU eportal using the link below:',
                     fontWeight: FontWeight.bold,
                     size: 16.sp,
                   ),
@@ -129,7 +130,6 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'October 1972',
-        
                 size: 16.sp,
                 color: AppColor.dullerBlack,
               ),
@@ -146,7 +146,6 @@ class _SchoolPortalState extends State<SchoolPortal> {
               ),
               NormalText(
                 text: 'Ile-Ife, Osun State, Nigeria.',
-                
                 size: 16.sp,
                 color: AppColor.dullerBlack,
               ),

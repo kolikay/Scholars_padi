@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:scholars_padi/screens/landing_page_screens/landing_page.dart';
 
 
 import 'package:scholars_padi/screens/on_boarding/home_screens/categories_page.dart';
@@ -21,6 +22,8 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await UserPreferences.init();
+
+  await UserPreferences.resetSharedPref();
 
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
@@ -61,7 +64,7 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.purple,
           ),
            // home: hasExpired ? const LandingPage() : const OnBoardingScreen(),
-           home:const LoginScreen(),
+           home:const HomePageScreen(),
          
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),

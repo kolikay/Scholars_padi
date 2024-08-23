@@ -35,7 +35,9 @@ class NoticeScreen2 extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           child: Column(
             children: [
-              SizedBox(height: 24.h,),
+              SizedBox(
+                height: 24.h,
+              ),
               const MaterialCards(
                   cardMessage:
                       'Notice to Faculty of Science students staying in all hall of residences'),
@@ -93,7 +95,7 @@ class MaterialCards extends StatelessWidget {
                     bottomLeft: Radius.circular(5.w)),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('lib/assets/matImage1.png'),
+                  image: AssetImage('assets/images/matImage1.png'),
                 ),
               ),
             ),

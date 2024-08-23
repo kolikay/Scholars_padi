@@ -67,7 +67,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen2> {
                         height: 125.h,
                         width: 121.h,
                         child: Image.asset(
-                          'lib/assets/logo.png',
+                          'assets/images/logo.png',
                           fit: BoxFit.contain,
                         )),
                     Column(

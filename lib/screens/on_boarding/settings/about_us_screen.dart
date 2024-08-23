@@ -23,7 +23,7 @@ class AboutUsScreen extends StatelessWidget {
                     height: 125.h,
                     width: 121.21.w,
                     child: Image.asset(
-                      'lib/assets/logo.png',
+                      'assets/images/logo.png',
                       fit: BoxFit.contain,
                     ),
                   ),

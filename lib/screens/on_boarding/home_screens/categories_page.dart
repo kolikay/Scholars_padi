@@ -52,36 +52,37 @@ class _CategoriesPageState extends ConsumerState<CategoriesPage> {
                     crossAxisCount: 3,
                     children: <Widget>[
                       HomeConstants.categoryCard(
-                          context, 'Material', 'lib/assets/material.png', () {
+                          context, 'Material', 'assets/images/material.png',
+                          () {
                         pushMaterialScreen(context);
                       }),
                       HomeConstants.categoryCard(context, 'Past Question',
-                          'lib/assets/pastQuestion.png', () {}),
+                          'assets/images/pastQuestion.png', () {}),
                       HomeConstants.categoryCard(context, 'Scheduler',
-                          'lib/assets/schduler.png', () {}),
+                          'assets/images/schduler.png', () {}),
                       HomeConstants.categoryCard(
-                          context, 'Note Book', 'lib/assets/notebook.png', () {
-                          //get saved note from server and display on note screen 1
-                                notes.getSavedNotes(context);
-                                pushNoteBookScreen1(context);
-                      }),
-                      HomeConstants.categoryCard(
-                          context, 'Scholarships', 'lib/assets/scholaship.png',
+                          context, 'Note Book', 'assets/images/notebook.png',
                           () {
+                        //get saved note from server and display on note screen 1
+                        notes.getSavedNotes(context);
+                        pushNoteBookScreen1(context);
+                      }),
+                      HomeConstants.categoryCard(context, 'Scholarships',
+                          'assets/images/scholaship.png', () {
                         pushScholarshipScreen(context);
                       }),
                       HomeConstants.categoryCard(context, 'Notice Boards',
-                          'lib/assets/noticeBoard.png', () {
+                          'assets/images/noticeBoard.png', () {
                         pushNoticeScreen(context);
                       }),
                       HomeConstants.categoryCard(
-                          context, 'Chats', 'lib/assets/chat.png', () {}),
+                          context, 'Chats', 'assets/images/chat.png', () {}),
                       HomeConstants.categoryCard(context, 'School Portal',
-                          'lib/assets/schoolPortal.png', () {
+                          'assets/images/schoolPortal.png', () {
                         pushSchoolPortalScreen(context);
                       }),
                       HomeConstants.categoryCard(context, 'School Calender',
-                          'lib/assets/calender.png', () {}),
+                          'assets/images/calender.png', () {}),
                     ]),
               ),
             ),

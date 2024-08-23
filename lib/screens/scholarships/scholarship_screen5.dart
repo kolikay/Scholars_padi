@@ -66,7 +66,7 @@ class _ScholarshipScreen5State extends State<ScholarshipScreen5> {
                       ),
                       image: const DecorationImage(
                         fit: BoxFit.cover,
-                        image: AssetImage('lib/assets/matImage2.png'),
+                        image: AssetImage('assets/images/matImage2.png'),
                       ),
                     ),
                   ),
@@ -158,7 +158,10 @@ class _ScholarshipScreen5State extends State<ScholarshipScreen5> {
               SizedBox(
                 height: 24.h,
               ),
-              ReuseableButton(text: 'Visit Website',backGroundColor: AppColor.dullerBlack, onPressed: (){})
+              ReuseableButton(
+                  text: 'Visit Website',
+                  backGroundColor: AppColor.dullerBlack,
+                  onPressed: () {})
             ],
           ),
         ),

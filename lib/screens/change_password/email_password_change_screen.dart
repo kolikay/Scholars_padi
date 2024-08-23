@@ -100,7 +100,7 @@ class _EmailPasswordChangeScreenState extends State<EmailPasswordChangeScreen> {
                           ),
                         );
                       },
-                      logo: 'lib/assets/emailVerifyIcon.png',
+                      logo: 'assets/images/emailVerifyIcon.png',
                       maintext: 'Email Sent',
                       detailsText:
                           'Resets Instruction has been sent to email kolilay@yahoo.com',

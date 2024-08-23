@@ -41,9 +41,9 @@ class ShowSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: color,
-        duration: const Duration(seconds: 2),
+        duration: const Duration(seconds: 5),
         content: SizedBox(
-          height: 40.h,
+          height: 50.h,
           child: NormalText(
             text: message,
             color: Colors.black,

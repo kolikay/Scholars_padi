@@ -32,11 +32,13 @@ class NoticeScreen3 extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding:  EdgeInsets.symmetric(horizontal: 24.w),
+        padding: EdgeInsets.symmetric(horizontal: 24.w),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20.h,),
+            SizedBox(
+              height: 20.h,
+            ),
             Container(
               width: 327.w,
               height: 178.h,
@@ -44,7 +46,7 @@ class NoticeScreen3 extends StatelessWidget {
                 borderRadius: BorderRadius.circular(5.53.w),
                 image: const DecorationImage(
                   fit: BoxFit.contain,
-                  image: AssetImage('lib/assets/matImage1.png'),
+                  image: AssetImage('assets/images/matImage1.png'),
                 ),
               ),
             ),
@@ -78,8 +80,7 @@ class NoticeScreen3 extends StatelessWidget {
               width: 327.w,
               child: NormalText(
                   text:
-                      'As a result of the ongoing protest, the management of Obafemi Awolowo University give order to all students in the school to vacate all of residences and this was due to the school that was shut down as a result of the ongoing protest. Therefore, the Dean of Faculty of Science told all final year students to find a place to stay in off campus so as to able to complete their Project Defence and also other important task that is very necessary for their final year success.'
-                      ),
+                      'As a result of the ongoing protest, the management of Obafemi Awolowo University give order to all students in the school to vacate all of residences and this was due to the school that was shut down as a result of the ongoing protest. Therefore, the Dean of Faculty of Science told all final year students to find a place to stay in off campus so as to able to complete their Project Defence and also other important task that is very necessary for their final year success.'),
             ),
           ],
         ),

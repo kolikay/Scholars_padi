@@ -82,7 +82,7 @@ class NoticeScreen1 extends StatelessWidget {
                                     image: const DecorationImage(
                                       fit: BoxFit.cover,
                                       image: AssetImage(
-                                          'lib/assets/matImage1.png'),
+                                          'assets/images/matImage1.png'),
                                     ),
                                   ),
                                 ),
@@ -110,8 +110,8 @@ class NoticeScreen1 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5.53.w),
                                   image: const DecorationImage(
                                     fit: BoxFit.cover,
-                                    image:
-                                        AssetImage('lib/assets/matImage1.png'),
+                                    image: AssetImage(
+                                        'assets/images/matImage1.png'),
                                   ),
                                 ),
                               ),
@@ -138,8 +138,8 @@ class NoticeScreen1 extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(5.53.w),
                                   image: const DecorationImage(
                                     fit: BoxFit.cover,
-                                    image:
-                                        AssetImage('lib/assets/matImage1.png'),
+                                    image: AssetImage(
+                                        'assets/images/matImage1.png'),
                                   ),
                                 ),
                               ),
@@ -184,7 +184,7 @@ class NoticeScreen1 extends StatelessWidget {
                         height: 20.h,
                       ),
                       card(
-                          imgUrl: 'lib/assets/matImage2.png',
+                          imgUrl: 'assets/images/matImage2.png',
                           cardDate: '22/7/2022',
                           cardText:
                               '2021/2022 Undergraduate Students Accommodation For OAU Students',
@@ -193,7 +193,7 @@ class NoticeScreen1 extends StatelessWidget {
                         height: 20.h,
                       ),
                       card(
-                          imgUrl: 'lib/assets/matImage1.png',
+                          imgUrl: 'assets/images/matImage1.png',
                           cardDate: '22/2/2022',
                           cardText:
                               '2021/2022 Undergraduate Students Accommodation For OAU Students',
@@ -240,7 +240,7 @@ class NoticeScreen1 extends StatelessWidget {
                 ),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('lib/assets/matImage2.png'),
+                  image: AssetImage('assets/images/matImage2.png'),
                 ),
               ),
             ),

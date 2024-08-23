@@ -26,8 +26,7 @@ class SettingsScreen extends ConsumerStatefulWidget {
 class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
-
-   final userApiData = ref.watch(userProvider);
+    final userApiData = ref.watch(userProvider);
     return SafeArea(
         child: Scaffold(
       appBar: PreferredSize(
@@ -58,7 +57,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                 SizedBox(
                   height: 16.h,
                 ),
-               userApiData.profilePhoto!.contains('http')
+                userApiData.profilePhoto!.contains('http')
                     ? Container(
                         height: 85.h,
                         width: 85.w,
@@ -78,7 +77,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                           image: DecorationImage(
                             fit: BoxFit.cover,
                             image: AssetImage(
-                              'lib/assets/homepageimage.png',
+                              'assets/images/homepageimage.png',
                             ),
                           ),
                         ),

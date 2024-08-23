@@ -88,7 +88,7 @@ class MaterialCards extends StatelessWidget {
                     bottomLeft: Radius.circular(5.w)),
                 image: const DecorationImage(
                   fit: BoxFit.cover,
-                  image: AssetImage('lib/assets/matImage1.png'),
+                  image: AssetImage('assets/images/matImage1.png'),
                 ),
               ),
             ),

@@ -83,7 +83,7 @@ class AuthViewModel extends ChangeNotifier {
                   ),
                 );
               },
-              logo: 'lib/assets/verifyIcon.png',
+              logo: 'assets/images/verifyIcon.png',
               maintext: 'Congratulations',
               detailsText:
                   'Your account has been successfully created. Kindly go to your email to verify your account. If you did not receive an email, you can resend one',
@@ -126,7 +126,7 @@ class AuthViewModel extends ChangeNotifier {
                   MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
-              logo: 'lib/assets/emailVerifyIcon.png',
+              logo: 'assets/images/emailVerifyIcon.png',
               maintext: 'Email Verified',
               detailsText:
                   'Your account has been verified successfully, Please login to continue.',
@@ -138,7 +138,9 @@ class AuthViewModel extends ChangeNotifier {
         return Success;
       } else if (response is Failure) {
         ShowSnackBar.buildErrorSnackbar(
-            context, 'Email Verification Failed', Colors.pink[100]!);
+            context,
+            'Email Verification Failed. ${response.errorResponse}',
+            Colors.pink[100]!);
         setLoading(false);
       }
       if (response is SocketException) {
@@ -248,7 +250,7 @@ class AuthViewModel extends ChangeNotifier {
         // setLoading(false);
 
         // check if user is verified
-       bool verified = response.response!["userData"]["user"]['verified'];
+        bool verified = response.response!["userData"]["user"]['verified'];
 
         // UNCOMMENT WHEN API IS FIXED
         if (verified == true) {

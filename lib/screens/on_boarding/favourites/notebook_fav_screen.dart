@@ -18,30 +18,30 @@ Widget notebookfavScreen() {
       SizedBox(
         height: 15.h,
       ),
-      const  MaterialCards(
-    cardColor1: Colors.blue,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'About Dubai',
-    cardColor2: Color(0xffd1ecfa),
-  ),
+      const MaterialCards(
+        cardColor1: Colors.blue,
+        cardDate: 'March 13, 2022  08:53AM',
+        cardMessage: 'About Dubai',
+        cardColor2: Color(0xffd1ecfa),
+      ),
       SizedBox(
         height: 15.h,
       ),
-      const  MaterialCards(
-    cardColor1: Colors.pink,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'School Materials',
-    cardColor2: Color.fromARGB(255, 239, 120, 159),
-  ),
+      const MaterialCards(
+        cardColor1: Colors.pink,
+        cardDate: 'March 13, 2022  08:53AM',
+        cardMessage: 'School Materials',
+        cardColor2: Color.fromARGB(255, 239, 120, 159),
+      ),
       SizedBox(
         height: 15.h,
       ),
-      const  MaterialCards(
-    cardColor1: Colors.yellowAccent,
-    cardDate: 'March 13, 2022  08:53AM',
-    cardMessage: 'Revision Materials',
-    cardColor2: Color.fromARGB(255, 246, 239, 177),
-  ),
+      const MaterialCards(
+        cardColor1: Colors.yellowAccent,
+        cardDate: 'March 13, 2022  08:53AM',
+        cardMessage: 'Revision Materials',
+        cardColor2: Color.fromARGB(255, 246, 239, 177),
+      ),
     ]),
   );
 }
@@ -186,7 +186,7 @@ class _MaterialCardsState extends State<MaterialCards> {
 //                     bottomLeft: Radius.circular(5.w)),
 //                 image: const DecorationImage(
 //                   fit: BoxFit.cover,
-//                   image: AssetImage('lib/assets/matImage1.png'),
+//                   image: AssetImage('assets/images/matImage1.png'),
 //                 ),
 //               ),
 //             ),
