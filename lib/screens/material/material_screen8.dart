@@ -32,11 +32,11 @@ class MaterialScreen8 extends StatelessWidget {
             onPressed: () {
               Navigator.pop(context);
             },
-            icon: const Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios, size: 25, color: Colors.white,),
           ),
           secondAppIcon: IconButton(
             onPressed: () {},
-            icon: const Icon(Icons.search),
+            icon: const Icon(Icons.search, size: 25, color: Colors.white,),
           ),
         ),
       ),
@@ -53,7 +53,7 @@ class MaterialScreen8 extends StatelessWidget {
                 text: 'View your preferred materials and text books',
                 fontWeight: FontWeight.bold,
                 size: 16.sp,
-                color: Colors.black54,
+                color: Colors.black,
               ),
               Column(
                 children: [
@@ -101,7 +101,7 @@ class _MaterialCardsState extends State<MaterialCards> {
         padding: EdgeInsets.all(2.5.h),
         child: Container(
           width: 160.w,
-          height: 220.h,
+          height: 230.h,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(5),
             border: Border.all(color: Colors.black12),

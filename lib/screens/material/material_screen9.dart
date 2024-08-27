@@ -3,6 +3,7 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:scholars_padi/widgets/utils/pdfViewer.dart';
 
 class MaterialScreen9 extends StatefulWidget {
   final String title;
@@ -107,10 +108,19 @@ class _MaterialScreen9State extends State<MaterialScreen9> {
                 SizedBox(
                   height: 25.h,
                 ),
-                 MaterialCards(
-                  cardMessage: 'CHM 101 $message',
-                  cardDate: '2015',
-                  cardColor:const Color(0xffF65B3C),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: ((context) => const PDFViewerScreen()),
+                      ),
+                    );
+                  },
+                  child: MaterialCards(
+                    cardMessage: 'CHM 101 $message',
+                    cardDate: '2015',
+                    cardColor: const Color(0xffF65B3C),
+                  ),
                 ),
                 SizedBox(
                   height: 15.h,
@@ -123,7 +133,7 @@ class _MaterialScreen9State extends State<MaterialScreen9> {
                 SizedBox(
                   height: 15.h,
                 ),
-                 MaterialCards(
+                MaterialCards(
                   cardMessage: 'CHM 101 $message',
                   cardDate: '2017',
                   cardColor: Colors.red,
@@ -131,7 +141,7 @@ class _MaterialScreen9State extends State<MaterialScreen9> {
                 SizedBox(
                   height: 15.h,
                 ),
-                 MaterialCards(
+                MaterialCards(
                   cardMessage: 'CHM 101 $message',
                   cardDate: '2018',
                   cardColor: Colors.green,
@@ -142,7 +152,7 @@ class _MaterialScreen9State extends State<MaterialScreen9> {
                 MaterialCards(
                   cardMessage: 'CHM 101 $message',
                   cardDate: '2019',
-                  cardColor:const Color(0xffFFC847),
+                  cardColor: const Color(0xffFFC847),
                 ),
               ]),
         ),

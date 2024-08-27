@@ -9,7 +9,7 @@ class NormalText extends StatelessWidget {
   final Color? color;
   final String text;
   double? size = 14.sp;
-  TextOverflow overflow;
+  TextOverflow? overflow;
   FontWeight? fontWeight;
   TextAlign? textAlign;
 
@@ -17,7 +17,7 @@ class NormalText extends StatelessWidget {
       {Key? key,
       this.color = Colors.black,
       required this.text,
-      this.overflow = TextOverflow.ellipsis,
+      // this.overflow = TextOverflow.ellipsis,
       this.size,
       this.fontWeight = FontWeight.normal,
       this.textAlign,

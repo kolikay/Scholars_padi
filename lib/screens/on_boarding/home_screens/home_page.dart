@@ -12,9 +12,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // import 'package:internet_file/internet_file.dart';
 import 'homepage_constant_widgets.dart';
 
-
-
-
 class HomePageScreen extends ConsumerStatefulWidget {
   const HomePageScreen({Key? key}) : super(key: key);
 
@@ -26,22 +23,6 @@ class HomePageScreen extends ConsumerStatefulWidget {
 
 class _HomePageScreenState extends ConsumerState<HomePageScreen> {
   GlobalKey<ScaffoldState> scafoldKey = GlobalKey<ScaffoldState>();
-  late PdfControllerPinch pdfControllerPinch;
-
-  @override
-  void initState() {
-  
-    super.initState();
-    pdfControllerPinch = PdfControllerPinch(
-        document: PdfDocument.openAsset('assets/pdf/sample.pdf'));
-  }
-  //   @override
-  // void initState() {
-
-  //   super.initState();
-  //   pdfControllerPinch = PdfControllerPinch(
-  //       document: PdfDocument.openData(InternetFile.get('https://hutchesonlab.fiu.edu/wp-content/uploads/sample-pdf.pdf')));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -49,9 +30,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
     final userApiData = ref.watch(userProvider);
     final notes = ref.watch(noteViewModelProvider);
 
-    return 
-    
-    Scaffold(
+    return Scaffold(
       key: scafoldKey,
       drawer: Container(
         color: AppColor.darkContainer,
@@ -197,10 +176,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
           ],
         ),
       ),
-      body:
-      //  _buildUI()
-      
-      SingleChildScrollView(
+      body: SingleChildScrollView(
         dragStartBehavior: DragStartBehavior.start,
         child: Container(
           color: AppColor.darkContainer,
@@ -280,18 +256,16 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                           mainAxisSpacing: 1,
                           crossAxisCount: 4,
                           children: <Widget>[
-                            HomeConstants.newInkwell(
-                                context, 'Material', 'assets/images/material.png',
-                                () {
+                            HomeConstants.newInkwell(context, 'Material',
+                                'assets/images/material.png', () {
                               pushMaterialScreen(context);
                             }),
                             HomeConstants.newInkwell(context, 'Past Question',
                                 'assets/images/pastQuestion.png', () {}),
                             HomeConstants.newInkwell(context, 'Scheduler',
                                 'assets/images/schduler.png', () {}),
-                            HomeConstants.newInkwell(
-                                context, 'Note Book', 'assets/images/notebook.png',
-                                () {
+                            HomeConstants.newInkwell(context, 'Note Book',
+                                'assets/images/notebook.png', () {
                               //get saved note from server and display on note screen 1
                               notes.getSavedNotes(context);
                               pushNoteBookScreen1(context);
@@ -304,8 +278,8 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                                 'assets/images/noticeBoard.png', () {
                               pushNoticeScreen(context);
                             }),
-                            HomeConstants.newInkwell(
-                                context, 'Chats', 'assets/images/chat.png', () {}),
+                            HomeConstants.newInkwell(context, 'Chats',
+                                'assets/images/chat.png', () {}),
                             HomeConstants.newInkwell(
                                 context, 'More', 'assets/images/more.jpg', () {
                               pushCategoriesPage(context);
@@ -347,14 +321,4 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
       ),
     );
   }
-
-  // _buildUI() {
-  //   return Column(
-  //     children: [
-  //       Expanded(
-  //         child: PdfViewPinch(controller: pdfControllerPinch,),
-  //       )
-  //     ],
-  //   );
-  // }
 }
