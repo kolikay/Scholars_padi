@@ -305,7 +305,7 @@ class _HomePageScreenState extends ConsumerState<HomePageScreen> {
                       ],
                     ),
                     const ReuseableCards(
-                      date: '2nd january, 2022',
+                      date: '2nd january, 2023',
                       note: 'Added New Notes',
                     ),
                     const ReuseableCards(

@@ -239,21 +239,17 @@ class AuthViewModel extends ChangeNotifier {
         UserPreferences.setLoginUserId(
             response.response!["userData"]["user"]['_id']);
 
-        Future.delayed(const Duration(milliseconds: 500), () {
-          //navigate to onbording screen after 30 seconds
-          pushOnBoardingScreen(context);
-        });
-
-        // addUserdata(UserModel.fromJson(response.response!["userData"]["user"]));
-
-        // notifyListeners();
-        // setLoading(false);
-
         // check if user is verified
         bool verified = response.response!["userData"]["user"]['verified'];
 
         // UNCOMMENT WHEN API IS FIXED
         if (verified == true) {
+          addUserdata(
+              UserModel.fromJson(response.response!["userData"]["user"]));
+
+          notifyListeners();
+          setLoading(false);
+
           Future.delayed(const Duration(milliseconds: 500), () {
             //navigate to onbording screen after 30 seconds
             pushOnBoardingScreen(context);
