@@ -52,7 +52,7 @@ class _LandingPageState extends State<LandingPage> {
     Future.delayed(Duration(seconds: 3)).then((_) {
       if (_pageController.page!.toInt() < 2) {
         _pageController.nextPage(
-            duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+            duration: Duration(milliseconds: 5000), curve: Curves.easeIn);
         _startAutoSlide();
       }
     });
