@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
@@ -49,10 +48,10 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _startAutoSlide() {
-    Future.delayed(Duration(seconds: 3)).then((_) {
+    Future.delayed(Duration(seconds: 10)).then((_) {
       if (_pageController.page!.toInt() < 2) {
         _pageController.nextPage(
-            duration: Duration(milliseconds: 5000), curve: Curves.easeIn);
+            duration: Duration(milliseconds: 500), curve: Curves.easeIn);
         _startAutoSlide();
       }
     });
@@ -86,13 +85,13 @@ class _LandingPageState extends State<LandingPage> {
                 subTitle3: ' down for personal uses'),
             buildPage(
                 color: Colors.white,
-                urlImage: 'assets/images/landingImage2NOW.jpg',
+                urlImage: 'assets/images/landingImage2.jpg',
                 title: 'Activity Reminder',
                 subTitle1: 'Reminders are used to reduce the ',
                 subTitle2: 'rate of forgetfulnessof students'),
             buildPage(
                 color: Colors.white,
-                urlImage: 'assets/images/landingImage3NOW.jpg',
+                urlImage: 'assets/images/landingImage3.jpg',
                 title: 'Latest Information',
                 subTitle1: 'Latest new on campus and',
                 subTitle2: 'scholarship aids can be accessed',
@@ -108,12 +107,7 @@ class _LandingPageState extends State<LandingPage> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => const LoginScreen(),
-                        ),
-                      );
-                      // pageController.jumpToPage(2);
+                      _pageController.jumpToPage(2);
                     },
                     child: NormalText(
                       text: 'Skip',
