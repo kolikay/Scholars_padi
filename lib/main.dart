@@ -19,7 +19,8 @@ import 'constants/shared_preferences.dart';
 
 void main() async {
   // add these lines
-  WidgetsFlutterBinding.ensureInitialized();
+   WidgetsFlutterBinding.ensureInitialized();
+  
 
   await UserPreferences.init();
 
@@ -64,7 +65,7 @@ class _MyAppState extends State<MyApp> {
             primarySwatch: Colors.purple,
           ),
            // home: hasExpired ? const LandingPage() : const OnBoardingScreen(),
-           home:const LandingPage(),
+           home:LandingPage(),
          
           routes: {
             HomePageScreen.id: (context) => const HomePageScreen(),
