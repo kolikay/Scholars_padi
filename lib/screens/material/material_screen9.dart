@@ -3,7 +3,7 @@ import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reusable_app_bar1.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:scholars_padi/widgets/utils/pdfViewer.dart';
+import 'package:scholars_padi/widgets/utils/pdfviewer.dart';
 
 class MaterialScreen9 extends StatefulWidget {
   final String title;

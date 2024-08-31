@@ -1,37 +1,24 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:scholars_padi/constants/appColor.dart';
 import 'package:scholars_padi/routes/page_routes.dart';
-import 'package:scholars_padi/screens/authentication/views/login_screen.dart';
+
 import 'package:scholars_padi/widgets/reusesable_widget/normal_text.dart';
 import 'package:scholars_padi/widgets/reusesable_widget/reuseable_button.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Landing Page',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: LandingPage(),
-    );
-  }
-}
-
 class LandingPage extends StatefulWidget {
+  const LandingPage({Key? key}) : super(key: key);
+
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
 class _LandingPageState extends State<LandingPage> {
   late PageController _pageController;
-  int _currentPage = 0;
+  final int _currentPage = 0;
   bool _isLastPage = false;
 
   @override
@@ -48,21 +35,21 @@ class _LandingPageState extends State<LandingPage> {
   }
 
   void _startAutoSlide() {
-    Future.delayed(Duration(seconds: 10)).then((_) {
+    Future.delayed(const Duration(seconds: 10)).then((_) {
       if (_pageController.page!.toInt() < 2) {
         _pageController.nextPage(
-            duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+            duration: const Duration(milliseconds: 500), curve: Curves.easeIn);
         _startAutoSlide();
       }
     });
   }
 
-  void _skipToNextPage() {
-    if (_pageController.page!.toInt() < 2) {
-      _pageController.nextPage(
-          duration: Duration(milliseconds: 500), curve: Curves.easeIn);
-    }
-  }
+  // void _skipToNextPage() {
+  //   if (_pageController.page!.toInt() < 2) {
+  //     _pageController.nextPage(
+  //         duration: Duration(milliseconds: 500), curve: Curves.easeIn);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -85,13 +72,13 @@ class _LandingPageState extends State<LandingPage> {
                 subTitle3: ' down for personal uses'),
             buildPage(
                 color: Colors.white,
-                urlImage: 'assets/images/landingImage2.jpg',
+                urlImage: 'assets/images/landingImage2.png',
                 title: 'Activity Reminder',
                 subTitle1: 'Reminders are used to reduce the ',
                 subTitle2: 'rate of forgetfulnessof students'),
             buildPage(
                 color: Colors.white,
-                urlImage: 'assets/images/landingImage3.jpg',
+                urlImage: 'assets/images/landingImage3.png',
                 title: 'Latest Information',
                 subTitle1: 'Latest new on campus and',
                 subTitle2: 'scholarship aids can be accessed',
@@ -176,47 +163,6 @@ class _LandingPageState extends State<LandingPage> {
                 ),
               ),
             ),
-    );
-  }
-
-  Widget _buildPage({
-    required Color color,
-    required String urlImage,
-    required String title,
-    required String description,
-  }) {
-    return Container(
-      color: color,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              urlImage,
-              height: 300,
-            ),
-            SizedBox(height: 30),
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: Colors.blue.shade700,
-              ),
-            ),
-            SizedBox(height: 20),
-            Text(
-              description,
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.blue.shade700,
-              ),
-              textAlign: TextAlign.center,
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

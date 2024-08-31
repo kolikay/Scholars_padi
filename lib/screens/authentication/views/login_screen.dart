@@ -190,7 +190,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
                                 FocusScope.of(context).unfocus();
                                 //Set user email address
                                 UserPreferences.setEmail(emailController.text);
-                                // pushOnBoardingScreen(context);
+                                
                               },
                             ),
                           ],

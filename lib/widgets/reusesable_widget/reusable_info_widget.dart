@@ -37,24 +37,22 @@ class ReuseableInfoWidget extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 22.h,
+              height: 10.h,
             ),
-            NormalText(
-              text: maintext,
-              size: 23.h,
-              fontWeight: FontWeight.w600,
-            ),
-            SizedBox(
-              height: 28.h,
+            Center(
+              child: NormalText(
+                text: maintext,
+                size: 18.h,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             Container(
                 width: 324.w,
-                height: 120.h,
                 padding: EdgeInsets.symmetric(vertical: 18.h, horizontal: 18.h),
                 child: Text(
                   detailsText,
                   style:
-                      TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400),
+                      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w600),
                   textAlign: TextAlign.center,
                 )),
             SizedBox(

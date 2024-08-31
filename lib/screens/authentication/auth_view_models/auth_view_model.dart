@@ -207,7 +207,11 @@ class AuthViewModel extends ChangeNotifier {
         setLoading(false);
         return Success;
       }
-      if (response is Failure) {
+      if (response is Failure && response.code == 404) {
+        ShowSnackBar.buildErrorSnackbar(context,
+            'Email does not Exist, Please try again', Colors.pink[100]!);
+        setLoading(false);
+      } else {
         ShowSnackBar.buildErrorSnackbar(
             context, 'Could not send Otp, Please try again', Colors.pink[100]!);
         setLoading(false);
